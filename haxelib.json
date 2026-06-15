@@ -5,7 +5,6 @@
   "tags": ["fnfbutreal"],
   "description": "FNF but haxelib",
   "version": "0.8.5",
-  "classPath": "source/",
   "releasenote": "FNF 0.8.5",
   "contributors": ["Maki"],
   "dependencies": {}
