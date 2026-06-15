@@ -1,0 +1,12 @@
+{
+  "name": "funkin",
+  "url": "https://github.com/bopel-maki-macohi/Funkin-haxelib/tree/main",
+  "license": "MIT",
+  "tags": ["fnfbutreal"],
+  "description": "FNF but haxelib",
+  "version": "0.8.5",
+  "classPath": "source/",
+  "releasenote": "FNF 0.8.5",
+  "contributors": ["Maki"],
+  "dependencies": {}
+}
