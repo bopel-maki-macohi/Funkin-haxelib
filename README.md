@@ -1,0 +1,1 @@
+haxelib git funkin https://github.com/bopel-maki-macohi/Funkin-haxelib
