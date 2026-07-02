@@ -1,0 +1,5 @@
+--library hscript
+-m BlankFiles
+--interp
+
+-D hscriptPos

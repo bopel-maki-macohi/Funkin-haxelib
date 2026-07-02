@@ -64,6 +64,9 @@ class BlankFiles {
 		'// ',
 		'return',
 		'trace',
+		'{',
+		'while',
+		'#',
 	];
 
 	static var logs = [];
@@ -76,9 +79,41 @@ class BlankFiles {
 
 		var i = 0;
 
-		while (i < 10) {
-			i++;
-			Timer.measure(() -> cleanse(i));
+		// while (i < 10) {
+		// 	i++;
+		// 	Timer.measure(() -> cleanse(i));
+		// }
+
+		for (file in source) {
+			var parser = new hscript.Parser();
+			var program = parser.parseString(File.getContent(file), file);
+
+			var interp = new hscript.Interp();
+
+			// export some useful classes
+			interp.variables.set("Array", Array);
+			interp.variables.set("DateTools", DateTools);
+			interp.variables.set("Math", Math);
+			interp.variables.set("StringTools", StringTools);
+			interp.variables.set("Sys", Sys);
+			interp.variables.set("Xml", Xml);
+			interp.variables.set("sys", {
+				"FileSystem": sys.FileSystem,
+				"io": {
+					"File": sys.io.File
+				},
+				"net": {
+					"Host": sys.net.Host
+				}
+			});
+			interp.variables.set("haxe", {
+				"Json": haxe.Json,
+				"Http": haxe.Http,
+				"Serializer": haxe.Serializer,
+				"Unserializer": haxe.Unserializer
+			});
+
+			trace('$file : ' + interp.execute(program));
 		}
 
 		trace('${removedKeywordLines.length} removed keyword lines after $i iterations');
@@ -94,9 +129,9 @@ class BlankFiles {
 			var lines = fileContent.split('\n');
 			var newLines = [];
 
-			var inFunction:Int = 0;
+			var inFunction:Int = -1;
 
-			var funcStartIDS:Map<Int, Int> = [];
+			var funcStartIDS:Array<Int> = [];
 
 			var cleared = [];
 
@@ -151,6 +186,33 @@ class BlankFiles {
 							clearLine(line);
 							lineCleared = true;
 						}
+					}
+
+					if (!lineCleared) {
+						if (line.contains('function')) {
+							inFunction++;
+
+							funcStartIDS.push(i);
+
+							var splitFuncLine = line.split('():');
+
+							if (splitFuncLine.length > 1)
+								line = splitFuncLine[0] + '()';
+
+							if (!line.contains('{}'))
+								line = splitFuncLine[0] + ' {}';
+						}
+
+						if (line == '}' && inFunction >= 0) {
+							funcStartIDS.remove(funcStartIDS[inFunction]);
+							inFunction--;
+
+							// if (inFunction < 0) {
+							// 	newLines.insert(newLines.length - 1, '${newLines[newLines.length - 1]} {}');
+							// }
+						}
+
+						lineCleared = inFunction < 0;
 					}
 				}
 
