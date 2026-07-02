@@ -55,9 +55,20 @@ class BlankFiles {
 		'public var',
 		'private static var',
 		'private var',
+		'var',
+		'final',
 		'// ',
 		'return',
 		'trace',
+		'trace',
+		'#',
+		'handlers',
+		'Discord',
+		'createDaemon',
+		'daemon',
+		'while',
+		'Sys',
+		'presence',
 	];
 
 	static var logs = [];
@@ -81,20 +92,23 @@ class BlankFiles {
 
 	static var removedKeywordLines = [];
 
-	static function cleanse(i) {
+	static function cleanse(j:Int) {
 		logs = [];
-
 		for (file in source) {
 			var fileContent = File.getContent(file);
 			var lines = fileContent.split('\n');
+			var newLines = [];
 
 			var inFunction:Int = 0;
 
 			var funcStartIDS:Map<Int, Int> = [];
 
+			var cleared = [];
+
 			function clearLine(line) {
 				lines.remove(line);
 				removedKeywordLines.push(line);
+				cleared.push(line);
 			}
 
 			var i = 0;
@@ -103,60 +117,36 @@ class BlankFiles {
 
 				var lineSplit = line.split(' ');
 
-				for (keyword in keywords_contains) {
-					if (lineSplit.contains(keyword)) {
-						clearLine(line);
-						continue;
-					}
-				}
-				var publicID = lineSplit.indexOf('public');
-				var staticID = lineSplit.indexOf('static');
-
-				if (lineSplit.contains('var')) {
-					var varID = lineSplit.indexOf('var');
-
-					if (varID < staticID || varID < publicID) {
-						clearLine(line);
-						continue;
-					}
-				}
-
-				if (lineSplit.contains('final')) {
-					var finalID = lineSplit.indexOf('final');
-
-					if (finalID < staticID || finalID < publicID) {
-						clearLine(line);
-						continue;
-					}
-				}
+				var lineCleared = false;
 
 				for (keywords in keywords_startsWith) {
-					if (line.startsWith(keywords)) {
+					if (!lineCleared && line.startsWith(keywords)) {
+						// trace(keywords);
 						clearLine(line);
+						lineCleared = true;
+					} else
 						continue;
-					}
 				}
 
-				// if (line.contains('function')) {
-				// 	funcStartIDS.set(inFunction, i + 2);
-				// 	inFunction++;
-				// }
+				for (keyword in keywords_contains) {
+					if (!lineCleared && lineSplit.contains(keyword)) {
+						// trace(keyword);
+						clearLine(line);
+						lineCleared = true;
+					} else
+						continue;
+				}
 
-				// if (line == '}' && inFunction > 0) {
-				// 	var starting = funcStartIDS.get(inFunction);
-
-				// 	funcStartIDS.remove(inFunction);
-
-				// 	inFunction--;
-				// }
-
-				if (inFunction < 1)
+				if (!lineCleared) {
 					logs.push('$file : $line');
+					newLines.push(line);
+				}
 
 				i++;
 			}
 
-			fileContent = lines.join('\n');
+			fileContent = newLines.join('\n');
+			trace('$j : ' + file + ' : ${cleared.length}');
 			File.saveContent(file, fileContent);
 		}
 	}

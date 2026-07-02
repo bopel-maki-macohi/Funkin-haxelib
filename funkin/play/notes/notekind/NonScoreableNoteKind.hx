@@ -2,19 +2,19 @@ package funkin.play.notes.notekind;
 
 
 /**
- * A custom note kind which has custom functionality, preventing notes from being scored in the Results Screen.
- */
+* A custom note kind which has custom functionality, preventing notes from being scored in the Results Screen.
+*/
 class NonScoreableNoteKind extends NoteKind
 {
-  public function new()
-  {
-    super('non_scoreable', 'Non-scoreable');
-    scoreable = false;
-  }
+public function new()
+{
+super('non_scoreable', 'Non-scoreable');
+scoreable = false;
+}
 
-  public override function onNoteMiss(event:NoteScriptEvent):Void
-  {
-    event.note.visible = false;
-    event.cancel();
-  }
+public override function onNoteMiss(event:NoteScriptEvent):Void
+{
+event.note.visible = false;
+event.cancel();
+}
 }

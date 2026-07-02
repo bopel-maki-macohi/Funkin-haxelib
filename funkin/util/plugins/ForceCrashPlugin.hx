@@ -2,36 +2,31 @@ package funkin.util.plugins;
 
 
 /**
- * A plugin which forcibly crashes the application.
- * TODO: Should we disable this in release builds?
- */
-@:nullSafety
+* A plugin which forcibly crashes the application.
+* TODO: Should we disable this in release builds?
+*/
 class ForceCrashPlugin extends FlxBasic
 {
-  public function new()
-  {
-    super();
-  }
+public function new()
+{
+super();
+}
 
-  public static function initialize():Void
-  {
-    FlxG.plugins.addPlugin(new ForceCrashPlugin());
-  }
+public static function initialize():Void
+{
+}
 
-  public override function update(elapsed:Float):Void
-  {
-    super.update(elapsed);
+public override function update(elapsed:Float):Void
+{
+super.update(elapsed);
 
-    // Ctrl + Alt + Shift + L = Crash the game for debugging purposes
-    if (InputUtil.allPressedWithDebounce([CONTROL, ALT, SHIFT, L]))
-    {
-      // TODO: Make this message 87% funnier.
-      throw "DEBUG: Crashing the game via debug keybind!";
-    }
-  }
+{
+throw "DEBUG: Crashing the game via debug keybind!";
+}
+}
 
-  public override function destroy():Void
-  {
-    super.destroy();
-  }
+public override function destroy():Void
+{
+super.destroy();
+}
 }

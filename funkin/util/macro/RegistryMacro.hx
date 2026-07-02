@@ -7,393 +7,302 @@ using haxe.macro.TypeTools;
 using StringTools;
 
 /**
- * The type parameters for a class extending `BaseRegistry`.
- */
+* The type parameters for a class extending `BaseRegistry`.
+*/
 typedef RegistryTypeParams =
 {
-  /**
-   * The class type of the entry. Must implement `IRegistryEntry`.
-   */
-  var entryType:ClassType;
+/**
+* The class type of the entry. Must implement `IRegistryEntry`.
+*/
 
-  /**
-   * The type for the data of an entry. This is usually a typedef of a struct.
-   */
-  var dataType:Any; // DefType or ClassType
+/**
+* The type for the data of an entry. This is usually a typedef of a struct.
+*/
 
 }
 
 /**
- * A set of build macros to be applied to `Registry` classes in the `funkin.data` package.
- *
- * @see `funkin.data.BaseRegistry`
- */
+* A set of build macros to be applied to `Registry` classes in the `funkin.data` package.
+*
+* @see `funkin.data.BaseRegistry`
+*/
 class RegistryMacro
 {
-  static final DATA_FILE_BASE_PATH:String = "assets/preload/data";
 
-  /**
-   * Builds the registry class.
-   *
-   * @return The modified list of fields for the target class.
-   */
-  public static macro function buildRegistry():Array<Field>
-  {
-    var cls:ClassType = Context.getLocalClass().get();
-    var fields:Array<Field> = Context.getBuildFields();
+/**
+* Builds the registry class.
+*
+* @return The modified list of fields for the target class.
+*/
+public static macro function buildRegistry():Array<Field>
+{
 
-    // Classes with the `@:funkinBase` meta or `@:funkinProcessed` meta should be ignored.
-    var baseMeta:Null<MetadataEntry> = cls.meta.get().find(function(m) return m.name == ':funkinBase');
-    if (baseMeta != null || alreadyProcessed(cls)) return fields;
 
-    var typeParams:RegistryTypeParams = getTypeParams(cls);
 
-    // Build an internal class with static functions that allow the Entry class to call functions on the Registry class.
-    buildEntryImpl(typeParams.entryType, cls);
+buildEntryImpl(typeParams.entryType, cls);
 
-    fields = fields.concat(buildRegistryMethods(cls, fields, typeParams.entryType, typeParams.dataType));
+fields = fields.concat(buildRegistryMethods(cls, fields, typeParams.entryType, typeParams.dataType));
 
-    // Indicate that the class has been processed so we don't process twice.
-    cls.meta.add(":funkinProcessed", [], cls.pos);
+cls.meta.add(":funkinProcessed", [], cls.pos);
 
-    return fields;
-  }
+}
 
-  /**
-   * Builds the registry entry class.
-   *
-   * @return The modified list of fields for the target class.
-   */
-  public static macro function buildEntry():Array<Field>
-  {
-    var cls:ClassType = Context.getLocalClass().get();
-    var fields:Array<Field> = Context.getBuildFields();
+/**
+* Builds the registry entry class.
+*
+* @return The modified list of fields for the target class.
+*/
+public static macro function buildEntry():Array<Field>
+{
 
-    // Classes with the `@:funkinProcessed` meta should be ignored.
-    if (alreadyProcessed(cls)) return fields;
 
-    // Get the type of the JSON data for an entry.
-    var entryData:Any = getEntryData(cls);
 
-    // Build variables and methods for the entry.
-    fields = fields.concat(buildEntryVariables(cls, entryData));
-    fields = fields.concat(buildEntryMethods(cls));
+fields = fields.concat(buildEntryVariables(cls, entryData));
+fields = fields.concat(buildEntryMethods(cls));
 
-    // Indicate that the class has been processed so we don't process twice.
-    cls.meta.add(":funkinProcessed", [], cls.pos);
+cls.meta.add(":funkinProcessed", [], cls.pos);
 
-    return fields;
-  }
+}
 
-  #if macro
-  /**
-   * Retrieve the type parameters for a class extending `BaseRegistry<T, J>`.
-   * @param cls The class to retrieve the type parameters for.
-   * @return The type parameters for the class.
-   */
-  static function getTypeParams(cls:ClassType):RegistryTypeParams
-  {
-    var params:Array<Type> = [];
-    var typeParams:Array<Any> = [];
-    switch (cls.superClass.t.get().kind)
-    {
-      case KGenericInstance(_, _params):
-        params = _params;
-      case KGeneric:
-        // For some reason the only case where it's KGeneric
-        // is on the language server so we have to handle it too.
-        // This seems to be somehow related to the broken code completion.
-        params = cls.superClass.params;
-      default:
-        throw '${cls.name}: Could not interpret type parameters of Registry class.';
-    }
+/**
+* Retrieve the type parameters for a class extending `BaseRegistry<T, J>`.
+* @param cls The class to retrieve the type parameters for.
+* @return The type parameters for the class.
+*/
+static function getTypeParams(cls:ClassType):RegistryTypeParams
+{
+switch (cls.superClass.t.get().kind)
+{
+case KGenericInstance(_, _params):
+params = _params;
+case KGeneric:
+params = cls.superClass.params;
+default:
+throw '${cls.name}: Could not interpret type parameters of Registry class.';
+}
 
-    for (param in params)
-    {
-      switch (param)
-      {
-        case TInst(t, _):
-          typeParams.push(t.get());
-        case TType(t, _):
-          typeParams.push(t.get());
-        default:
-          throw 'Not a class';
-      }
-    }
-    return {entryType: typeParams[0], dataType: typeParams[1]};
-  }
+for (param in params)
+{
+switch (param)
+{
+case TInst(t, _):
+typeParams.push(t.get());
+case TType(t, _):
+typeParams.push(t.get());
+default:
+throw 'Not a class';
+}
+}
+}
 
-  /**
-   * Builds new static and instance methods for a registry class.
-   *
-   * @param cls The registry class to build the methods for.
-   * @param fields The fields of the registry class.
-   * @param entryType The class type of entries in the registry.
-   * @param dataType The type of the data for entries in the registry.
-   * @return The modified list of fields for the target class.
-   */
-  static function buildRegistryMethods(cls:ClassType, fields:Array<Field>, entryType:ClassType, dataType:Dynamic):Array<Field>
-  {
-    var scriptedEntryClsName:String = entryType.pack.join('.') + '.Scripted' + entryType.name;
+/**
+* Builds new static and instance methods for a registry class.
+*
+* @param cls The registry class to build the methods for.
+* @param fields The fields of the registry class.
+* @param entryType The class type of entries in the registry.
+* @param dataType The type of the data for entries in the registry.
+* @return The modified list of fields for the target class.
+*/
+static function buildRegistryMethods(cls:ClassType, fields:Array<Field>, entryType:ClassType, dataType:Dynamic):Array<Field>
+{
 
-    var getScriptedClassName:String = '${scriptedEntryClsName}';
 
-    var createScriptedEntry:String = '${scriptedEntryClsName}.scriptInit(clsName, "unknown")';
 
-    var newJsonParser:String = 'new json2object.JsonParser<${dataType.module}.${dataType.name}>()';
 
-    var dataFilePath:String = getRegistryDataFilePath(cls, fields);
 
-    var dataPath:String = DATA_FILE_BASE_PATH;
-    #if ios
-    if (!sys.FileSystem.exists(dataPath)) dataPath = "../../../../../" + dataPath;
-    #end
 
-    var baseGameEntryIds:Array<Expr> = listBaseGameEntryIds('${dataPath}/${dataFilePath}/');
 
-    return (macro class TempClass
-      {
-        public function listBaseGameEntryIds():Array<String>
-        {
-          return $a{baseGameEntryIds};
-        }
+{
+public function listBaseGameEntryIds():Array<String>
+{
+}
 
-        public function listModdedEntryIds():Array<String>
-        {
-          return listEntryIds().filter(function(id:String):Bool
-          {
-            return listBaseGameEntryIds().indexOf(id) == -1;
-          });
-        }
+public function listModdedEntryIds():Array<String>
+{
+{
+});
+}
 
-        function getScriptedClassNames()
-        {
-          return ${Context.parse(getScriptedClassName, Context.currentPos())}.listScriptClasses();
-        }
+function getScriptedClassNames()
+{
+}
 
-        function createScriptedEntry(clsName:String)
-        {
-          return ${Context.parse(createScriptedEntry, Context.currentPos())};
-        }
+function createScriptedEntry(clsName:String)
+{
+}
 
-        public function parseEntryData(id:String)
-        {
-          var parser = ${Context.parse(newJsonParser, Context.currentPos())};
-          parser.ignoreUnknownVariables = false;
+public function parseEntryData(id:String)
+{
+parser.ignoreUnknownVariables = false;
 
-          @:privateAccess
-          switch (this.loadEntryFile(id))
-          {
-            case {fileName: fileName, contents: contents}:
-              parser.fromJson(funkin.util.SerializerUtil.sanitizeJSON(contents), fileName);
-            default:
-              return null;
-          }
+switch (this.loadEntryFile(id))
+{
+case {fileName: fileName, contents: contents}:
+parser.fromJson(funkin.util.SerializerUtil.sanitizeJSON(contents), fileName);
+default:
+}
 
-          if (parser.errors.length > 0)
-          {
-            @:privateAccess
-            this.printErrors(parser.errors, id);
-            return null;
-          }
-          return parser.value;
-        }
+{
+this.printErrors(parser.errors, id);
+}
+}
 
-        public function parseEntryDataRaw(contents:String, ?fileName:String)
-        {
-          var parser = ${Context.parse(newJsonParser, Context.currentPos())};
-          parser.ignoreUnknownVariables = false;
-          parser.fromJson(contents, fileName);
+public function parseEntryDataRaw(contents:String, ?fileName:String)
+{
+parser.ignoreUnknownVariables = false;
+parser.fromJson(contents, fileName);
 
-          if (parser.errors.length > 0)
-          {
-            @:privateAccess
-            this.printErrors(parser.errors, fileName);
-            return null;
-          }
-          return parser.value;
-        }
-      }).fields.filter((field) -> return !MacroUtil.fieldAlreadyExists(field.name));
-  }
+{
+this.printErrors(parser.errors, fileName);
+}
+}
+}).fields.filter((field) -> return !MacroUtil.fieldAlreadyExists(field.name));
+}
 
-  /**
-   * Retrieve the type of the JSON data for an entry.
-   * @param cls The entry class to retrieve the type of the JSON data for.
-   * @return Will be either a `DefType` or a `ClassType`.
-   */
-  static function getEntryData(cls:ClassType):Any // DefType or ClassType
-  {
-    try
-    {
-      switch (cls.interfaces[0].params[0])
-      {
-        case Type.TInst(t, _):
-          return t.get();
-        case Type.TType(t, _):
-          return t.get();
-        default:
-          throw '${cls.name}: Type parameter for Entry must be a Class or typedef';
-      }
-    }
-    catch (e)
-    {
-      throw '${cls.name}: IRegistryEntry must be the last implemented interface';
-    }
-  }
+/**
+* Retrieve the type of the JSON data for an entry.
+* @param cls The entry class to retrieve the type of the JSON data for.
+* @return Will be either a `DefType` or a `ClassType`.
+*/
+static function getEntryData(cls:ClassType):Any // DefType or ClassType
+{
+try
+{
+switch (cls.interfaces[0].params[0])
+{
+case Type.TInst(t, _):
+case Type.TType(t, _):
+default:
+throw '${cls.name}: Type parameter for Entry must be a Class or typedef';
+}
+}
+catch (e)
+{
+throw '${cls.name}: IRegistryEntry must be the last implemented interface';
+}
+}
 
-  /**
-   * Add fields to the entry class.
-   * @param cls The entry class to add fields to.
-   * @param entryData The type of the data for the entry.
-   * @return The modified list of fields for the target class.
-   */
-  static function buildEntryVariables(cls:ClassType, entryData:Dynamic):Array<Field>
-  {
-    var entryDataType:ComplexType = Context.getType('${entryData.module}.${entryData.name}').toComplexType();
+/**
+* Add fields to the entry class.
+* @param cls The entry class to add fields to.
+* @param entryData The type of the data for the entry.
+* @return The modified list of fields for the target class.
+*/
+static function buildEntryVariables(cls:ClassType, entryData:Dynamic):Array<Field>
+{
 
-    return (macro class TempClass
-      {
-        public final id:String;
+{
+public final id:String;
 
-        public final _data:Null<$entryDataType>;
-      }).fields.filter((field) -> return !MacroUtil.fieldAlreadyExists(field.name));
-  }
+public final _data:Null<$entryDataType>;
+}).fields.filter((field) -> return !MacroUtil.fieldAlreadyExists(field.name));
+}
 
-  /**
-   * Add methods to the entry class.
-   * @param cls The entry class to add methods to.
-   * @return The modified list of fields for the target class.
-   */
-  static function buildEntryMethods(cls:ClassType):Array<Field>
-  {
-    // The internal class built by `buildEntryImpl`.
-    var impl:String = 'funkin.macro.impl._${cls.name}_Impl';
+/**
+* Add methods to the entry class.
+* @param cls The entry class to add methods to.
+* @return The modified list of fields for the target class.
+*/
+static function buildEntryMethods(cls:ClassType):Array<Field>
+{
 
-    return (macro class TempClass
-      {
-        public function _fetchData(id:String)
-        {
-          return ${Context.parse(impl, Context.currentPos())}._fetchData(this, id);
-        }
+{
+public function _fetchData(id:String)
+{
+}
 
-        public function toString()
-        {
-          return ${Context.parse(impl, Context.currentPos())}.toString(this);
-        }
+public function toString()
+{
+}
 
-        public function destroy()
-        {
-          ${Context.parse(impl, Context.currentPos())}.destroy(this);
-        }
-      }).fields.filter((field) -> return !MacroUtil.fieldAlreadyExists(field.name));
-  }
+public function destroy()
+{
+${Context.parse(impl, Context.currentPos())}.destroy(this);
+}
+}).fields.filter((field) -> return !MacroUtil.fieldAlreadyExists(field.name));
+}
 
-  /**
-   * Build an internal class that calls functions for an associated registry class.
-   * @param cls The entry class to build the internal class for.
-   * @param registryCls The registry class that the entry class is associated with.
-   */
-  static function buildEntryImpl(cls:ClassType, registryCls:ClassType):Void
-  {
-    var clsType:ComplexType = Context.getType('${cls.module}.${cls.name}').toComplexType();
+/**
+* Build an internal class that calls functions for an associated registry class.
+* @param cls The entry class to build the internal class for.
+* @param registryCls The registry class that the entry class is associated with.
+*/
+static function buildEntryImpl(cls:ClassType, registryCls:ClassType):Void
+{
 
-    var registry:String = '${registryCls.module}.${registryCls.name}';
 
-    Context.defineType({
-      pos: Context.currentPos(),
-      pack: ['funkin', 'macro', 'impl'],
-      name: '_${cls.name}_Impl',
-      kind: TypeDefKind.TDClass(null, [], false, false, false),
-      fields: (macro class TempClass
-        {
-          public static inline function _fetchData(me:$clsType, id:String)
-          {
-            return $
-            {
-              Context.parse(registry, Context.currentPos())
-            }.instance.parseEntryDataWithMigration(id, ${Context.parse(registry, Context.currentPos())}.instance.fetchEntryVersion(id));
-          }
+Context.defineType({
+pos: Context.currentPos(),
+pack: ['funkin', 'macro', 'impl'],
+name: '_${cls.name}_Impl',
+kind: TypeDefKind.TDClass(null, [], false, false, false),
+fields: (macro class TempClass
+{
+public static inline function _fetchData(me:$clsType, id:String)
+{
+{
+Context.parse(registry, Context.currentPos())
+}.instance.parseEntryDataWithMigration(id, ${Context.parse(registry, Context.currentPos())}.instance.fetchEntryVersion(id));
+}
 
-          public static inline function toString(me:$clsType)
-          {
-            return $v{cls.name} + '(' + me.id + ')';
-          }
+public static inline function toString(me:$clsType)
+{
+}
 
-          public static inline function destroy(me:$clsType)
-          {
-          }
-        }).fields
-    });
-  }
+public static inline function destroy(me:$clsType)
+{
+}
+}).fields
+});
+}
 
-  static function getRegistryDataFilePath(cls:ClassType, fields:Array<Field>):String
-  {
-    for (field in fields)
-    {
-      if (field.name == 'new')
-      {
-        // We found a field called `new`, it's probably the constructor.
-        switch (field.kind)
-        {
-          case FFun(f):
-            // Inside the function.
-            switch (f.expr.expr)
-            {
-              // Inside the block.
-              case EBlock(exprs):
-                var superCall:Expr = exprs[0];
-                switch (superCall.expr)
-                {
-                  // Inside the super() call.
-                  case ECall(_, args):
-                    // var registryId:String = args[0].toString();
-                    var dataPath:String = args[1].toString().replace('"', '').replace("'", '');
-                    // var versionRule = args[2].toString();
+static function getRegistryDataFilePath(cls:ClassType, fields:Array<Field>):String
+{
+for (field in fields)
+{
+{
+switch (field.kind)
+{
+case FFun(f):
+switch (f.expr.expr)
+{
+case EBlock(exprs):
+switch (superCall.expr)
+{
+case ECall(_, args):
 
-                    return dataPath;
-                  default:
-                    Context.error('${cls.name}.new: RegistryMacro expected super call', field.pos);
-                }
-              default:
-                Context.error('${cls.name}.new: RegistryMacro expected super call', field.pos);
-            }
-          default:
-            // Continue looking for the actual constructor.
-        }
-      }
-    }
+default:
+Context.error('${cls.name}.new: RegistryMacro expected super call', field.pos);
+}
+default:
+Context.error('${cls.name}.new: RegistryMacro expected super call', field.pos);
+}
+default:
+}
+}
+}
 
-    return '';
-  }
+}
 
-  static function listBaseGameEntryIds(dataFilePath:String):Array<Expr>
-  {
-    var result:Array<Expr> = [];
-    var files:Array<String> = sys.FileSystem.readDirectory(dataFilePath);
+static function listBaseGameEntryIds(dataFilePath:String):Array<Expr>
+{
 
-    for (file in files)
-    {
-      result.push(macro $v{file.replace('.json', '')});
-    }
+for (file in files)
+{
+result.push(macro $v{file.replace('.json', '')});
+}
 
-    return result;
-  }
+}
 
-  /**
-   * Check whether this class has already been processed by the RegistryMacro,
-   * as indicated by the `@:funkinProcessed` meta.
-   * @param cls The class to check.
-   * @return `true` if the class has already been processed, `false` otherwise.
-   */
-  static function alreadyProcessed(cls:ClassType):Bool
-  {
-    // Check for the `@:funkinProcessed` meta.
-    var processedMeta:MetadataEntry = cls.meta.get().find(function(m) return m.name == ':funkinProcessed');
-    if (processedMeta != null) return true;
+/**
+* Check whether this class has already been processed by the RegistryMacro,
+* as indicated by the `@:funkinProcessed` meta.
+* @param cls The class to check.
+* @return `true` if the class has already been processed, `false` otherwise.
+*/
+static function alreadyProcessed(cls:ClassType):Bool
+{
 
-    // If it's not found, check the superclass.
-    if (cls.superClass != null) return alreadyProcessed(cls.superClass.t.get());
-    return false;
-  }
-  #end
+}
 }

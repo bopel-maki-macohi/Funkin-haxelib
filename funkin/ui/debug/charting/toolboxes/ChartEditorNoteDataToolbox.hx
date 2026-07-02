@@ -1,318 +1,256 @@
 package funkin.ui.debug.charting.toolboxes;
 
-#if FEATURE_CHART_EDITOR
 
 /**
- * The toolbox which allows modifying information like Note Kind.
- */
-@:access(funkin.ui.debug.charting.ChartEditorState)
-@:build(haxe.ui.ComponentBuilder.build("assets/exclude/data/ui/chart-editor/toolboxes/note-data.xml"))
+* The toolbox which allows modifying information like Note Kind.
+*/
 class ChartEditorNoteDataToolbox extends ChartEditorBaseToolbox
 {
-  // 100 is the height used in note-data.xml
-  static final DIALOG_HEIGHT:Int = 100;
 
-  // toolboxNotesGrid.height + 45
-  // this is what i found out by printing this.height and grid.height
-  // and then seeing that this.height is 100 and grid.height is 55
-  static final HEIGHT_OFFSET:Int = 45;
 
-  // minimizing creates a gray bar the bottom, which would obscure the components,
-  // which is why we use an extra offset of 20
-  static final MINIMIZE_FIX:Int = 20;
 
-  var toolboxNotesGrid:Grid;
-  var toolboxNotesNoteKind:DropDown;
-  var toolboxNotesCustomKind:TextField;
-  var toolboxNotesParams:Array<ToolboxNoteKindParam> = [];
 
-  var _initializing:Bool = true;
 
-  public function new(chartEditorState2:ChartEditorState)
-  {
-    super(chartEditorState2);
+public function new(chartEditorState2:ChartEditorState)
+{
+super(chartEditorState2);
 
-    initialize();
+initialize();
 
-    this.onDialogClosed = onClose;
+this.onDialogClosed = onClose;
 
-    this._initializing = false;
-  }
+this._initializing = false;
+}
 
-  function onClose(event:UIEvent)
-  {
-    chartEditorState.menubarItemToggleToolboxNoteData.selected = false;
-  }
+function onClose(event:UIEvent)
+{
+chartEditorState.menubarItemToggleToolboxNoteData.selected = false;
+}
 
-  function initialize():Void
-  {
-    toolboxNotesNoteKind.onChange = function(event:UIEvent)
-    {
-      var noteKind:Null<String> = event?.data?.id ?? null;
-      if (noteKind == '') noteKind = null;
+function initialize():Void
+{
+toolboxNotesNoteKind.onChange = function(event:UIEvent)
+{
 
-      trace('ChartEditorToolboxHandler.buildToolboxNoteDataLayout() - Note kind changed: $noteKind');
 
-      // Edit the note data to place.
-      if (noteKind == '~CUSTOM~')
-      {
-        showCustom();
-        chartEditorState.noteKindToPlace = toolboxNotesCustomKind.value;
-      }
-      else
-      {
-        hideCustom();
-        chartEditorState.noteKindToPlace = noteKind;
-      }
+{
+showCustom();
+chartEditorState.noteKindToPlace = toolboxNotesCustomKind.value;
+}
+else
+{
+hideCustom();
+chartEditorState.noteKindToPlace = noteKind;
+}
 
-      createNoteKindParams(noteKind);
+createNoteKindParams(noteKind);
 
-      if (!_initializing && chartEditorState.currentNoteSelection.length > 0)
-      {
-        for (note in chartEditorState.currentNoteSelection)
-        {
-          // Edit the note data of any selected notes.
-          note.kind = chartEditorState.noteKindToPlace;
-          note.params = ChartEditorState.cloneNoteParams(chartEditorState.noteParamsToPlace);
+{
+for (note in chartEditorState.currentNoteSelection)
+{
+note.kind = chartEditorState.noteKindToPlace;
+note.params = ChartEditorState.cloneNoteParams(chartEditorState.noteParamsToPlace);
 
-          // update note sprites
-          for (noteSprite in chartEditorState.renderedNotes.members)
-          {
-            if (noteSprite.noteData == note)
-            {
-              noteSprite.noteStyle = NoteKindManager.getNoteStyleId(note.kind) ?? chartEditorState.currentSongNoteStyle;
-              break;
-            }
-          }
+for (noteSprite in chartEditorState.renderedNotes.members)
+{
+{
+noteSprite.noteStyle = NoteKindManager.getNoteStyleId(note.kind) ?? chartEditorState.currentSongNoteStyle;
+break;
+}
+}
 
-          // update hold note sprites
-          for (holdNoteSprite in chartEditorState.renderedHoldNotes.members)
-          {
-            if (holdNoteSprite.noteData == note)
-            {
-              holdNoteSprite.noteStyle = NoteKindManager.getNoteStyleId(note.kind) ?? chartEditorState.currentSongNoteStyle;
-              break;
-            }
-          }
-        }
-        chartEditorState.saveDataDirty = true;
-        chartEditorState.noteDisplayDirty = true;
-        chartEditorState.notePreviewDirty = true;
-      }
-    };
-    toolboxNotesNoteKind.pauseEvent(UIEvent.CHANGE, true);
+for (holdNoteSprite in chartEditorState.renderedHoldNotes.members)
+{
+{
+holdNoteSprite.noteStyle = NoteKindManager.getNoteStyleId(note.kind) ?? chartEditorState.currentSongNoteStyle;
+break;
+}
+}
+}
+chartEditorState.saveDataDirty = true;
+chartEditorState.noteDisplayDirty = true;
+chartEditorState.notePreviewDirty = true;
+}
+};
+toolboxNotesNoteKind.pauseEvent(UIEvent.CHANGE, true);
 
-    var startingValueNoteKind = ChartEditorDropdowns.populateDropdownWithNoteKinds(toolboxNotesNoteKind, chartEditorState.noteKindToPlace);
-    toolboxNotesNoteKind.value = startingValueNoteKind;
+toolboxNotesNoteKind.value = startingValueNoteKind;
 
-    toolboxNotesNoteKind.resumeEvent(UIEvent.CHANGE, true, true);
+toolboxNotesNoteKind.resumeEvent(UIEvent.CHANGE, true, true);
 
-    toolboxNotesCustomKind.onChange = function(event:UIEvent)
-    {
-      var customKind:Null<String> = event?.target?.text;
-      chartEditorState.noteKindToPlace = customKind;
+toolboxNotesCustomKind.onChange = function(event:UIEvent)
+{
+chartEditorState.noteKindToPlace = customKind;
 
-      if (toolboxNotesNoteKind.value.id != '~CUSTOM~') return;
 
-      if (!_initializing && chartEditorState.currentNoteSelection.length > 0)
-      {
-        // Edit the note data of any selected notes.
-        for (note in chartEditorState.currentNoteSelection)
-        {
-          note.kind = chartEditorState.noteKindToPlace;
-        }
-        chartEditorState.saveDataDirty = true;
-        chartEditorState.noteDisplayDirty = true;
-        chartEditorState.notePreviewDirty = true;
-      }
-    };
-    toolboxNotesCustomKind.pauseEvent(UIEvent.CHANGE, true);
+{
+for (note in chartEditorState.currentNoteSelection)
+{
+note.kind = chartEditorState.noteKindToPlace;
+}
+chartEditorState.saveDataDirty = true;
+chartEditorState.noteDisplayDirty = true;
+chartEditorState.notePreviewDirty = true;
+}
+};
+toolboxNotesCustomKind.pauseEvent(UIEvent.CHANGE, true);
 
-    toolboxNotesCustomKind.value = chartEditorState.noteKindToPlace;
+toolboxNotesCustomKind.value = chartEditorState.noteKindToPlace;
 
-    toolboxNotesCustomKind.resumeEvent(UIEvent.CHANGE, true, true);
-  }
+toolboxNotesCustomKind.resumeEvent(UIEvent.CHANGE, true, true);
+}
 
-  public override function refresh():Void
-  {
-    super.refresh();
+public override function refresh():Void
+{
+super.refresh();
 
-    toolboxNotesNoteKind.pauseEvent(UIEvent.CHANGE, true);
-    toolboxNotesCustomKind.pauseEvent(UIEvent.CHANGE, true);
+toolboxNotesNoteKind.pauseEvent(UIEvent.CHANGE, true);
+toolboxNotesCustomKind.pauseEvent(UIEvent.CHANGE, true);
 
-    toolboxNotesCustomKind.value = chartEditorState.noteKindToPlace;
-    toolboxNotesNoteKind.value = ChartEditorDropdowns.lookupNoteKind(chartEditorState.noteKindToPlace);
-    if (toolboxNotesNoteKind.value.id == '~CUSTOM~' && chartEditorState.noteKindToPlace != null)
-    {
-      showCustom();
-    }
-    else
-    {
-      hideCustom();
-    }
+toolboxNotesCustomKind.value = chartEditorState.noteKindToPlace;
+toolboxNotesNoteKind.value = ChartEditorDropdowns.lookupNoteKind(chartEditorState.noteKindToPlace);
+{
+showCustom();
+}
+else
+{
+hideCustom();
+}
 
-    createNoteKindParams(chartEditorState.noteKindToPlace);
-    toolboxNotesNoteKind.resumeEvent(UIEvent.CHANGE, true, true);
-    toolboxNotesCustomKind.resumeEvent(UIEvent.CHANGE, true, true);
-  }
+createNoteKindParams(chartEditorState.noteKindToPlace);
+toolboxNotesNoteKind.resumeEvent(UIEvent.CHANGE, true, true);
+toolboxNotesCustomKind.resumeEvent(UIEvent.CHANGE, true, true);
+}
 
-  function showCustom():Void
-  {
-    toolboxNotesCustomKindLabel.hidden = false;
-    toolboxNotesCustomKind.hidden = false;
-  }
+function showCustom():Void
+{
+toolboxNotesCustomKindLabel.hidden = false;
+toolboxNotesCustomKind.hidden = false;
+}
 
-  function hideCustom():Void
-  {
-    toolboxNotesCustomKindLabel.hidden = true;
-    toolboxNotesCustomKind.hidden = true;
-  }
+function hideCustom():Void
+{
+toolboxNotesCustomKindLabel.hidden = true;
+toolboxNotesCustomKind.hidden = true;
+}
 
-  function createNoteKindParams(noteKind:Null<String>):Void
-  {
-    clearNoteKindParams();
+function createNoteKindParams(noteKind:Null<String>):Void
+{
+clearNoteKindParams();
 
-    var setParamsToPlace:Bool = false;
-    if (!_initializing)
-    {
-      for (note in chartEditorState.currentNoteSelection)
-      {
-        if (note.kind == chartEditorState.noteKindToPlace)
-        {
-          chartEditorState.noteParamsToPlace = ChartEditorState.cloneNoteParams(note.params);
-          setParamsToPlace = true;
-          break;
-        }
-      }
-    }
+{
+for (note in chartEditorState.currentNoteSelection)
+{
+{
+chartEditorState.noteParamsToPlace = ChartEditorState.cloneNoteParams(note.params);
+setParamsToPlace = true;
+break;
+}
+}
+}
 
-    var noteKindParams:Array<NoteKindParam> = NoteKindManager.getParams(noteKind);
 
-    for (i in 0...noteKindParams.length)
-    {
-      var param:NoteKindParam = noteKindParams[i];
+for (i in 0...noteKindParams.length)
+{
 
-      var paramLabel:Label = new Label();
-      paramLabel.value = param.description;
-      paramLabel.verticalAlign = "center";
-      paramLabel.horizontalAlign = "right";
+paramLabel.value = param.description;
+paramLabel.verticalAlign = "center";
+paramLabel.horizontalAlign = "right";
 
-      var paramComponent:Component = null;
 
-      switch (param.type)
-      {
-        case NoteKindParamType.INT | NoteKindParamType.FLOAT:
-          var paramStepper:NumberStepper = new NumberStepper();
-          paramStepper.value = (setParamsToPlace ? chartEditorState.noteParamsToPlace[i].value : param.data?.defaultValue) ?? 0.0;
-          paramStepper.percentWidth = 100;
-          paramStepper.step = param.data?.step ?? 1.0;
+switch (param.type)
+{
+case NoteKindParamType.INT | NoteKindParamType.FLOAT:
+paramStepper.value = (setParamsToPlace ? chartEditorState.noteParamsToPlace[i].value : param.data?.defaultValue) ?? 0.0;
+paramStepper.percentWidth = 100;
+paramStepper.step = param.data?.step ?? 1.0;
 
-          // this check should be unnecessary but for some reason
-          // even when these are null it will set it to 0
-          if (param.data?.min != null)
-          {
-            paramStepper.min = param.data.min;
-          }
-          if (param.data?.max != null)
-          {
-            paramStepper.max = param.data.max;
-          }
-          if (param.data?.precision != null)
-          {
-            paramStepper.precision = param.data.precision;
-          }
-          paramComponent = paramStepper;
+{
+paramStepper.min = param.data.min;
+}
+{
+paramStepper.max = param.data.max;
+}
+{
+paramStepper.precision = param.data.precision;
+}
+paramComponent = paramStepper;
 
-        case NoteKindParamType.STRING:
-          var paramTextField:TextField = new TextField();
-          paramTextField.value = (setParamsToPlace ? chartEditorState.noteParamsToPlace[i].value : param.data?.defaultValue) ?? '';
-          paramTextField.percentWidth = 100;
-          paramComponent = paramTextField;
-      }
+case NoteKindParamType.STRING:
+paramTextField.value = (setParamsToPlace ? chartEditorState.noteParamsToPlace[i].value : param.data?.defaultValue) ?? '';
+paramTextField.percentWidth = 100;
+paramComponent = paramTextField;
+}
 
-      if (paramComponent == null)
-      {
-        continue;
-      }
+{
+continue;
+}
 
-      paramComponent.onChange = function(event:UIEvent)
-      {
-        chartEditorState.noteParamsToPlace[i].value = paramComponent.value;
+paramComponent.onChange = function(event:UIEvent)
+{
+chartEditorState.noteParamsToPlace[i].value = paramComponent.value;
 
-        for (note in chartEditorState.currentNoteSelection)
-        {
-          if (note.params.length != noteKindParams.length)
-          {
-            break;
-          }
+for (note in chartEditorState.currentNoteSelection)
+{
+{
+break;
+}
 
-          if (note.params[i].name == param.name)
-          {
-            note.params[i].value = paramComponent.value;
-          }
-        }
-      }
+{
+note.params[i].value = paramComponent.value;
+}
+}
+}
 
-      addNoteKindParam(paramLabel, paramComponent);
-    }
+addNoteKindParam(paramLabel, paramComponent);
+}
 
-    if (!setParamsToPlace)
-    {
-      var noteParamData:Array<NoteParamData> = [];
-      for (i in 0...noteKindParams.length)
-      {
-        noteParamData.push(new NoteParamData(noteKindParams[i].name, toolboxNotesParams[i].component.value));
-      }
-      chartEditorState.noteParamsToPlace = noteParamData;
-    }
-  }
+{
+for (i in 0...noteKindParams.length)
+{
+noteParamData.push(new NoteParamData(noteKindParams[i].name, toolboxNotesParams[i].component.value));
+}
+chartEditorState.noteParamsToPlace = noteParamData;
+}
+}
 
-  function addNoteKindParam(label:Label, component:Component):Void
-  {
-    toolboxNotesParams.push({label: label, component: component});
-    toolboxNotesGrid.addComponent(label);
-    toolboxNotesGrid.addComponent(component);
+function addNoteKindParam(label:Label, component:Component):Void
+{
+toolboxNotesParams.push({label: label, component: component});
+toolboxNotesGrid.addComponent(label);
+toolboxNotesGrid.addComponent(component);
 
-    this.height = Math.max(DIALOG_HEIGHT, DIALOG_HEIGHT - 30 + toolboxNotesParams.length * 30);
-  }
+this.height = Math.max(DIALOG_HEIGHT, DIALOG_HEIGHT - 30 + toolboxNotesParams.length * 30);
+}
 
-  function clearNoteKindParams():Void
-  {
-    for (param in toolboxNotesParams)
-    {
-      toolboxNotesGrid.removeComponent(param.component);
-      toolboxNotesGrid.removeComponent(param.label);
-    }
-    toolboxNotesParams = [];
-    this.height = DIALOG_HEIGHT;
-  }
+function clearNoteKindParams():Void
+{
+for (param in toolboxNotesParams)
+{
+toolboxNotesGrid.removeComponent(param.component);
+toolboxNotesGrid.removeComponent(param.label);
+}
+toolboxNotesParams = [];
+this.height = DIALOG_HEIGHT;
+}
 
-  override function update(elapsed:Float):Void
-  {
-    super.update(elapsed);
+override function update(elapsed:Float):Void
+{
+super.update(elapsed);
 
-    // current dialog is minimized, dont change the height
-    if (this.minimized)
-    {
-      return;
-    }
+{
+}
 
-    var heightToSet:Int = Std.int(Math.max(DIALOG_HEIGHT, (toolboxNotesGrid?.height ?? 50.0) + HEIGHT_OFFSET)) + MINIMIZE_FIX;
-    if (this.height != heightToSet)
-    {
-      this.height = heightToSet;
-    }
-  }
+{
+this.height = heightToSet;
+}
+}
 
-  public static function build(chartEditorState:ChartEditorState):ChartEditorNoteDataToolbox
-  {
-    return new ChartEditorNoteDataToolbox(chartEditorState);
-  }
+public static function build(chartEditorState:ChartEditorState):ChartEditorNoteDataToolbox
+{
+}
 }
 
 typedef ToolboxNoteKindParam =
 {
-  var label:Label;
-  var component:Component;
 }
-#end

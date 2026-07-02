@@ -2,158 +2,123 @@ package funkin.modding.module;
 
 
 /**
- * Utility functions for loading and manipulating active modules.
- */
-@:nullSafety
+* Utility functions for loading and manipulating active modules.
+*/
 class ModuleHandler
 {
-  static final moduleCache:Map<String, Module> = new Map<String, Module>();
-  static var modulePriorityOrder:Array<String> = [];
 
-  /**
-   * Parses and preloads the game's stage data and scripts when the game starts.
-   *
-   * If you want to force stages to be reloaded, you can just call this function again.
-   */
-  public static function loadModuleCache():Void
-  {
-    // Clear any stages that are cached if there were any.
-    clearModuleCache();
-    trace("[MODULEHANDLER] Loading module cache...");
+/**
+* Parses and preloads the game's stage data and scripts when the game starts.
+*
+* If you want to force stages to be reloaded, you can just call this function again.
+*/
+public static function loadModuleCache():Void
+{
+clearModuleCache();
 
-    var scriptedModuleClassNames:Array<String> = ScriptedModule.listScriptClasses();
-    trace(' Instantiating ${scriptedModuleClassNames.length} modules...');
-    for (moduleCls in scriptedModuleClassNames)
-    {
-      var module:Module = ScriptedModule.scriptInit(moduleCls, moduleCls);
-      if (module != null)
-      {
-        trace('   Loaded module: ${moduleCls}');
+for (moduleCls in scriptedModuleClassNames)
+{
+{
 
-        // Then store it.
-        addToModuleCache(module);
-      }
-      else
-      {
-        trace('   Failed to instantiate module: ${moduleCls}');
-      }
-    }
-    reorderModuleCache();
+addToModuleCache(module);
+}
+else
+{
+}
+}
+reorderModuleCache();
 
-    trace("[MODULEHANDLER] Module cache loaded.");
-  }
+}
 
-  public static function buildModuleCallbacks():Void
-  {
-    FlxG.signals.postStateSwitch.add(onStateSwitchComplete);
-  }
+public static function buildModuleCallbacks():Void
+{
+}
 
-  static function onStateSwitchComplete():Void
-  {
-    callEvent(new StateChangeScriptEvent(STATE_CHANGE_END, FlxG.state, true));
-  }
+static function onStateSwitchComplete():Void
+{
+callEvent(new StateChangeScriptEvent(STATE_CHANGE_END, FlxG.state, true));
+}
 
-  static function addToModuleCache(module:Module):Void
-  {
-    moduleCache.set(module.moduleId, module);
-  }
+static function addToModuleCache(module:Module):Void
+{
+moduleCache.set(module.moduleId, module);
+}
 
-  static function reorderModuleCache():Void
-  {
-    modulePriorityOrder = moduleCache.keys().array();
+static function reorderModuleCache():Void
+{
+modulePriorityOrder = moduleCache.keys().array();
 
-    modulePriorityOrder.sort(sortByPriority);
-  }
+modulePriorityOrder.sort(sortByPriority);
+}
 
-  /**
-   * Given two module IDs, sort them by priority.
-   * @return 1 or -1 depending on which module has a higher priority.
-   */
-  static function sortByPriority(a:String, b:String):Int
-  {
-    var aModule:Null<Module> = getModule(a);
-    var bModule:Null<Module> = getModule(b);
+/**
+* Given two module IDs, sort them by priority.
+* @return 1 or -1 depending on which module has a higher priority.
+*/
+static function sortByPriority(a:String, b:String):Int
+{
 
-    if (aModule == null || bModule == null)
-    {
-      return 0;
-    }
-    if (aModule.priority != bModule.priority)
-    {
-      return aModule.priority - bModule.priority;
-    }
-    else
-    {
-      return SortUtil.alphabetically(a, b);
-    }
-  }
+{
+}
+{
+}
+else
+{
+}
+}
 
-  public static function getModule(moduleId:String):Null<Module>
-  {
-    return moduleCache.get(moduleId);
-  }
+public static function getModule(moduleId:String):Null<Module>
+{
+}
 
-  public static function activateModule(moduleId:String):Void
-  {
-    var module:Null<Module> = getModule(moduleId);
-    if (module != null)
-    {
-      module.active = true;
-    }
-  }
+public static function activateModule(moduleId:String):Void
+{
+{
+module.active = true;
+}
+}
 
-  public static function deactivateModule(moduleId:String):Void
-  {
-    var module:Null<Module> = getModule(moduleId);
-    if (module != null)
-    {
-      module.active = false;
-    }
-  }
+public static function deactivateModule(moduleId:String):Void
+{
+{
+module.active = false;
+}
+}
 
-  /**
-   * Clear the module cache, forcing all modules to call shutdown events.
-   */
-  public static function clearModuleCache():Void
-  {
-    if (moduleCache != null)
-    {
-      var event = new ScriptEvent(DESTROY, false);
+/**
+* Clear the module cache, forcing all modules to call shutdown events.
+*/
+public static function clearModuleCache():Void
+{
+{
 
-      // Note: Ignore stopPropagation()
-      for (key => value in moduleCache)
-      {
-        ScriptEventDispatcher.callEvent(value, event);
-      }
+for (key => value in moduleCache)
+{
+ScriptEventDispatcher.callEvent(value, event);
+}
 
-      moduleCache.clear();
-      modulePriorityOrder = [];
-    }
-  }
+moduleCache.clear();
+modulePriorityOrder = [];
+}
+}
 
-  public static function callEvent(event:ScriptEvent):Void
-  {
-    for (moduleId in modulePriorityOrder)
-    {
-      var module:Null<Module> = moduleCache.get(moduleId);
-      // The module needs to be active to receive events.
-      if (module != null && module.active)
-      {
-        if (module.state != null)
-        {
-          // Only call the event if the current state is what the module's state is.
-          if (!(Type.getClass(FlxG.state) == module.state) && !(Type.getClass(FlxG.state?.subState) == module.state))
-          {
-            continue;
-          }
-        }
-        ScriptEventDispatcher.callEvent(module, event);
-      }
-    }
-  }
+public static function callEvent(event:ScriptEvent):Void
+{
+for (moduleId in modulePriorityOrder)
+{
+{
+{
+{
+continue;
+}
+}
+ScriptEventDispatcher.callEvent(module, event);
+}
+}
+}
 
-  public static inline function callOnCreate():Void
-  {
-    callEvent(new ScriptEvent(CREATE, false));
-  }
+public static inline function callOnCreate():Void
+{
+callEvent(new ScriptEvent(CREATE, false));
+}
 }

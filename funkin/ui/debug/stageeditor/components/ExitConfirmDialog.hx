@@ -1,32 +1,27 @@
 package funkin.ui.debug.stageeditor.components;
 
-#if FEATURE_STAGE_EDITOR
 
-@:build(haxe.ui.macros.ComponentMacros.build("assets/exclude/data/ui/stage-editor/dialogs/exit-confirm.xml"))
 class ExitConfirmDialog extends Dialog
 {
-  var onComplete:Void->Void = null;
 
-  override public function new(onComp:Void->Void)
-  {
-    super();
+override public function new(onComp:Void->Void)
+{
+super();
 
-    onComplete = onComp;
+onComplete = onComp;
 
-    buttons = DialogButton.CANCEL | "{{Proceed}}";
-    defaultButton = "{{Proceed}}";
+buttons = DialogButton.CANCEL | "{{Proceed}}";
+defaultButton = "{{Proceed}}";
 
-    destroyOnClose = true;
-  }
-
-  public override function validateDialog(button:DialogButton, fn:Bool->Void)
-  {
-    if (button == "{{Proceed}}" && onComplete != null)
-    {
-      onComplete();
-    }
-
-    fn(true);
-  }
+destroyOnClose = true;
 }
-#end
+
+public override function validateDialog(button:DialogButton, fn:Bool->Void)
+{
+{
+onComplete();
+}
+
+fn(true);
+}
+}

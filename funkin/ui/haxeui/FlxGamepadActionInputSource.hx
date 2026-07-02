@@ -2,49 +2,42 @@ package funkin.ui.haxeui;
 
 
 /**
- * Receives button presses from the Flixel gamepad and emits HaxeUI events.
- */
+* Receives button presses from the Flixel gamepad and emits HaxeUI events.
+*/
 class FlxGamepadActionInputSource extends FlxBasic
 {
-  public static var instance(get, null):FlxGamepadActionInputSource;
 
-  static function get_instance():FlxGamepadActionInputSource
-  {
-    if (instance == null) instance = new FlxGamepadActionInputSource();
-    return instance;
-  }
+static function get_instance():FlxGamepadActionInputSource
+{
+}
 
-  public function new()
-  {
-    super();
-  }
+public function new()
+{
+super();
+}
 
-  public function start():Void
-  {
-    FlxG.plugins.addPlugin(this);
-  }
+public function start():Void
+{
+}
 
-  public override function update(elapsed:Float):Void
-  {
-    super.update(elapsed);
+public override function update(elapsed:Float):Void
+{
+super.update(elapsed);
 
-    if (FlxG.gamepads.firstActive != null)
-    {
-      updateGamepad(elapsed, FlxG.gamepads.firstActive);
-    }
-  }
+{
+updateGamepad(elapsed, FlxG.gamepads.firstActive);
+}
+}
 
-  function updateGamepad(elapsed:Float, gamepad:FlxGamepad):Void
-  {
-    if (gamepad.justPressed.BACK)
-    {
-      //
-    }
-  }
+function updateGamepad(elapsed:Float, gamepad:FlxGamepad):Void
+{
+{
+//
+}
+}
 
-  public override function destroy():Void
-  {
-    super.destroy();
-    FlxG.plugins.remove(this);
-  }
+public override function destroy():Void
+{
+super.destroy();
+}
 }

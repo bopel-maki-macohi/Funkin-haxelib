@@ -2,215 +2,175 @@ package funkin.data.event;
 
 
 /**
- * This class statically handles the parsing of internal and scripted song event handlers.
- */
-@:nullSafety
+* This class statically handles the parsing of internal and scripted song event handlers.
+*/
 class SongEventRegistry
 {
-  /**
-   * Every built-in event class must be added to this list.
-   * Thankfully, with the power of `ClassMacro`, this is done automatically.
-   */
-  static final BUILTIN_EVENTS:List<Class<SongEvent>> = ClassMacro.listSubclassesOf(SongEvent);
+/**
+* Every built-in event class must be added to this list.
+* Thankfully, with the power of `ClassMacro`, this is done automatically.
+*/
 
-  /**
-   * Map of internal handlers for song events.
-   * These may be either `ScriptedSongEvents` or built-in classes extending `SongEvent`.
-   */
-  static final eventCache:Map<String, SongEvent> = new Map<String, SongEvent>();
+/**
+* Map of internal handlers for song events.
+* These may be either `ScriptedSongEvents` or built-in classes extending `SongEvent`.
+*/
 
-  public static function loadEventCache():Void
-  {
-    clearEventCache();
+public static function loadEventCache():Void
+{
+clearEventCache();
 
-    //
-    // BASE GAME EVENTS
-    //
-    registerBaseEvents();
-    registerScriptedEvents();
-  }
+//
+//
+registerBaseEvents();
+registerScriptedEvents();
+}
 
-  static function registerBaseEvents()
-  {
-    trace('Instantiating ${BUILTIN_EVENTS.length} built-in song events...');
-    for (eventCls in BUILTIN_EVENTS)
-    {
-      var eventClsName:String = Type.getClassName(eventCls);
-      if (eventClsName == 'funkin.play.event.SongEvent' || eventClsName == 'funkin.play.event.ScriptedSongEvent') continue;
+static function registerBaseEvents()
+{
+for (eventCls in BUILTIN_EVENTS)
+{
 
-      var event:SongEvent = Type.createInstance(eventCls, ["UNKNOWN"]);
 
-      if (event != null)
-      {
-        trace(' Loaded built-in song event: ${event.id}');
-        eventCache.set(event.id, event);
-      }
-      else
-      {
-        trace(' Failed to load built-in song event: ${Type.getClassName(eventCls)}');
-      }
-    }
-  }
+{
+eventCache.set(event.id, event);
+}
+else
+{
+}
+}
+}
 
-  static function registerScriptedEvents()
-  {
-    var scriptedEventClassNames:Array<String> = ScriptedSongEvent.listScriptClasses();
-    trace('Instantiating ${scriptedEventClassNames.length} scripted song events...');
-    if (scriptedEventClassNames == null || scriptedEventClassNames.length == 0) return;
+static function registerScriptedEvents()
+{
 
-    for (eventCls in scriptedEventClassNames)
-    {
-      var event:SongEvent = ScriptedSongEvent.scriptInit(eventCls, "UKNOWN");
+for (eventCls in scriptedEventClassNames)
+{
 
-      if (event != null)
-      {
-        trace(' Loaded scripted song event: ${event.id}');
-        eventCache.set(event.id, event);
-      }
-      else
-      {
-        trace(' Failed to instantiate scripted song event class: ${eventCls}');
-      }
-    }
-  }
+{
+eventCache.set(event.id, event);
+}
+else
+{
+}
+}
+}
 
-  public static function listEventIds():Array<String>
-  {
-    return eventCache.keys().array();
-  }
+public static function listEventIds():Array<String>
+{
+}
 
-  public static function listEvents():Array<SongEvent>
-  {
-    return eventCache.values();
-  }
+public static function listEvents():Array<SongEvent>
+{
+}
 
-  public static function getEvent(id:String):Null<SongEvent>
-  {
-    return eventCache.get(id);
-  }
+public static function getEvent(id:String):Null<SongEvent>
+{
+}
 
-  public static function getEventSchema(id:String):Null<SongEventSchema>
-  {
-    var event:Null<SongEvent> = getEvent(id);
-    if (event == null) return null;
+public static function getEventSchema(id:String):Null<SongEventSchema>
+{
 
-    return event.getEventSchema();
-  }
+}
 
-  static function clearEventCache()
-  {
-    eventCache.clear();
-  }
+static function clearEventCache()
+{
+eventCache.clear();
+}
 
-  public static function handleEvent(data:SongEventData):Void
-  {
-    var eventHandler:Null<SongEvent> = getEvent(data.eventKind);
+public static function handleEvent(data:SongEventData):Void
+{
 
-    if (eventHandler != null)
-    {
-      eventHandler.handleEvent(data);
-    }
-    else
-    {
-      trace('WARNING: No event handler for event with kind: ${data.eventKind}');
-    }
+{
+eventHandler.handleEvent(data);
+}
+else
+{
+}
 
-    data.activated = true;
-  }
+data.activated = true;
+}
 
-  public static inline function handleEvents(events:Array<SongEventData>):Void
-  {
-    for (event in events)
-    {
-      handleEvent(event);
-    }
-  }
+public static inline function handleEvents(events:Array<SongEventData>):Void
+{
+for (event in events)
+{
+handleEvent(event);
+}
+}
 
-  /**
-   * Caching the index for the next event to query greatly reduces lag.
-   * Kinda nasty that it's tied to a static class though.
-   */
-  static var nextEventIndex:Int = 0;
+/**
+* Caching the index for the next event to query greatly reduces lag.
+* Kinda nasty that it's tied to a static class though.
+*/
 
-  /**
-   * Retrieve the list of events to activate this frame.
-   *
-   * @param events The list of available song events.
-   * @param currentTime The current time in milliseconds.
-   * @param startIndex The index to start querying from.
-   *   Defaults to the index of the last event handled.
-   * @return The list of events which haven't been handled yet.
-   */
-  public static function queryEvents(events:Array<SongEventData>, currentTime:Float, ?startIndex:Int):Array<SongEventData>
-  {
-    startIndex ??= nextEventIndex;
+/**
+* Retrieve the list of events to activate this frame.
+*
+* @param events The list of available song events.
+* @param currentTime The current time in milliseconds.
+* @param startIndex The index to start querying from.
+*   Defaults to the index of the last event handled.
+* @return The list of events which haven't been handled yet.
+*/
+public static function queryEvents(events:Array<SongEventData>, currentTime:Float, ?startIndex:Int):Array<SongEventData>
+{
+startIndex ??= nextEventIndex;
 
-    var result:Array<SongEventData> = [];
 
-    for (i in startIndex...events.length)
-    {
-      if (events[i].activated) continue;
+for (i in startIndex...events.length)
+{
 
-      if (events[i].time > currentTime)
-      {
-        nextEventIndex = i;
-        return result;
-      }
+{
+nextEventIndex = i;
+}
 
-      result.push(events[i]);
-    }
+result.push(events[i]);
+}
 
-    return result;
-  }
+}
 
-  /**
-   * The currentTime has jumped far ahead or back.
-   * If we moved back in time, we need to reset all the events in that space.
-   * If we moved forward in time, we need to skip all the events in that space.
-   */
-  public static function handleSkippedEvents(events:Array<SongEventData>, currentTime:Float):Void
-  {
-    for (event in events)
-    {
-      // Deactivate future events.
-      if (event.time > currentTime)
-      {
-        event.activated = false;
-      }
+/**
+* The currentTime has jumped far ahead or back.
+* If we moved back in time, we need to reset all the events in that space.
+* If we moved forward in time, we need to skip all the events in that space.
+*/
+public static function handleSkippedEvents(events:Array<SongEventData>, currentTime:Float):Void
+{
+for (event in events)
+{
+{
+event.activated = false;
+}
 
-      // Skip past events.
-      if (event.time < currentTime)
-      {
-        event.activated = true;
-      }
-    }
-  }
+{
+event.activated = true;
+}
+}
+}
 
-  /**
-   * Reset activation of all the provided events.
-   */
-  public static function resetEvents(events:Array<SongEventData>):Void
-  {
-    events.sort(SortUtil.eventDataByTime.bind(FlxSort.ASCENDING));
-    nextEventIndex = 0;
-    allEventHandlers.resize(0);
+/**
+* Reset activation of all the provided events.
+*/
+public static function resetEvents(events:Array<SongEventData>):Void
+{
+events.sort(SortUtil.eventDataByTime.bind(FlxSort.ASCENDING));
+nextEventIndex = 0;
+allEventHandlers.resize(0);
 
-    for (event in events)
-    {
-      event.activated = false;
+for (event in events)
+{
+event.activated = false;
 
-      var handler:Null<SongEvent> = getEvent(event.eventKind);
-      if (handler != null && !allEventHandlers.contains(handler)) allEventHandlers.push(handler);
-    }
-  }
+}
+}
 
-  static var allEventHandlers:Array<SongEvent> = [];
 
-  public static inline function callEvent(scriptEvent:ScriptEvent):Void
-  {
-    for (event in allEventHandlers)
-    {
-      ScriptEventDispatcher.callEvent(event, scriptEvent);
-    }
-  }
+public static inline function callEvent(scriptEvent:ScriptEvent):Void
+{
+for (event in allEventHandlers)
+{
+ScriptEventDispatcher.callEvent(event, scriptEvent);
+}
+}
 }

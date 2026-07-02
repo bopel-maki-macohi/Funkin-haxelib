@@ -1,156 +1,96 @@
 package funkin.ui.charSelect;
 
-#if html5
-#end
-#if hxvlc
-#end
 
 /**
- * When you first enter the character select state, it will play an introductory video opening up the lights
- */
-@:nullSafety
+* When you first enter the character select state, it will play an introductory video opening up the lights
+*/
 class IntroSubState extends MusicBeatSubState
 {
-  #if html5
-  static final LIGHTS_VIDEO_PATH:String = Paths.stripLibrary(Paths.videos('introSelect'));
-  #end
 
-  #if hxvlc
-  static final LIGHTS_VIDEO_PATH:String = Paths.videos('introSelect');
-  #end
 
-  public override function create():Void
-  {
-    if (Save.instance.oldChar.value)
-    {
-      onLightsEnd();
-      return;
-    }
-    // Pause existing music.
-    if (FlxG.sound.music != null)
-    {
-      FlxG.sound.music.destroy();
-      @:nullSafety(Off)
-      FlxG.sound.music = null;
-    }
+public override function create():Void
+{
+{
+onLightsEnd();
+}
+{
+}
 
-    #if html5
-    trace('Playing web video ${LIGHTS_VIDEO_PATH}');
-    playVideoHTML5(LIGHTS_VIDEO_PATH);
-    #end
+playVideoHTML5(LIGHTS_VIDEO_PATH);
 
-    #if hxvlc
-    trace('Playing native video ${LIGHTS_VIDEO_PATH}');
-    playVideoNative(LIGHTS_VIDEO_PATH);
-    #end
+playVideoNative(LIGHTS_VIDEO_PATH);
 
-    #if NO_FEATURE_VIDEO_PLAYBACK
-    onLightsEnd();
-    #end
+onLightsEnd();
 
-    // // Im TOO lazy to even care, so uh, yep
-    // FlxG.camera.zoom = 0.66666666666666666666666666666667;
-    // vid.x = -(FlxG.width - (FlxG.width * FlxG.camera.zoom));
-    // vid.y = -((FlxG.height - (FlxG.height * FlxG.camera.zoom)) * 0.75);
-  }
+}
 
-  #if html5
-  var vid:Null<FlxVideo>;
 
-  function playVideoHTML5(filePath:String):Void
-  {
-    // Video displays OVER the FlxState.
-    vid = new FlxVideo(filePath);
+function playVideoHTML5(filePath:String):Void
+{
+vid = new FlxVideo(filePath);
 
-    vid.scrollFactor.set();
-    if (vid != null)
-    {
-      vid.zIndex = 0;
+vid.scrollFactor.set();
+{
+vid.zIndex = 0;
 
-      vid.finishCallback = onLightsEnd;
+vid.finishCallback = onLightsEnd;
 
-      add(vid);
-    }
-    else
-    {
-      trace('ALERT: Video is null! Could not play cutscene!');
-    }
-  }
-  #end
+add(vid);
+}
+else
+{
+}
+}
 
-  #if hxvlc
-  var vid:Null<FunkinVideoSprite>;
 
-  function playVideoNative(filePath:String):Void
-  {
-    // Video displays OVER the FlxState.
-    vid = new FunkinVideoSprite(0, 0);
+function playVideoNative(filePath:String):Void
+{
+vid = new FunkinVideoSprite(0, 0);
 
-    vid.scrollFactor.set();
+vid.scrollFactor.set();
 
-    if (vid != null)
-    {
-      vid.zIndex = 0;
-      vid.active = false;
-      vid.bitmap?.onEncounteredError.add(function(msg:String):Void
-      {
-        trace('[VLC] Encountered an error: $msg');
+{
+vid.zIndex = 0;
+vid.active = false;
+vid.bitmap?.onEncounteredError.add(function(msg:String):Void
+{
 
-        onLightsEnd();
-      });
-      vid.bitmap?.onEndReached.add(onLightsEnd);
-      vid.bitmap?.onFormatSetup.add(() ->
-      {
-        vid?.setGraphicSize(FlxG.initialWidth, FlxG.initialHeight);
-        vid?.updateHitbox();
-        vid.screenCenter();
-      });
+onLightsEnd();
+});
+vid.bitmap?.onEndReached.add(onLightsEnd);
+vid.bitmap?.onFormatSetup.add(() ->
+{
+vid?.setGraphicSize(FlxG.initialWidth, FlxG.initialHeight);
+vid?.updateHitbox();
+vid.screenCenter();
+});
 
-      add(vid);
-      if (vid.load(filePath)) vid.play();
-    }
-    else
-    {
-      trace('ALERT: Video is null! Could not play cutscene!');
-    }
-  }
-  #end
+add(vid);
+}
+else
+{
+}
+}
 
-  public override function update(elapsed:Float):Void
-  {
-    super.update(elapsed);
+public override function update(elapsed:Float):Void
+{
+super.update(elapsed);
 
-    // if (!introSound.paused)
-    // {
-    //   #if html5
-    //   @:privateAccess
-    //   vid.netStream.seek(introSound.time);
-    //   #elseif hxvlc
-    //   vid.bitmap.time = Std.int(introSound.time);
-    //   #end
-    // }
-  }
+}
 
-  /**
-   * When the lights video finishes, it will close the substate
-   */
-  function onLightsEnd():Void
-  {
-    #if (html5 || hxvlc)
-    if (vid != null)
-    {
-      #if hxvlc
-      vid.stop();
-      #end
-      remove(vid);
-      vid.destroy();
-      @:nullSafety(Off)
-      vid = null;
-    }
-    #end
+/**
+* When the lights video finishes, it will close the substate
+*/
+function onLightsEnd():Void
+{
+{
+vid.stop();
+remove(vid);
+vid.destroy();
+vid = null;
+}
 
-    FlxG.camera.zoom = 1;
 
-    close();
-  }
+close();
+}
 }

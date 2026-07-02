@@ -1,10 +1,9 @@
 package funkin.ui.freeplay.backcards;
 
 /**
- * A script that can be tied to a BackingCard.
- * Create a scripted class that extends BackingCard to use this.
- */
-@:hscriptClass
+* A script that can be tied to a BackingCard.
+* Create a scripted class that extends BackingCard to use this.
+*/
 class ScriptedBackingCard extends funkin.ui.freeplay.backcards.BackingCard implements polymod.hscript.HScriptedClass
 {
 }

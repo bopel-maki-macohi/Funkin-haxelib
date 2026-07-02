@@ -2,275 +2,221 @@ package funkin.ui;
 
 
 /**
- * AtlasText is an improved version of Alphabet and FlxBitmapText.
- * It supports animations on the letters, and is less buggy than Alphabet.
- */
-@:nullSafety
+* AtlasText is an improved version of Alphabet and FlxBitmapText.
+* It supports animations on the letters, and is less buggy than Alphabet.
+*/
 class AtlasText extends FlxTypedSpriteGroup<AtlasChar>
 {
-  static var fonts:Map<AtlasFont, AtlasFontData> = new Map<AtlasFont, AtlasFontData>();
-  static var casesAllowed:Map<AtlasFont, Case> = new Map<AtlasFont, Case>();
 
-  public var text(default, set):String = "";
 
-  var font:AtlasFontData = new AtlasFontData(AtlasFont.DEFAULT);
 
-  public var atlas(get, never):FlxAtlasFrames;
 
-  inline function get_atlas():FlxAtlasFrames return font.atlas;
+inline function get_atlas():FlxAtlasFrames return font.atlas;
 
-  public var caseAllowed(get, never):Case;
 
-  inline function get_caseAllowed():Case return font.caseAllowed;
+inline function get_caseAllowed():Case return font.caseAllowed;
 
-  public var maxHeight(get, never):Float;
 
-  inline function get_maxHeight():Float return font.maxHeight;
+inline function get_maxHeight():Float return font.maxHeight;
 
-  public function new(x = 0.0, y = 0.0, text:String = "", fontName:AtlasFont = AtlasFont.DEFAULT)
-  {
-    if (!fonts.exists(fontName)) fonts[fontName] = new AtlasFontData(fontName);
-    font = fonts[fontName] ?? new AtlasFontData(fontName);
+public function new(x = 0.0, y = 0.0, text:String = "", fontName:AtlasFont = AtlasFont.DEFAULT)
+{
+font = fonts[fontName] ?? new AtlasFontData(fontName);
 
-    super(x, y);
+super(x, y);
 
-    this.text = text;
-  }
+this.text = text;
+}
 
-  function set_text(value:String):String
-  {
-    value ??= "";
+function set_text(value:String):String
+{
+value ??= "";
 
-    final caseValue:String = restrictCase(value);
-    final caseText:String = restrictCase(this.text);
 
-    this.text = value;
-    if (caseText == caseValue) return value; // cancel redraw
+this.text = value;
 
-    if (caseValue.indexOf(caseText) == 0)
-    {
-      // new text is just old text with additions at the end, append the difference
-      appendTextCased(caseValue.substr(caseText.length));
-      return this.text;
-    }
+{
+appendTextCased(caseValue.substr(caseText.length));
+}
 
-    value = caseValue;
+value = caseValue;
 
-    group.kill();
+group.kill();
 
-    if (value == "") return this.text;
 
-    appendTextCased(caseValue);
-    return this.text;
-  }
+appendTextCased(caseValue);
+}
 
-  /**
-   * Adds new characters, without needing to redraw the previous characters
-   * @param str The text to add.
-   * @throws String if `text` is null.
-   */
-  public function appendText(str:String):Void
-  {
-    if (str == null) throw "cannot append null";
-    if (str == "") return;
+/**
+* Adds new characters, without needing to redraw the previous characters
+* @param str The text to add.
+* @throws String if `text` is null.
+*/
+public function appendText(str:String):Void
+{
 
-    this.text += str;
-  }
+this.text += str;
+}
 
-  /**
-   * Converts all characters to fit the font's `allowedCase`.
-   * @param str
-   */
-  function restrictCase(str:String):String
-  {
-    return switch (caseAllowed)
-    {
-      case Both: str;
-      case Upper: str.toUpperCase();
-      case Lower: str.toLowerCase();
-    }
-  }
+/**
+* Converts all characters to fit the font's `allowedCase`.
+* @param str
+*/
+function restrictCase(str:String):String
+{
+{
+case Both: str;
+case Upper: str.toUpperCase();
+case Lower: str.toLowerCase();
+}
+}
 
-  /**
-   * Adds new text on top of the existing text. Helper for other methods; DOESN'T CHANGE `this.text`.
-   * @param str The text to add, assumed to match the font's `caseAllowed`.
-   */
-  function appendTextCased(str:String):Void
-  {
-    var charCount:Int = group.countLiving();
-    var xPos:Float = 0;
-    var yPos:Float = 0;
-    // `countLiving` returns -1 if group is empty
-    if (charCount == -1) charCount = 0;
-    else if (charCount > 0)
-    {
-      var lastChar:AtlasChar = group.members[charCount - 1];
-      xPos = lastChar.x + lastChar.width - x;
-      yPos = lastChar.y + lastChar.height - maxHeight - y;
-    }
+/**
+* Adds new text on top of the existing text. Helper for other methods; DOESN'T CHANGE `this.text`.
+* @param str The text to add, assumed to match the font's `caseAllowed`.
+*/
+function appendTextCased(str:String):Void
+{
+else if (charCount > 0)
+{
+xPos = lastChar.x + lastChar.width - x;
+yPos = lastChar.y + lastChar.height - maxHeight - y;
+}
 
-    for (splitStr in str.split(""))
-    {
-      switch (splitStr)
-      {
-        case " ":
-          xPos += 40;
-        case "\n":
-          xPos = 0;
-          yPos += maxHeight;
-        case char:
-          var charSprite:AtlasChar;
-          if (group.members.length <= charCount) charSprite = new AtlasChar(atlas, char);
-          else
-          {
-            charSprite = group.members[charCount];
-            charSprite.revive();
-            charSprite.char = char;
-            charSprite.alpha = 1; // gets multiplied when added
-          }
-          charSprite.x = xPos;
-          charSprite.y = yPos + maxHeight - charSprite.height;
-          add(charSprite);
+for (splitStr in str.split(""))
+{
+switch (splitStr)
+{
+case " ":
+xPos += 40;
+case "\n":
+xPos = 0;
+yPos += maxHeight;
+case char:
+else
+{
+charSprite = group.members[charCount];
+charSprite.revive();
+charSprite.char = char;
+charSprite.alpha = 1; // gets multiplied when added
+}
+charSprite.x = xPos;
+charSprite.y = yPos + maxHeight - charSprite.height;
+add(charSprite);
 
-          xPos += charSprite.width;
-          charCount++;
-      }
-    }
-  }
+xPos += charSprite.width;
+charCount++;
+}
+}
+}
 
-  public function getWidth():Int
-  {
-    var width:Int = 0;
-    for (char in this.text.split(""))
-    {
-      switch (char)
-      {
-        case " ":
-          width += 40;
-        case "\n":
-          // no width for newline character
-        case char:
-          var sprite = new AtlasChar(atlas, char);
-          sprite.revive();
-          sprite.char = char;
-          sprite.alpha = 1;
-          width += Std.int(sprite.width);
-      }
-    }
-    return width;
-  }
+public function getWidth():Int
+{
+for (char in this.text.split(""))
+{
+switch (char)
+{
+case " ":
+width += 40;
+case "\n":
+case char:
+sprite.revive();
+sprite.char = char;
+sprite.alpha = 1;
+width += Std.int(sprite.width);
+}
+}
+}
 
-  override function toString():String
-  {
-    return "InputItem, " + FlxStringUtil.getDebugString([LabelValuePair.weak("x", x), LabelValuePair.weak("y", y), LabelValuePair.weak("text", text)]);
-  }
+override function toString():String
+{
+}
 }
 
 class AtlasChar extends FlxSprite
 {
-  /**
-   * Which character in the font we are using
-   */
-  public var char(default, set):String;
+/**
+* Which character in the font we are using
+*/
 
-  public function new(x = 0.0, y = 0.0, atlas:FlxAtlasFrames, char:String)
-  {
-    super(x, y);
-    frames = atlas;
-    this.char = char;
-  }
-
-  function set_char(value:String):String
-  {
-    if (this.char == value) return this.char;
-
-    animation.addByPrefix('anim', getAnimPrefix(value), 24);
-    if (animation.exists('anim')) animation.play('anim');
-
-    updateHitbox();
-
-    return this.char = value;
-  }
-
-  function getAnimPrefix(char:String):String
-  {
-    return switch (char)
-    {
-      case '&': return '-andpersand-';
-      case "😠": '-angry faic-'; // TODO: Do multi-flag characters work?
-      case "'": '-apostraphie-';
-      case "\\": '-back slash-';
-      case ",": '-comma-';
-      case '-': '-dash-';
-      case '↓': '-down arrow-'; // U+2193
-      case "”": '-end quote-'; // U+0022
-      case "!": '-exclamation point-'; // U+0021
-      case "/": '-forward slash-'; // U+002F
-      case '>': '-greater than-'; // U+003E
-      case '♥': '-heart-'; // U+2665
-      case '♡': '-heart-';
-      case '←': '-left arrow-'; // U+2190
-      case '<': '-less than-'; // U+003C
-      case "*": '-multiply x-';
-      case '.': '-period-'; // U+002E
-      case "?": '-question mark-';
-      case '→': '-right arrow-'; // U+2192
-      case "“": '-start quote-';
-      case '↑': '-up arrow-'; // U+2191
-
-      // Default to getting the character itself.
-      default: char;
-    }
-  }
+public function new(x = 0.0, y = 0.0, atlas:FlxAtlasFrames, char:String)
+{
+super(x, y);
+frames = atlas;
+this.char = char;
 }
 
-@:nullSafety
+function set_char(value:String):String
+{
+
+animation.addByPrefix('anim', getAnimPrefix(value), 24);
+
+updateHitbox();
+
+}
+
+function getAnimPrefix(char:String):String
+{
+{
+case '&': return '-andpersand-';
+case "😠": '-angry faic-'; // TODO: Do multi-flag characters work?
+case "'": '-apostraphie-';
+case "\\": '-back slash-';
+case ",": '-comma-';
+case '-': '-dash-';
+case '↓': '-down arrow-'; // U+2193
+case "”": '-end quote-'; // U+0022
+case "!": '-exclamation point-'; // U+0021
+case "/": '-forward slash-'; // U+002F
+case '>': '-greater than-'; // U+003E
+case '♥': '-heart-'; // U+2665
+case '♡': '-heart-';
+case '←': '-left arrow-'; // U+2190
+case '<': '-less than-'; // U+003C
+case "*": '-multiply x-';
+case '.': '-period-'; // U+002E
+case "?": '-question mark-';
+case '→': '-right arrow-'; // U+2192
+case "“": '-start quote-';
+case '↑': '-up arrow-'; // U+2191
+
+default: char;
+}
+}
+}
+
 private class AtlasFontData
 {
-  static public var upperChar = ~/^[A-Z]\d+$/;
-  static public var lowerChar = ~/^[a-z]\d+$/;
+static public var upperChar = ~/^[A-Z]\d+$/;
+static public var lowerChar = ~/^[a-z]\d+$/;
 
-  public var atlas:FlxAtlasFrames;
-  public var maxHeight:Float = 0.0;
-  public var caseAllowed:Case = Both;
 
-  public function new(name:AtlasFont)
-  {
-    atlas = Paths.getSparrowAtlas('fonts/${name}');
-    if (atlas == null)
-    {
-      FlxG.log.warn('Could not find font atlas for font "${name}".');
-      return;
-    }
+public function new(name:AtlasFont)
+{
+atlas = Paths.getSparrowAtlas('fonts/${name}');
+{
+}
 
-    atlas.parent.destroyOnNoUse = false;
-    atlas.parent.persist = true;
+atlas.parent.destroyOnNoUse = false;
+atlas.parent.persist = true;
 
-    var containsUpper:Bool = false;
-    var containsLower:Bool = false;
 
-    for (frame in atlas.frames)
-    {
-      maxHeight = Math.max(maxHeight, frame.frame.height);
+for (frame in atlas.frames)
+{
+maxHeight = Math.max(maxHeight, frame.frame.height);
 
-      if (!containsUpper) containsUpper = upperChar.match(frame.name);
-      if (!containsLower) containsLower = lowerChar.match(frame.name);
-    }
+}
 
-    if (containsUpper != containsLower) caseAllowed = containsUpper ? Upper : Lower;
-  }
+}
 }
 
 enum Case
 {
-  Both;
-  Upper;
-  Lower;
+Both;
+Upper;
+Lower;
 }
 
 enum abstract AtlasFont(String) from String to String
 {
-  var DEFAULT = "default";
-  var BOLD = "bold";
-  var FREEPLAY_CLEAR = "freeplay-clear";
 }

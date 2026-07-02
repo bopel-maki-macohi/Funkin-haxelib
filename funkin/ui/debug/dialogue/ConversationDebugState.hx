@@ -2,76 +2,65 @@ package funkin.ui.debug.dialogue;
 
 
 /**
- * A state with displays a conversation with no background.
- * Used for testing.
- * @param conversationId The conversation to display.
- */
+* A state with displays a conversation with no background.
+* Used for testing.
+* @param conversationId The conversation to display.
+*/
 class ConversationDebugState extends MusicBeatState
 {
-  final conversationId:String = 'senpai';
 
-  var conversation:Conversation;
 
-  public function new()
-  {
-    super();
+public function new()
+{
+super();
 
-    // TODO: Fix this BS
-    Paths.setCurrentLevel('week6');
-  }
+Paths.setCurrentLevel('week6');
+}
 
-  public override function create():Void
-  {
-    super.create();
-    startConversation();
-  }
+public override function create():Void
+{
+super.create();
+startConversation();
+}
 
-  function startConversation():Void
-  {
-    if (conversation != null) return;
+function startConversation():Void
+{
 
-    conversation = ConversationRegistry.instance.fetchEntry(conversationId);
-    if (conversation == null) return;
-    if (!conversation.alive) conversation.revive();
+conversation = ConversationRegistry.instance.fetchEntry(conversationId);
 
-    conversation.zIndex = 1000;
-    add(conversation);
-    refresh();
+conversation.zIndex = 1000;
+add(conversation);
+refresh();
 
-    var event:ScriptEvent = new ScriptEvent(CREATE, false);
-    ScriptEventDispatcher.callEvent(conversation, event);
-  }
+ScriptEventDispatcher.callEvent(conversation, event);
+}
 
-  function onConversationComplete():Void
-  {
-    remove(conversation);
-    conversation = null;
-  }
+function onConversationComplete():Void
+{
+remove(conversation);
+conversation = null;
+}
 
-  public override function dispatchEvent(event:ScriptEvent):Void
-  {
-    // Dispatch event to conversation script.
-    ScriptEventDispatcher.callEvent(conversation, event);
-  }
+public override function dispatchEvent(event:ScriptEvent):Void
+{
+ScriptEventDispatcher.callEvent(conversation, event);
+}
 
-  public override function update(elapsed:Float):Void
-  {
-    super.update(elapsed);
+public override function update(elapsed:Float):Void
+{
+super.update(elapsed);
 
-    if (conversation != null)
-    {
-      if (controls.CUTSCENE_ADVANCE)
-      {
-        conversation.advanceConversation();
-      }
-      else if (controls.PAUSE)
-      {
-        conversation.kill();
-        remove(conversation);
-        conversation = null;
+{
+{
+conversation.advanceConversation();
+}
+else if (controls.PAUSE)
+{
+conversation.kill();
+remove(conversation);
+conversation = null;
 
-        FlxG.switchState(() -> new ConversationDebugState());
-      }
-    }
-  }
+}
+}
+}
 }

@@ -1,51 +1,42 @@
 package funkin.ui.debug.charting.commands;
 
-#if FEATURE_CHART_EDITOR
 
 /**
- * Command that deselects all selected notes and events in the chart editor.
- */
-@:nullSafety
-@:access(funkin.ui.debug.charting.ChartEditorState)
+* Command that deselects all selected notes and events in the chart editor.
+*/
 class DeselectAllItemsCommand implements ChartEditorCommand
 {
-  var previousNoteSelection:Array<SongNoteData> = [];
-  var previousEventSelection:Array<SongEventData> = [];
 
-  public function new()
-  {
-  }
-
-  public function execute(state:ChartEditorState):Void
-  {
-    this.previousNoteSelection = state.currentNoteSelection;
-    this.previousEventSelection = state.currentEventSelection;
-
-    state.currentNoteSelection = [];
-    state.currentEventSelection = [];
-
-    state.noteDisplayDirty = true;
-    state.editButtonsDirty = true;
-  }
-
-  public function undo(state:ChartEditorState):Void
-  {
-    state.currentNoteSelection = previousNoteSelection;
-    state.currentEventSelection = previousEventSelection;
-
-    state.noteDisplayDirty = true;
-    state.editButtonsDirty = true;
-  }
-
-  public function shouldAddToHistory(state:ChartEditorState):Bool
-  {
-    // This command is undoable. Add to the history if we actually performed an action.
-    return (previousNoteSelection.length > 0 || previousEventSelection.length > 0);
-  }
-
-  public function toString():String
-  {
-    return 'Deselect All Items';
-  }
+public function new()
+{
 }
-#end
+
+public function execute(state:ChartEditorState):Void
+{
+this.previousNoteSelection = state.currentNoteSelection;
+this.previousEventSelection = state.currentEventSelection;
+
+state.currentNoteSelection = [];
+state.currentEventSelection = [];
+
+state.noteDisplayDirty = true;
+state.editButtonsDirty = true;
+}
+
+public function undo(state:ChartEditorState):Void
+{
+state.currentNoteSelection = previousNoteSelection;
+state.currentEventSelection = previousEventSelection;
+
+state.noteDisplayDirty = true;
+state.editButtonsDirty = true;
+}
+
+public function shouldAddToHistory(state:ChartEditorState):Bool
+{
+}
+
+public function toString():String
+{
+}
+}

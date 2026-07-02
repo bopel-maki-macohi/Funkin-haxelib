@@ -1,65 +1,51 @@
 package funkin.ui.debug.stageeditor.components;
 
-#if FEATURE_STAGE_EDITOR
 
-@:build(haxe.ui.macros.ComponentMacros.build("assets/exclude/data/ui/stage-editor/dialogs/load-url.xml"))
 class LoadFromUrlDialog extends Dialog
 {
-  var urlField:TextField;
-  var loader:URLLoader;
 
-  override public function new(successCallback:Bytes->Void = null, failCallback:String->Void = null)
-  {
-    super();
-    destroyOnClose = true;
+override public function new(successCallback:Bytes->Void = null, failCallback:String->Void = null)
+{
+super();
+destroyOnClose = true;
 
-    loader = new URLLoader();
-    loader.dataFormat = BINARY;
+loader = new URLLoader();
+loader.dataFormat = BINARY;
 
-    urlField.text = "";
+urlField.text = "";
 
-    loader.addEventListener(Event.COMPLETE, function(event:Event)
-    {
-      var bytes:Bytes = cast(loader.data, ByteArray);
+loader.addEventListener(Event.COMPLETE, function(event:Event)
+{
 
-      if (successCallback != null) successCallback(bytes);
 
-      trace("loaded the image and did success callback");
 
-      @:privateAccess
-      loader.__removeAllListeners();
+loader.__removeAllListeners();
 
-      hideDialog(DialogButton.CANCEL);
-    });
+hideDialog(DialogButton.CANCEL);
+});
 
-    loader.addEventListener(IOErrorEvent.IO_ERROR, function(event:IOErrorEvent)
-    {
-      if (failCallback != null) failCallback(urlField.text);
+loader.addEventListener(IOErrorEvent.IO_ERROR, function(event:IOErrorEvent)
+{
 
-      trace("error with this shit");
-    });
+});
 
-    loader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, function(event:SecurityErrorEvent)
-    {
-      if (failCallback != null) failCallback(urlField.text);
+loader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, function(event:SecurityErrorEvent)
+{
 
-      trace("error with this shit");
-    });
+});
 
-    buttons = DialogButton.CANCEL | "{{Load}}";
-    defaultButton = "{{Load}}";
-  }
-
-  override public function validateDialog(button:DialogButton, fn:Bool->Void)
-  {
-    if (button == DialogButton.CANCEL)
-    {
-      fn(true);
-    }
-    else
-    {
-      loader.load(new URLRequest(urlField.text));
-    }
-  }
+buttons = DialogButton.CANCEL | "{{Load}}";
+defaultButton = "{{Load}}";
 }
-#end
+
+override public function validateDialog(button:DialogButton, fn:Bool->Void)
+{
+{
+fn(true);
+}
+else
+{
+loader.load(new URLRequest(urlField.text));
+}
+}
+}

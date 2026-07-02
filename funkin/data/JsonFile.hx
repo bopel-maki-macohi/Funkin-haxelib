@@ -1,10 +1,10 @@
 package funkin.data;
 
 /**
- * A pair of a file name and its contents.
- */
+* A pair of a file name and its contents.
+*/
 typedef JsonFile =
 {
-  fileName:String,
-  contents:String
+fileName:String,
+contents:String
 };

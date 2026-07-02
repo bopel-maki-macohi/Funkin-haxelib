@@ -1,20 +1,14 @@
 package funkin.ui.debug.charting.dialogs;
 
-#if FEATURE_CHART_EDITOR
 
-// @:nullSafety // TODO: Fix null safety when used with HaxeUI build macros.
-@:access(funkin.ui.debug.charting.ChartEditorState)
 class ChartEditorBaseMenu extends Menu
 {
-  var chartEditorState:ChartEditorState;
 
-  public function new(chartEditorState:ChartEditorState)
-  {
-    super();
+public function new(chartEditorState:ChartEditorState)
+{
+super();
 
-    this.chartEditorState = chartEditorState;
+this.chartEditorState = chartEditorState;
 
-    // this.destroyOnClose = true;
-  }
 }
-#end
+}

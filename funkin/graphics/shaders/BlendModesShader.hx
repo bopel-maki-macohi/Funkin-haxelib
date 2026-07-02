@@ -1,21 +1,18 @@
 package funkin.graphics.shaders;
 
 
-@:nullSafety
 class BlendModesShader extends FlxRuntimeShader
 {
-  public var camera:Null<ShaderInput<BitmapData>>;
-  public var cameraData:Null<BitmapData>;
 
-  public function new()
-  {
-    super(Assets.getText(Paths.frag('blendModes')));
-  }
+public function new()
+{
+super(Assets.getText(Paths.frag('blendModes')));
+}
 
-  public function setCamera(cameraData:BitmapData):Void
-  {
-    this.cameraData = cameraData;
+public function setCamera(cameraData:BitmapData):Void
+{
+this.cameraData = cameraData;
 
-    this.setBitmapData('camera', this.cameraData);
-  }
+this.setBitmapData('camera', this.cameraData);
+}
 }

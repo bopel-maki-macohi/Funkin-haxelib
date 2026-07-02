@@ -3,213 +3,172 @@ package funkin.play.notes.notekind;
 
 class NoteKindManager
 {
-  /**
-   * Every built-in note kind class must be added to this list.
-   * Thankfully, with the power of `ClassMacro`, this is done automatically.
-   */
-  static final BUILTIN_KINDS:List<Class<NoteKind>> = ClassMacro.listSubclassesOf(NoteKind);
+/**
+* Every built-in note kind class must be added to this list.
+* Thankfully, with the power of `ClassMacro`, this is done automatically.
+*/
 
-  /**
-   * A map of all note kinds, keyed by their name.
-   * This is used to retrieve note kinds by their name.
-   */
-  public static var noteKinds:Map<String, NoteKind> = [];
+/**
+* A map of all note kinds, keyed by their name.
+* This is used to retrieve note kinds by their name.
+*/
 
-  /**
-   * Retrieve a note kind by its name.
-   * @param noteKind The name of the note kind.
-   * @return The note kind, or null if it doesn't exist.
-   */
-  public static function getNoteKind(?noteKind:String):Null<NoteKind>
-  {
-    if (noteKind == null) return null;
-    return noteKinds.get(noteKind);
-  }
+/**
+* Retrieve a note kind by its name.
+* @param noteKind The name of the note kind.
+* @return The note kind, or null if it doesn't exist.
+*/
+public static function getNoteKind(?noteKind:String):Null<NoteKind>
+{
+}
 
-  /**
-   * Retrieve a list of known valid note kinds.
-   * @return A list of note kinds
-   */
-  public static function listNoteKinds():Array<String>
-  {
-    return noteKinds.keyValues();
-  }
+/**
+* Retrieve a list of known valid note kinds.
+* @return A list of note kinds
+*/
+public static function listNoteKinds():Array<String>
+{
+}
 
-  /**
-   * Initialize custom behavior for note kinds.
-   */
-  public static function initialize():Void
-  {
-    clearNoteKindCache();
+/**
+* Initialize custom behavior for note kinds.
+*/
+public static function initialize():Void
+{
+clearNoteKindCache();
 
-    //
-    // BASE GAME EVENTS
-    //
-    registerBaseNoteKinds();
-    registerScriptedNoteKinds();
-  }
+//
+//
+registerBaseNoteKinds();
+registerScriptedNoteKinds();
+}
 
-  /**
-   * Register the hard-coded note kinds.
-   */
-  public static function registerBaseNoteKinds():Void
-  {
-    trace('Instantiating ${BUILTIN_KINDS.length} built-in note kinds...');
-    for (noteKindCls in BUILTIN_KINDS)
-    {
-      var noteKindClsName:String = Type.getClassName(noteKindCls);
-      if (noteKindClsName == 'funkin.play.notes.notekind.NoteKind'
-        || noteKindClsName == 'funkin.play.notes.notekind.ScriptedNoteKind') continue;
+/**
+* Register the hard-coded note kinds.
+*/
+public static function registerBaseNoteKinds():Void
+{
+for (noteKindCls in BUILTIN_KINDS)
+{
+|| noteKindClsName == 'funkin.play.notes.notekind.ScriptedNoteKind') continue;
 
-      var kind:NoteKind = Type.createInstance(noteKindCls, ['UNKNOWN']);
 
-      if (kind != null)
-      {
-        trace(' Loaded built-in note kind: ${kind.noteKind}');
-        noteKinds.set(kind.noteKind, kind);
-      }
-      else
-      {
-        trace(' Failed to load built-in note kind: ${noteKindClsName}');
-      }
-    }
-  }
+{
+noteKinds.set(kind.noteKind, kind);
+}
+else
+{
+}
+}
+}
 
-  /**
-   * Register the scripted note kinds provided by mods.
-   */
-  public static function registerScriptedNoteKinds():Void
-  {
-    var scriptedClassName:Array<String> = ScriptedNoteKind.listScriptClasses();
-    if (scriptedClassName.length > 0)
-    {
-      trace('Instantiating ${scriptedClassName.length} scripted note kind(s)...');
-      for (scriptedClass in scriptedClassName)
-      {
-        try
-        {
-          var script:NoteKind = ScriptedNoteKind.scriptInit(scriptedClass, 'unknown');
-          trace(' Initialized scripted note kind: ${script.noteKind}');
-          noteKinds.set(script.noteKind, script);
-        }
-        catch (e)
-        {
-          trace(' FAILED to instantiate scripted note kind: ${scriptedClass}');
-          trace(e);
-        }
-      }
-    }
-  }
+/**
+* Register the scripted note kinds provided by mods.
+*/
+public static function registerScriptedNoteKinds():Void
+{
+{
+for (scriptedClass in scriptedClassName)
+{
+try
+{
+noteKinds.set(script.noteKind, script);
+}
+catch (e)
+{
+}
+}
+}
+}
 
-  /**
-   * Calls the given event for note kind scripts
-   * @param event The event
-   */
-  public static function callEvent(event:ScriptEvent):Void
-  {
-    // if it is a note script event,
-    // then only call the event for the specific note kind script
-    if (Std.isOfType(event, NoteScriptEvent))
-    {
-      var noteEvent:NoteScriptEvent = cast(event, NoteScriptEvent);
+/**
+* Calls the given event for note kind scripts
+* @param event The event
+*/
+public static function callEvent(event:ScriptEvent):Void
+{
+{
 
-      var noteKind:NoteKind = noteKinds.get(noteEvent?.note?.kind);
 
-      if (noteKind != null)
-      {
-        ScriptEventDispatcher.callEvent(noteKind, event);
-      }
-    }
-    else // call the event for all note kind scripts
-    {
-      for (noteKind in noteKinds.iterator())
-      {
-        ScriptEventDispatcher.callEvent(noteKind, event);
-      }
-    }
-  }
+{
+ScriptEventDispatcher.callEvent(noteKind, event);
+}
+}
+else // call the event for all note kind scripts
+{
+for (noteKind in noteKinds.iterator())
+{
+ScriptEventDispatcher.callEvent(noteKind, event);
+}
+}
+}
 
-  /**
-   * Retrieve the note style from the given note kind
-   * @param noteKind note kind name
-   * @param suffix Used for song note styles
-   * @return NoteStyle
-   */
-  public static function getNoteStyle(noteKind:String, ?suffix:String):Null<NoteStyle>
-  {
-    var noteStyleId:Null<String> = getNoteStyleId(noteKind, suffix);
+/**
+* Retrieve the note style from the given note kind
+* @param noteKind note kind name
+* @param suffix Used for song note styles
+* @return NoteStyle
+*/
+public static function getNoteStyle(noteKind:String, ?suffix:String):Null<NoteStyle>
+{
 
-    if (noteStyleId == null)
-    {
-      return null;
-    }
+{
+}
 
-    return NoteStyleRegistry.instance.fetchEntry(noteStyleId);
-  }
+}
 
-  /**
-   * Get a list of all the note styles used by the given notes.
-   * Great for preloading.
-   * @param songNoteDatas The notes to query for note styles.
-   * @return The note styles to load.
-   */
-  public static function listNoteStylesByNoteData(songNoteDatas:Array<SongNoteData>):Array<NoteStyle>
-  {
-    var results:Array<NoteStyle> = [];
-    for (songNoteData in songNoteDatas)
-    {
-      var noteStyle:NoteStyle = getNoteStyle(songNoteData.kind, null);
-      if (noteStyle != null && !results.contains(noteStyle))
-      {
-        results.push(noteStyle);
-      }
-    }
-    return results;
-  }
+/**
+* Get a list of all the note styles used by the given notes.
+* Great for preloading.
+* @param songNoteDatas The notes to query for note styles.
+* @return The note styles to load.
+*/
+public static function listNoteStylesByNoteData(songNoteDatas:Array<SongNoteData>):Array<NoteStyle>
+{
+for (songNoteData in songNoteDatas)
+{
+{
+results.push(noteStyle);
+}
+}
+}
 
-  /**
-   * Retrieve the note style id from the given note kind
-   * @param noteKind Note kind name
-   * @param suffix Used for song note styles
-   * @return Null<String>
-   */
-  public static function getNoteStyleId(noteKind:String, ?suffix:String):Null<String>
-  {
-    if (suffix == '')
-    {
-      suffix = null;
-    }
+/**
+* Retrieve the note style id from the given note kind
+* @param noteKind Note kind name
+* @param suffix Used for song note styles
+* @return Null<String>
+*/
+public static function getNoteStyleId(noteKind:String, ?suffix:String):Null<String>
+{
+{
+suffix = null;
+}
 
-    var noteStyleId:Null<String> = noteKinds.get(noteKind)?.noteStyleId;
-    if (noteStyleId != null && suffix != null)
-    {
-      noteStyleId = NoteStyleRegistry.instance.hasEntry('$noteStyleId-$suffix') ? '$noteStyleId-$suffix' : noteStyleId;
-    }
+{
+noteStyleId = NoteStyleRegistry.instance.hasEntry('$noteStyleId-$suffix') ? '$noteStyleId-$suffix' : noteStyleId;
+}
 
-    return noteStyleId;
-  }
+}
 
-  /**
-   * Retrive custom params of the given note kind
-   * @param noteKind Name of the note kind
-   * @return Array<NoteKindParam>
-   */
-  public static function getParams(noteKind:Null<String>):Array<NoteKindParam>
-  {
-    if (noteKind == null)
-    {
-      return [];
-    }
+/**
+* Retrive custom params of the given note kind
+* @param noteKind Name of the note kind
+* @return Array<NoteKindParam>
+*/
+public static function getParams(noteKind:Null<String>):Array<NoteKindParam>
+{
+{
+}
 
-    return noteKinds.get(noteKind)?.params ?? [];
-  }
+}
 
-  /**
-   * Clear the note kind cache.
-   * Be sure to register the note kinds again before trying to use them.
-   */
-  public static function clearNoteKindCache():Void
-  {
-    noteKinds.clear();
-  }
+/**
+* Clear the note kind cache.
+* Be sure to register the note kinds again before trying to use them.
+*/
+public static function clearNoteKindCache():Void
+{
+noteKinds.clear();
+}
 }

@@ -2,78 +2,65 @@ package funkin.play.character;
 
 
 /**
- * A SparrowCharacter is a Character which is rendered by
- * displaying an animation derived from a SparrowV2 atlas spritesheet file.
- *
- * BaseCharacter has game logic, SparrowCharacter has only rendering logic.
- * KEEP THEM SEPARATE!
- */
+* A SparrowCharacter is a Character which is rendered by
+* displaying an animation derived from a SparrowV2 atlas spritesheet file.
+*
+* BaseCharacter has game logic, SparrowCharacter has only rendering logic.
+* KEEP THEM SEPARATE!
+*/
 class SparrowCharacter extends BaseCharacter
 {
-  public function new(id:String)
-  {
-    super(id, CharacterRenderType.Sparrow);
-  }
+public function new(id:String)
+{
+super(id, CharacterRenderType.Sparrow);
+}
 
-  override function onCreate(event:ScriptEvent):Void
-  {
-    // Display a custom scope for debugging purposes.
-    #if FEATURE_DEBUG_TRACY
-    cpp.vm.tracy.TracyProfiler.zoneScoped('SparrowCharacter.create(${this.characterId})');
-    #end
+override function onCreate(event:ScriptEvent):Void
+{
+cpp.vm.tracy.TracyProfiler.zoneScoped('SparrowCharacter.create(${this.characterId})');
 
-    loadSpritesheet();
-    loadAnimations();
+loadSpritesheet();
+loadAnimations();
 
-    super.onCreate(event);
-  }
+super.onCreate(event);
+}
 
-  function loadSpritesheet()
-  {
-    trace('Loading assets for Sparrow character "${characterId}"', flixel.util.FlxColor.fromString("#89CFF0"));
+function loadSpritesheet()
+{
 
-    var tex:FlxFramesCollection = Paths.getSparrowAtlas(_data.assetPath);
-    if (tex == null)
-    {
-      trace('Could not load Sparrow sprite: ${_data.assetPath}');
-      return;
-    }
+{
+}
 
-    this.frames = tex;
+this.frames = tex;
 
-    if (_data.isPixel)
-    {
-      this.isPixel = true;
-      this.antialiasing = false;
-    }
-    else
-    {
-      this.isPixel = false;
-      this.antialiasing = true;
-    }
+{
+this.isPixel = true;
+this.antialiasing = false;
+}
+else
+{
+this.isPixel = false;
+this.antialiasing = true;
+}
 
-    this.setScale(_data.scale);
-  }
+this.setScale(_data.scale);
+}
 
-  function loadAnimations()
-  {
-    trace('[SPARROWCHAR] Loading ${_data.animations.length} animations for ${characterId}');
+function loadAnimations()
+{
 
-    FlxAnimationUtil.addAtlasAnimations(this, _data.animations);
+FlxAnimationUtil.addAtlasAnimations(this, _data.animations);
 
-    for (anim in _data.animations)
-    {
-      if (anim.offsets == null)
-      {
-        setAnimationOffsets(anim.name, 0, 0);
-      }
-      else
-      {
-        setAnimationOffsets(anim.name, anim.offsets[0], anim.offsets[1]);
-      }
-    }
+for (anim in _data.animations)
+{
+{
+setAnimationOffsets(anim.name, 0, 0);
+}
+else
+{
+setAnimationOffsets(anim.name, anim.offsets[0], anim.offsets[1]);
+}
+}
 
-    var animNames = this.animation.getNameList();
-    trace('[SPARROWCHAR] Successfully loaded ${animNames.length} animations for ${characterId}');
-  }
+}
 }

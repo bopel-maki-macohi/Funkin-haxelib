@@ -1,4 +1,3 @@
-# funkin.ui.loading.preload
 
 This package contains code powering the HTML5 preloader screen.
 

@@ -2,195 +2,165 @@ package funkin.play.notes;
 
 
 /**
- * The actual receptor that you see on screen.
- */
+* The actual receptor that you see on screen.
+*/
 class StrumlineNote extends FunkinSprite
 {
-  /**
-   * Whether this strumline note is on the player's side or the opponent's side.
-   */
-  public var isPlayer(default, null):Bool;
+/**
+* Whether this strumline note is on the player's side or the opponent's side.
+*/
 
-  /**
-   * The direction which this strumline note is facing.
-   */
-  public var direction(default, set):NoteDirection;
+/**
+* The direction which this strumline note is facing.
+*/
 
-  function set_direction(value:NoteDirection):NoteDirection
-  {
-    this.direction = value;
-    return this.direction;
-  }
+function set_direction(value:NoteDirection):NoteDirection
+{
+this.direction = value;
+}
 
-  /**
-   * The Y Offset of the note.
-   */
-  public var yOffset:Float = 0.0;
+/**
+* The Y Offset of the note.
+*/
 
-  /**
-   * Set this flag to `true` to disable performance optimizations that cause
-   * the Strumline note sprite to ignore `velocity` and `acceleration`.
-   */
-  public var forceActive:Bool = false;
+/**
+* Set this flag to `true` to disable performance optimizations that cause
+* the Strumline note sprite to ignore `velocity` and `acceleration`.
+*/
 
-  /**
-   * How long to continue the hold note animation after a note is pressed.
-   */
-  static final CONFIRM_HOLD_TIME:Float = 0.15;
+/**
+* How long to continue the hold note animation after a note is pressed.
+*/
 
-  /**
-   * How long the hold note animation has been playing after a note is pressed.
-   */
-  var confirmHoldTimer:Float = -1;
+/**
+* How long the hold note animation has been playing after a note is pressed.
+*/
 
-  public function new(noteStyle:NoteStyle, isPlayer:Bool, direction:NoteDirection)
-  {
-    super(0, 0);
+public function new(noteStyle:NoteStyle, isPlayer:Bool, direction:NoteDirection)
+{
+super(0, 0);
 
-    this.isPlayer = isPlayer;
+this.isPlayer = isPlayer;
 
-    this.direction = direction;
+this.direction = direction;
 
-    setup(noteStyle);
+setup(noteStyle);
 
-    this.animation.onFrameChange.add(onAnimationFrame);
-    this.animation.onFinish.add(onAnimationFinished);
+this.animation.onFrameChange.add(onAnimationFrame);
+this.animation.onFinish.add(onAnimationFinished);
 
-    // Must be true for animations to play.
-    this.active = true;
-  }
+this.active = true;
+}
 
-  function onAnimationFrame(name:String, frameNumber:Int, frameIndex:Int):Void
-  {
-    // Do nothing.
-  }
+function onAnimationFrame(name:String, frameNumber:Int, frameIndex:Int):Void
+{
+}
 
-  function onAnimationFinished(name:String):Void
-  {
-    // Run a timer before we stop playing the confirm animation.
-    // On player, this allows holding the confirm key to fall back to press.
-    if (isPlayer && name == 'confirm')
-    {
-      confirmHoldTimer = 0;
-    }
-  }
+function onAnimationFinished(name:String):Void
+{
+{
+confirmHoldTimer = 0;
+}
+}
 
-  override function update(elapsed:Float)
-  {
-    super.update(elapsed);
+override function update(elapsed:Float)
+{
+super.update(elapsed);
 
-    centerOrigin();
+centerOrigin();
 
-    if (confirmHoldTimer >= 0)
-    {
-      confirmHoldTimer += elapsed;
+{
+confirmHoldTimer += elapsed;
 
-      // Ensure the opponent stops holding the key after a certain amount of time.
-      if (confirmHoldTimer >= CONFIRM_HOLD_TIME)
-      {
-        confirmHoldTimer = -1;
-        playStatic();
-      }
-    }
-  }
+{
+confirmHoldTimer = -1;
+playStatic();
+}
+}
+}
 
-  function setup(noteStyle:NoteStyle):Void
-  {
-    if (noteStyle == null)
-    {
-      // If you get an exception on this line, check the debug console.
-      // You probably have a parsing error in your note style's JSON file.
-      throw "FATAL ERROR: Attempted to initialize PlayState with an invalid NoteStyle.";
-    }
+function setup(noteStyle:NoteStyle):Void
+{
+{
+throw "FATAL ERROR: Attempted to initialize PlayState with an invalid NoteStyle.";
+}
 
-    noteStyle.applyStrumlineFrames(this);
-    noteStyle.applyStrumlineAnimations(this, this.direction);
+noteStyle.applyStrumlineFrames(this);
+noteStyle.applyStrumlineAnimations(this, this.direction);
 
-    var scale = noteStyle.getStrumlineScale();
-    this.scale.set(scale, scale);
-    this.updateHitbox();
-    noteStyle.applyStrumlineOffsets(this);
+this.scale.set(scale, scale);
+this.updateHitbox();
+noteStyle.applyStrumlineOffsets(this);
 
-    this.playStatic();
-  }
+this.playStatic();
+}
 
-  public function playAnimation(name:String = 'static', force:Bool = false, reversed:Bool = false, startFrame:Int = 0):Void
-  {
-    this.animation.play(name, force, reversed, startFrame);
+public function playAnimation(name:String = 'static', force:Bool = false, reversed:Bool = false, startFrame:Int = 0):Void
+{
+this.animation.play(name, force, reversed, startFrame);
 
-    centerOffsets();
-    centerOrigin();
-  }
+centerOffsets();
+centerOrigin();
+}
 
-  public function playStatic():Void
-  {
-    this.active = (forceActive || isAnimationDynamic('static'));
-    this.playAnimation('static', true);
-  }
+public function playStatic():Void
+{
+this.active = (forceActive || isAnimationDynamic('static'));
+this.playAnimation('static', true);
+}
 
-  public function playPress():Void
-  {
-    this.active = (forceActive || isAnimationDynamic('press'));
-    this.playAnimation('press', true);
-  }
+public function playPress():Void
+{
+this.active = (forceActive || isAnimationDynamic('press'));
+this.playAnimation('press', true);
+}
 
-  public function playConfirm():Void
-  {
-    this.active = (forceActive || isAnimationDynamic('confirm'));
-    this.playAnimation('confirm', true);
+public function playConfirm():Void
+{
+this.active = (forceActive || isAnimationDynamic('confirm'));
+this.playAnimation('confirm', true);
 
-    // On opponent, run a timer to stop playing the confirm animation.
-    // On player, stop the timer to avoid stopping the confirm animation earlier.
-    confirmHoldTimer = isPlayer ? -1 : 0;
-  }
+confirmHoldTimer = isPlayer ? -1 : 0;
+}
 
-  public function isConfirm():Bool
-  {
-    return getCurrentAnimation().startsWith('confirm');
-  }
+public function isConfirm():Bool
+{
+}
 
-  public function holdConfirm():Void
-  {
-    this.active = true;
+public function holdConfirm():Void
+{
+this.active = true;
 
-    if (getCurrentAnimation() == "confirm-hold")
-    {
-      return;
-    }
-    else if (getCurrentAnimation() == "confirm")
-    {
-      if (isAnimationFinished())
-      {
-        this.confirmHoldTimer = -1;
-        this.playAnimation('confirm-hold', false, false);
-      }
-    }
-    else
-    {
-      this.playAnimation('confirm', false, false);
-    }
-  }
+{
+}
+else if (getCurrentAnimation() == "confirm")
+{
+{
+this.confirmHoldTimer = -1;
+this.playAnimation('confirm-hold', false, false);
+}
+}
+else
+{
+this.playAnimation('confirm', false, false);
+}
+}
 
-  static final DEFAULT_OFFSET:Int = 13;
 
-  /**
-   * Adjusts the position of the sprite's graphic relative to the hitbox.
-   */
-  function fixOffsets():Void
-  {
-    // Automatically center the bounding box within the graphic.
-    this.centerOffsets();
+/**
+* Adjusts the position of the sprite's graphic relative to the hitbox.
+*/
+function fixOffsets():Void
+{
+this.centerOffsets();
 
-    if (getCurrentAnimation() == "confirm")
-    {
-      // Move the graphic down and to the right to compensate for
-      // the "glow" effect on the strumline note.
-      this.offset.x -= DEFAULT_OFFSET;
-      this.offset.y -= DEFAULT_OFFSET;
-    }
-    else
-    {
-      this.centerOrigin();
-    }
-  }
+{
+this.offset.x -= DEFAULT_OFFSET;
+this.offset.y -= DEFAULT_OFFSET;
+}
+else
+{
+this.centerOrigin();
+}
+}
 }

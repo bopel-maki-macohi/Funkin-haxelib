@@ -1,10 +1,9 @@
 package funkin.modding.base;
 
 /**
- * A script that can be tied to an FlxTransitionableState.
- * Create a scripted class that extends FlxTransitionableState to use this.
- */
-@:hscriptClass
+* A script that can be tied to an FlxTransitionableState.
+* Create a scripted class that extends FlxTransitionableState to use this.
+*/
 class ScriptedFlxTransitionableState extends flixel.addons.transition.FlxTransitionableState implements HScriptedClass
 {
 }

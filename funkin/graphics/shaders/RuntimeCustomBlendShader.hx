@@ -3,34 +3,26 @@ package funkin.graphics.shaders;
 
 class RuntimeCustomBlendShader extends RuntimePostEffectShader
 {
-  // only different name purely for hashlink fix
-  public var sourceSwag(default, set):BitmapData;
 
-  function set_sourceSwag(value:BitmapData):BitmapData
-  {
-    this.setBitmapData("sourceSwag", value);
-    return sourceSwag = value;
-  }
+function set_sourceSwag(value:BitmapData):BitmapData
+{
+this.setBitmapData("sourceSwag", value);
+}
 
-  public var backgroundSwag(default, set):BitmapData;
 
-  function set_backgroundSwag(value:BitmapData):BitmapData
-  {
-    this.setBitmapData("backgroundSwag", value);
-    return backgroundSwag = value;
-  }
+function set_backgroundSwag(value:BitmapData):BitmapData
+{
+this.setBitmapData("backgroundSwag", value);
+}
 
-  // name change make sure it's not the same variable name as whatever is in the shader file
-  public var blendSwag(default, set):BlendMode;
 
-  function set_blendSwag(value:BlendMode):BlendMode
-  {
-    this.setInt("blendMode", cast value);
-    return blendSwag = value;
-  }
+function set_blendSwag(value:BlendMode):BlendMode
+{
+this.setInt("blendMode", cast value);
+}
 
-  public function new()
-  {
-    super(Assets.getText("assets/shaders/customBlend.frag"));
-  }
+public function new()
+{
+super(Assets.getText("assets/shaders/customBlend.frag"));
+}
 }

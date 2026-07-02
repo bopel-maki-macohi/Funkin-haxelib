@@ -1,10 +1,9 @@
 package funkin.ui.transition.stickers;
 
 /**
- * A script that can be tied to a StickerPack.
- * Create a scripted class that extends StickerPack to use this.
- */
-@:hscriptClass
+* A script that can be tied to a StickerPack.
+* Create a scripted class that extends StickerPack to use this.
+*/
 class ScriptedStickerPack extends funkin.ui.transition.stickers.StickerPack implements polymod.hscript.HScriptedClass
 {
 }
