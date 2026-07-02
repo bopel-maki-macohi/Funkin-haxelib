@@ -64,7 +64,7 @@ class BlankFiles {
 		'// ',
 		'return',
 		'trace',
-		'{',
+		// '{',
 		'while',
 		'#',
 	];
@@ -79,10 +79,13 @@ class BlankFiles {
 
 		var i = 0;
 
-		// while (i < 10) {
-		// 	i++;
-		// 	Timer.measure(() -> cleanse(i));
-		// }
+		while (i < 10) {
+			i++;
+			Timer.measure(() -> cleanse(i));
+		}
+
+		trace('${removedKeywordLines.length} removed keyword lines after $i iterations');
+		File.saveContent('lines', logs.join('\n'));
 
 		for (file in source) {
 			var parser = new hscript.Parser();
@@ -115,9 +118,6 @@ class BlankFiles {
 
 			trace('$file : ' + interp.execute(program));
 		}
-
-		trace('${removedKeywordLines.length} removed keyword lines after $i iterations');
-		File.saveContent('lines', logs.join('\n'));
 	}
 
 	static var removedKeywordLines = [];
@@ -134,6 +134,8 @@ class BlankFiles {
 			var funcStartIDS:Array<Int> = [];
 
 			var cleared = [];
+
+			var clsLine:Int = -1;
 
 			function clearLine(line) {
 				lines.remove(line);
@@ -201,6 +203,8 @@ class BlankFiles {
 
 							if (!line.contains('{}'))
 								line = splitFuncLine[0] + ' {}';
+
+							lines.remove(lines[i + 1]);
 						}
 
 						if (line == '}' && inFunction >= 0) {
