@@ -25,6 +25,7 @@ funkin/api/newgrounds/Referral.hx : static function doReferral(referralName:Stri
 funkin/Assets.hx : * A wrapper around `openfl.utils.Assets` which disallows access to the harmful functions. {}
 funkin/audio/FlxStreamSound.hx : public function new() {}
 funkin/audio/FunkinSound.hx : * A FlxSound which adds additional functionality: {}
+funkin/audio/FunkinSound.hx : public function new() {}
 funkin/audio/SoundGroup.hx : public function new() {}
 funkin/audio/visualize/ABot.hx : public function new() {}
 funkin/audio/visualize/ABotVis.hx : public function new(snd:FlxSound, pixel:Bool) {}
@@ -32,11 +33,16 @@ funkin/audio/visualize/dsp/FFT.hx : public static function rfft(input:Array<Floa
 funkin/audio/visualize/dsp/OffsetArray.hx : public static function circShift<T>(array:Array<T>, n:Int):Array<T> {}
 funkin/audio/visualize/dsp/Signal.hx : public static function smooth(y:Array<Float>, n:Int):Null<Array<Float>> {}
 funkin/audio/visualize/PolygonSpectogram.hx : public function new(?daSound:FlxSound, ?col:FlxColor = FlxColor.WHITE, ?height:Float = 720, ?detail:Float = 1) {}
+funkin/audio/visualize/PolygonSpectogram.hx : + thickness, prevPoint.y, coolPoint.x, coolPoint.y, coolPoint.x
+funkin/audio/visualize/PolygonSpectogram.hx : + thickness, coolPoint.y
 funkin/audio/visualize/PolygonSpectogram.hx : 
 funkin/audio/visualize/PolygonSpectogram.hx : function realtimeVis {}
 funkin/audio/visualize/PolygonVisGroup.hx : public function new() {}
 funkin/audio/visualize/SpectogramSprite.hx : public function new(daSound:FlxSound, ?col:FlxColor = FlxColor.WHITE, ?height:Float = 720, ?amnt:Int = 500) {}
 funkin/audio/visualize/VisShit.hx : public function new(snd:FlxSound) {}
+funkin/audio/visualize/VisShit.hx : {
+funkin/audio/visualize/VisShit.hx : if (FlxG.keys.justPressed.I)
+funkin/audio/visualize/VisShit.hx : {
 funkin/audio/visualize/VisShit.hx : 
 funkin/audio/visualize/VisShit.hx : public static function getCurAud(aud:Int16Array, index:Int):CurAudioInfo {}
 funkin/audio/VoicesGroup.hx : public function new() {}
@@ -59,6 +65,9 @@ funkin/Conductor.hx : * Update this every frame based on the audio position usin
 funkin/Conductor.hx : function get_bpm {}
 funkin/data/animation/AnimationData.hx : public static function toNamed(data:UnnamedAnimationData, name:String = ""):AnimationData {}
 funkin/data/BaseRegistry.hx : * The entry's constructor function takes 2 arguments, the entry ID and optional parameters. {}
+funkin/data/BaseRegistry.hx : * A map of entry IDs to entries.
+funkin/data/BaseRegistry.hx : */
+funkin/data/BaseRegistry.hx : 
 funkin/data/BaseRegistry.hx : /**
 funkin/data/BaseRegistry.hx : * A map of entry IDs to scripted class names.
 funkin/data/BaseRegistry.hx : */
@@ -106,10 +115,12 @@ funkin/data/song/importer/StepManiaImporter.hx :
 funkin/data/song/importer/StepManiaImporter.hx : 
 funkin/data/song/importer/StepManiaImporter.hx : for (line in lines)
 funkin/data/song/importer/StepManiaImporter.hx : {
+funkin/data/song/importer/StepManiaImporter.hx : if (StringTools.startsWith(line, "//")) continue; // Comment line
 funkin/data/song/importer/StepManiaImporter.hx : 
 funkin/data/song/importer/StepManiaImporter.hx : switch (state)
 funkin/data/song/importer/StepManiaImporter.hx : {
 funkin/data/song/importer/StepManiaImporter.hx : case StepStateEnum.Metadata:
+funkin/data/song/importer/StepManiaImporter.hx : if (StringTools.startsWith(line, "#BPMS:"))
 funkin/data/song/importer/StepManiaImporter.hx : {
 funkin/data/song/importer/StepManiaImporter.hx : static function getStepStopAtBeat(beat:Float, stepStops:Array<StepStop>):StepStop {}
 funkin/data/song/migrator/SongDataMigrator.hx : * This class contains functions to migrate older data formats to the current one. {}
@@ -120,21 +131,31 @@ funkin/data/song/SongDataUtils.hx : * Utility functions for working with song da
 funkin/data/song/SongNoteDataUtils.hx : public static function listStackedNotes(notes:Array<SongNoteData>, threshold:Float, includeOverlapped:Bool = true, {}
 funkin/data/song/SongRegistry.hx : * and adding migration to the `migrateStageData()` function. {}
 funkin/data/stage/StageData.hx : public function new() {}
+funkin/data/stage/StageData.hx : public function serialize(pretty:Bool = true):String {}
 funkin/data/stage/StageRegistry.hx : * and adding migration to the `migrateStageData()` function. {}
 funkin/data/stickers/StickerRegistry.hx : * and adding migration to the `migrateStickerData()` function. {}
 funkin/data/story/level/LevelData.hx : * and a migration function should be added to LevelDataParser to handle old versions. {}
+funkin/data/story/level/LevelData.hx : * In the base game this is usually Boyfriend and the opponent.
+funkin/data/story/level/LevelData.hx : */
+funkin/data/story/level/LevelData.hx : @:default([])
+funkin/data/story/level/LevelData.hx : 
 funkin/data/story/level/LevelData.hx : /**
 funkin/data/story/level/LevelData.hx : * Whether this week is visible in the story menu.
 funkin/data/story/level/LevelData.hx : * @default `true`
 funkin/data/story/level/LevelData.hx : */
+funkin/data/story/level/LevelData.hx : @:default(true)
+funkin/data/story/level/LevelData.hx : @:optional
 funkin/data/story/level/LevelData.hx : 
 funkin/data/story/level/LevelData.hx : /**
 funkin/data/story/level/LevelData.hx : * The list of song IDs included in this level.
 funkin/data/story/level/LevelData.hx : */
+funkin/data/story/level/LevelData.hx : @:default(['bopeebo'])
 funkin/data/story/level/LevelData.hx : 
 funkin/data/story/level/LevelData.hx : /**
 funkin/data/story/level/LevelData.hx : * The background for the level behind the props.
 funkin/data/story/level/LevelData.hx : */
+funkin/data/story/level/LevelData.hx : @:default('#F9CF51')
+funkin/data/story/level/LevelData.hx : @:optional
 funkin/data/story/level/LevelRegistry.hx : * and adding migration to the `migrateLevelData()` function. {}
 funkin/effects/FunkTrail.hx : public function new(target:FlxSprite, ?graphic:FlxGraphicAsset, length:Int = 10, delay:Float = 0.1, alpha:Float = 0.4, diff:Float = 0.05) {}
 funkin/effects/IntervalShake.hx : public static function shake(Object:FlxObject, Duration:Float = 1, Interval:Float = 0.04, StartIntensity:Float = 0, EndIntensity:Float = 0, {}
@@ -160,6 +181,8 @@ funkin/graphics/shaders/BlendModesShader.hx : public function new() {}
 funkin/graphics/shaders/BlueFade.hx : function set_fadeVal(val:Float):Float {}
 funkin/graphics/shaders/ColorSwap.hx : public function new {}
 funkin/graphics/shaders/DropShadowShader.hx : public function setAdjustColor(b:Float, h:Float, c:Float, s:Float):Void {}
+funkin/graphics/shaders/DropShadowShader.hx : vec3 applyHueRotate(vec3 aColor, float aHue){
+funkin/graphics/shaders/DropShadowShader.hx : 
 funkin/graphics/shaders/DropShadowShader.hx : 
 funkin/graphics/shaders/DropShadowShader.hx : public function new() {}
 funkin/graphics/shaders/GaussianBlurShader.hx : public function new(amount:Float = 1.0) {}
@@ -189,6 +212,27 @@ funkin/group/FunkinGroup.hx : function get_size {}
 funkin/Highscore.hx : public static function combineTallies(newTally:Tallies, baseTally:Tallies):Tallies {}
 funkin/InitState.hx : * The initialization state has several functions: {}
 funkin/InitState.hx : 
+funkin/InitState.hx : #if FEATURE_MOBILE_IAR
+funkin/InitState.hx : #end
+funkin/InitState.hx : 
+funkin/InitState.hx : #if FEATURE_MOBILE_WEBVIEW
+funkin/InitState.hx : #end
+funkin/InitState.hx : 
+funkin/InitState.hx : #if android
+funkin/InitState.hx : #end
+funkin/InitState.hx : 
+funkin/InitState.hx : #if ios
+funkin/InitState.hx : #end
+funkin/InitState.hx : 
+funkin/InitState.hx : #if mobile
+funkin/InitState.hx : #end
+funkin/InitState.hx : 
+funkin/InitState.hx : 
+funkin/InitState.hx : 
+funkin/InitState.hx : 
+funkin/InitState.hx : #if !mobile
+funkin/InitState.hx : #end
+funkin/InitState.hx : 
 funkin/InitState.hx : 
 funkin/InitState.hx : 
 funkin/InitState.hx : 
@@ -201,30 +245,18 @@ funkin/InitState.hx :
 funkin/InitState.hx : FlxTransitionableState.defaultTransIn = new TransitionData(FADE, FlxColor.BLACK, 1, new FlxPoint(0, -1), tileData,
 funkin/InitState.hx : FlxTransitionableState.defaultTransOut = new TransitionData(FADE, FlxColor.BLACK, 0.7, new FlxPoint(0, 1), tileData,
 funkin/InitState.hx : 
-funkin/InitState.hx : {
-funkin/InitState.hx : FlxTransitionableState.defaultTransIn = new TransitionData(FADE, FlxColor.BLACK, 1, new FlxPoint(0, -1), tileData,
-funkin/InitState.hx : FlxTransitionableState.defaultTransOut = new TransitionData(FADE, FlxColor.BLACK, 0.7, new FlxPoint(0, 1), tileData,
+funkin/InitState.hx : FlxG.signals.gameResized.add(function(width:Int, height:Int) {}
+funkin/InitState.hx : #if !mobile
+funkin/InitState.hx : #end
+funkin/InitState.hx : #if mobile
+funkin/InitState.hx : #end
 funkin/InitState.hx : 
-funkin/InitState.hx : {
-funkin/InitState.hx : {
-funkin/InitState.hx : 
-funkin/InitState.hx : //
-funkin/InitState.hx : //
-funkin/InitState.hx : NewgroundsClient.instance.init();
-funkin/InitState.hx : 
-funkin/InitState.hx : //
-funkin/InitState.hx : //
-funkin/InitState.hx : DiscordClient.instance.init();
-funkin/InitState.hx : 
-funkin/InitState.hx : {
-funkin/InitState.hx : DiscordClient.instance.shutdown();
+funkin/InitState.hx : }
 funkin/InitState.hx : 
 funkin/InitState.hx : //
 funkin/InitState.hx : //
 funkin/InitState.hx : 
-funkin/InitState.hx : //
-funkin/InitState.hx : //
-funkin/InitState.hx : 
+funkin/InitState.hx : SongEventRegistry.loadEventCache(); // SongEventRegistry is structured differently so it's not a BaseRegistry.
 funkin/InitState.hx : SongRegistry.instance.loadEntries();
 funkin/InitState.hx : LevelRegistry.instance.loadEntries();
 funkin/InitState.hx : NoteStyleRegistry.instance.loadEntries();
@@ -236,25 +268,61 @@ funkin/InitState.hx : FreeplayStyleRegistry.instance.loadEntries();
 funkin/InitState.hx : AlbumRegistry.instance.loadEntries();
 funkin/InitState.hx : StageRegistry.instance.loadEntries();
 funkin/InitState.hx : StickerRegistry.instance.loadEntries();
+funkin/InitState.hx : 
+funkin/InitState.hx : 
+funkin/InitState.hx : 
+funkin/InitState.hx : 
+funkin/InitState.hx : 
+funkin/InitState.hx : #if !html5
+funkin/InitState.hx : #end
 funkin/InitState.hx : function onLostFocus {}
+funkin/InitState.hx : * or immediately in a specific debug menu.
+funkin/InitState.hx : */
+funkin/InitState.hx : function startGame {}
+funkin/InitState.hx : score: 1_234_567,
+funkin/InitState.hx : tallies: {
+funkin/InitState.hx : sick: 130,
+funkin/InitState.hx : good: 60,
+funkin/InitState.hx : bad: 69,
+funkin/InitState.hx : shit: 69,
+funkin/InitState.hx : missed: 69,
+funkin/InitState.hx : combo: 69,
+funkin/InitState.hx : maxCombo: 69,
+funkin/InitState.hx : totalNotesHit: 140,
 funkin/InitState.hx : totalNotes: 240
+funkin/InitState.hx : }
+funkin/InitState.hx : },
+funkin/InitState.hx : #elseif ANIMDEBUG
+funkin/InitState.hx : #elseif LATENCY
+funkin/InitState.hx : #else
+funkin/InitState.hx : #end
 funkin/InitState.hx : function startGameNormally {}
 funkin/input/Controls.hx : public function new(name, ?scheme:KeyboardScheme) {}
+funkin/input/Controls.hx : case WINDOW_FULLSCREEN:
+funkin/input/Controls.hx : case FREEPLAY_FAVORITE:
 funkin/input/Controls.hx : case FREEPLAY_LEFT:
 funkin/input/Controls.hx : case FREEPLAY_RIGHT:
 funkin/input/Controls.hx : case FREEPLAY_CHAR_SELECT:
 funkin/input/Controls.hx : case FREEPLAY_JUMP_TO_TOP:
 funkin/input/Controls.hx : case FREEPLAY_JUMP_TO_BOTTOM:
 funkin/input/Controls.hx : case CUTSCENE_ADVANCE:
+funkin/input/Controls.hx : #if FEATURE_DEBUG_MENU
 funkin/input/Controls.hx : case DEBUG_MENU:
+funkin/input/Controls.hx : #end
+funkin/input/Controls.hx : #if FEATURE_CHART_EDITOR
 funkin/input/Controls.hx : case DEBUG_CHART:
+funkin/input/Controls.hx : #end
+funkin/input/Controls.hx : #if FEATURE_STAGE_EDITOR
 funkin/input/Controls.hx : case DEBUG_STAGE:
+funkin/input/Controls.hx : #end
 funkin/input/Controls.hx : case DEBUG_DISPLAY:
 funkin/input/Controls.hx : case VOLUME_UP:
 funkin/input/Controls.hx : case VOLUME_DOWN:
 funkin/input/Controls.hx : case VOLUME_MUTE:
 funkin/input/Controls.hx : public function replaceBinding(control:Control, device:Device, toAdd:Int, toRemove:Int):Void {}
+funkin/input/Controls.hx : #if FEATURE_SCREENSHOTS
 funkin/input/Controls.hx : case Control.WINDOW_SCREENSHOT:
+funkin/input/Controls.hx : #end
 funkin/input/Controls.hx : case Control.CUTSCENE_ADVANCE:
 funkin/input/Controls.hx : case Control.FREEPLAY_FAVORITE:
 funkin/input/Controls.hx : [Y]; // Back (i.e. Select)
@@ -266,9 +334,15 @@ funkin/input/Controls.hx : case Control.FREEPLAY_JUMP_TO_BOTTOM:
 funkin/input/Controls.hx : case Control.VOLUME_UP:
 funkin/input/Controls.hx : case Control.VOLUME_DOWN:
 funkin/input/Controls.hx : case Control.VOLUME_MUTE:
+funkin/input/Controls.hx : #if FEATURE_DEBUG_MENU
 funkin/input/Controls.hx : case Control.DEBUG_MENU:
+funkin/input/Controls.hx : #end
+funkin/input/Controls.hx : #if FEATURE_CHART_EDITOR
 funkin/input/Controls.hx : case Control.DEBUG_CHART:
+funkin/input/Controls.hx : #end
+funkin/input/Controls.hx : #if FEATURE_STAGE_EDITOR
 funkin/input/Controls.hx : case Control.DEBUG_STAGE:
+funkin/input/Controls.hx : #end
 funkin/input/Controls.hx : case Control.DEBUG_DISPLAY:
 funkin/input/Controls.hx : default:
 funkin/input/Controls.hx : public function bindButtons(control:Control, id:Int, buttons):Void {}
@@ -332,6 +406,8 @@ funkin/mobile/ui/FunkinButton.hx : * @param y The y position of the button.
 funkin/mobile/ui/FunkinButton.hx : */
 funkin/mobile/ui/FunkinButton.hx : public function new(x:Float = 0, y:Float = 0):Void {}
 funkin/mobile/ui/FunkinHitbox.hx : public function new(x:Float, y:Float, noteDirection:NoteDirection, label:Null<FlxGraphic>):Void {}
+funkin/mobile/ui/FunkinHitbox.hx : {
+funkin/mobile/ui/FunkinHitbox.hx : 
 funkin/mobile/ui/FunkinHitbox.hx : 
 funkin/mobile/ui/FunkinHitbox.hx : function createHintLaneGraphic(width:Int, height:Int, baseColor:FlxColor = 0xFFFFFFFF, gradient:Bool = true):FlxGraphic {}
 funkin/mobile/ui/mainmenu/FunkinOptionsButton.hx : function get_confirming {}
@@ -341,16 +417,30 @@ funkin/mobile/ui/options/objects/HitboxShowcase.hx : * @param onClick An optiona
 funkin/mobile/ui/options/objects/SchemeMenuButton.hx : * Creates a new SchemeMenuButton instance.
 funkin/mobile/ui/options/objects/SchemeMenuButton.hx : * @param onClick An optional callback function that will be triggered when the button is clicked. {}
 funkin/mobile/util/AdMobUtil.hx : * Provides utility functions for working with admob advertisements. {}
+funkin/mobile/util/AdMobUtil.hx : 
+funkin/mobile/util/AdMobUtil.hx : /**
 funkin/mobile/util/AdMobUtil.hx : * AdMob publisher ID used for the application.
 funkin/mobile/util/AdMobUtil.hx : */
+funkin/mobile/util/AdMobUtil.hx : #if NO_TESTING_ADS
+funkin/mobile/util/AdMobUtil.hx : @:envField({mandatoryIfDefined: "FEATURE_MOBILE_ADVERTISEMENTS"})
+funkin/mobile/util/AdMobUtil.hx : #else
+funkin/mobile/util/AdMobUtil.hx : #end
 funkin/mobile/util/AdMobUtil.hx : 
 funkin/mobile/util/AdMobUtil.hx : /**
 funkin/mobile/util/AdMobUtil.hx : * Ad unit ID for displaying banner ads.
 funkin/mobile/util/AdMobUtil.hx : */
+funkin/mobile/util/AdMobUtil.hx : #if NO_TESTING_ADS
+funkin/mobile/util/AdMobUtil.hx : @:envField({mandatoryIfDefined: "FEATURE_MOBILE_ADVERTISEMENTS"})
+funkin/mobile/util/AdMobUtil.hx : #else
+funkin/mobile/util/AdMobUtil.hx : #end
 funkin/mobile/util/AdMobUtil.hx : 
 funkin/mobile/util/AdMobUtil.hx : /**
 funkin/mobile/util/AdMobUtil.hx : * Ad unit ID for displaying interstitial ads.
 funkin/mobile/util/AdMobUtil.hx : */
+funkin/mobile/util/AdMobUtil.hx : #if NO_TESTING_ADS
+funkin/mobile/util/AdMobUtil.hx : @:envField({mandatoryIfDefined: "FEATURE_MOBILE_ADVERTISEMENTS"})
+funkin/mobile/util/AdMobUtil.hx : #else
+funkin/mobile/util/AdMobUtil.hx : #end
 funkin/mobile/util/AdMobUtil.hx : 
 funkin/mobile/util/AdMobUtil.hx : /**
 funkin/mobile/util/AdMobUtil.hx : * Initializes the AdMob SDK and sets up event listeners for interstitial and rewarded ads.
@@ -360,6 +450,7 @@ funkin/mobile/util/AdMobUtil.hx : */
 funkin/mobile/util/AdMobUtil.hx : public static function init {}
 funkin/mobile/util/FNFCProvider.hx : public static function init {}
 funkin/mobile/util/InAppPurchasesUtil.hx : * Provides utility functions for working with in-app purchases. {}
+funkin/mobile/util/InAppPurchasesUtil.hx : public static function init {}
 funkin/mobile/util/InAppReviewUtil.hx : * Provides utility functions for working with in-app reviews. {}
 funkin/mobile/util/ScreenUtil.hx : public static function getNotchRect {}
 funkin/mobile/util/WebViewUtil.hx : * Provides utility functions for working with WebView. {}
@@ -602,13 +693,7 @@ funkin/modding/events/ScriptEventType.hx :
 funkin/modding/events/ScriptEventType.hx : /**
 funkin/modding/events/ScriptEventType.hx : * Allow for comparing `ScriptEventType` to `String`.
 funkin/modding/events/ScriptEventType.hx : */
-funkin/modding/events/ScriptEventType.hx : {
-funkin/modding/events/ScriptEventType.hx : }
-funkin/modding/events/ScriptEventType.hx : 
-funkin/modding/events/ScriptEventType.hx : /**
-funkin/modding/events/ScriptEventType.hx : * Allow for comparing `ScriptEventType` to `String`.
-funkin/modding/events/ScriptEventType.hx : */
-funkin/modding/events/ScriptEventType.hx : {
+funkin/modding/events/ScriptEventType.hx : @:op(A == B) private static inline function equals(a:ScriptEventType, b:String):Bool {}
 funkin/modding/IScriptedClass.hx : * Generally requires the class to be an instance of FlxBasic.
 funkin/modding/ModStore.hx : public static function register(id:String, ?data:Dynamic):Dynamic {}
 funkin/modding/module/Module.hx : function set_active(value:Bool):Bool {}
@@ -619,10 +704,19 @@ funkin/modding/PolymodErrorHandler.hx : //
 funkin/modding/PolymodErrorHandler.hx : 
 funkin/modding/PolymodErrorHandler.hx : case MOD_API_VERSION_MISMATCH:
 funkin/modding/PolymodErrorHandler.hx : 
+funkin/modding/PolymodErrorHandler.hx : if (regex.match(error.message))
 funkin/modding/PolymodErrorHandler.hx : {
 funkin/modding/PolymodErrorHandler.hx : 
 funkin/modding/PolymodErrorHandler.hx : 
 funkin/modding/PolymodHandler.hx : static function get_API_VERSION {}
+funkin/modding/PolymodHandler.hx : #else
+funkin/modding/PolymodHandler.hx : null
+funkin/modding/PolymodHandler.hx : 
+funkin/modding/PolymodHandler.hx : /**
+funkin/modding/PolymodHandler.hx : * Populated with the directories of mods once they're successfully loaded.
+funkin/modding/PolymodHandler.hx : */
+funkin/modding/PolymodHandler.hx : 
+funkin/modding/PolymodHandler.hx : /**
 funkin/modding/PolymodHandler.hx : * Populated with the IDs of mods once they're successfully loaded.
 funkin/modding/PolymodHandler.hx : */
 funkin/modding/PolymodHandler.hx : 
@@ -631,7 +725,6 @@ funkin/modding/PolymodHandler.hx : /**
 funkin/modding/PolymodHandler.hx : * If the mods folder doesn't exist, create it.
 funkin/modding/PolymodHandler.hx : */
 funkin/modding/PolymodHandler.hx : public static function createModRoot {}
-funkin/modding/PolymodHandler.hx : CharacterDataParser.loadCharacterCache(); // TODO: Migrate characters to BaseRegistry.
 funkin/Paths.hx : public static function setCurrentLevel(name:Null<String>):Void {}
 funkin/play/character/AnimateAtlasCharacter.hx : public function new(id:String) {}
 funkin/play/character/BaseCharacter.hx : function set_characterType(value:CharacterType):CharacterType {}
@@ -642,6 +735,7 @@ funkin/play/character/SparrowCharacter.hx : public function new(id:String) {}
 funkin/play/components/ClearPercentCounter.hx : function set_curNumber(val:Int):Int {}
 funkin/play/components/HealthIcon.hx : *     - i.e. `PlayState.instance.iconP1.playAnimation("losing")`
 funkin/play/components/HealthIcon.hx : *   - Scripts can also utilize all functionality that a normal FlxSprite would have access to, such as adding supplimental animations. {}
+funkin/play/components/HealthIcon.hx : * Since the `scale` of the sprite dynamically changes over time,
 funkin/play/components/HealthIcon.hx : * this value allows you to set a relative scale for the icon.
 funkin/play/components/HealthIcon.hx : * @default 1x scale = 150px width and height.
 funkin/play/components/HealthIcon.hx : */
@@ -706,6 +800,7 @@ funkin/play/components/HealthIcon.hx : */
 funkin/play/components/HealthIcon.hx : 
 funkin/play/components/HealthIcon.hx : public function new(char:Null<String>, playerId:Int = 0) {}
 funkin/play/components/PopUpStuff.hx : override public function new(noteStyle:NoteStyle) {}
+funkin/play/components/PopUpStuff.hx : onComplete: function(tween:FlxTween) {}
 funkin/play/components/Subtitles.hx : public function new(x:Float = 0, y:Float = 0, alignment:SubtitlesAlignment = SubtitlesAlignment.SUBTITLES_BOTTOM) {}
 funkin/play/components/TallyCounter.hx : public function new(x:Float, y:Float, neededNumber:Int = 0, ?flavour:Int, align:FlxTextAlign = FlxTextAlign.LEFT) {}
 funkin/play/Countdown.hx : public static function performCountdown {}
@@ -715,6 +810,8 @@ funkin/play/cutscene/dialogue/FunkinTypeText.hx : * by overriding the functions 
 funkin/play/cutscene/dialogue/Speaker.hx : function get_speakerName {}
 funkin/play/cutscene/VideoCutscene.hx : public static function play(filePath:String, ?cutsceneType:CutsceneType = STARTING):Void {}
 funkin/play/event/FocusCameraSongEvent.hx : public function new() {}
+funkin/play/event/FocusCameraSongEvent.hx : if (currentStage.getBoyfriend() == null)
+funkin/play/event/FocusCameraSongEvent.hx : {
 funkin/play/event/FocusCameraSongEvent.hx : PlayState.instance.resetCamera(false, false, false);
 funkin/play/event/FocusCameraSongEvent.hx : PlayState.instance.cancelCameraFollowTween();
 funkin/play/event/FocusCameraSongEvent.hx : PlayState.instance.cameraFollowPoint.setPosition(targetX, targetY);
@@ -722,6 +819,7 @@ funkin/play/event/FocusCameraSongEvent.hx : PlayState.instance.tweenCameraToPosi
 funkin/play/event/FocusCameraSongEvent.hx : var durSeconds = Conductor.instance.stepLengthMs * duration / 1000;
 funkin/play/event/FocusCameraSongEvent.hx : PlayState.instance.tweenCameraToPosition(targetX, targetY, durSeconds, easeFunction);
 funkin/play/event/FocusCameraSongEvent.hx : public override function getTitle {}
+funkin/play/event/FocusCameraSongEvent.hx : type: SongEventFieldType.FLOAT,
 funkin/play/event/FocusCameraSongEvent.hx : units: "px"
 funkin/play/event/FocusCameraSongEvent.hx : }, {
 funkin/play/event/FocusCameraSongEvent.hx : name: 'duration',
@@ -745,6 +843,7 @@ funkin/play/event/FocusCameraSongEvent.hx : type: SongEventFieldType.ENUM,
 funkin/play/event/FocusCameraSongEvent.hx : keys: ['In' => 'In', 'Out' => 'Out', 'In/Out' => 'InOut']
 funkin/play/event/PlayAnimationSongEvent.hx : public function new() {}
 funkin/play/event/ScrollSpeedEvent.hx : public function new() {}
+funkin/play/event/ScrollSpeedEvent.hx : name: 'ease',
 funkin/play/event/ScrollSpeedEvent.hx : title: 'Easing Type',
 funkin/play/event/ScrollSpeedEvent.hx : defaultValue: SongEvent.DEFAULT_EASE,
 funkin/play/event/ScrollSpeedEvent.hx : type: SongEventFieldType.ENUM,
@@ -773,6 +872,7 @@ funkin/play/event/ScrollSpeedEvent.hx : defaultValue: DEFAULT_ABSOLUTE,
 funkin/play/event/ScrollSpeedEvent.hx : type: SongEventFieldType.BOOL,
 funkin/play/event/ScrollSpeedEvent.hx : }]
 funkin/play/event/SetCameraBopSongEvent.hx : public function new() {}
+funkin/play/event/SetCameraBopSongEvent.hx : title: 'Rate',
 funkin/play/event/SetCameraBopSongEvent.hx : defaultValue: Constants.DEFAULT_ZOOM_RATE,
 funkin/play/event/SetCameraBopSongEvent.hx : min: 0,
 funkin/play/event/SetCameraBopSongEvent.hx : step: 0.25,
@@ -781,6 +881,7 @@ funkin/play/event/SetCameraBopSongEvent.hx : units: 'beats/zoom'
 funkin/play/event/SetHealthIconSongEvent.hx : public function new() {}
 funkin/play/event/SetHealthIconSongEvent.hx : PlayState.instance.iconP2.configure(healthIconData);
 funkin/play/event/SetHealthIconSongEvent.hx : public override function getTitle {}
+funkin/play/event/SetHealthIconSongEvent.hx : name: 'flipX',
 funkin/play/event/SetHealthIconSongEvent.hx : title: 'Flip X?',
 funkin/play/event/SetHealthIconSongEvent.hx : defaultValue: DEFAULT_FLIPX,
 funkin/play/event/SetHealthIconSongEvent.hx : type: SongEventFieldType.BOOL,
@@ -809,8 +910,10 @@ funkin/play/event/SetTargetBopSpeedEvent.hx : public function new() {}
 funkin/play/event/SongEvent.hx : * A regular expression to detect the current ease direction for ease function names from FlxEase. {}
 funkin/play/event/SongEventHelper.hx : public static function generateEaseGraphsBitmaps {}
 funkin/play/event/ZoomCameraSongEvent.hx : public function new() {}
+funkin/play/event/ZoomCameraSongEvent.hx : {
 funkin/play/event/ZoomCameraSongEvent.hx : PlayState.instance.tweenCameraZoom(scaledZoom, durSeconds, isDirectMode, easeFunction);
 funkin/play/event/ZoomCameraSongEvent.hx : function calculateScale(wideScale:FlxPoint, scale:FlxPoint) {}
+funkin/play/event/ZoomCameraSongEvent.hx : title: 'Easing Type',
 funkin/play/event/ZoomCameraSongEvent.hx : defaultValue: SongEvent.DEFAULT_EASE,
 funkin/play/event/ZoomCameraSongEvent.hx : type: SongEventFieldType.ENUM,
 funkin/play/event/ZoomCameraSongEvent.hx : keys: ['Linear' => 'linear', 'Instant (Ignores duration)' => 'INSTANT', 'Sine' => 'sine', 'Quad' => 'quad', 'Cube' => 'cube', 'Quart' => 'quart', 'Quint' => 'quint', 'Expo' => 'expo', 'Smooth Step' => 'smoothStep', 'Smoother Step' => 'smootherStep', 'Elastic' => 'elastic', 'Back' => 'back', 'Bounce' => 'bounce', 'Circ ' => 'circ',]
@@ -902,6 +1005,8 @@ funkin/play/PlayState.hx : /**
 funkin/play/PlayState.hx : * A group of audio tracks, used to play the song's vocals.
 funkin/play/PlayState.hx : */
 funkin/play/PlayState.hx : 
+funkin/play/PlayState.hx : #if FEATURE_DISCORD_RPC
+funkin/play/PlayState.hx : #end
 funkin/play/PlayState.hx : 
 funkin/play/PlayState.hx : /**
 funkin/play/PlayState.hx : * RENDER OBJECTS
@@ -978,6 +1083,7 @@ funkin/play/PlayState.hx : * The combo popups. Includes the real-time combo coun
 funkin/play/PlayState.hx : */
 funkin/play/PlayState.hx : 
 funkin/play/PlayState.hx : 
+funkin/play/PlayState.hx : #if mobile
 funkin/play/PlayState.hx : /**
 funkin/play/PlayState.hx : * The pause button for the game, only appears in Mobile targets.
 funkin/play/PlayState.hx : */
@@ -985,6 +1091,7 @@ funkin/play/PlayState.hx :
 funkin/play/PlayState.hx : /**
 funkin/play/PlayState.hx : * The pause circle for the game, only appears in Mobile targets.
 funkin/play/PlayState.hx : */
+funkin/play/PlayState.hx : #end
 funkin/play/PlayState.hx : 
 funkin/play/PlayState.hx : /**
 funkin/play/PlayState.hx : * PROPERTIES
@@ -1008,10 +1115,19 @@ funkin/play/PlayState.hx : * @param params The parameters used to initialize the
 funkin/play/PlayState.hx : *   Includes information about what song to play and more.
 funkin/play/PlayState.hx : */
 funkin/play/PlayState.hx : public function new(?params:PlayStateParams) {}
+funkin/play/PlayState.hx : vocals.time = startTimestamp - Conductor.instance.instrumentalOffset;
+funkin/play/PlayState.hx : Conductor.instance.update(-vwooshDelay * 1000 + startTimestamp + Conductor.instance.beatLengthMs * -5);
 funkin/play/PlayState.hx : vwooshTimer.start(vwooshDelay, function(_) {}
+funkin/play/PlayState.hx : 
+funkin/play/PlayState.hx : if (!isSubState && event.gitaroo)
 funkin/play/PlayState.hx : {
 funkin/play/PlayState.hx : DiscordClient.instance.setPresence({
 funkin/play/PlayState.hx : function preparePauseUI {}
+funkin/play/PlayState.hx : public override function onFocusLost {}
+funkin/play/PlayState.hx : largeImageKey: discordRPCAlbum,
+funkin/play/PlayState.hx : smallImageKey: discordRPCIcon
+funkin/play/PlayState.hx : #end
+funkin/play/PlayState.hx : }
 funkin/play/PlayState.hx : 
 funkin/play/PlayState.hx : function buildDiscordRPCDetails {}
 funkin/play/PlayState.hx : shit: Highscore.tallies.shit,
@@ -1023,13 +1139,19 @@ funkin/play/PlayState.hx : totalNotes: Highscore.tallies.totalNotes,
 funkin/play/PlayState.hx : },
 funkin/play/PlayState.hx : 
 funkin/play/PlayState.hx : 
+funkin/play/PlayState.hx : #if FEATURE_NEWGROUNDS
+funkin/play/PlayState.hx : #end
 funkin/play/PlayState.hx : 
+funkin/play/PlayState.hx : if (!isPracticeMode && !isBotPlayMode)
 funkin/play/PlayState.hx : {
+funkin/play/PlayState.hx : #if FEATURE_NEWGROUNDS
+funkin/play/PlayState.hx : #end
 funkin/play/PlayState.hx : 
 funkin/play/PlayState.hx : isNewHighscore = Save.instance.isSongHighScore(currentSong.id, suffixedDifficulty, data);
 funkin/play/PlayState.hx : 
 funkin/play/PlayState.hx : Save.instance.applySongRank(currentSong.id, suffixedDifficulty, data);
 funkin/play/PlayState.hx : 
+funkin/play/PlayState.hx : if (isNewHighscore)
 funkin/play/PlayState.hx : {
 funkin/play/PlayState.hx : if (Save.instance.isLevelHighScore(PlayStatePlaylist.campaignId, PlayStatePlaylist.campaignDifficulty, data))
 funkin/play/PlayState.hx : Save.instance.setLevelScore(PlayStatePlaylist.campaignId, PlayStatePlaylist.campaignDifficulty, data);
@@ -1037,6 +1159,7 @@ funkin/play/PlayState.hx : FunkinSound.playOnce(Paths.sound('Lights_Shut_off'), 
 funkin/play/PlayStatePlaylist.hx : public static function reset {}
 funkin/play/ResultScore.hx : function set_scoreShit(val):Int {}
 funkin/play/ResultState.hx : function get_isChartingMode {}
+funkin/play/ResultState.hx : if (animData.filter != "both")
 funkin/play/ResultState.hx : {
 funkin/play/ResultState.hx : resultsAnim.animation.addByPrefix("result", "results instance 1", 24, false);
 funkin/play/ResultState.hx : function getMusicPath(playerCharacter:Null<PlayableCharacter>, rank:ScoringRank):String {}
@@ -1088,11 +1211,18 @@ funkin/play/song/Song.hx :
 funkin/play/song/Song.hx : 
 funkin/play/song/Song.hx : 
 funkin/play/song/Song.hx : public function new(song:Song, diffId:String, variation:String) {}
+funkin/play/song/Song.hx : {
+funkin/play/song/Song.hx : public function buildOpponentVoiceList {}
 funkin/play/stage/Bopper.hx : function set_isPixel(value:Bool):Bool {}
 funkin/play/stage/Stage.hx : function get_stageName {}
+funkin/play/stage/Stage.hx : character.setScale(finalScale); // Don't use scale.set for characters!
 funkin/play/stage/Stage.hx : 
 funkin/play/stage/Stage.hx : 
 funkin/play/stage/Stage.hx : 
+funkin/play/stage/Stage.hx : 
+funkin/play/stage/Stage.hx : 
+funkin/play/stage/Stage.hx : #if FEATURE_DEBUG_FUNCTIONS
+funkin/play/stage/Stage.hx : if (charType == BF || charType == DAD)
 funkin/play/stage/Stage.hx : {
 funkin/play/stage/Stage.hx : public inline function getGirlfriendPosition {}
 funkin/play/stage/StageProp.hx : public function new() {}
@@ -1133,6 +1263,9 @@ funkin/ui/charSelect/CharSelectCursors.hx : public function new() {}
 funkin/ui/charSelect/CharSelectGF.hx : public function new(x:Float, y:Float) {}
 funkin/ui/charSelect/CharSelectPlayer.hx : public function new(x:Float, y:Float) {}
 funkin/ui/charSelect/CharSelectSubState.hx : public function new(?params:CharSelectSubStateParams) {}
+funkin/ui/charSelect/CharSelectSubState.hx : FunkinSound.playMusic('stayFunky', {
+funkin/ui/charSelect/CharSelectSubState.hx : startingVolume: 1,
+funkin/ui/charSelect/CharSelectSubState.hx : overrideExisting: true,
 funkin/ui/charSelect/CharSelectSubState.hx : restartTrack: true,
 funkin/ui/charSelect/CharSelectSubState.hx : onLoad: function() {}
 funkin/ui/charSelect/IntroSubState.hx : public override function create {}
@@ -1147,6 +1280,7 @@ funkin/ui/credits/CreditsState.hx : public function new() {}
 funkin/ui/debug/anim/DebugBoundingState.hx : function get_currentAnimationName {}
 funkin/ui/debug/anim/FlxAnimateTest.hx : public function new() {}
 funkin/ui/debug/charting/ChartEditorState.hx : * Some functionality is split into handler classes to help maintain my sanity. {}
+funkin/ui/debug/charting/ChartEditorState.hx : */
 funkin/ui/debug/charting/ChartEditorState.hx : 
 funkin/ui/debug/charting/ChartEditorState.hx : /**
 funkin/ui/debug/charting/ChartEditorState.hx : * The height of the playhead, in pixels.
@@ -1218,6 +1352,7 @@ funkin/ui/debug/charting/ChartEditorState.hx : * The length of the current instr
 funkin/ui/debug/charting/ChartEditorState.hx : */
 funkin/ui/debug/charting/ChartEditorState.hx : 
 funkin/ui/debug/charting/ChartEditorState.hx : function get_songLengthInMs {}
+funkin/ui/debug/charting/ChartEditorState.hx : */
 funkin/ui/debug/charting/ChartEditorState.hx : 
 funkin/ui/debug/charting/ChartEditorState.hx : /**
 funkin/ui/debug/charting/ChartEditorState.hx : * The note params to use for notes being placed in the chart. Defaults to `[]`.
@@ -1381,6 +1516,9 @@ funkin/ui/debug/charting/ChartEditorState.hx : */
 funkin/ui/debug/charting/ChartEditorState.hx : 
 funkin/ui/debug/charting/ChartEditorState.hx : 
 funkin/ui/debug/charting/ChartEditorState.hx : function get_songManifestData {}
+funkin/ui/debug/charting/ChartEditorState.hx : if (result != null)
+funkin/ui/debug/charting/ChartEditorState.hx : {
+funkin/ui/debug/charting/ChartEditorState.hx : if (result.length == 0)
 funkin/ui/debug/charting/ChartEditorState.hx : {
 funkin/ui/debug/charting/ChartEditorState.hx : function updateDiscordRPC {}
 funkin/ui/debug/charting/ChartEditorState.hx : menubarItemVolumeHitsoundOpponent.onChange = event ->
@@ -1399,6 +1537,8 @@ funkin/ui/debug/charting/ChartEditorState.hx : menubarItemPlaybackSpeed.onChange
 funkin/ui/debug/charting/ChartEditorState.hx : {
 funkin/ui/debug/charting/ChartEditorState.hx : pitch = Math.round(pitch / 0.05) * 0.05; // Round to nearest 5%
 funkin/ui/debug/charting/ChartEditorState.hx : pitch = pitch.clamp(0.05, 2.0); // Clamp to 5% to 200%
+funkin/ui/debug/charting/ChartEditorState.hx : #if FLX_PITCH
+funkin/ui/debug/charting/ChartEditorState.hx : #end
 funkin/ui/debug/charting/ChartEditorState.hx : }
 funkin/ui/debug/charting/ChartEditorState.hx : 
 funkin/ui/debug/charting/ChartEditorState.hx : menubarItemToggleToolboxPlayerPreview.onChange = event ->
@@ -1409,6 +1549,7 @@ funkin/ui/debug/charting/ChartEditorState.hx : {
 funkin/ui/debug/charting/ChartEditorState.hx : }
 funkin/ui/debug/charting/ChartEditorState.hx : 
 funkin/ui/debug/charting/ChartEditorState.hx : function copySelection {}
+funkin/ui/debug/charting/ChartEditorState.hx : function handleNoteDisplay {}
 funkin/ui/debug/charting/ChartEditorState.hx : function handleSnap {}
 funkin/ui/debug/charting/ChartEditorState.hx : function handlePlayhead {}
 funkin/ui/debug/charting/ChartEditorState.hx : 
@@ -1444,11 +1585,15 @@ funkin/ui/debug/charting/commands/SetFreeplayPreviewCommand.hx : public function
 funkin/ui/debug/charting/commands/SetItemSelectionCommand.hx : public function new(notes:Array<SongNoteData>, events:Array<SongEventData>) {}
 funkin/ui/debug/charting/commands/SwitchDifficultyCommand.hx : public function new(prevDifficulty:String, newDifficulty:String, prevVariation:String, newVariation:String) {}
 funkin/ui/debug/charting/components/ChartEditorEventSprite.hx : * Designed to be used and reused efficiently. Has no gameplay functionality. {}
+funkin/ui/debug/charting/components/ChartEditorEventSprite.hx : 
 funkin/ui/debug/charting/components/ChartEditorEventSprite.hx : function set_overrideStepTime(value:Null<Float>):Null<Float> {}
 funkin/ui/debug/charting/components/ChartEditorHoldNoteSprite.hx : * Designed to be used and reused efficiently. Has no gameplay functionality. {}
 funkin/ui/debug/charting/components/ChartEditorMeasureTicks.hx : override function set_y(value:Float):Float {}
 funkin/ui/debug/charting/components/ChartEditorNotePreview.hx : public function new(height:Int) {}
 funkin/ui/debug/charting/components/ChartEditorNoteSprite.hx : * Designed to be used and reused efficiently. Has no gameplay functionality. {}
+funkin/ui/debug/charting/components/ChartEditorNoteSprite.hx : */
+funkin/ui/debug/charting/components/ChartEditorNoteSprite.hx : @:isVar
+funkin/ui/debug/charting/components/ChartEditorNoteSprite.hx : 
 funkin/ui/debug/charting/components/ChartEditorNoteSprite.hx : 
 funkin/ui/debug/charting/components/ChartEditorNoteSprite.hx : function set_overrideStepTime(value:Null<Float>):Null<Float> {}
 funkin/ui/debug/charting/components/ChartEditorSelectionSquareSprite.hx : * Designed to be used and reused efficiently. Has no gameplay functionality. {}
@@ -1468,8 +1613,19 @@ funkin/ui/debug/charting/dialogs/ChartEditorWelcomeDialog.hx : public function n
 funkin/ui/debug/charting/handlers/ChartEditorAudioHandler.hx : * Handlers split up the functionality of the Chart Editor into different classes based on focus to limit the amount of code in each class. {}
 funkin/ui/debug/charting/handlers/ChartEditorContextMenuHandler.hx : public static function openDefaultContextMenu(state:ChartEditorState, xPos:Float, yPos:Float) {}
 funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : public static function openAboutDialog(state:ChartEditorState):Null<Dialog> {}
-funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : 
+funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : Conductor.instance.mapTimeChanges(state.currentSongMetadata.timeChanges);
+funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : public static function openChartDialog(state:ChartEditorState, closable:Bool = true):Dialog {}
 funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : {
+funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : #if FEATURE_FILE_DROP
+funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : #else
+funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : #end
+funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : 
+funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : songVariationMetadataEntry.onMouseOver = function(_) {}
+funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : #else
+funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : #end
+funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : 
+funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : onDropFileChartDataVariation = function(variation:String, label:Label, pathStr:String) {}
+funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : metadataEntry.onMouseOver = function(_event) {}
 funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : 
 funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : 
 funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : 
@@ -1480,6 +1636,7 @@ funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx :
 funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : 
 funkin/ui/debug/charting/handlers/ChartEditorDialogHandler.hx : public static function openAddDifficultyDialog(state:ChartEditorState, closable:Bool = true):Dialog {}
 funkin/ui/debug/charting/handlers/ChartEditorGamepadHandler.hx : public static function handleGamepadControls(chartEditorState:ChartEditorState) {}
+funkin/ui/debug/charting/handlers/ChartEditorGamepadHandler.hx : ActionManager.instance.actionStart(ActionType.NEXT, this);
 funkin/ui/debug/charting/handlers/ChartEditorGamepadHandler.hx : ActionManager.instance.actionEnd(ActionType.NEXT, this);
 funkin/ui/debug/charting/handlers/ChartEditorImportExportHandler.hx : * Contains functions for importing, loading, saving, and exporting charts. {}
 funkin/ui/debug/charting/handlers/ChartEditorImportExportHandler.hx : public static function getLatestBackupPath {}
@@ -1487,24 +1644,30 @@ funkin/ui/debug/charting/handlers/ChartEditorNotificationHandler.hx : public sta
 funkin/ui/debug/charting/handlers/ChartEditorShortcutHandler.hx : public static function applyPlatformShortcutText(state:ChartEditorState):Void {}
 funkin/ui/debug/charting/handlers/ChartEditorThemeHandler.hx : * Static functions which handle building themed UI elements for a provided ChartEditorState. {}
 funkin/ui/debug/charting/handlers/ChartEditorThemeHandler.hx : 
+funkin/ui/debug/charting/handlers/ChartEditorThemeHandler.hx : 
+funkin/ui/debug/charting/handlers/ChartEditorThemeHandler.hx : 
 funkin/ui/debug/charting/handlers/ChartEditorThemeHandler.hx : /**
 funkin/ui/debug/charting/handlers/ChartEditorThemeHandler.hx : * When the theme is changed, this function updates all of the UI elements to match the new theme. {}
 funkin/ui/debug/charting/handlers/ChartEditorThemeHandler.hx : state.gridBitmap.width, ChartEditorState.GRID_SELECTION_BORDER_WIDTH),
 funkin/ui/debug/charting/handlers/ChartEditorThemeHandler.hx : static function updateOffsetTicks(state:ChartEditorState):Void {}
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : * Static functions which handle building themed UI elements for a provided ChartEditorState. {}
+funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : public static function hideToolbox(state:ChartEditorState, id:String):Void {}
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : 
+funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : if (checkboxShowResults == null)
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : 
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : 
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : checkboxShowResults.onClick = _ ->
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : {
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : 
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : 
+funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : if (checkboxSongScripts == null)
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : 
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : 
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : checkboxSongScripts.onClick = _ ->
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : {
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : 
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : 
+funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : if (checkboxAudioSettings == null)
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : 
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : 
 funkin/ui/debug/charting/handlers/ChartEditorToolboxHandler.hx : checkboxAudioSettings.onClick = _ ->
@@ -1518,6 +1681,7 @@ funkin/ui/debug/charting/toolboxes/ChartEditorEventDataToolbox.hx : input.onChan
 funkin/ui/debug/charting/toolboxes/ChartEditorFreeplayToolbox.hx : function get_playheadAbsolutePos {}
 funkin/ui/debug/charting/toolboxes/ChartEditorFreeplayToolbox.hx : freeplayPreviewStart.onChange = (event:UIEvent) ->
 funkin/ui/debug/charting/toolboxes/ChartEditorFreeplayToolbox.hx : {
+funkin/ui/debug/charting/toolboxes/ChartEditorFreeplayToolbox.hx : if (waveformDragStartPos != null) return; // The values are changing because we are dragging the preview.
 funkin/ui/debug/charting/toolboxes/ChartEditorFreeplayToolbox.hx : 
 funkin/ui/debug/charting/toolboxes/ChartEditorFreeplayToolbox.hx : function initializeTicks {}
 funkin/ui/debug/charting/toolboxes/ChartEditorMetadataToolbox.hx : public function new(chartEditorState2:ChartEditorState) {}
@@ -1541,6 +1705,8 @@ funkin/ui/debug/charting/toolboxes/ChartEditorOffsetsToolbox.hx :
 funkin/ui/debug/charting/toolboxes/ChartEditorOffsetsToolbox.hx : function initializeTicks {}
 funkin/ui/debug/charting/util/ChartEditorDropdowns.hx : public static function populateDropdownWithCharacters(dropDown:DropDown, charType:CharacterType, startingCharId:String):DropDownEntry {}
 funkin/ui/debug/DebugMenuSubState.hx : override function create {}
+funkin/ui/debug/DebugMenuSubState.hx : #end
+funkin/ui/debug/DebugMenuSubState.hx : function onMenuChange(selected:TextMenuItem) {}
 funkin/ui/debug/dialogue/ConversationDebugState.hx : public function new() {}
 funkin/ui/debug/FunkinDebugDisplay.hx : public function new(x:Float = 10, y:Float = 10, color:Int = 0x000000):Void {}
 funkin/ui/debug/latency/CoolStatsGraph.hx : * This is a helper function for the stats window to draw a graph with given values. {}
@@ -1557,15 +1723,9 @@ funkin/ui/debug/results/ResultsDebugSubState.hx : totalNotes: 190
 funkin/ui/debug/stage/CharStage.hx : public function new(x:Float, y:Float, dragShitFunc:SprStage->Void) {}
 funkin/ui/debug/stage/SprStage.hx : public function new(?x:Float = 0, ?y:Float = 0, dragShitFunc:SprStage->Void) {}
 funkin/ui/debug/stage/StageBuilderState.hx : override function create() {}
-funkin/ui/debug/stage/StageBuilderState.hx : 
-funkin/ui/debug/stage/StageBuilderState.hx : 
-funkin/ui/debug/stage/StageBuilderState.hx : 
-funkin/ui/debug/stage/StageBuilderState.hx : 
-funkin/ui/debug/stage/StageBuilderState.hx : 
-funkin/ui/debug/stage/StageBuilderState.hx : 
-funkin/ui/debug/stage/StageBuilderState.hx : new FlxTimer().start(0.2, function(tmr) {}
 funkin/ui/debug/stage/StageEditorCommand.hx : public function new(xDiff:Float = 0, yDiff:Float = 0, realMove:Bool = true) {}
 funkin/ui/debug/stage/StageOffsetSubState.hx : * All functionality is kept within this file to ruin my own sanity. {}
+funkin/ui/debug/stage/StageOffsetSubState.hx : layerList.dataSource.add({
 funkin/ui/debug/stage/StageOffsetSubState.hx : item: prop.name,
 funkin/ui/debug/stage/StageOffsetSubState.hx : complete: true,
 funkin/ui/debug/stage/StageOffsetSubState.hx : id: 'swag'
@@ -1589,12 +1749,14 @@ funkin/ui/debug/stageeditor/handlers/UndoRedoHandler.hx : public static function
 funkin/ui/debug/stageeditor/StageEditorObject.hx : override public function new() {}
 funkin/ui/debug/stageeditor/StageEditorState.hx : public static var instance:StageEditorState = null; // unused lol
 funkin/ui/debug/stageeditor/StageEditorState.hx : function set_selectedSprite(value:StageEditorObject) {}
+funkin/ui/debug/stageeditor/StageEditorState.hx : var bf = CharacterDataParser.fetchCharacter(params?.targetBfChar ?? Save.instance.stageBoyfriendChar, true);
 funkin/ui/debug/stageeditor/StageEditorState.hx : 
 funkin/ui/debug/stageeditor/StageEditorState.hx : 
 funkin/ui/debug/stageeditor/StageEditorState.hx : 
 funkin/ui/debug/stageeditor/StageEditorState.hx : 
+funkin/ui/debug/stageeditor/StageEditorState.hx : if (gf != null)
 funkin/ui/debug/stageeditor/StageEditorState.hx : {
-funkin/ui/debug/stageeditor/StageEditorState.hx : objNameDialog.onDialogClosed = function(_) {}
+funkin/ui/debug/stageeditor/StageEditorState.hx : FlxG.stage.window.onDropFile.add(function(path:String, state:String, x:Float, y:Float):Void {}
 funkin/ui/debug/stageeditor/toolboxes/StageEditorCharacterToolbox.hx : override public function new(state:StageEditorState) {}
 funkin/ui/debug/stageeditor/toolboxes/StageEditorDefaultToolbox.hx : private function new(stageEditorState:StageEditorState) {}
 funkin/ui/debug/stageeditor/toolboxes/StageEditorObjectAnimsToolbox.hx : override public function new(state:StageEditorState) {}
@@ -1646,7 +1808,10 @@ funkin/ui/freeplay/FreeplayState.hx : case '#':
 funkin/ui/freeplay/FreeplayState.hx : default:
 funkin/ui/freeplay/FreeplayState.hx : if (PlayerRegistry.instance.countUnlockedCharacters() > 1)
 funkin/ui/freeplay/FreeplayState.hx : onUpdate: function(_) {}
+funkin/ui/freeplay/FreeplayState.hx : }
+funkin/ui/freeplay/FreeplayState.hx : public function sortSongs(songsToFilter:Array<Null<FreeplaySongData>>, songFilter:SongFilter):Array<Null<FreeplaySongData>> {}
 funkin/ui/freeplay/FreeplayState.hx : {
+funkin/ui/freeplay/FreeplayState.hx : if (filteredSong == null) return true; // Random
 funkin/ui/freeplay/FreeplayState.hx : 
 funkin/ui/freeplay/FreeplayState.hx : default:
 funkin/ui/freeplay/FreeplayState.hx : function rankAnimStart(fromResults:FromResultsParams, capsuleToRank:SongMenuItem):Void {}
@@ -1654,6 +1819,8 @@ funkin/ui/freeplay/FreeplayState.hx : {
 funkin/ui/freeplay/FreeplayState.hx : 
 funkin/ui/freeplay/FreeplayState.hx : for (capsule in grpCapsules.members)
 funkin/ui/freeplay/FreeplayState.hx : override function update(elapsed:Float):Void {}
+funkin/ui/freeplay/FreeplayState.hx : */
+funkin/ui/freeplay/FreeplayState.hx : 
 funkin/ui/freeplay/FreeplayState.hx : /**
 funkin/ui/freeplay/FreeplayState.hx : * Whether the player has seen/played this song before within freeplay
 funkin/ui/freeplay/FreeplayState.hx : */
@@ -1686,6 +1853,14 @@ funkin/ui/freeplay/FreeplayState.hx : public function toggleFavorite {}
 funkin/ui/freeplay/FreeplayStyle.hx : public function new(id:String, ?params:Dynamic) {}
 funkin/ui/freeplay/LetterSort.hx : public var instance(default, set):FreeplayState;
 funkin/ui/freeplay/LetterSort.hx : public function new(x, y) {}
+funkin/ui/freeplay/LetterSort.hx : {
+funkin/ui/freeplay/LetterSort.hx : || (TouchUtil.overlaps(swipeBounds, instance.funnyCam) && SwipeUtil.swipeLeft && !pressedOnCapsule) #end) changeSelection(-1);
+funkin/ui/freeplay/LetterSort.hx : || (TouchUtil.overlaps(swipeBounds, instance.funnyCam) && SwipeUtil.swipeRight && !pressedOnCapsule) #end) changeSelection(1);
+funkin/ui/freeplay/LetterSort.hx : public function changeSelection(diff:Int = 0, playSound:Bool = true):Void {}
+funkin/ui/freeplay/LetterSort.hx : 
+funkin/ui/freeplay/LetterSort.hx : if (value != null)
+funkin/ui/freeplay/LetterSort.hx : {
+funkin/ui/freeplay/LetterSort.hx : @:privateAccess
 funkin/ui/freeplay/LetterSort.hx : return instance;
 funkin/ui/freeplay/LetterSort.hx : public function new(x:Float, y:Float, ?letterInd:Int, curSelected:Int = 0) {}
 funkin/ui/freeplay/SongItemGroup.hx : override function recycle(?cls:Class<Dynamic>, ?factory:Void->Dynamic, force:Bool = false, revive:Bool = true):SongMenuItem {}
@@ -1703,7 +1878,13 @@ funkin/ui/haxeui/FlxGamepadActionInputSource.hx : public function new() {}
 funkin/ui/haxeui/HaxeUIState.hx : public function new(key:String) {}
 funkin/ui/haxeui/HaxeUISubState.hx : public function new(key:String) {}
 funkin/ui/mainmenu/MainMenuState.hx : function get_canInteract {}
+funkin/ui/mainmenu/MainMenuState.hx : menuItems.onAcceptPress.add(_ ->
 funkin/ui/mainmenu/MainMenuState.hx : {
+funkin/ui/mainmenu/MainMenuState.hx : 
+funkin/ui/mainmenu/MainMenuState.hx : 
+funkin/ui/mainmenu/MainMenuState.hx : createMenuItem('storymode', 'mainmenu/storymode', () ->
+funkin/ui/mainmenu/MainMenuState.hx : {
+funkin/ui/mainmenu/MainMenuState.hx : FlxG.signals.preStateSwitch.addOnce(() ->
 funkin/ui/mainmenu/MainMenuState.hx : {
 funkin/ui/mainmenu/MainMenuState.hx : 
 funkin/ui/mainmenu/MainMenuState.hx : createMenuItem('freeplay', 'mainmenu/freeplay', function() {}
@@ -1720,6 +1901,15 @@ funkin/ui/options/items/EnumPreferenceItem.hx : function controls {}
 funkin/ui/options/items/NumberPreferenceItem.hx : function controls {}
 funkin/ui/options/ModMenu.hx : public function new {}
 funkin/ui/options/OffsetMenu.hx : function get_msPerBeat {}
+funkin/ui/options/OffsetMenu.hx : createButtonItem('Test', function() {}
+funkin/ui/options/OffsetMenu.hx : 
+funkin/ui/options/OffsetMenu.hx : 
+funkin/ui/options/OffsetMenu.hx : }
+funkin/ui/options/OffsetMenu.hx : else
+funkin/ui/options/OffsetMenu.hx : {
+funkin/ui/options/OffsetMenu.hx : if (testStrumline != null)
+funkin/ui/options/OffsetMenu.hx : {
+funkin/ui/options/OffsetMenu.hx : OptionsState.instance.drumsBG.fadeIn(1, 0, 1);
 funkin/ui/options/OffsetMenu.hx : PreciseInputManager.instance.onInputPressed.add(onKeyPress);
 funkin/ui/options/OffsetMenu.hx : PreciseInputManager.instance.onInputReleased.add(onKeyRelease);
 funkin/ui/options/OffsetMenu.hx : function onKeyPress(event:PreciseInputEvent):Void {}
@@ -1737,6 +1927,7 @@ funkin/ui/story/StoryMenuState.hx : public function new(?stickers:StickerSubStat
 funkin/ui/TextMenuList.hx : public function new(navControls:NavControls = Vertical, ?wrapMode) {}
 funkin/ui/title/AttractState.hx : public override function create {}
 funkin/ui/title/TitleState.hx : override public function create {}
+funkin/ui/title/TitleState.hx : case 9:
 funkin/ui/title/TitleState.hx : case 11:
 funkin/ui/title/TitleState.hx : case 12:
 funkin/ui/title/TitleState.hx : case 13:
@@ -1750,15 +1941,24 @@ funkin/ui/title/TitleState.hx : if (cheatActive && Conductor.instance.currentBea
 funkin/ui/title/TitleState.hx : function skipIntro {}
 funkin/ui/transition/LoadingState.hx : function new(target:NextState, stopMusic:Bool, ?playParams:PlayStateParams) {}
 funkin/ui/transition/preload/FunkinPreloader.hx : public function new() {}
+funkin/ui/transition/preload/FunkinPreloader.hx : future.onProgress((loaded:Int, total:Int) -> {
+funkin/ui/transition/preload/FunkinPreloader.hx : future.onComplete((library:lime.utils.AssetLibrary) -> {
 funkin/ui/transition/preload/FunkinPreloader.hx : */
 funkin/ui/transition/preload/FunkinPreloader.hx : 
 funkin/ui/transition/preload/FunkinPreloader.hx : function overTouchHereToPlay(e:MouseEvent):Void {}
+funkin/ui/transition/preload/FunkinPreloader.hx : case TouchHereToPlay:
+funkin/ui/transition/preload/FunkinPreloader.hx : return null; // return null here to hide the text
+funkin/ui/transition/preload/FunkinPreloader.hx : #end
+funkin/ui/transition/preload/FunkinPreloader.hx : default:
 funkin/ui/transition/preload/VFDOverlay.hx : function set_elapsedTime(value:Float):Float {}
 funkin/ui/transition/stickers/StickerPack.hx : public function new(id:String, ?params:Dynamic) {}
 funkin/ui/transition/stickers/StickerSprite.hx : public function new(x:Float, y:Float, filePath:String):Void {}
 funkin/ui/transition/stickers/StickerSubState.hx : public function new(params:StickerSubStateParams):Void {}
 funkin/ui/UIStateMachine.hx : public function new(?transitions:Map<UIState, Array<UIState>>) {}
 funkin/util/AnsiUtil.hx : * This class provides functionality for applying ANSI codes to strings for terminal output. {}
+funkin/util/AnsiUtil.hx : /**
+funkin/util/AnsiUtil.hx : * Makes the string display as INFO text.
+funkin/util/AnsiUtil.hx : * @param str The input string to format.
 funkin/util/AnsiUtil.hx : * @return The formatted string.
 funkin/util/AnsiUtil.hx : */
 funkin/util/AnsiUtil.hx : 
@@ -2085,6 +2285,9 @@ funkin/util/macro/ClassMacro.hx : public static macro function listClassesInPack
 funkin/util/macro/CompiledClassList.hx : * This function extracts the metadata, at runtime, and stores it in `classLists`. {}
 funkin/util/macro/ConsoleMacro.hx : * Gets called in `Main.hx` after FlxGame is initalized, and is what we use to easy add debug functions to flixel console {}
 funkin/util/macro/EnvironmentMacro.hx : public static macro function build {}
+funkin/util/macro/EnvironmentMacro.hx : if (mandatoryIfDefinedExpr != null)
+funkin/util/macro/EnvironmentMacro.hx : {
+funkin/util/macro/EnvironmentMacro.hx : static function parseEnvFile(envPath:String):Map<String, String> {}
 funkin/util/macro/FlxMacro.hx : public static macro function buildFlxBasic {}
 funkin/util/macro/GitCommit.hx : public static macro function getGitCommitHash {}
 funkin/util/macro/HaxelibVersions.hx : public static macro function getLibraryVersions {}
@@ -2092,6 +2295,7 @@ funkin/util/macro/InlineMacro.hx : public static macro function makeInline(field
 funkin/util/macro/LinkerMacro.hx : public static macro function xml(?fileName:String = 'Build.xml'):Array<haxe.macro.Expr.Field> {}
 funkin/util/macro/MacroUtil.hx : * A collection of utility functions for Haxe macros. {}
 funkin/util/macro/RegistryMacro.hx : public static macro function buildRegistry {}
+funkin/util/macro/RegistryMacro.hx : static function listBaseGameEntryIds(dataFilePath:String):Array<Expr> {}
 funkin/util/macro/SaveMacro.hx : public static function buildSaveProperties {}
 funkin/util/macro/SingletonMacro.hx : * A macro which automatically creates a Singleton `instance` property for a class.
 funkin/util/macro/SingletonMacro.hx : * Applies an `instance` static field to the target class.
