@@ -1,12 +1,8 @@
 package funkin.util.plugins;
 
-import funkin.ui.ScriptedMusicBeatState;
 import flixel.FlxG;
-import flixel.FlxBasic;
 import funkin.ui.MusicBeatState;
-import funkin.ui.MusicBeatSubState;
 #if android
-import funkin.external.android.CallbackUtil;
 #end
 
 /**

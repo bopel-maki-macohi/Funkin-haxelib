@@ -1,10 +1,7 @@
 package funkin.graphics.shaders;
 
-import flixel.system.FlxAssets.FlxShader;
 import flixel.util.FlxColor;
-import funkin.graphics.FunkinSprite;
 import flixel.math.FlxAngle;
-import flixel.graphics.frames.FlxFrame;
 import openfl.display.BitmapData;
 
 /**

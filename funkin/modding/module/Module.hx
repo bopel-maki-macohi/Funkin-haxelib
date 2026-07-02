@@ -1,10 +1,7 @@
 package funkin.modding.module;
 
-import funkin.modding.IScriptedClass.IPlayStateScriptedClass;
 import funkin.modding.IScriptedClass.IStateChangingScriptedClass;
-import funkin.modding.IScriptedClass.IFreeplayScriptedClass;
 import funkin.modding.IScriptedClass.ICharacterSelectScriptedClass;
-import funkin.modding.events.ScriptEvent;
 
 /**
  * Parameters used to initialize a module.

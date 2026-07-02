@@ -1,10 +1,7 @@
 package funkin.data.freeplay.album;
 
-import funkin.ui.freeplay.Album;
 import funkin.data.freeplay.album.AlbumData;
-import funkin.ui.freeplay.ScriptedAlbum;
 import funkin.util.tools.ISingleton;
-import funkin.data.DefaultRegistryImpl;
 
 @:nullSafety
 class AlbumRegistry extends BaseRegistry<Album, AlbumData, AlbumEntryParams> implements ISingleton implements DefaultRegistryImpl

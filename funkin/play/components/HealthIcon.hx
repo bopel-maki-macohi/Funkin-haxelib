@@ -1,14 +1,9 @@
 package funkin.play.components;
 
-import funkin.data.character.CharacterData;
 import flixel.FlxSprite;
-import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
-import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
-import funkin.data.character.CharacterData.CharacterDataParser;
 import funkin.graphics.FunkinSprite;
-import funkin.util.MathUtil;
 
 /**
  * This is a rework of the health icon with the following changes:

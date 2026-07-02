@@ -1,14 +1,9 @@
 package funkin.ui.freeplay.backcards;
 
-import funkin.ui.freeplay.FreeplayState;
 import flixel.math.FlxMath;
-import flixel.FlxSprite;
 import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
-import funkin.modding.events.ScriptEvent;
 import openfl.display.BlendMode;
-import funkin.util.BitmapUtil;
 
 class NewCharacterCard extends BackingCard
 {

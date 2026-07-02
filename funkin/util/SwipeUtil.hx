@@ -1,11 +1,8 @@
 package funkin.util;
 
-import flixel.FlxG;
 import flixel.FlxObject;
 #if FLX_POINTER_INPUT
-import flixel.input.FlxSwipe;
 #end
-import funkin.util.TouchUtil;
 import flixel.util.FlxAxes;
 
 /**

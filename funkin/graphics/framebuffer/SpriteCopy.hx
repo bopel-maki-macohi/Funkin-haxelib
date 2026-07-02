@@ -1,8 +1,6 @@
 package funkin.graphics.framebuffer;
 
-import flixel.FlxCamera;
 import flixel.FlxSprite;
-import flixel.util.FlxColor;
 
 /**
  * A copy of a `FlxSprite` with a specified color. Used to render the sprite to a frame buffer.

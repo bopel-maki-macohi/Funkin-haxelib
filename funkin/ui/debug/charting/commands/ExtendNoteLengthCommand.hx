@@ -1,7 +1,6 @@
 package funkin.ui.debug.charting.commands;
 
 #if FEATURE_CHART_EDITOR
-import funkin.data.song.SongData.SongNoteData;
 
 /**
  * Command that modifies the length of a hold note in the chart editor.

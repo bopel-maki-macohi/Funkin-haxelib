@@ -1,24 +1,14 @@
 package funkin.input;
 
-import flixel.FlxG;
 import flixel.input.FlxInput;
-import flixel.input.FlxInput.FlxInputState;
 import flixel.input.FlxKeyManager;
-import flixel.input.gamepad.FlxGamepad;
 import flixel.input.gamepad.FlxGamepadInputID;
-import flixel.input.keyboard.FlxKey;
 import flixel.input.keyboard.FlxKeyboard.FlxKeyInput;
-import flixel.input.keyboard.FlxKeyList;
 import flixel.util.FlxSignal.FlxTypedSignal;
-import funkin.play.notes.NoteDirection;
 import funkin.util.FlxGamepadUtil;
-import haxe.Int64;
 import lime.ui.Gamepad as LimeGamepad;
-import lime.ui.GamepadAxis as LimeGamepadAxis;
 import lime.ui.GamepadButton as LimeGamepadButton;
-import lime.ui.KeyCode;
 import lime.ui.KeyModifier;
-import openfl.events.KeyboardEvent;
 import openfl.ui.Keyboard;
 
 /**

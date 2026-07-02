@@ -1,6 +1,5 @@
 package funkin.play.scoring;
 
-import funkin.save.Save.SaveScoreData;
 import funkin.save.Save.SaveScoreTallyData;
 
 /**

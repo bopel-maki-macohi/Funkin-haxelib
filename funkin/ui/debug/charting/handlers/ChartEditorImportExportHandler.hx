@@ -1,19 +1,12 @@
 package funkin.ui.debug.charting.handlers;
 
 #if FEATURE_CHART_EDITOR
-import funkin.data.song.SongNoteDataUtils;
 import funkin.util.VersionUtil;
-import funkin.util.DateUtil;
 import haxe.io.Path;
-import funkin.util.SortUtil;
 import funkin.util.FileUtil;
-import funkin.util.FileUtil.FileWriteMode;
 import haxe.io.Bytes;
-import funkin.play.song.Song;
 import funkin.data.song.SongData.SongChartData;
-import funkin.data.song.SongData.SongMetadata;
 import funkin.data.song.SongRegistry;
-import funkin.data.song.importer.ChartManifestData;
 import thx.semver.Version as SemverVersion;
 
 /**

@@ -1,15 +1,10 @@
 package funkin.ui.freeplay;
 
-import funkin.graphics.shaders.PureColor;
 import funkin.input.Controls;
-import flixel.group.FlxSpriteGroup;
 import funkin.graphics.FunkinSprite;
-import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import flixel.text.FlxText;
 import flixel.text.FlxText.FlxTextAlign;
 #if mobile
-import funkin.util.TouchUtil;
 #end
 
 @:nullSafety

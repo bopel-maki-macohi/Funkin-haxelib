@@ -1,16 +1,10 @@
 package funkin.ui;
 
-import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-import flixel.math.FlxPoint;
 import flixel.util.FlxAxes;
-import flixel.util.FlxHorizontalAlign;
 import flixel.util.FlxVerticalAlign;
-import flixel.FlxG;
 import openfl.display.Bitmap;
-import openfl.display.BitmapData;
 import funkin.util.MathUtil;
-import funkin.graphics.FunkinCamera;
 
 class FullScreenScaleMode extends flixel.system.scaleModes.BaseScaleMode
 {

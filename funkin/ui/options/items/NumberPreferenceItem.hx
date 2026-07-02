@@ -1,10 +1,7 @@
 package funkin.ui.options.items;
 
-import flixel.math.FlxMath;
 import funkin.ui.TextMenuList.TextMenuItem;
-import funkin.ui.AtlasText;
 import funkin.input.Controls;
-import funkin.util.TouchUtil;
 import funkin.util.SwipeUtil;
 
 /**

@@ -1,10 +1,7 @@
 package funkin.play;
 
-import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
-import flixel.tweens.FlxEase;
 
 class ResultScore extends FlxTypedSpriteGroup<ScoreNum>
 {

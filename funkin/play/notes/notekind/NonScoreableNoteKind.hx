@@ -1,6 +1,5 @@
 package funkin.play.notes.notekind;
 
-import funkin.modding.events.ScriptEvent.NoteScriptEvent;
 
 /**
  * A custom note kind which has custom functionality, preventing notes from being scored in the Results Screen.

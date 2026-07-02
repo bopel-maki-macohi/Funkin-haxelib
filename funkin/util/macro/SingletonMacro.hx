@@ -1,8 +1,6 @@
 package funkin.util.macro;
 
-import haxe.macro.Context;
 import haxe.macro.Type.ClassType;
-import haxe.macro.Expr.Field;
 import haxe.macro.Expr.ComplexType;
 
 using haxe.macro.Tools;

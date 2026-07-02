@@ -1,12 +1,8 @@
 package funkin.util.macro;
 
-import haxe.macro.Context;
 import haxe.macro.Expr;
-import haxe.macro.Expr.ComplexType;
 import haxe.macro.Expr.Field;
-import haxe.macro.Expr.TypeDefKind;
 import haxe.macro.Expr.MetadataEntry;
-import haxe.macro.Type;
 import haxe.macro.Type.ClassType;
 
 using Lambda;

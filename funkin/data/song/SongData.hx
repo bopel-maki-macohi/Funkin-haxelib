@@ -1,14 +1,9 @@
 package funkin.data.song;
 
-import funkin.ui.debug.charting.ChartEditorState;
 import funkin.data.event.SongEventRegistry;
-import funkin.play.event.SongEvent;
 import funkin.data.event.SongEventSchema;
-import funkin.data.song.SongRegistry;
 import thx.semver.Version;
-import funkin.util.tools.ICloneable;
 import funkin.play.notes.notekind.NoteKind;
-import funkin.play.notes.notekind.NoteKindManager;
 
 /**
  * Data containing information about a song.

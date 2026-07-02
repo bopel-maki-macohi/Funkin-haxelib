@@ -1,15 +1,10 @@
 package funkin.util;
 
-import android.content.Intent;
 import android.content.ContentResolver;
-import android.net.Uri;
 import android.os.Build;
-import android.provider.DocumentsContract;
 import android.content.pm.PackageInfo;
 
-import java.util.List;
 
-import org.haxe.extension.Extension;
 
 public class DataFolderUtil
 {

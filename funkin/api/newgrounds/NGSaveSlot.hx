@@ -1,11 +1,8 @@
 package funkin.api.newgrounds;
 
 #if FEATURE_NEWGROUNDS
-import io.newgrounds.utils.SaveSlotList;
 import io.newgrounds.objects.SaveSlot;
-import io.newgrounds.Call.CallError;
 import io.newgrounds.objects.events.Outcome;
-import funkin.save.Save;
 
 @:nullSafety
 @:access(funkin.save.Save)

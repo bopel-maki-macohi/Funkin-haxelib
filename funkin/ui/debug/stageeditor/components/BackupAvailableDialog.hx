@@ -1,11 +1,8 @@
 package funkin.ui.debug.stageeditor.components;
 
 #if FEATURE_STAGE_EDITOR
-import haxe.ui.containers.dialogs.Dialog;
 import haxe.ui.containers.dialogs.Dialog.DialogButton;
-import funkin.util.FileUtil;
 import haxe.io.Path;
-import funkin.util.DateUtil;
 
 using StringTools;
 

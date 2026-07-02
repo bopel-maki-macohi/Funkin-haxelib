@@ -1,10 +1,7 @@
 package funkin.ui;
 
-import flixel.group.FlxGroup;
 import flixel.FlxG;
-import flixel.FlxSubState;
 import flixel.util.FlxSignal;
-import funkin.input.Controls;
 import funkin.audio.FunkinSound;
 
 /**

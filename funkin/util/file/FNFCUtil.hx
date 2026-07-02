@@ -1,15 +1,10 @@
 package funkin.util.file;
 
 #if sys
-import funkin.data.song.SongData.SongChartData;
 import funkin.ui.transition.LoadingState;
-import funkin.audio.FunkinSound;
 import funkin.util.assets.SoundUtil;
-import funkin.data.song.importer.ChartManifestData;
 import funkin.data.song.SongRegistry;
-import funkin.audio.VoicesGroup;
 import funkin.data.song.SongData.SongMetadata;
-import funkin.play.song.Song;
 import thx.semver.Version as SemverVersion;
 
 /**

@@ -1,9 +1,7 @@
 package funkin.api.newgrounds;
 
 #if FEATURE_NEWGROUNDS
-import io.newgrounds.NG;
 #end
-import funkin.api.newgrounds.NewgroundsClient;
 import funkin.util.WindowUtil;
 
 /**

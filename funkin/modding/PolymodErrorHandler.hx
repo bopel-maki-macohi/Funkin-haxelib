@@ -1,6 +1,5 @@
 package funkin.modding;
 
-import polymod.Polymod.PolymodError;
 
 @:nullSafety
 class PolymodErrorHandler

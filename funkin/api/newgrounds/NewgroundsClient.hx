@@ -1,20 +1,13 @@
 package funkin.api.newgrounds;
 
-import funkin.save.Save;
 import funkin.api.newgrounds.Medals.Medal;
 #if FEATURE_NEWGROUNDS
-import io.newgrounds.Call.CallError;
 import io.newgrounds.NG;
-import io.newgrounds.NGLite;
 import io.newgrounds.NGLite.LoginOutcome;
-import io.newgrounds.NGLite.LoginFail;
 import io.newgrounds.objects.events.Outcome;
-import io.newgrounds.utils.MedalList;
 import io.newgrounds.utils.SaveSlotList;
-import io.newgrounds.utils.ScoreBoardList;
 import io.newgrounds.objects.User;
 #if FEATURE_MOBILE_WEBVIEW
-import funkin.mobile.util.WebViewUtil;
 #end
 
 @:build(funkin.util.macro.EnvironmentMacro.build())

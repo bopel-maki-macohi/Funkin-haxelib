@@ -1,27 +1,16 @@
 package funkin.ui.title;
 
-import flixel.group.FlxGroup;
 import flixel.input.gamepad.FlxGamepad;
-import funkin.ui.FullScreenScaleMode;
 import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
-import flixel.util.FlxDirectionFlags;
 import flixel.util.FlxTimer;
-import funkin.util.HapticUtil;
 import funkin.graphics.shaders.ColorSwap;
-import funkin.graphics.shaders.LeftMaskShader;
 import funkin.graphics.FunkinSprite;
-import funkin.ui.MusicBeatState;
 import funkin.audio.FunkinSound;
-import funkin.ui.AtlasText;
 import openfl.Assets;
-import funkin.ui.mainmenu.MainMenuState;
 #if FEATURE_NEWGROUNDS
-import funkin.api.newgrounds.Medals;
 #end
 #if mobile
-import funkin.util.TouchUtil;
 import funkin.util.SwipeUtil;
 #end
 

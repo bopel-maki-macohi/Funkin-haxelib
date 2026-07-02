@@ -1,7 +1,6 @@
 package funkin.external.android;
 
 #if android
-import lime.system.JNI;
 
 /**
  * A utility class for caching JNI method and field references.

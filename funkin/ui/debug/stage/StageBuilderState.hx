@@ -1,19 +1,12 @@
 package funkin.ui.debug.stage;
 
 #if FEATURE_STAGE_EDITOR
-import flixel.FlxCamera;
 import flixel.FlxSprite;
-import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup;
-import flixel.input.mouse.FlxMouseEvent;
 import flixel.math.FlxPoint;
-import funkin.ui.MusicBeatState;
 import flixel.text.FlxText;
-import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
-import flixel.util.FlxSort;
 import funkin.util.MouseUtil;
-import flixel.util.FlxTimer;
 
 class StageBuilderState extends MusicBeatState
 {

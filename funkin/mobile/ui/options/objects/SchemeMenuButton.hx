@@ -1,14 +1,9 @@
 package funkin.mobile.ui.options.objects;
 
-import flixel.addons.display.shapes.FlxShapeBox;
 import flixel.effects.FlxFlicker;
-import flixel.group.FlxSpriteGroup;
 import flixel.util.FlxSignal;
-import flixel.util.FlxColor;
 import funkin.util.TouchUtil;
-import funkin.util.SwipeUtil;
 import funkin.audio.FunkinSound;
-import funkin.ui.AtlasText;
 
 /**
  * Represents a button in the scheme menu, specifically designed for mobile touch input.

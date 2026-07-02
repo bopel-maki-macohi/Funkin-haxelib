@@ -1,23 +1,14 @@
 package funkin.play.notes;
 
-import flixel.util.FlxSignal.FlxTypedSignal;
 import flixel.FlxG;
-import funkin.play.notes.NoteVibrationsHandler.NoteStatus;
 import funkin.play.notes.notestyle.NoteStyle;
-import flixel.group.FlxSpriteGroup;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-import flixel.util.FlxSort;
 import funkin.graphics.FunkinSprite;
-import funkin.data.song.SongData.SongNoteData;
 import funkin.util.SortUtil;
-import funkin.util.GRhythmUtil;
 import funkin.play.notes.notekind.NoteKind;
-import funkin.play.notes.notekind.NoteKindManager;
 import flixel.math.FlxPoint;
 #if mobile
-import funkin.mobile.input.ControlsHandler;
 import funkin.mobile.ui.FunkinHitbox.FunkinHitboxControlSchemes;
 #end
 

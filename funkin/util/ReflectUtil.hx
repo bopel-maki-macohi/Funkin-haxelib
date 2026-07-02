@@ -1,6 +1,5 @@
 package funkin.util;
 
-import Type.ValueType;
 
 /**
  * Provides sanitized and blacklisted access to haxe's Reflection functions.

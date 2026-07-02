@@ -1,8 +1,6 @@
 package funkin.play.notes;
 
-import funkin.play.notes.notestyle.NoteStyle;
 import flixel.graphics.frames.FlxFramesCollection;
-import flixel.FlxG;
 import flixel.FlxSprite;
 
 class NoteSplash extends FlxSprite

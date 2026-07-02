@@ -1,10 +1,7 @@
 package funkin.audio.visualize;
 
-import flixel.math.FlxMath;
 import flixel.sound.FlxSound;
-import funkin.audio.visualize.dsp.FFT;
 import lime.utils.Int16Array;
-import funkin.util.MathUtil;
 
 using Lambda;
 

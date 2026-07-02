@@ -1,6 +1,5 @@
 package funkin.play.notes;
 
-import flixel.util.FlxColor;
 
 /**
  * The direction of a note.

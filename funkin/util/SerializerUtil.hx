@@ -1,6 +1,5 @@
 package funkin.util;
 
-import haxe.Json;
 import haxe.io.Bytes;
 
 typedef ScoreInput =

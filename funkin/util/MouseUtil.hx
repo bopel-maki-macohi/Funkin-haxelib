@@ -1,6 +1,5 @@
 package funkin.util;
 
-import flixel.math.FlxPoint;
 
 /**
  * Utility functions related to the mouse.

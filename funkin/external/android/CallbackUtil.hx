@@ -1,9 +1,7 @@
 package funkin.external.android;
 
 #if android
-import lime.system.JNI;
 import flixel.util.FlxSignal;
-import haxe.ds.Map;
 
 /**
  * A Utility class to handle Android API level callbacks and events.

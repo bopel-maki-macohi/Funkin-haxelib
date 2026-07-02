@@ -1,8 +1,6 @@
 package funkin.util;
 
-import funkin.ui.debug.GraphicCursorCross;
 import flixel.system.debug.interaction.Interaction;
-import flixel.system.debug.interaction.tools.Tool;
 
 /**
  * the name is a bit of a mouthful, but this adds a button to the

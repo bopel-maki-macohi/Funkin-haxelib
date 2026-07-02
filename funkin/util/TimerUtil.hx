@@ -1,8 +1,6 @@
 package funkin.util;
 
-import flixel.util.FlxSignal;
 import flixel.util.FlxTimer;
-import funkin.Conductor;
 import haxe.ds.ArraySort;
 
 /**

@@ -2,19 +2,12 @@ package funkin.mobile.util;
 
 #if FEATURE_MOBILE_IAP
 #if android
-import extension.androidtools.widget.Toast;
 import extension.iapcore.android.IAPAndroid;
-import extension.iapcore.android.IAPProductDetails;
 import extension.iapcore.android.IAPPurchase;
-import extension.iapcore.android.IAPPurchaseState;
 import extension.iapcore.android.IAPResponseCode;
-import extension.iapcore.android.IAPResult;
 #elseif ios
-import extension.iapcore.ios.IAPError;
 import extension.iapcore.ios.IAPIOS;
-import extension.iapcore.ios.IAPProductDetails;
 import extension.iapcore.ios.IAPPurchase;
-import extension.iapcore.ios.IAPPurchaseState;
 #end
 
 /**

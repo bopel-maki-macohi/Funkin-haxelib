@@ -1,14 +1,9 @@
 package funkin.data;
 
-import funkin.data.song.importer.FNFLegacyData.LegacyNote;
 import funkin.data.song.importer.FNFLegacyData.LegacyNoteData;
-import funkin.data.song.importer.FNFLegacyData.LegacyNoteSection;
 import funkin.data.song.importer.FNFLegacyData.LegacyScrollSpeeds;
-import haxe.ds.Either;
 import hxjsonast.Json;
-import hxjsonast.Json.JObjectField;
 import hxjsonast.Tools;
-import thx.semver.Version;
 import thx.semver.VersionRule;
 
 /**

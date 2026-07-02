@@ -1,10 +1,7 @@
 package funkin.ui.freeplay;
 
-import funkin.data.freeplay.style.FreeplayStyleData;
 import funkin.data.freeplay.style.FreeplayStyleRegistry;
-import funkin.data.IRegistryEntry;
 import flixel.graphics.FlxGraphic;
-import flixel.util.FlxColor;
 
 /**
  * A class representing the data for a style of the Freeplay menu.

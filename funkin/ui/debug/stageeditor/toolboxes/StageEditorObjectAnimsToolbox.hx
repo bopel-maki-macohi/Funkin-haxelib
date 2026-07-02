@@ -1,15 +1,10 @@
 package funkin.ui.debug.stageeditor.toolboxes;
 
 #if FEATURE_STAGE_EDITOR
-import haxe.ui.components.Button;
 import haxe.ui.components.CheckBox;
-import haxe.ui.components.DropDown;
 import haxe.ui.components.NumberStepper;
-import haxe.ui.components.TextField;
 import haxe.ui.containers.ListView;
-import haxe.ui.data.ArrayDataSource;
 import flixel.graphics.frames.FlxFrame;
-import haxe.ui.events.UIEvent;
 
 using StringTools;
 

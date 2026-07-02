@@ -1,7 +1,6 @@
 package funkin.ui.debug.charting.handlers;
 
 #if FEATURE_CHART_EDITOR
-import funkin.util.PlatformUtil;
 
 /**
  * Handles modifying the shortcut text of menu items based on the current platform.

@@ -7,14 +7,10 @@
 // - Zack
 package funkin.util;
 
-import flixel.FlxBasic;
 import flixel.FlxCamera;
-import flixel.FlxG;
 import flixel.FlxObject;
 #if FLX_TOUCH
-import flixel.input.touch.FlxTouch;
 #end
-import flixel.input.mouse.FlxMouse;
 import flixel.math.FlxPoint;
 
 /**

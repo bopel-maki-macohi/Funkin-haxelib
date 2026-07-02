@@ -1,26 +1,15 @@
 package funkin.mobile.ui;
 
-import flixel.FlxG;
 import flixel.graphics.FlxGraphic;
-import flixel.group.FlxSpriteGroup;
 import flixel.input.actions.FlxActionInput;
-import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-import flixel.util.FlxColor;
 import flixel.util.FlxDestroyUtil;
-import flixel.util.FlxSignal;
 import funkin.graphics.shaders.HSVShader;
-import funkin.graphics.FunkinSprite;
 import funkin.mobile.input.ControlsHandler;
-import funkin.play.notes.NoteDirection;
 import openfl.display.BitmapData;
-import openfl.display.Shape;
 import openfl.geom.Matrix;
-import openfl.Vector;
 import funkin.data.notestyle.NoteStyleRegistry;
-import funkin.play.notes.notestyle.NoteStyle;
 import funkin.data.animation.AnimationData;
-import funkin.util.assets.FlxAnimationUtil;
 import funkin.ui.FullScreenScaleMode;
 
 enum FunkinHintAlphaStyle

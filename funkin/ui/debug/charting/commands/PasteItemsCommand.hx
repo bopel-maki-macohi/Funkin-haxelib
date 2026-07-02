@@ -1,11 +1,8 @@
 package funkin.ui.debug.charting.commands;
 
 #if FEATURE_CHART_EDITOR
-import funkin.data.song.SongData.SongEventData;
 import funkin.data.song.SongData.SongNoteData;
-import funkin.data.song.SongDataUtils;
 import funkin.data.song.SongDataUtils.SongClipboardItems;
-import funkin.data.song.SongNoteDataUtils;
 import funkin.ui.debug.charting.ChartEditorState;
 
 /**

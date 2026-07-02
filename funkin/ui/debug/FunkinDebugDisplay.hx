@@ -1,12 +1,8 @@
 package funkin.ui.debug;
 
-import flixel.util.FlxStringUtil;
 import funkin.ui.debug.stats.FunkinStatsGraph;
-import funkin.util.MemoryUtil;
 import openfl.display.Shape;
-import openfl.display.Sprite;
 import openfl.text.TextField;
-import openfl.text.TextFormat;
 import openfl.Lib;
 
 /**

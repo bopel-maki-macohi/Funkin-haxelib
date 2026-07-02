@@ -1,11 +1,8 @@
 package funkin.mobile.util;
 
 #if FEATURE_MOBILE_ADVERTISEMENTS
-import extension.admob.Admob;
 import extension.admob.AdmobBannerAlign;
-import extension.admob.AdmobBannerSize;
 import extension.admob.AdmobEvent;
-import flixel.FlxG;
 import funkin.play.cutscene.VideoCutscene;
 
 /**

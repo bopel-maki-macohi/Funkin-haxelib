@@ -1,6 +1,5 @@
 package funkin.util.tools;
 
-import haxe.Int64;
 
 /**
  * Why `haxe.Int64` doesn't have a built-in `toFloat` function is beyond me.

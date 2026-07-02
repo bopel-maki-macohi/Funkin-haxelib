@@ -1,6 +1,5 @@
 package funkin.graphics.shaders;
 
-import flixel.system.FlxAssets.FlxShader;
 import flixel.util.FlxColor;
 
 /*

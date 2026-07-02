@@ -1,13 +1,9 @@
 package funkin.ui.debug.charting.components;
 
 #if FEATURE_CHART_EDITOR
-import flixel.addons.display.FlxTiledSprite;
 import flixel.FlxSprite;
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.text.FlxText;
-import flixel.util.FlxColor;
 import funkin.graphics.FunkinSprite;
-import openfl.display.BitmapData;
 import openfl.geom.Rectangle;
 
 /**

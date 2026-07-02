@@ -1,8 +1,6 @@
 package funkin.graphics.shaders;
 
-import openfl.display.BitmapData;
 import openfl.display.ShaderParameter;
-import openfl.display.ShaderParameterType;
 import flixel.util.FlxColor;
 
 typedef Light =

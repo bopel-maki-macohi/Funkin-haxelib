@@ -1,10 +1,7 @@
 package funkin.extensions;
 
-import android.content.Intent;
 
-import org.haxe.extension.Extension;
 
-import org.haxe.lime.HaxeObject;
 
 public class CallbackUtil extends Extension
 {

@@ -1,6 +1,5 @@
 package funkin.modding;
 
-import funkin.modding.events.ScriptEvent;
 
 /**
  * Defines a set of callbacks available to all scripted classes.

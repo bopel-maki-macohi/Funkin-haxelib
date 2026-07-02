@@ -1,18 +1,8 @@
 package funkin;
 
-#if mobile
-import funkin.mobile.ui.FunkinHitbox;
-import funkin.mobile.util.InAppPurchasesUtil;
-#end
-import funkin.save.Save;
-import funkin.util.WindowUtil;
-import funkin.util.HapticUtil.HapticsMode;
-import funkin.ui.debug.FunkinDebugDisplay.DebugDisplayMode;
-
 /**
  * A core class which provides a store of user-configurable, globally relevant values.
  */
-@:nullSafety
 class Preferences
 {
   /**

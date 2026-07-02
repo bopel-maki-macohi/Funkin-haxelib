@@ -1,12 +1,8 @@
 package funkin.graphics.framebuffer;
 
-import flixel.FlxSprite;
 import flixel.FlxCamera;
-import flixel.util.FlxColor;
 import openfl.Lib;
-import openfl.display.BitmapData;
 import openfl.display3D.textures.TextureBase;
-import openfl.geom.Matrix;
 import openfl.geom.Rectangle;
 
 /**

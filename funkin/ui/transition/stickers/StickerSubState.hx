@@ -1,22 +1,13 @@
 package funkin.ui.transition.stickers;
 
-import flixel.addons.transition.FlxTransitionableState;
 import flixel.FlxG;
-import flixel.FlxState;
 import flixel.FlxCamera;
-import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
-import flixel.util.FlxSort;
 import flixel.util.FlxTimer;
-import funkin.audio.FunkinSound;
 import funkin.util.HapticUtil;
-import funkin.data.stickers.StickerRegistry;
 import funkin.graphics.FunkinSprite;
-import funkin.ui.freeplay.FreeplayState;
 import funkin.ui.MusicBeatSubState;
-import funkin.ui.transition.stickers.StickerPack;
 import funkin.FunkinMemory;
-import funkin.util.DeviceUtil;
 import funkin.Preferences;
 
 using Lambda;

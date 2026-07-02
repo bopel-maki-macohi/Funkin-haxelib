@@ -1,31 +1,18 @@
 package funkin.play;
 
-import flixel.FlxState;
 import funkin.ui.story.StoryMenuState;
-import funkin.data.freeplay.player.PlayerRegistry;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.FlxG;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-import flixel.math.FlxMath;
 import flixel.text.FlxText;
-import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-import flixel.util.FlxColor;
 import funkin.audio.FunkinSound;
-import funkin.data.song.SongRegistry;
 import funkin.ui.freeplay.FreeplayState;
-import funkin.graphics.FunkinSprite;
 import funkin.play.cutscene.VideoCutscene;
-import funkin.ui.AtlasText;
 import flixel.util.FlxTimer;
-import funkin.ui.MusicBeatSubState;
 import funkin.util.HapticUtil;
-import funkin.ui.FullScreenScaleMode;
 import funkin.ui.transition.stickers.StickerSubState;
-import funkin.util.SwipeUtil;
 import funkin.util.TouchUtil;
 #if FEATURE_MOBILE_ADVERTISEMENTS
-import funkin.mobile.util.AdMobUtil;
 #end
 
 /**

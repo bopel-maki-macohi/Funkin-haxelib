@@ -1,6 +1,5 @@
 package funkin.data.song.importer;
 
-import haxe.ds.Either;
 
 /**
  * A data structure representing a song in the old chart format.

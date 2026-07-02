@@ -1,12 +1,9 @@
 package funkin.ui.charSelect;
 
 #if html5
-import funkin.graphics.video.FlxVideo;
 #end
 #if hxvlc
-import funkin.graphics.video.FunkinVideoSprite;
 #end
-import funkin.ui.MusicBeatSubState;
 import funkin.save.Save;
 
 /**

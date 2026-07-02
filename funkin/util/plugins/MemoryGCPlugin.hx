@@ -1,6 +1,5 @@
 package funkin.util.plugins;
 
-import flixel.FlxBasic;
 
 /**
  * A plugin which adds functionality to press `Ins` to immediately perform memory garbage collection.

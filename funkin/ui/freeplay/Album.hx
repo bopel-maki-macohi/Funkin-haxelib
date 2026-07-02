@@ -1,8 +1,6 @@
 package funkin.ui.freeplay;
 
-import funkin.data.freeplay.album.AlbumData;
 import funkin.data.animation.AnimationData;
-import funkin.data.IRegistryEntry;
 import flixel.graphics.FlxGraphic;
 
 /**

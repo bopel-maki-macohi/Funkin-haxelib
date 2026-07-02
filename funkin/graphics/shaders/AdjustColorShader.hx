@@ -1,6 +1,5 @@
 package funkin.graphics.shaders;
 
-import flixel.addons.display.FlxRuntimeShader;
 
 @:nullSafety
 class AdjustColorShader extends FlxRuntimeShader

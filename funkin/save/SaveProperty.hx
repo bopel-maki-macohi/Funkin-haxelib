@@ -1,6 +1,5 @@
 package funkin.save;
 
-import flixel.util.FlxSignal.FlxTypedSignal;
 
 @:nullSafety
 class SaveProperty<T>

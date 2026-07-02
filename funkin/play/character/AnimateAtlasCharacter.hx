@@ -1,10 +1,7 @@
 package funkin.play.character;
 
-import funkin.graphics.FunkinSprite;
 import funkin.util.assets.FlxAnimationUtil;
-import funkin.modding.events.ScriptEvent;
 import funkin.data.animation.AnimationData;
-import funkin.data.character.CharacterData.CharacterRenderType;
 
 /**
  * An AnimateAtlasCharacter is a Character which is rendered by

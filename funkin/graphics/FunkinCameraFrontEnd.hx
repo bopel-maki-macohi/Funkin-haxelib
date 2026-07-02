@@ -1,6 +1,5 @@
 package funkin.graphics;
 
-import flixel.FlxCamera;
 import flixel.system.frontEnds.CameraFrontEnd;
 
 /**

@@ -1,9 +1,7 @@
 package funkin.util.macro;
 
-import haxe.macro.Context;
 import haxe.macro.Expr;
 #if !macro
-import flixel.FlxG;
 #end
 
 using haxe.macro.TypeTools;

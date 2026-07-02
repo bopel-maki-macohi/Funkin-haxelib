@@ -1,16 +1,10 @@
 package funkin.data.song;
 
-import funkin.data.freeplay.player.PlayerRegistry;
 import funkin.data.song.SongData;
-import funkin.data.song.migrator.SongData_v2_0_0.SongMetadata_v2_0_0;
 import funkin.data.song.migrator.SongData_v2_1_0.SongMetadata_v2_1_0;
-import funkin.data.song.SongData.SongChartData;
 import funkin.data.song.SongData.SongMetadata;
-import funkin.play.song.ScriptedSong;
 import funkin.play.song.Song;
-import funkin.util.assets.DataAssets;
 import funkin.util.VersionUtil;
-import funkin.util.tools.ISingleton;
 import funkin.data.DefaultRegistryImpl;
 
 using funkin.data.song.migrator.SongDataMigrator;

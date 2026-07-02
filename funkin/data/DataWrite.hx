@@ -1,8 +1,6 @@
 package funkin.data;
 
-import funkin.util.SerializerUtil;
 import thx.semver.Version;
-import thx.semver.VersionRule;
 import haxe.ds.Either;
 
 /**

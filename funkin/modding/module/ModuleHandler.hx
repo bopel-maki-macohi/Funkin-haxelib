@@ -1,12 +1,8 @@
 package funkin.modding.module;
 
-import funkin.util.SortUtil;
 import funkin.modding.events.ScriptEvent.UpdateScriptEvent;
-import funkin.modding.events.ScriptEvent;
 import funkin.modding.events.ScriptEventDispatcher;
-import funkin.modding.module.Module;
 import funkin.modding.module.ScriptedModule;
-import flixel.FlxG;
 
 /**
  * Utility functions for loading and manipulating active modules.

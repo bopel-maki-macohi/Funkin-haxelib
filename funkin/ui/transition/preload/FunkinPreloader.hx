@@ -1,16 +1,10 @@
 package funkin.ui.transition.preload;
 
-import funkin.mobile.util.ScreenUtil;
 import openfl.events.MouseEvent;
-import flash.display.Bitmap;
 import flash.display.BitmapData;
-import flash.display.Sprite;
 import flash.Lib;
-import flixel.system.FlxBasePreloader;
 import funkin.util.MathUtil;
-import openfl.display.Sprite;
 import openfl.text.TextField;
-import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 
 using StringTools;

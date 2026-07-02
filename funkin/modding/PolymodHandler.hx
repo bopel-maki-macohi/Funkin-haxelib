@@ -1,26 +1,15 @@
 package funkin.modding;
 
-import polymod.fs.ZipFileSystem;
 import funkin.data.dialogue.ConversationRegistry;
-import funkin.data.dialogue.DialogueBoxRegistry;
 import funkin.data.dialogue.SpeakerRegistry;
-import funkin.data.event.SongEventRegistry;
 import funkin.data.story.level.LevelRegistry;
-import funkin.data.notestyle.NoteStyleRegistry;
 import funkin.play.notes.notekind.NoteKindManager;
-import funkin.data.song.SongRegistry;
 import funkin.data.freeplay.player.PlayerRegistry;
-import funkin.data.freeplay.style.FreeplayStyleRegistry;
 import funkin.data.stage.StageRegistry;
-import funkin.data.stickers.StickerRegistry;
 import funkin.data.freeplay.album.AlbumRegistry;
-import funkin.modding.module.ModuleHandler;
 import funkin.data.character.CharacterData.CharacterDataParser;
-import funkin.save.Save;
 import funkin.util.FileUtil;
-import funkin.util.macro.ClassMacro;
 import polymod.backends.PolymodAssets.PolymodAssetType;
-import polymod.format.ParseRules.TextFileFormat;
 import polymod.Polymod;
 
 /**

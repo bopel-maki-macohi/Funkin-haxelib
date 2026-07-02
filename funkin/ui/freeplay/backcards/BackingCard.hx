@@ -1,22 +1,13 @@
 package funkin.ui.freeplay.backcards;
 
-import funkin.ui.freeplay.FreeplayState;
 import flixel.FlxSprite;
-import flixel.math.FlxPoint;
 import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
 import flixel.util.FlxSpriteUtil;
-import funkin.graphics.FunkinSprite;
 import funkin.ui.freeplay.charselect.PlayableCharacter;
-import openfl.display.BlendMode;
-import funkin.modding.events.ScriptEvent;
-import flixel.group.FlxSpriteGroup;
 import funkin.modding.IScriptedClass.IBPMSyncedScriptedClass;
-import funkin.modding.IScriptedClass.IStateChangingScriptedClass;
 import funkin.modding.IScriptedClass.IFreeplayScriptedClass;
 import funkin.modding.events.ScriptEvent;
 import funkin.ui.FullScreenScaleMode;
-import funkin.util.BitmapUtil;
 
 /**
  * A class for the backing cards so they dont have to be part of freeplayState......

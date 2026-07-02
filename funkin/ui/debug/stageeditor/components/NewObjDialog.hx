@@ -1,11 +1,8 @@
 package funkin.ui.debug.stageeditor.components;
 
 #if FEATURE_STAGE_EDITOR
-import haxe.ui.containers.dialogs.Dialog;
 import funkin.ui.debug.stageeditor.handlers.AssetDataHandler;
-import openfl.display.BitmapData;
 import haxe.ui.notifications.NotificationType;
-import haxe.ui.notifications.NotificationManager;
 
 @:build(haxe.ui.macros.ComponentMacros.build("assets/exclude/data/ui/stage-editor/dialogs/new-object.xml"))
 class NewObjDialog extends Dialog

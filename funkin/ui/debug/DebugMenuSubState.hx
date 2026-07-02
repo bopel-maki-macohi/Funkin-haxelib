@@ -1,16 +1,10 @@
 package funkin.ui.debug;
 
-import flixel.math.FlxPoint;
 import flixel.FlxObject;
-import flixel.FlxSprite;
 import funkin.ui.MusicBeatSubState;
-import funkin.ui.FullScreenScaleMode;
 import funkin.audio.FunkinSound;
-import funkin.ui.TextMenuList;
 import funkin.ui.debug.charting.ChartEditorState;
-import funkin.util.logging.CrashHandler;
 import flixel.addons.transition.FlxTransitionableState;
-import funkin.util.FileUtil;
 
 class DebugMenuSubState extends MusicBeatSubState
 {

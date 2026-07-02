@@ -1,10 +1,7 @@
 package funkin.ui.debug.anim;
 
-import flixel.FlxG;
 import funkin.graphics.FunkinSprite;
-import funkin.ui.MusicBeatState;
 import funkin.util.macro.ConsoleMacro;
-import funkin.Paths;
 
 /**
  * A simple test of FlxAnimate.

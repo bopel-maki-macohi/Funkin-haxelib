@@ -1,19 +1,12 @@
 package funkin.ui.debug.stageeditor.toolboxes;
 
 #if FEATURE_STAGE_EDITOR
-import haxe.ui.components.NumberStepper;
 import funkin.play.character.BaseCharacter.CharacterType;
-import funkin.data.character.CharacterData.CharacterDataParser;
 import funkin.data.character.CharacterData;
-import funkin.util.SortUtil;
 import funkin.save.Save;
-import haxe.ui.components.Button;
 import haxe.ui.components.Slider;
-import haxe.ui.containers.menus.Menu;
 import haxe.ui.core.Screen;
-import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
-import haxe.ui.containers.Grid;
 import haxe.ui.events.UIEvent;
 
 using StringTools;

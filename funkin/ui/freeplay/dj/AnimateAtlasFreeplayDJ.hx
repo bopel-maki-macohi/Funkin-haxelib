@@ -1,6 +1,5 @@
 package funkin.ui.freeplay.dj;
 
-import funkin.data.freeplay.player.PlayerRegistry;
 import funkin.util.assets.FlxAnimationUtil;
 
 /**

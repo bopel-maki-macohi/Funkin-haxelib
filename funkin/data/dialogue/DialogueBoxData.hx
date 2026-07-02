@@ -1,6 +1,5 @@
 package funkin.data.dialogue;
 
-import funkin.data.animation.AnimationData;
 
 /**
  * A type definition for the data for a conversation text box.

@@ -1,9 +1,7 @@
 package funkin.ui.options;
 
 #if FEATURE_NEWGROUNDS
-import funkin.api.newgrounds.NewgroundsClient;
 #end
-import funkin.save.Save;
 
 class SaveDataMenu extends Page<OptionsState.OptionsMenuPageName>
 {

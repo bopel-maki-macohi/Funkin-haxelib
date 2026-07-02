@@ -1,12 +1,8 @@
 package funkin.graphics.video;
 
-import flixel.util.FlxColor;
 import funkin.audio.FunkinSound;
-import openfl.events.NetStatusEvent;
 import openfl.media.SoundTransform;
-import openfl.media.Video;
 import openfl.net.NetConnection;
-import openfl.net.NetStream;
 
 /**
  * Plays a video via a NetStream. Only works on HTML5.

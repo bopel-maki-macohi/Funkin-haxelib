@@ -11,40 +11,5 @@
   "contributors": [
     "Maki"
   ],
-  "dependencies": {
-    "FlxPartialSound": "",
-    "astc-compressor": "",
-    "extension-admob": "",
-    "extension-androidtools": "2.2.2",
-    "extension-haptics": "1.0.4",
-    "extension-iapcore": "1.0.4",
-    "extension-iarcore": "1.0.3",
-    "extension-webviewcore": "",
-    "flixel": "",
-    "flixel-addons": "",
-    "flixel-animate": "",
-    "format": "3.5.0",
-    "funkin": "",
-    "funkin.vis": "",
-    "grig.audio": "",
-    "hamcrest": "3.0.0",
-    "haxeui-core": "",
-    "haxeui-flixel": "",
-    "hxcpp": "",
-    "hxcpp-debug-server": "",
-    "hxdiscord_rpc": "1.3.0",
-    "hxjsonast": "",
-    "hxgamemode": "1.0.1",
-    "hxp": "1.3.0",
-    "hxvlc": "2.2.6",
-    "json2object": "",
-    "jsonpatch": "1.1.0",
-    "jsonpath": "1.1.0",
-    "lime": "",
-    "newgrounds": "",
-    "openfl": "",
-    "polymod": "",
-    "thx.core": "",
-    "thx.semver": ""
-  }
+  "dependencies": {}
 }

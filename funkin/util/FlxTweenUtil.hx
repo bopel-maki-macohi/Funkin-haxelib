@@ -1,6 +1,5 @@
 package funkin.util;
 
-import flixel.tweens.FlxTween;
 
 @:nullSafety
 class FlxTweenUtil

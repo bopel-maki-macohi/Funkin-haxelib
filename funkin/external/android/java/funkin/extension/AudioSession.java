@@ -1,8 +1,6 @@
 package funkin.extensions;
 
-import android.content.Context;
 import android.media.AudioManager;
-import android.os.Bundle;
 import org.haxe.extension.Extension;
 
 public class AudioSession extends Extension {

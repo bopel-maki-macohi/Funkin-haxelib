@@ -1,31 +1,18 @@
 package funkin.ui.debug.charting.toolboxes;
 
 #if FEATURE_CHART_EDITOR
-import funkin.play.event.SongEventHelper;
 import funkin.data.event.SongEventSchema;
-import funkin.ui.debug.charting.util.ChartEditorDropdowns;
 import haxe.ui.components.CheckBox;
-import haxe.ui.components.DropDown;
 import haxe.ui.components.Label;
-import haxe.ui.components.NumberStepper;
 import haxe.ui.core.Component;
-import funkin.data.event.SongEventRegistry;
 import haxe.ui.components.TextField;
-import haxe.ui.containers.Box;
 import haxe.ui.containers.HBox;
-import haxe.ui.containers.VBox;
 import haxe.ui.containers.Frame;
-import haxe.ui.events.UIEvent;
 import haxe.ui.data.ArrayDataSource;
-import haxe.ui.containers.Grid;
 import haxe.ui.components.Image;
-import haxe.ui.backend.ImageData;
 import openfl.display.Bitmap;
-import openfl.display.BitmapData;
 import openfl.geom.Rectangle;
-import openfl.geom.Point;
 import flixel.util.FlxTimer;
-import flixel.tweens.FlxEase;
 import flixel.FlxG;
 
 /**

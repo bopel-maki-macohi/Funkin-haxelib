@@ -1,49 +1,27 @@
 package funkin;
 
-import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
-import flixel.addons.transition.TransitionData;
 import flixel.FlxSprite;
-import flixel.FlxState;
 import flixel.graphics.FlxGraphic;
-import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-import flixel.system.debug.log.LogStyle;
 import flixel.util.FlxColor;
-import funkin.graphics.FunkinSprite;
 import funkin.data.dialogue.ConversationRegistry;
-import funkin.data.dialogue.DialogueBoxRegistry;
 import funkin.data.dialogue.SpeakerRegistry;
-import funkin.data.freeplay.album.AlbumRegistry;
 import funkin.data.freeplay.player.PlayerRegistry;
-import funkin.data.freeplay.style.FreeplayStyleRegistry;
 import funkin.data.notestyle.NoteStyleRegistry;
-import funkin.data.song.SongRegistry;
 import funkin.data.stickers.StickerRegistry;
-import funkin.play.event.SongEventHelper;
 import funkin.data.event.SongEventRegistry;
-import funkin.data.stage.StageRegistry;
 import funkin.data.story.level.LevelRegistry;
-import funkin.modding.module.ModuleHandler;
 import funkin.data.character.CharacterData.CharacterDataParser;
-import funkin.play.notes.notekind.NoteKindManager;
 import funkin.play.PlayStatePlaylist;
-import funkin.ui.debug.charting.ChartEditorState;
 import funkin.ui.debug.stageeditor.StageEditorState;
-import funkin.ui.title.TitleState;
 import funkin.ui.transition.LoadingState;
-import funkin.util.CLIUtil;
 import funkin.util.CLIUtil.CLIParams;
-import funkin.util.macro.MacroUtil;
 import funkin.util.TrackerUtil;
-import funkin.util.WindowUtil;
 import openfl.display.BitmapData;
-import funkin.ui.debug.playtest.ChartPlaytestMenu;
 #if FEATURE_DISCORD_RPC
-import funkin.api.discord.DiscordClient;
 #end
 #if FEATURE_NEWGROUNDS
-import funkin.api.newgrounds.NewgroundsClient;
 #end
 
 /**

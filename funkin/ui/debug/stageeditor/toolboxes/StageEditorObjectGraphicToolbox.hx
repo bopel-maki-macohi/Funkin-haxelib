@@ -1,17 +1,11 @@
 package funkin.ui.debug.stageeditor.toolboxes;
 
 #if FEATURE_STAGE_EDITOR
-import flixel.graphics.frames.FlxAtlasFrames;
 import funkin.ui.debug.stageeditor.handlers.AssetDataHandler;
-import haxe.ui.components.Button;
 import haxe.ui.components.Image;
-import haxe.ui.components.NumberStepper;
 import haxe.ui.components.TextArea;
-import haxe.ui.containers.dialogs.Dialogs.FileDialogTypes;
 import haxe.ui.containers.dialogs.Dialogs;
-import haxe.ui.ToolkitAssets;
 import openfl.display.BitmapData;
-import haxe.ui.events.UIEvent;
 
 @:access(funkin.ui.debug.stageeditor.StageEditorState)
 @:build(haxe.ui.macros.ComponentMacros.build("assets/exclude/data/ui/stage-editor/toolboxes/object-graphic.xml"))

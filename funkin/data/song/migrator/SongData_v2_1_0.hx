@@ -1,8 +1,6 @@
 package funkin.data.song.migrator;
 
-import funkin.data.song.SongData;
 import funkin.data.song.SongRegistry;
-import thx.semver.Version;
 
 @:nullSafety
 class SongMetadata_v2_1_0

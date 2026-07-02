@@ -1,6 +1,5 @@
 package funkin.util;
 
-import lime.system.System;
 
 class DeviceUtil
 {

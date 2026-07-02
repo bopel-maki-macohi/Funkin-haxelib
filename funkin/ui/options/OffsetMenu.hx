@@ -1,32 +1,19 @@
 package funkin.ui.options;
 
-import funkin.ui.MenuList.MenuTypedList;
 import funkin.ui.TextMenuList.TextMenuItem;
-import funkin.util.GRhythmUtil;
 import funkin.mobile.ui.FunkinBackButton;
 #if mobile
-import funkin.mobile.ui.FunkinHitbox;
 import funkin.mobile.ui.FunkinHitbox.FunkinHitboxControlSchemes;
-import funkin.mobile.input.ControlsHandler;
 import funkin.util.TouchUtil;
 #end
-import funkin.input.PreciseInputManager;
 import funkin.audio.FunkinSound;
-import funkin.play.notes.Strumline;
 import funkin.play.notes.NoteSprite;
-import funkin.graphics.FunkinCamera;
 import funkin.graphics.FunkinSprite;
-import funkin.data.song.SongData.SongNoteData;
 import funkin.data.notestyle.NoteStyleRegistry;
-import funkin.play.notes.notestyle.NoteStyle;
 import funkin.play.notes.NoteSplash;
-import funkin.ui.options.items.NumberPreferenceItem;
 import haxe.Int64;
-import flixel.FlxSprite;
 import flixel.text.FlxText;
-import flixel.util.FlxColor;
 import flixel.math.FlxMath;
-import flixel.tweens.FlxEase;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 
 /**

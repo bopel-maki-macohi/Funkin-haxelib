@@ -1,18 +1,11 @@
 package funkin.util;
 
-import haxe.zip.Entry;
 import lime.utils.Bytes;
-import lime.ui.FileDialog;
 import openfl.Lib;
-import openfl.net.FileFilter;
 import haxe.io.Path;
-import openfl.net.FileReference;
 import openfl.events.Event;
-import openfl.events.IOErrorEvent;
 #if FEATURE_HAXEUI
-import haxe.ui.containers.dialogs.Dialog.DialogButton;
 import haxe.ui.containers.dialogs.Dialogs;
-import haxe.ui.containers.dialogs.Dialogs.SelectedFileInfo;
 import haxe.ui.containers.dialogs.Dialogs.FileDialogExtensionInfo;
 #end
 

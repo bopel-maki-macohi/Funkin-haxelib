@@ -1,14 +1,9 @@
 package funkin.ui.credits;
 
-import flixel.text.FlxText;
 import flixel.util.FlxColor;
-import funkin.audio.FunkinSound;
 import flixel.FlxSprite;
-import funkin.ui.mainmenu.MainMenuState;
 import flixel.group.FlxSpriteGroup;
-import funkin.util.TouchUtil;
 import funkin.ui.credits.CreditsData.CreditsDataRole;
-import funkin.ui.credits.CreditsData.CreditsDataMember;
 
 /**
  * The state used to display the credits scroll.

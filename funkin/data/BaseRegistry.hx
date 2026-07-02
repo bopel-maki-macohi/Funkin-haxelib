@@ -1,8 +1,6 @@
 package funkin.data;
 
-import funkin.util.assets.DataAssets;
 import funkin.util.VersionUtil;
-import haxe.Constraints.Constructible;
 
 /**
  * The entry's constructor function takes 2 arguments, the entry ID and optional parameters.

@@ -1,6 +1,5 @@
 package funkin.data.stage;
 
-import funkin.data.animation.AnimationData;
 
 @:nullSafety
 class StageData

@@ -1,15 +1,10 @@
 package funkin.util.plugins;
 
 #if FEATURE_NEWGROUNDS
-import flixel.FlxBasic;
 import flixel.group.FlxContainer.FlxTypedContainer;
-import flixel.text.FlxText;
 import funkin.audio.FunkinSound;
-import flixel.graphics.FlxGraphic;
 import funkin.graphics.FunkinSprite;
-import flixel.math.FlxRect;
 import funkin.api.newgrounds.Medals;
-import funkin.util.macro.ConsoleMacro.ConsoleClass;
 import funkin.ui.FullScreenScaleMode;
 
 /**

@@ -1,8 +1,6 @@
 package funkin.util;
 
-import funkin.play.notes.NoteSprite;
 import funkin.play.notes.Strumline;
-import funkin.Conductor;
 
 /**
  * A structure to hold the hit window values.

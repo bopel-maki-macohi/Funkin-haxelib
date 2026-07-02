@@ -1,17 +1,11 @@
 package funkin.ui.debug.charting.handlers;
 
 #if FEATURE_CHART_EDITOR
-import flixel.system.FlxAssets.FlxSoundAsset;
 import funkin.audio.VoicesGroup;
-import funkin.audio.FunkinSound;
 import funkin.play.character.BaseCharacter.CharacterType;
-import funkin.util.FileUtil;
 import funkin.util.assets.SoundUtil;
-import funkin.audio.waveform.WaveformData;
 import funkin.audio.waveform.WaveformDataParser;
-import funkin.audio.waveform.WaveformSprite;
 import flixel.util.FlxColor;
-import haxe.io.Bytes;
 import haxe.io.Path;
 
 /**

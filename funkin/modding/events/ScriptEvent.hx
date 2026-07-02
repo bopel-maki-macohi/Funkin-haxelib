@@ -1,16 +1,10 @@
 package funkin.modding.events;
 
-import funkin.data.song.SongData.SongNoteData;
 import funkin.data.song.SongData.SongEventData;
-import flixel.FlxState;
 import flixel.FlxSubState;
-import funkin.play.notes.NoteSprite;
 import funkin.play.notes.SustainTrail;
-import funkin.play.cutscene.dialogue.Conversation;
 import funkin.play.Countdown.CountdownStep;
-import funkin.play.notes.NoteDirection;
 import funkin.ui.freeplay.SongMenuItem;
-import openfl.events.KeyboardEvent;
 
 /**
  * This is a base class for all events that are issued to scripted classes.

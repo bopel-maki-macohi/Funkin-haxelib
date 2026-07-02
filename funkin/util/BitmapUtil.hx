@@ -1,10 +1,7 @@
 package funkin.util;
 
-import flixel.FlxG;
 import openfl.display.BitmapData;
-import openfl.geom.Matrix;
 import openfl.geom.Point;
-import openfl.geom.Rectangle;
 
 class BitmapUtil
 {

@@ -1,12 +1,8 @@
 package funkin.ui.charSelect;
 
-import funkin.graphics.FunkinSprite;
 import flixel.tweens.FlxTween;
-import flixel.tweens.FlxEase;
 import flixel.math.FlxPoint;
-import openfl.display.BlendMode;
 import flixel.group.FlxSpriteContainer.FlxTypedSpriteContainer;
-import funkin.util.MathUtil;
 
 class CharSelectCursors extends FlxTypedSpriteContainer<FunkinSprite>
 {

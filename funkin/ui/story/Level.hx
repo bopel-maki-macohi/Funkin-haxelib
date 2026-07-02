@@ -1,12 +1,8 @@
 package funkin.ui.story;
 
-import funkin.util.SortUtil;
 import flixel.FlxSprite;
-import flixel.util.FlxColor;
 import funkin.play.song.Song;
-import funkin.data.IRegistryEntry;
 import funkin.data.song.SongRegistry;
-import funkin.data.story.level.LevelRegistry;
 import funkin.data.story.level.LevelData;
 
 /**

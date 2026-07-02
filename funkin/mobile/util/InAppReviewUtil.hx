@@ -2,9 +2,7 @@ package funkin.mobile.util;
 
 #if FEATURE_MOBILE_IAR
 #if android
-import extension.iarcore.android.IARAndroid as IAR;
 #elseif ios
-import extension.iarcore.ios.IARIOS as IAR;
 #end
 #end
 

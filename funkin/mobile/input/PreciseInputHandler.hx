@@ -1,10 +1,7 @@
 package funkin.mobile.input;
 
-import flixel.input.FlxInput;
 import funkin.input.PreciseInputManager;
-import funkin.mobile.ui.FunkinHitbox;
 import funkin.play.notes.NoteDirection;
-import haxe.Int64;
 
 /**
  * Handles setting up and managing precise input controls for the game.

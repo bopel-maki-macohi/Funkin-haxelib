@@ -1,14 +1,9 @@
 package funkin.play.notes.notekind;
 
-import funkin.data.song.SongData.SongNoteData;
 import funkin.modding.events.ScriptEventDispatcher;
-import funkin.modding.events.ScriptEvent;
 import funkin.ui.debug.charting.util.ChartEditorDropdowns;
-import funkin.data.notestyle.NoteStyleRegistry;
 import funkin.play.notes.notestyle.NoteStyle;
-import funkin.play.notes.notekind.ScriptedNoteKind;
 import funkin.play.notes.notekind.NoteKind.NoteKindParam;
-import funkin.util.macro.ClassMacro;
 
 class NoteKindManager
 {

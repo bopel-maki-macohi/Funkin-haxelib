@@ -1,6 +1,5 @@
 package funkin.data.story.level;
 
-import funkin.data.animation.AnimationData;
 
 /**
  * A type definition for the data in a story mode level JSON file.

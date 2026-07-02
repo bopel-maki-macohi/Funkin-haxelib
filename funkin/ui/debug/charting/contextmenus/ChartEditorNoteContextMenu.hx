@@ -1,17 +1,11 @@
 package funkin.ui.debug.charting.contextmenus;
 
 #if FEATURE_CHART_EDITOR
-import haxe.ui.containers.menus.MenuItem;
 import haxe.ui.components.NumberStepper;
-import haxe.ui.components.DropDown;
 import haxe.ui.components.Label;
-import haxe.ui.core.Screen;
 import haxe.ui.events.UIEvent;
-import funkin.data.song.SongData.SongNoteData;
 import funkin.ui.debug.charting.commands.MoveNotesCommand;
-import funkin.ui.debug.charting.commands.FlipNotesCommand;
 import funkin.ui.debug.charting.commands.MirrorNotesCommand;
-import funkin.ui.debug.charting.commands.RemoveNotesCommand;
 import funkin.ui.debug.charting.commands.ExtendNoteLengthCommand;
 
 @:access(funkin.ui.debug.charting.ChartEditorState)

@@ -1,8 +1,6 @@
 package funkin.ui.story;
 
-import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;
-import flixel.util.FlxColor;
 import funkin.util.MathUtil;
 
 class LevelTitle extends FlxSpriteGroup

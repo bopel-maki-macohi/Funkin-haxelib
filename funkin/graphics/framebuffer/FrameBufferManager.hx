@@ -1,10 +1,7 @@
 package funkin.graphics.framebuffer;
 
-import flixel.FlxCamera;
 import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.util.FlxColor;
-import openfl.display.BitmapData;
 
 /**
  * Manages frame buffers and gives access to each frame buffer.

@@ -1,9 +1,7 @@
 package funkin.api.newgrounds;
 
 #if FEATURE_NEWGROUNDS
-import io.newgrounds.objects.Medal as MedalData;
 import funkin.util.plugins.NewgroundsMedalPlugin;
-import flixel.graphics.FlxGraphic;
 import openfl.display.BitmapData;
 
 /**

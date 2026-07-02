@@ -1,9 +1,7 @@
 package funkin.ui.debug.stageeditor.handlers;
 
 #if FEATURE_STAGE_EDITOR
-import funkin.play.character.BaseCharacter.CharacterType;
 import funkin.ui.debug.stageeditor.handlers.AssetDataHandler.StageEditorObjectData;
-import funkin.ui.debug.stageeditor.StageEditorState.StageEditorDialogType;
 
 class UndoRedoHandler
 {

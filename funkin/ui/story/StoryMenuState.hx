@@ -1,35 +1,20 @@
 package funkin.ui.story;
 
-import flixel.addons.transition.FlxTransitionableState;
 import flixel.FlxSprite;
-import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
-import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-import flixel.math.FlxMath;
 import flixel.util.FlxColor;
-import flixel.util.FlxTimer;
 import flixel.util.FlxStringUtil;
-import funkin.audio.FunkinSound;
 import funkin.data.story.level.LevelRegistry;
-import funkin.data.song.SongRegistry;
 import funkin.graphics.FunkinSprite;
-import funkin.modding.events.ScriptEvent;
 import funkin.modding.events.ScriptEventDispatcher;
-import funkin.play.PlayStatePlaylist;
 import funkin.play.song.Song;
-import funkin.save.Save;
 import funkin.save.Save.SaveScoreData;
-import funkin.ui.mainmenu.MainMenuState;
 import funkin.ui.MusicBeatState;
-import funkin.ui.transition.LoadingState;
 import funkin.ui.transition.stickers.StickerSubState;
-import funkin.util.MathUtil;
 import funkin.util.SwipeUtil;
-import funkin.util.TouchUtil;
 import funkin.ui.FullScreenScaleMode;
 #if FEATURE_DISCORD_RPC
-import funkin.api.discord.DiscordClient;
 #end
 
 class StoryMenuState extends MusicBeatState

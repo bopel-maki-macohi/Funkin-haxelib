@@ -1,6 +1,5 @@
 package funkin.util;
 
-import flixel.math.FlxPoint;
 
 /**
  * Utilities for performing math with bezier curves.

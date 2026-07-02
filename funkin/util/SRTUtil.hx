@@ -1,6 +1,5 @@
 package funkin.util;
 
-import flixel.math.FlxMath;
 import flixel.util.FlxStringUtil;
 
 using StringTools;

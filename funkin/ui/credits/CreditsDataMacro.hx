@@ -1,7 +1,6 @@
 package funkin.ui.credits;
 
 #if macro
-import haxe.macro.Context;
 #end
 
 using funkin.util.AnsiUtil;

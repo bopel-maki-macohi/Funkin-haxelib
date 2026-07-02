@@ -1,8 +1,6 @@
 package funkin.ui.charSelect;
 
-import flixel.FlxSprite;
 import funkin.graphics.shaders.MosaicEffect;
-import flixel.util.FlxTimer;
 import funkin.util.TimerUtil;
 
 @:nullSafety

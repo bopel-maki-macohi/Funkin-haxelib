@@ -1,8 +1,6 @@
 package funkin.ui.freeplay;
 
-import flixel.math.FlxPoint;
 import flixel.text.FlxText;
-import flixel.util.FlxColor;
 import flixel.util.FlxSort;
 
 // its kinda like marqeee html lol!

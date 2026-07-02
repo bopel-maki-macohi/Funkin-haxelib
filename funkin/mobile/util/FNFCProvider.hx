@@ -1,13 +1,10 @@
 package funkin.mobile.util;
 
 #if ios
-import funkin.external.apple.FNFCExtern;
 #end
 #if android
-import funkin.external.android.JNIUtil;
 import funkin.external.android.CallbackUtil;
 #end
-import lime.system.System;
 import flixel.util.FlxSignal;
 
 /**

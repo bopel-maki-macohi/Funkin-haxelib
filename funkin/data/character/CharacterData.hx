@@ -1,24 +1,14 @@
 package funkin.data.character;
 
-import funkin.data.animation.AnimationData;
 import funkin.modding.events.ScriptEvent;
-import funkin.modding.events.ScriptEventDispatcher;
 import funkin.play.character.ScriptedCharacter.ScriptedAnimateAtlasCharacter;
-import funkin.play.character.ScriptedCharacter.ScriptedBaseCharacter;
 import funkin.play.character.ScriptedCharacter.ScriptedMultiSparrowCharacter;
-import funkin.play.character.ScriptedCharacter.ScriptedMultiAnimateAtlasCharacter;
 import funkin.play.character.ScriptedCharacter.ScriptedPackerCharacter;
-import funkin.play.character.ScriptedCharacter.ScriptedSparrowCharacter;
 import funkin.play.character.AnimateAtlasCharacter;
-import funkin.play.character.BaseCharacter;
 import funkin.play.character.SparrowCharacter;
-import funkin.play.character.MultiSparrowCharacter;
 import funkin.play.character.MultiAnimateAtlasCharacter;
-import funkin.play.character.PackerCharacter;
 import funkin.util.assets.DataAssets;
-import funkin.util.VersionUtil;
 import haxe.Json;
-import flixel.graphics.frames.FlxFrame;
 
 @:nullSafety
 class CharacterDataParser

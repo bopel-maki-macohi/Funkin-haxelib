@@ -1,8 +1,6 @@
 package funkin.effects;
 
-import flixel.util.FlxTimer;
 import flixel.FlxCamera;
-import openfl.filters.ColorMatrixFilter;
 
 @:nullSafety
 class RetroCameraFade

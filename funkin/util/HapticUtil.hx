@@ -1,9 +1,7 @@
 package funkin.util;
 
-import flixel.tweens.FlxTween;
 import flixel.math.FlxMath;
 #if FEATURE_HAPTICS
-import extension.haptics.Haptic;
 #end
 
 /**

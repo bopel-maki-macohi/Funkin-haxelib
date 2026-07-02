@@ -1,6 +1,5 @@
 package funkin.play.cutscene.dialogue;
 
-import flixel.addons.text.FlxTypeText;
 import flixel.input.keyboard.FlxKey;
 
 /**

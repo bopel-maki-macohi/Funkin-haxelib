@@ -1,7 +1,6 @@
 package funkin.external.android;
 
 #if android
-import lime.system.JNI;
 
 /**
  * Utility class for keyboard detection.

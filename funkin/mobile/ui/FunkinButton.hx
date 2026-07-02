@@ -1,16 +1,10 @@
 package funkin.mobile.ui;
 
-import flixel.FlxCamera;
 import flixel.FlxG;
-import flixel.util.FlxColor;
 import funkin.graphics.FunkinSprite;
-import flixel.input.FlxInput;
 import flixel.input.IFlxInput;
-import flixel.input.touch.FlxTouch;
 import flixel.math.FlxPoint;
-import flixel.util.FlxDestroyUtil;
 import flixel.util.FlxSignal;
-import openfl.display.Graphics;
 import haxe.ds.Map;
 
 /**

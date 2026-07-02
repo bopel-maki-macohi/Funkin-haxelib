@@ -1,7 +1,6 @@
 package funkin.graphics.video;
 
 #if hxvlc
-import funkin.play.PlayState;
 import hxvlc.flixel.FlxVideoSprite;
 
 /**

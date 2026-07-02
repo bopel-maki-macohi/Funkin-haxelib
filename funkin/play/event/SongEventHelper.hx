@@ -1,8 +1,6 @@
 package funkin.play.event;
 
-import flixel.tweens.FlxEase;
 import openfl.display.BitmapData;
-import flixel.FlxSprite;
 
 class SongEventHelper
 {

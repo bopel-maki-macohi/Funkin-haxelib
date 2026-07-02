@@ -1,8 +1,6 @@
 package funkin.play.notes;
 
-import funkin.play.notes.notestyle.NoteStyle;
 import flixel.graphics.frames.FlxAtlasFrames;
-import funkin.graphics.FunkinSprite;
 import funkin.play.notes.NoteSprite;
 
 /**

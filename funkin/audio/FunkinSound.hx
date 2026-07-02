@@ -1,24 +1,14 @@
 package funkin.audio;
 
-import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
-import flixel.sound.FlxSound;
 import flixel.system.FlxAssets.FlxSoundAsset;
-import flixel.tweens.FlxTween;
 import flixel.util.FlxSignal.FlxTypedSignal;
-import funkin.audio.waveform.WaveformData;
 import funkin.audio.waveform.WaveformDataParser;
-import funkin.data.song.SongData.SongMusicData;
 import funkin.data.song.SongRegistry;
-import funkin.util.tools.ICloneable;
 import funkin.util.flixel.sound.FlxPartialSound;
-import funkin.Paths.PathsFunction;
 import lime.app.Promise;
-import lime.media.AudioSource;
 import openfl.events.Event;
-import openfl.media.Sound;
 import openfl.media.SoundChannel;
-import openfl.media.SoundMixer;
 
 /**
  * A FlxSound which adds additional functionality:

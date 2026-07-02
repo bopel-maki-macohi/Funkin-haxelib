@@ -1,6 +1,5 @@
 package funkin.util;
 
-import thx.semver.Version.Identifier.StringId;
 
 /**
  * Utility functions for operating on semantic versions.

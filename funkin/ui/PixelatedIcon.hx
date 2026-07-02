@@ -1,6 +1,5 @@
 package funkin.ui;
 
-import funkin.graphics.FunkinSprite;
 
 /**
  * The icon that gets used for Freeplay capsules and char select

@@ -1,20 +1,12 @@
 package funkin.provider;
 
-import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
-import android.database.MatrixCursor;
 import android.graphics.Point;
-import android.os.CancellationSignal;
 import android.os.ParcelFileDescriptor;
-import android.provider.DocumentsContract.Document;
 import android.provider.DocumentsContract.Root;
-import android.provider.DocumentsProvider;
 import android.webkit.MimeTypeMap;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Collections;
-import java.util.LinkedList;
 
 /**
  * @see https://github.com/termux/termux-app/blob/7bceab88e2272f961d1b94ef736f1a9e20173247/app/src/main/java/com/termux/filepicker/TermuxDocumentsProvider.java

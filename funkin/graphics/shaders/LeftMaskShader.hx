@@ -1,6 +1,5 @@
 package funkin.graphics.shaders;
 
-import flixel.math.FlxRect;
 import flixel.system.FlxAssets.FlxShader;
 
 class LeftMaskShader extends FlxShader

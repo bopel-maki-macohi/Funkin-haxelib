@@ -1,15 +1,10 @@
 package funkin.ui.debug.charting.handlers;
 
 #if FEATURE_CHART_EDITOR
-import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.display.FlxSliceSprite;
-import flixel.FlxSprite;
 import flixel.math.FlxRect;
-import flixel.util.FlxColor;
 import funkin.data.song.SongData.SongTimeChange;
-import funkin.ui.debug.charting.ChartEditorState.ChartEditorTheme;
 import openfl.display.BitmapData;
-import openfl.geom.Rectangle;
 
 /**
  * Static functions which handle building themed UI elements for a provided ChartEditorState.

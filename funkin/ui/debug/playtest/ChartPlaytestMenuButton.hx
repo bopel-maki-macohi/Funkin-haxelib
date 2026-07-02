@@ -1,13 +1,9 @@
 package funkin.ui.debug.playtest;
 
 #if sys
-import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
-import flixel.util.FlxColor;
 import flixel.FlxG;
-import funkin.util.MathUtil;
 #if FEATURE_TOUCH_CONTROLS
-import funkin.util.TouchUtil;
 #end
 
 class ChartPlaytestMenuButtonBase extends FlxText

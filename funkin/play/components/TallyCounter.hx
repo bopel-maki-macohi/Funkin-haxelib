@@ -1,8 +1,6 @@
 package funkin.play.components;
 
-import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-import flixel.text.FlxText.FlxTextAlign;
 import funkin.util.MathUtil;
 
 /**

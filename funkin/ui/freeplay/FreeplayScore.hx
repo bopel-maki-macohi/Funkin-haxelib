@@ -1,6 +1,5 @@
 package funkin.ui.freeplay;
 
-import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 
 @:nullSafety

@@ -1,24 +1,14 @@
 package funkin.mobile.ui.options;
 
-import flixel.addons.transition.FlxTransitionableState;
 import flixel.math.FlxMath;
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.tweens.FlxTween;
-import flixel.util.FlxColor;
 import flixel.FlxG;
-import funkin.mobile.ui.options.objects.SchemeMenuButton;
 import funkin.mobile.ui.options.objects.HitboxShowcase;
-import funkin.mobile.ui.FunkinHitbox;
 import funkin.util.TouchUtil;
-import funkin.util.MathUtil;
 import funkin.ui.MusicBeatSubState;
-import funkin.ui.AtlasText;
 import funkin.ui.FullScreenScaleMode;
-import funkin.graphics.shaders.HSVShader;
 import funkin.graphics.FunkinSprite;
-import funkin.graphics.FunkinCamera;
 import funkin.audio.FunkinSound;
-import funkin.Preferences;
 
 /**
  * Represents the controls scheme menu.

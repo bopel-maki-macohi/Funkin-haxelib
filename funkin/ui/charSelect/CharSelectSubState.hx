@@ -1,43 +1,24 @@
 package funkin.ui.charSelect;
 
-import flixel.util.FlxDirectionFlags;
 import flixel.FlxObject;
-import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxSpriteGroup;
-import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
-import flixel.sound.FlxSound;
 import flixel.system.debug.watch.Tracker.TrackerProfile;
-import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-import flixel.util.FlxTimer;
 import flixel.util.FlxColor;
-import funkin.audio.FunkinSound;
 import funkin.data.freeplay.player.PlayerData.PlayerCharSelectData;
-import funkin.data.freeplay.player.PlayerRegistry;
 import funkin.graphics.FunkinSprite;
-import funkin.graphics.shaders.BlueFade;
 import funkin.modding.events.ScriptEvent;
-import funkin.modding.events.ScriptEventDispatcher;
 import funkin.play.stage.Stage;
-import funkin.save.Save;
 import funkin.ui.freeplay.FreeplayState;
-import funkin.ui.freeplay.charselect.PlayableCharacter;
 import funkin.ui.PixelatedIcon;
-import funkin.util.FramesJSFLParser;
 import funkin.util.FramesJSFLParser.FramesJSFLInfo;
-import funkin.util.HapticUtil;
 import funkin.util.MathUtil;
-import funkin.vis.dsp.SpectralAnalyzer;
 import openfl.display.BlendMode;
-import openfl.filters.ShaderFilter;
 import openfl.filters.BitmapFilter;
-import openfl.filters.DropShadowFilter;
 #if FEATURE_NEWGROUNDS
-import funkin.api.newgrounds.Medals;
 #end
 #if FEATURE_TOUCH_CONTROLS
-import funkin.util.TouchUtil;
 #end
 
 @:nullSafety

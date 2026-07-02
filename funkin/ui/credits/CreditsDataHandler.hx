@@ -1,6 +1,5 @@
 package funkin.ui.credits;
 
-import funkin.data.JsonFile;
 
 using funkin.util.AnsiUtil;
 using StringTools;

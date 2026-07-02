@@ -1,6 +1,5 @@
 package funkin.util;
 
-import haxe.io.Path;
 
 /**
  * Utilties for interpreting command line arguments.

@@ -1,7 +1,6 @@
 package funkin.util;
 
 // This may or may not already be imported via imports.hx...
-import flixel.system.debug.watch.Tracker;
 import flixel.FlxG;
 
 /**

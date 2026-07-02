@@ -1,6 +1,5 @@
 package funkin.ui.transition.stickers;
 
-import funkin.graphics.FunkinSprite;
 
 class StickerSprite extends FunkinSprite
 {

@@ -1,14 +1,9 @@
 package funkin;
 
-import flixel.graphics.FlxGraphic;
 import flixel.FlxG;
-import funkin.play.notes.notestyle.NoteStyle;
 import openfl.utils.AssetType;
-import openfl.Assets;
 import openfl.system.System;
-import openfl.media.Sound;
 import lime.app.Future;
-import lime.app.Promise;
 
 /**
  * Handles caching of textures and sounds for the game.

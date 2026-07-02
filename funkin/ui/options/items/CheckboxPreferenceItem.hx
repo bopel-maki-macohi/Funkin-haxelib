@@ -1,6 +1,5 @@
 package funkin.ui.options.items;
 
-import flixel.FlxSprite.FlxSprite;
 
 class CheckboxPreferenceItem extends FlxSprite
 {

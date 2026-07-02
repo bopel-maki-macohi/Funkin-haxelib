@@ -1,16 +1,10 @@
 package funkin.graphics.framebuffer;
 
-import openfl.display.BitmapData;
 import openfl.display3D.Context3D;
-import openfl.display3D.textures.TextureBase;
 import openfl.filters.BitmapFilter;
-import animate.internal.FilterRenderer;
 import flixel.math.FlxMatrix;
-import openfl.display.OpenGLRenderer;
 import flixel.FlxCamera;
-import openfl.Lib;
 import openfl.geom.Matrix;
-import openfl.geom.ColorTransform;
 
 /**
  * A utility class for `BitmapData`s.

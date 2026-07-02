@@ -1,7 +1,6 @@
 package funkin.external.android;
 
 #if android
-import lime.math.Rectangle;
 import lime.system.JNI;
 
 /**

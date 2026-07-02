@@ -1,6 +1,5 @@
 package funkin.ui.transition.preload;
 
-import openfl.display.GraphicsShader;
 
 class VFDOverlay extends GraphicsShader
 {

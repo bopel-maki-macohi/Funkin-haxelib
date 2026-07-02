@@ -1,6 +1,5 @@
 package funkin.graphics.shaders;
 
-import flixel.system.FlxAssets.FlxShader;
 import flixel.tweens.FlxTween;
 
 class BlueFade extends FlxShader

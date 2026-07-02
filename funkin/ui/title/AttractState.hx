@@ -1,19 +1,13 @@
 package funkin.ui.title;
 
 #if html5
-import funkin.graphics.video.FlxVideo;
 #end
 #if hxvlc
-import funkin.graphics.video.FunkinVideoSprite;
 #end
 #if FEATURE_TOUCH_CONTROLS
-import funkin.util.TouchUtil;
 #end
-import funkin.ui.MusicBeatState;
 import funkin.ui.FullScreenScaleMode;
-import flixel.FlxG;
 import flixel.math.FlxMath;
-import flixel.util.FlxColor;
 import flixel.addons.display.FlxRadialGauge;
 
 /**

@@ -1,15 +1,10 @@
 package funkin.ui.debug.charting.contextmenus;
 
 #if FEATURE_CHART_EDITOR
-import haxe.ui.containers.menus.MenuItem;
 import haxe.ui.components.NumberStepper;
-import haxe.ui.components.DropDown;
 import haxe.ui.components.Label;
-import haxe.ui.core.Screen;
 import haxe.ui.events.UIEvent;
-import funkin.data.song.SongData.SongEventData;
 import funkin.ui.debug.charting.commands.MoveEventsCommand;
-import funkin.ui.debug.charting.commands.RemoveEventsCommand;
 
 @:access(funkin.ui.debug.charting.ChartEditorState)
 @:build(haxe.ui.ComponentBuilder.build("assets/exclude/data/ui/chart-editor/context-menus/event.xml"))

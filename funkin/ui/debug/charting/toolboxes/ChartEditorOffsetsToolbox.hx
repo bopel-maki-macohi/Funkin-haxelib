@@ -1,19 +1,12 @@
 package funkin.ui.debug.charting.toolboxes;
 
 #if FEATURE_CHART_EDITOR
-import funkin.audio.SoundGroup;
 import haxe.ui.components.Button;
-import haxe.ui.components.Label;
 import flixel.addons.display.FlxTiledSprite;
-import flixel.math.FlxMath;
 import haxe.ui.components.NumberStepper;
-import haxe.ui.backend.flixel.components.SpriteWrapper;
 import funkin.ui.debug.charting.commands.SetAudioOffsetCommand;
-import funkin.ui.haxeui.components.WaveformPlayer;
 import haxe.ui.containers.Absolute;
-import haxe.ui.containers.ScrollView;
 import haxe.ui.core.Screen;
-import haxe.ui.events.MouseEvent;
 import haxe.ui.events.UIEvent;
 
 /**

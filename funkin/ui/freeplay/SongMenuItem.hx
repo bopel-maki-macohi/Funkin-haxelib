@@ -1,30 +1,17 @@
 package funkin.ui.freeplay;
 
-import funkin.ui.FullScreenScaleMode;
 import funkin.ui.freeplay.FreeplayState.FreeplaySongData;
-import funkin.data.story.level.LevelRegistry;
 import funkin.graphics.shaders.HSVShader;
-import funkin.graphics.shaders.GaussianBlurShader;
 import flixel.group.FlxGroup;
-import flixel.text.FlxText;
 import flixel.FlxSprite;
-import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxPoint;
-import flixel.math.FlxMath;
 import flixel.util.FlxTimer;
-import funkin.util.MathUtil;
 import funkin.graphics.shaders.Grayscale;
-import openfl.display.BlendMode;
 import flixel.FlxObject;
-import funkin.graphics.FunkinSprite;
 import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
 import flixel.addons.effects.FlxTrail;
-import funkin.play.scoring.Scoring.ScoringRank;
 import flixel.util.FlxColor;
-import funkin.ui.story.Level;
 import funkin.ui.PixelatedIcon;
-import funkin.util.TouchUtil;
 import funkin.util.SwipeUtil;
 
 using StringTools;

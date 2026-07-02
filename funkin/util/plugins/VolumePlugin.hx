@@ -1,6 +1,5 @@
 package funkin.util.plugins;
 
-import flixel.FlxBasic;
 
 /**
  * Handles volume control in a way that is compatible with alternate control schemes.

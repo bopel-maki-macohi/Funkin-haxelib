@@ -1,19 +1,12 @@
 package funkin.ui.debug.charting.handlers;
 
 #if FEATURE_CHART_EDITOR
-import funkin.play.character.BaseCharacter.CharacterType;
 import haxe.ui.RuntimeComponentBuilder;
-import funkin.ui.haxeui.components.CharacterPlayer;
 import haxe.ui.components.CheckBox;
-import haxe.ui.containers.dialogs.CollapsibleDialog;
 import haxe.ui.containers.dialogs.Dialog.DialogButton;
-import haxe.ui.containers.dialogs.Dialog.DialogEvent;
 import funkin.ui.debug.charting.toolboxes.ChartEditorBaseToolbox;
-import funkin.ui.debug.charting.toolboxes.ChartEditorMetadataToolbox;
 import funkin.ui.debug.charting.toolboxes.ChartEditorOffsetsToolbox;
-import funkin.ui.debug.charting.toolboxes.ChartEditorFreeplayToolbox;
 import funkin.ui.debug.charting.toolboxes.ChartEditorEventDataToolbox;
-import funkin.ui.debug.charting.toolboxes.ChartEditorNoteDataToolbox;
 import funkin.ui.debug.charting.toolboxes.ChartEditorDifficultyToolbox;
 
 /**

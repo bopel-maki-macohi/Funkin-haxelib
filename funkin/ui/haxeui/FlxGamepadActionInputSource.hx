@@ -1,6 +1,5 @@
 package funkin.ui.haxeui;
 
-import flixel.FlxBasic;
 import flixel.input.gamepad.FlxGamepad;
 
 /**

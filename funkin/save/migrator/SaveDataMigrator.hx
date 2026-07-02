@@ -1,8 +1,6 @@
 package funkin.save.migrator;
 
-import funkin.save.Save;
 import funkin.save.migrator.RawSaveData_v1_0_0;
-import thx.semver.Version;
 import funkin.util.VersionUtil;
 
 @:nullSafety

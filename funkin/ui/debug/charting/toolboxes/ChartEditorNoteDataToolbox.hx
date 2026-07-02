@@ -1,17 +1,11 @@
 package funkin.ui.debug.charting.toolboxes;
 
 #if FEATURE_CHART_EDITOR
-import haxe.ui.components.DropDown;
 import haxe.ui.components.TextField;
-import haxe.ui.components.Label;
 import haxe.ui.components.NumberStepper;
-import haxe.ui.containers.Grid;
 import haxe.ui.core.Component;
-import haxe.ui.events.UIEvent;
 import funkin.ui.debug.charting.util.ChartEditorDropdowns;
-import funkin.play.notes.notekind.NoteKindManager;
 import funkin.play.notes.notekind.NoteKind.NoteKindParam;
-import funkin.play.notes.notekind.NoteKind.NoteKindParamType;
 import funkin.data.song.SongData.NoteParamData;
 
 /**

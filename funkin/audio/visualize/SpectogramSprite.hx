@@ -1,14 +1,9 @@
 package funkin.audio.visualize;
 
-import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
-import flixel.sound.FlxSound;
 import flixel.util.FlxColor;
-import funkin.audio.visualize.PolygonSpectogram.VISTYPE;
 import funkin.audio.visualize.VisShit.CurAudioInfo;
-import lime.utils.Int16Array;
 
 using Lambda;
 using flixel.util.FlxSpriteUtil;

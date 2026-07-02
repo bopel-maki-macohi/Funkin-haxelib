@@ -1,10 +1,7 @@
 package funkin.group;
 
-import flixel.util.FlxColor;
 import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.util.FlxSort;
-import funkin.util.SortUtil;
 import flixel.math.FlxPoint;
 
 /**

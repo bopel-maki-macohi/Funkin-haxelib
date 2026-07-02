@@ -1,6 +1,5 @@
 package funkin.util.plugins;
 
-import flixel.FlxBasic;
 
 /**
  * A plugin which adds functionality to press `F4` to immediately transition to the main menu.

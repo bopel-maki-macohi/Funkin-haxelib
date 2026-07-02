@@ -1,12 +1,8 @@
 package funkin.effects;
 
-import flixel.FlxObject;
 import flixel.util.FlxDestroyUtil.IFlxDestroyable;
-import flixel.util.FlxPool;
 import flixel.util.FlxTimer;
-import flixel.math.FlxPoint;
 import flixel.util.FlxAxes;
-import flixel.tweens.FlxEase.EaseFunction;
 import flixel.math.FlxMath;
 
 /**

@@ -1,6 +1,5 @@
 package funkin.data.freeplay.album;
 
-import funkin.data.animation.AnimationData;
 
 /**
  * A type definition for the data for an album of songs.

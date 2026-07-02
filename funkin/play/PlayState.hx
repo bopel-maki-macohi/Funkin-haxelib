@@ -1,88 +1,49 @@
 package funkin.play;
 
-import funkin.play.event.SongEvent;
 import funkin.play.PauseSubState.PauseMode;
-import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.transition.Transition;
-import funkin.ui.FullScreenScaleMode;
 import flixel.FlxCamera;
-import flixel.FlxObject;
 import flixel.FlxSubState;
-import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
-import flixel.sound.FlxSound;
 import flixel.text.FlxBitmapFont;
-import flixel.text.FlxBitmapText;
 import flixel.tweens.FlxTween;
-import flixel.tweens.FlxEase;
 import flixel.ui.FlxBar;
-import flixel.util.FlxColor;
 import flixel.util.FlxStringUtil;
-import flixel.util.FlxTimer;
 import funkin.audio.FunkinSound;
-import funkin.audio.VoicesGroup;
 import funkin.data.dialogue.ConversationRegistry;
-import funkin.data.event.SongEventRegistry;
 import funkin.data.notestyle.NoteStyleRegistry;
-import funkin.data.song.SongData.SongCharacterData;
 import funkin.data.song.SongData.SongEventData;
-import funkin.data.song.SongData.SongNoteData;
 import funkin.data.song.SongRegistry;
-import funkin.data.stage.StageRegistry;
 import funkin.graphics.FunkinCamera;
-import funkin.graphics.FunkinSprite;
 import funkin.Highscore.Tallies;
-import funkin.input.PreciseInputManager;
 import funkin.modding.events.ScriptEvent;
-import funkin.api.newgrounds.Events;
 import funkin.modding.events.ScriptEventDispatcher;
-import funkin.play.character.BaseCharacter;
 import funkin.data.character.CharacterData.CharacterDataParser;
-import funkin.play.components.HealthIcon;
 import funkin.play.components.PopUpStuff;
-import funkin.play.components.Subtitles;
 import funkin.play.cutscene.dialogue.Conversation;
-import funkin.play.cutscene.VideoCutscene;
 import funkin.play.notes.NoteDirection;
-import funkin.play.notes.notekind.NoteKindManager;
 import funkin.play.notes.notekind.NoteKind;
-import funkin.play.notes.NoteSprite;
 import funkin.play.notes.notestyle.NoteStyle;
-import funkin.play.notes.Strumline;
 import funkin.play.notes.SustainTrail;
-import funkin.play.notes.NoteVibrationsHandler;
 import funkin.play.scoring.Scoring;
-import funkin.play.song.Song;
 import funkin.play.stage.Stage;
-import funkin.save.Save;
 #if FEATURE_CHART_EDITOR
-import funkin.ui.debug.charting.ChartEditorState;
 #end
 #if FEATURE_STAGE_EDITOR
-import funkin.ui.debug.stageeditor.StageEditorState;
 #end
-import funkin.ui.debug.stage.StageOffsetSubState;
 import funkin.ui.mainmenu.MainMenuState;
-import funkin.ui.MusicBeatSubState;
 import funkin.ui.transition.LoadingState;
-import funkin.util.SerializerUtil;
 import funkin.util.HapticUtil;
-import funkin.util.GRhythmUtil;
 import haxe.Int64;
 #if mobile
-import funkin.util.TouchUtil;
 import funkin.mobile.ui.FunkinHitbox;
-import funkin.mobile.input.ControlsHandler;
 import funkin.mobile.ui.FunkinHitbox.FunkinHitboxControlSchemes;
 #if FEATURE_MOBILE_ADVERTISEMENTS
-import funkin.mobile.util.AdMobUtil;
 #end
 #end
 #if FEATURE_DISCORD_RPC
-import funkin.api.discord.DiscordClient;
 #end
 #if FEATURE_NEWGROUNDS
-import funkin.api.newgrounds.Medals;
 import funkin.api.newgrounds.Leaderboards;
 #end
 

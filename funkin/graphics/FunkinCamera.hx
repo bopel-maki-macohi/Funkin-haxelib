@@ -1,20 +1,12 @@
 package funkin.graphics;
 
-import animate.internal.RenderTexture;
 import flash.geom.ColorTransform;
-import flixel.FlxCamera;
 import flixel.graphics.FlxGraphic;
-import flixel.graphics.frames.FlxFrame;
 import flixel.math.FlxMatrix;
-import flixel.math.FlxRect;
 import flixel.system.FlxAssets.FlxShader;
-import funkin.graphics.framebuffer.FixedBitmapData;
 import funkin.graphics.shaders.RuntimeCustomBlendShader;
-import openfl.display.OpenGLRenderer;
 import openfl.Lib;
-import openfl.display.BitmapData;
 import openfl.display.BlendMode;
-import flixel.graphics.tile.FlxDrawQuadsItem;
 import flixel.graphics.tile.FlxDrawTrianglesItem;
 
 using funkin.graphics.framebuffer.BitmapDataUtil;

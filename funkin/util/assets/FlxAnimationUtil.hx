@@ -1,8 +1,6 @@
 package funkin.util.assets;
 
-import flixel.FlxSprite;
 import funkin.graphics.FunkinSprite;
-import flixel.graphics.frames.FlxFramesCollection;
 import funkin.data.animation.AnimationData;
 
 @:nullSafety

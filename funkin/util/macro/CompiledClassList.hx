@@ -1,6 +1,5 @@
 package funkin.util.macro;
 
-import haxe.rtti.Meta;
 
 using funkin.util.AnsiUtil;
 

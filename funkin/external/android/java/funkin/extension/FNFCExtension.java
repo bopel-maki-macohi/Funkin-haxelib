@@ -1,23 +1,14 @@
 package funkin.extensions;
 
-import android.content.Intent;
 import android.net.Uri;
-import android.os.ParcelFileDescriptor;
 import android.os.Bundle;
-import android.util.Log;
 
-import funkin.extensions.CallbackUtil;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 
-import org.haxe.extension.Extension;
 
-import org.haxe.lime.HaxeObject;
 
 public class FNFCExtension extends Extension
 {

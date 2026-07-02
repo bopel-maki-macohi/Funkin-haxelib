@@ -1,10 +1,7 @@
 package funkin.graphics.shaders;
 
-import flixel.FlxCamera;
 import flixel.FlxG;
-import flixel.graphics.frames.FlxFrame;
 import flixel.addons.display.FlxRuntimeShader;
-import lime.graphics.opengl.GLProgram;
 import lime.utils.Log;
 
 class RuntimePostEffectShader extends FlxRuntimeShader

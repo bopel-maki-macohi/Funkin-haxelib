@@ -1,6 +1,5 @@
 package funkin.util;
 
-import openfl.Assets;
 
 /**
  * See `funScripts/jsfl/frames.jsfl` for more information in the art repo/folder!

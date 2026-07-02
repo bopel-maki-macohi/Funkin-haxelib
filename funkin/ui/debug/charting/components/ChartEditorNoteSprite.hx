@@ -1,21 +1,13 @@
 package funkin.ui.debug.charting.components;
 
 #if FEATURE_CHART_EDITOR
-import flixel.text.FlxText;
 import flixel.util.FlxColor;
-import flixel.FlxObject;
 import flixel.FlxSprite;
-import flixel.graphics.frames.FlxFramesCollection;
 import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.graphics.frames.FlxFrame;
 import funkin.data.animation.AnimationData;
-import funkin.data.song.SongData.SongNoteData;
 import funkin.data.notestyle.NoteStyleRegistry;
-import funkin.play.notes.notestyle.NoteStyle;
 import funkin.play.notes.NoteDirection;
-import haxe.ui.tooltips.ToolTipRegionOptions;
 import funkin.util.HaxeUIUtil;
-import haxe.ui.tooltips.ToolTipManager;
 
 /**
  * A sprite that can be used to display a note in a chart.

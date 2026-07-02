@@ -1,16 +1,10 @@
 package funkin.data.song.importer;
 
-import funkin.data.song.SongData.SongMetadata;
 import funkin.data.song.SongData.SongChartData;
-import funkin.data.song.SongData.SongCharacterData;
 import funkin.data.song.SongData.SongNoteData;
-import funkin.data.song.SongData.SongTimeChange;
 import funkin.data.song.importer.StepManiaData.StepTimingPoint;
-import funkin.data.song.importer.StepManiaData.StepDifficulty;
 import funkin.data.song.importer.StepManiaData.StepManiaChartType;
-import funkin.data.song.importer.StepManiaData.StepNote;
 import funkin.data.song.importer.StepManiaData.StepStop;
-import funkin.data.song.importer.StepManiaData.StepManiaNoteType;
 
 enum StepStateEnum
 {

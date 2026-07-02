@@ -1,11 +1,8 @@
 package funkin.ui.debug.charting.commands;
 
 #if FEATURE_CHART_EDITOR
-import funkin.data.song.SongData.SongNoteData;
 import funkin.data.song.SongData.SongEventData;
-import funkin.data.song.SongDataUtils;
 import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
 
 /**
  * Command that copies a given set of notes and song events to the clipboard,

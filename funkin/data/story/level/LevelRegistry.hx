@@ -1,10 +1,7 @@
 package funkin.data.story.level;
 
-import funkin.util.SortUtil;
 import funkin.ui.story.Level;
-import funkin.ui.story.ScriptedLevel;
 import funkin.util.tools.ISingleton;
-import funkin.data.DefaultRegistryImpl;
 
 @:nullSafety
 class LevelRegistry extends BaseRegistry<Level, LevelData, LevelEntryParams> implements ISingleton implements DefaultRegistryImpl

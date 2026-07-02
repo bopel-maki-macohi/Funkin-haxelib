@@ -1,13 +1,9 @@
 package funkin.play;
 
-import flixel.FlxSprite;
 import funkin.play.PlayState.PlayStateParams;
-import funkin.graphics.FunkinSprite;
 import funkin.ui.MusicBeatState;
-import flixel.addons.transition.FlxTransitionableState;
 import funkin.ui.mainmenu.MainMenuState;
 #if mobile
-import funkin.util.TouchUtil;
 import funkin.util.SwipeUtil;
 #end
 

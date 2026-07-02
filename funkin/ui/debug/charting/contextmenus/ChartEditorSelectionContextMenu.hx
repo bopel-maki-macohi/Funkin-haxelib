@@ -1,21 +1,13 @@
 package funkin.ui.debug.charting.contextmenus;
 
 #if FEATURE_CHART_EDITOR
-import haxe.ui.containers.menus.MenuItem;
 import haxe.ui.containers.menus.MenuCheckBox;
-import haxe.ui.components.NumberStepper;
 import haxe.ui.components.DropDown;
-import haxe.ui.core.Screen;
 import haxe.ui.events.UIEvent;
-import funkin.ui.debug.charting.commands.MoveItemsCommand;
 import funkin.ui.debug.charting.commands.CutItemsCommand;
-import funkin.ui.debug.charting.commands.RemoveEventsCommand;
 import funkin.ui.debug.charting.commands.RemoveItemsCommand;
-import funkin.ui.debug.charting.commands.RemoveNotesCommand;
 import funkin.ui.debug.charting.commands.FlipNotesCommand;
-import funkin.ui.debug.charting.commands.MirrorNotesCommand;
 import funkin.ui.debug.charting.commands.SelectAllItemsCommand;
-import funkin.ui.debug.charting.commands.InvertSelectedItemsCommand;
 import funkin.ui.debug.charting.commands.DeselectAllItemsCommand;
 
 @:access(funkin.ui.debug.charting.ChartEditorState)

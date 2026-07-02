@@ -1,6 +1,5 @@
 package funkin.play.event;
 
-import polymod.hscript.HScriptedClass;
 
 /**
  * A script that can be tied to a SongEvent.

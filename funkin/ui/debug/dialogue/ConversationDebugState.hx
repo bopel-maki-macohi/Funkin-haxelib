@@ -1,10 +1,7 @@
 package funkin.ui.debug.dialogue;
 
-import funkin.modding.events.ScriptEventDispatcher;
 import funkin.modding.events.ScriptEvent;
-import funkin.ui.MusicBeatState;
 import funkin.data.dialogue.ConversationRegistry;
-import funkin.play.cutscene.dialogue.Conversation;
 
 /**
  * A state with displays a conversation with no background.

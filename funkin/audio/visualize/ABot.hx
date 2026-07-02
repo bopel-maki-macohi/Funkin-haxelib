@@ -1,6 +1,5 @@
 package funkin.audio.visualize;
 
-import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 
 @:nullSafety

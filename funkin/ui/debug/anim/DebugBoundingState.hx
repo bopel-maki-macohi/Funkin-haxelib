@@ -1,33 +1,19 @@
 package funkin.ui.debug.anim;
 
 #if FEATURE_ANIMATION_EDITOR
-import flixel.addons.display.FlxBackdrop;
 import flixel.addons.display.FlxGridOverlay;
-import flixel.FlxCamera;
 import flixel.FlxSprite;
-import flixel.FlxState;
 import flixel.graphics.frames.FlxFrame;
-import flixel.group.FlxGroup;
 import flixel.math.FlxPoint;
-import flixel.text.FlxText;
 import flixel.util.FlxColor;
-import funkin.input.Cursor;
 import funkin.play.character.BaseCharacter;
-import funkin.data.character.CharacterData;
 import funkin.data.character.CharacterData.CharacterDataParser;
-import funkin.ui.mainmenu.MainMenuState;
 import funkin.util.MouseUtil;
-import funkin.util.SerializerUtil;
 import funkin.util.SortUtil;
-import haxe.ui.components.DropDown;
 import haxe.ui.containers.dialogs.CollapsibleDialog;
-import haxe.ui.core.Screen;
 import haxe.ui.events.UIEvent;
-import haxe.ui.RuntimeComponentBuilder;
 import lime.utils.Assets as LimeAssets;
-import openfl.events.Event;
 import openfl.events.IOErrorEvent;
-import openfl.geom.Rectangle;
 import openfl.net.FileReference;
 
 using flixel.util.FlxSpriteUtil;

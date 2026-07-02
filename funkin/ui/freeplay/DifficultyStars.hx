@@ -1,8 +1,6 @@
 package funkin.ui.freeplay;
 
-import flixel.group.FlxSpriteGroup;
 import funkin.graphics.FunkinSprite;
-import funkin.graphics.shaders.HSVShader;
 
 @:nullSafety
 class DifficultyStars extends FlxSpriteGroup

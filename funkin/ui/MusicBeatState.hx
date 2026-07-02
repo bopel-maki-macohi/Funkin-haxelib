@@ -1,26 +1,15 @@
 package funkin.ui;
 
-import funkin.modding.IScriptedClass.IEventHandler;
 import funkin.ui.mainmenu.MainMenuState;
-import flixel.FlxSubState;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.text.FlxText;
 import flixel.util.FlxColor;
-import funkin.audio.FunkinSound;
 import flixel.util.FlxSort;
-import funkin.modding.PolymodHandler;
 import funkin.modding.events.ScriptEvent;
-import funkin.modding.module.ModuleHandler;
 import funkin.util.SortUtil;
-import funkin.util.WindowUtil;
 import funkin.input.Controls;
-import funkin.ui.FullScreenScaleMode;
 #if mobile
-import funkin.graphics.FunkinCamera;
 import funkin.mobile.ui.FunkinHitbox;
-import funkin.mobile.input.PreciseInputHandler;
 import funkin.mobile.ui.FunkinBackButton;
-import funkin.mobile.ui.mainmenu.FunkinOptionsButton;
 import funkin.play.notes.NoteDirection;
 #end
 

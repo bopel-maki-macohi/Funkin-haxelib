@@ -1,8 +1,6 @@
 package funkin.ui.freeplay.dj;
 
-import flixel.graphics.frames.FlxFramesCollection;
 import funkin.util.assets.FlxAnimationUtil;
-import funkin.data.freeplay.player.PlayerRegistry;
 
 /**
  * A script that can be tied to a SparrowFreeplayDJ.

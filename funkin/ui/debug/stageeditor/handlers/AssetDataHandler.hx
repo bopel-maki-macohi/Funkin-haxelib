@@ -1,11 +1,8 @@
 package funkin.ui.debug.stageeditor.handlers;
 
 #if FEATURE_STAGE_EDITOR
-import flixel.graphics.frames.FlxAtlasFrames;
 import openfl.display.BitmapData;
-import flixel.FlxSprite;
 import flixel.util.FlxColor;
-import openfl.display.BlendMode;
 import funkin.data.stage.StageData.StageDataProp;
 
 using StringTools;

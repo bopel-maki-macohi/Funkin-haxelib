@@ -1,8 +1,6 @@
 package funkin.audio.waveform;
 
-import funkin.graphics.rendering.MeshRender;
 import flixel.util.FlxColor;
-import funkin.play.character.BaseCharacter.CharacterType;
 
 /**
  * A sprite which displays the waveform of audio data.

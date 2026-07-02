@@ -1,6 +1,5 @@
 package funkin.data.dialogue;
 
-import funkin.data.animation.AnimationData;
 
 /**
  * A type definition for a specific speaker in a conversation.

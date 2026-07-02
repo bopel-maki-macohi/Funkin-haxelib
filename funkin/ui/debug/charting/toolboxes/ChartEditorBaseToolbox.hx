@@ -1,7 +1,6 @@
 package funkin.ui.debug.charting.toolboxes;
 
 #if FEATURE_CHART_EDITOR
-import haxe.ui.containers.dialogs.CollapsibleDialog;
 
 /**
  * The base class for the Toolboxes (manipulatable, arrangeable control windows) in the Chart Editor.

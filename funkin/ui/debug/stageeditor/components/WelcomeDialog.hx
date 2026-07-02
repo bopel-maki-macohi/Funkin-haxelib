@@ -1,15 +1,10 @@
 package funkin.ui.debug.stageeditor.components;
 
 #if FEATURE_STAGE_EDITOR
-import haxe.ui.containers.dialogs.Dialog;
 import haxe.ui.containers.dialogs.Dialogs;
-import haxe.ui.containers.dialogs.MessageBox.MessageBoxType;
 import haxe.ui.components.Link;
-import funkin.save.Save;
 import funkin.util.FileUtil;
-import flixel.FlxG;
 import funkin.data.stage.StageData;
-import funkin.data.stage.StageRegistry;
 import funkin.ui.debug.stageeditor.StageEditorState.StageEditorDialogType;
 
 @:build(haxe.ui.macros.ComponentMacros.build("assets/exclude/data/ui/stage-editor/dialogs/welcome.xml"))

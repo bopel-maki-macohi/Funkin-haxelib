@@ -1,6 +1,5 @@
 package funkin.ui.charSelect;
 
-import animate.FlxAnimateFrames;
 import flixel.FlxG;
 
 /**

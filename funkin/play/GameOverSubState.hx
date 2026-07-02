@@ -1,28 +1,16 @@
 package funkin.play;
 
-import funkin.ui.freeplay.charselect.PlayableCharacter;
 import flixel.FlxState;
-import funkin.data.freeplay.player.PlayerRegistry;
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.FlxSprite;
-import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import funkin.util.HapticUtil;
 import funkin.audio.FunkinSound;
-import funkin.graphics.FunkinSprite;
 import funkin.modding.events.ScriptEvent;
-import funkin.modding.events.ScriptEventDispatcher;
 import funkin.play.character.BaseCharacter;
-import funkin.ui.freeplay.FreeplayState;
 import funkin.ui.MusicBeatSubState;
-import funkin.ui.story.StoryMenuState;
 import funkin.util.MathUtil;
-import funkin.effects.RetroCameraFade;
 import flixel.math.FlxPoint;
-import funkin.util.TouchUtil;
 #if FEATURE_MOBILE_ADVERTISEMENTS
-import funkin.mobile.util.AdMobUtil;
 #end
 
 /**

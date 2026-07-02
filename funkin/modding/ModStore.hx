@@ -1,6 +1,5 @@
 package funkin.modding;
 
-import haxe.ds.StringMap;
 
 /**
  * Temporary persistent data storage for mods to use.

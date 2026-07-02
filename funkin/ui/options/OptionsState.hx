@@ -1,35 +1,21 @@
 package funkin.ui.options;
 
-import funkin.ui.Page.PageName;
 import funkin.ui.transition.LoadingState;
 import funkin.ui.TextMenuList;
 import funkin.ui.TextMenuList.TextMenuItem;
-import flixel.math.FlxPoint;
-import funkin.ui.TextMenuList;
-import funkin.ui.TextMenuList.TextMenuItem;
 import flixel.FlxSprite;
-import flixel.FlxObject;
 import flixel.FlxSubState;
-import flixel.group.FlxGroup;
 import flixel.util.FlxSignal;
-import funkin.audio.FunkinSound;
 import funkin.ui.mainmenu.MainMenuState;
-import funkin.ui.MusicBeatState;
 import funkin.graphics.shaders.HSVShader;
-import funkin.input.Controls;
 #if FEATURE_NEWGROUNDS
-import funkin.api.newgrounds.NewgroundsClient;
 #end
 #if mobile
-import funkin.util.TouchUtil;
 import funkin.mobile.ui.FunkinBackButton;
-import funkin.mobile.input.ControlsHandler;
 import funkin.mobile.ui.options.ControlsSchemeMenu;
 #end
 #if FEATURE_MOBILE_IAP
-import funkin.mobile.util.InAppPurchasesUtil;
 #end
-import flixel.util.FlxColor;
 
 /**
  * The main options menu

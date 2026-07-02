@@ -1,6 +1,5 @@
 package funkin.util;
 
-import org.haxe.extension.Extension;
 
 public class KeyboardUtil
 {

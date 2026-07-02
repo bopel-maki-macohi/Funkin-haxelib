@@ -1,9 +1,7 @@
 package funkin.ui.debug.stageeditor;
 
 #if FEATURE_STAGE_EDITOR
-import funkin.data.animation.AnimationData;
 import funkin.graphics.FunkinSprite;
-import funkin.graphics.shaders.InverseDotsShader;
 
 /**
  * Contains all the Logic needed for Stage Editor. Only for Stage Editor, as in the gameplay StageProps and Boppers will be used.

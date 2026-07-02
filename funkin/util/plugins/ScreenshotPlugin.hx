@@ -1,26 +1,15 @@
 package funkin.util.plugins;
 
-import flixel.FlxBasic;
 import flixel.FlxG;
-import flixel.FlxState;
 import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
-import flixel.util.FlxSignal;
 import flixel.util.FlxTimer;
-import funkin.util.WindowUtil;
 import funkin.util.logging.CrashHandler;
-import flixel.addons.util.FlxAsyncLoop;
 import funkin.input.Cursor;
-import funkin.audio.FunkinSound;
 import openfl.display.Bitmap;
-import openfl.display.Sprite;
 import openfl.display.BitmapData;
-import openfl.display.PNGEncoderOptions;
 import openfl.geom.Rectangle;
-import openfl.utils.ByteArray;
 import openfl.events.MouseEvent;
-import funkin.Preferences;
 
 /**
  * Parameters for starting the `ScreenshotPlugin`.

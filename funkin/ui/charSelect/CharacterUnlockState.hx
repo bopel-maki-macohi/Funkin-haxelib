@@ -1,20 +1,12 @@
 package funkin.ui.charSelect;
 
-import flixel.FlxSprite;
 import flixel.FlxState;
-import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
-import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-import funkin.graphics.FunkinSprite;
 import flixel.util.FlxColor;
-import funkin.data.character.CharacterData.CharacterDataParser;
 import funkin.play.components.HealthIcon;
-import funkin.ui.freeplay.charselect.PlayableCharacter;
 import funkin.data.freeplay.player.PlayerRegistry;
-import funkin.ui.mainmenu.MainMenuState;
 #if mobile
-import funkin.util.TouchUtil;
 import funkin.util.DeviceUtil;
 #end
 

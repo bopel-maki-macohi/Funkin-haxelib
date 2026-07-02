@@ -1,7 +1,6 @@
 package funkin.mobile.util;
 
 #if FEATURE_MOBILE_WEBVIEW
-import extension.webviewcore.WebView;
 
 /**
  * Provides utility functions for working with WebView.

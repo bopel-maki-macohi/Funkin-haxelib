@@ -1,14 +1,9 @@
 package funkin.ui.debug.latency;
 
-import flash.display.Graphics;
 import flash.display.Shape;
-import flash.display.Sprite;
 import flash.text.TextField;
-import flash.text.TextFormatAlign;
 import flixel.math.FlxMath;
-import flixel.system.debug.DebuggerUtil;
 import flixel.util.FlxColor;
-import flixel.util.FlxDestroyUtil;
 
 /**
  * This is a helper function for the stats window to draw a graph with given values.

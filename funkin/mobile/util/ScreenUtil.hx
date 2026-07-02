@@ -1,13 +1,9 @@
 package funkin.mobile.util;
 
 #if ios
-import funkin.external.apple.ScreenUtil as NativeScreenUtil;
 #elseif android
-import funkin.external.android.ScreenUtil as NativeScreenUtil;
 #end
-import lime.system.System;
 import lime.app.Application;
-import openfl.geom.Rectangle;
 
 /**
  * A Utility class to get mobile screen related informations.

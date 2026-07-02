@@ -1,6 +1,5 @@
 package funkin.ui.freeplay.components;
 
-import flixel.FlxSprite;
 
 /**
  * The sprite for the difficulty

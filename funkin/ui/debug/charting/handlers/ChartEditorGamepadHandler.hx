@@ -1,11 +1,8 @@
 package funkin.ui.debug.charting.handlers;
 
 #if FEATURE_CHART_EDITOR
-import haxe.ui.focus.FocusManager;
 import flixel.input.gamepad.FlxGamepad;
-import haxe.ui.actions.ActionManager;
 import haxe.ui.actions.IActionInputSource;
-import haxe.ui.actions.ActionType;
 
 /**
  * Yes, we're that crazy. Gamepad support for the chart editor.

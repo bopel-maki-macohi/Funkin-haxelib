@@ -1,14 +1,9 @@
 package funkin.ui.debug.results;
 
-import funkin.play.ResultState.ResultsStateParams;
 import funkin.ui.MenuList.MenuTypedList;
-import funkin.ui.MenuList.MenuTypedItem;
 import flixel.text.FlxText;
-import funkin.data.freeplay.player.PlayerRegistry;
 import funkin.ui.freeplay.charselect.PlayableCharacter;
-import funkin.ui.options.items.CheckboxPreferenceItem;
 import flixel.util.FlxTimer;
-import flixel.tweens.FlxTween;
 
 /**
  * Debug substate to configure the results screen for testing purposes,

@@ -1,12 +1,8 @@
 package funkin.ui.charSelect;
 
-import funkin.graphics.FunkinSprite;
 import funkin.modding.IScriptedClass.IBPMSyncedScriptedClass;
-import funkin.modding.events.ScriptEvent;
 import funkin.vis.dsp.SpectralAnalyzer;
-import funkin.data.freeplay.player.PlayerRegistry;
 import funkin.ui.FullScreenScaleMode;
-import flixel.math.FlxPoint;
 
 @:nullSafety
 class CharSelectGF extends FunkinSprite implements IBPMSyncedScriptedClass

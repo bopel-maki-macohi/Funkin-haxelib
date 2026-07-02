@@ -1,6 +1,5 @@
 package funkin.ui.debug.results;
 
-import funkin.save.Save.SaveScoreTallyData;
 
 /**
  * Just lil class to hold different score tallies for debug purposes

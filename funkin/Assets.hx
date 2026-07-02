@@ -1,6 +1,5 @@
 package funkin;
 
-import openfl.utils.Future;
 import funkin.util.macro.ConsoleMacro;
 
 /**

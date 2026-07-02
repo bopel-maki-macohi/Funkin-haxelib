@@ -1,6 +1,5 @@
 package funkin.graphics;
 
-import animate.FlxAnimateController;
 
 @:access(funkin.graphics.FunkinSprite)
 class FunkinAnimationController extends FlxAnimateController

@@ -1,12 +1,8 @@
 package funkin.graphics.framebuffer;
 
-import funkin.graphics.framebuffer.FixedBitmapData;
 import openfl.display.BitmapData;
-import flixel.math.FlxRect;
 import flixel.graphics.FlxGraphic;
-import flixel.util.FlxDestroyUtil;
 import funkin.graphics.FunkinSprite;
-import openfl.filters.BitmapFilter;
 import animate.internal.FilterRenderer;
 
 /**

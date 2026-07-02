@@ -1,9 +1,7 @@
 package funkin.ui.debug.charting.commands;
 
 #if FEATURE_CHART_EDITOR
-import funkin.data.song.SongData.SongNoteData;
 import funkin.data.song.SongData.SongEventData;
-import funkin.data.song.SongDataUtils;
 
 /**
  * Appends one or more items to the selection in the chart editor.

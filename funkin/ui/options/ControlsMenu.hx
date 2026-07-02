@@ -1,21 +1,13 @@
 package funkin.ui.options;
 
-import funkin.util.InputUtil;
 import flixel.FlxCamera;
-import flixel.FlxObject;
 import funkin.graphics.FunkinCamera;
-import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.input.gamepad.FlxGamepadInputID;
-import flixel.input.keyboard.FlxKey;
 import funkin.graphics.FunkinSprite;
-import funkin.input.Controls.Device;
 import funkin.input.Controls.Control;
-import funkin.ui.AtlasText;
 import funkin.ui.MenuList.MenuTypedList;
-import funkin.ui.TextMenuList;
 import funkin.ui.Page;
 #if FEATURE_TOUCH_CONTROLS
-import funkin.mobile.ui.FunkinBackButton;
 #end
 
 class ControlsMenu extends Page<OptionsState.OptionsMenuPageName>

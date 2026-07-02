@@ -1,12 +1,8 @@
 package funkin.play.event;
 
-import flixel.FlxSprite;
 import funkin.play.character.BaseCharacter;
-import funkin.play.stage.Bopper;
 // Data from the chart
-import funkin.data.song.SongData.SongEventData;
 // Data from the event schema
-import funkin.data.event.SongEventSchema;
 import funkin.data.event.SongEventSchema.SongEventFieldType;
 
 /**

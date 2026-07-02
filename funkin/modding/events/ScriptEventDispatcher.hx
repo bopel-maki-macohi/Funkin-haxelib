@@ -1,8 +1,6 @@
 package funkin.modding.events;
 
-import funkin.modding.IScriptedClass.IPlayStateScriptedClass;
 import funkin.modding.IScriptedClass;
-import funkin.modding.module.Module;
 
 /**
  * Utility functions to assist with handling scripted classes.

@@ -1,10 +1,7 @@
 package funkin.ui.options;
 
-import funkin.modding.PolymodHandler;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.text.FlxText;
 import flixel.util.FlxColor;
-import polymod.Polymod.ModMetadata;
 import funkin.ui.Page;
 
 class ModMenu extends Page<OptionsState.OptionsMenuPageName>

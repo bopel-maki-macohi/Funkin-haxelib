@@ -1,8 +1,6 @@
 package funkin.ui.freeplay.dj;
 
-import flixel.graphics.frames.FlxFramesCollection;
 import flixel.graphics.frames.FlxAtlasFrames;
-import funkin.util.assets.FlxAnimationUtil;
 import funkin.data.freeplay.player.PlayerRegistry;
 
 /**

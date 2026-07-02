@@ -1,6 +1,5 @@
 package funkin.ui;
 
-import funkin.ui.AtlasText;
 import funkin.ui.MenuList;
 
 @:nullSafety

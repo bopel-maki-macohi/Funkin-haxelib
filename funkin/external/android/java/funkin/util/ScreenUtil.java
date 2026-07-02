@@ -1,13 +1,9 @@
 package funkin.util;
 
-import android.graphics.Rect;
 import android.os.Build;
-import android.view.DisplayCutout;
 import android.view.WindowInsets;
 
-import java.util.List;
 
-import org.haxe.extension.Extension;
 
 public class ScreenUtil
 {

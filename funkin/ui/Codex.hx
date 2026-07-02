@@ -1,6 +1,5 @@
 package funkin.ui;
 
-import funkin.ui.Page.PageName;
 import flixel.group.FlxGroup;
 
 /**

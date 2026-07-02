@@ -1,19 +1,12 @@
 package funkin.ui.debug.charting.util;
 
 #if FEATURE_CHART_EDITOR
-import funkin.data.notestyle.NoteStyleRegistry;
 import funkin.play.notes.notestyle.NoteStyle;
-import funkin.data.song.SongData.SongTimeChange;
 import funkin.play.event.SongEvent;
-import funkin.data.stage.StageRegistry;
 import funkin.data.character.CharacterData;
-import haxe.ui.components.DropDown;
 import funkin.play.stage.Stage;
-import funkin.play.notes.notekind.NoteKind;
 import funkin.play.notes.notekind.NoteKindManager;
-import funkin.play.character.BaseCharacter.CharacterType;
 import funkin.data.event.SongEventRegistry;
-import funkin.data.character.CharacterData.CharacterDataParser;
 
 /**
  * Functions for populating dropdowns based on game data.

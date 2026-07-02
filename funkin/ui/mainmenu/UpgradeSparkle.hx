@@ -1,10 +1,7 @@
 package funkin.ui.mainmenu;
 
-import flixel.FlxSprite;
 import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
-import flixel.math.FlxRect;
 
 class UpgradeSparkle extends FlxSprite
 {

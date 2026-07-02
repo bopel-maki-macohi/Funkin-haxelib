@@ -1,15 +1,10 @@
 package funkin.ui.debug.charting.components;
 
 #if FEATURE_CHART_EDITOR
-import funkin.data.event.SongEventRegistry;
 import flixel.graphics.frames.FlxAtlasFrames;
-import openfl.display.BitmapData;
 import flixel.FlxObject;
-import flixel.FlxSprite;
 import flixel.graphics.frames.FlxFramesCollection;
-import funkin.data.song.SongData.SongEventData;
 import haxe.ui.tooltips.ToolTipRegionOptions;
-import funkin.util.HaxeUIUtil;
 import haxe.ui.tooltips.ToolTipManager;
 
 /**

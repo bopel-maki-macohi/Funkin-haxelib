@@ -1,10 +1,6 @@
 package funkin.ui.freeplay;
 
-import flixel.FlxSprite;
 import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxColor;
-import flixel.math.FlxMath;
 import flixel.group.FlxSpriteGroup;
 import flixel.util.FlxColor;
 

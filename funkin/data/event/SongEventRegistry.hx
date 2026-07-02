@@ -1,12 +1,8 @@
 package funkin.data.event;
 
-import flixel.util.FlxSort;
 import funkin.data.song.SongData.SongEventData;
-import funkin.modding.events.ScriptEvent;
 import funkin.modding.events.ScriptEventDispatcher;
-import funkin.play.event.ScriptedSongEvent;
 import funkin.play.event.SongEvent;
-import funkin.util.SortUtil;
 import funkin.util.macro.ClassMacro;
 
 /**

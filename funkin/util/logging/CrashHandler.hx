@@ -1,8 +1,6 @@
 package funkin.util.logging;
 
-import openfl.Lib;
 import openfl.events.UncaughtErrorEvent;
-import flixel.util.FlxSignal.FlxTypedSignal;
 import flixel.FlxG.FlxRenderMethod;
 
 /**

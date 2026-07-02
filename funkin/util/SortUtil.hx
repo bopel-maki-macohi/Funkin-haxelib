@@ -1,13 +1,9 @@
 package funkin.util;
 
-import flixel.graphics.frames.FlxFrame;
 #if !macro
-import flixel.FlxBasic;
 import flixel.util.FlxSort;
 #end
-import funkin.play.notes.NoteSprite;
 import funkin.data.song.SongData.SongEventData;
-import funkin.data.song.SongData.SongNoteData;
 
 /**
  * Utility functions related to sorting.

@@ -1,10 +1,7 @@
 package funkin.ui.options.items;
 
-import funkin.ui.TextMenuList.TextMenuItem;
 import funkin.ui.AtlasText;
-import funkin.input.Controls;
 #if mobile
-import funkin.util.SwipeUtil;
 #end
 
 /**

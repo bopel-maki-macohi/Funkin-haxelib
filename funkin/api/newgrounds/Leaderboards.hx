@@ -1,13 +1,9 @@
 package funkin.api.newgrounds;
 
 #if FEATURE_NEWGROUNDS
-import io.newgrounds.Call.CallError;
 import io.newgrounds.components.ScoreBoardComponent.Period;
-import io.newgrounds.objects.Score;
 import io.newgrounds.objects.ScoreBoard as LeaderboardData;
-import io.newgrounds.objects.User;
 import io.newgrounds.objects.events.Outcome;
-import io.newgrounds.utils.ScoreBoardList;
 
 /**
  * Handles interactions with the leaderboards on the Newgrounds website.

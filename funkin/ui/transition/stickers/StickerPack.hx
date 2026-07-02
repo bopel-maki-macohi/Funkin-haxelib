@@ -1,8 +1,6 @@
 package funkin.ui.transition.stickers;
 
-import funkin.data.stickers.StickerData;
 import funkin.data.stickers.StickerRegistry;
-import funkin.data.IRegistryEntry;
 import funkin.graphics.FunkinSprite;
 
 /**

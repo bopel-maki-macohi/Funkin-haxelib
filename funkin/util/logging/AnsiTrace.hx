@@ -1,13 +1,9 @@
 package funkin.util.logging;
 
 #if (sys && FEATURE_DEBUG_FILE_LOGGING)
-import funkin.util.DateUtil;
 import funkin.util.FileUtil;
-import flixel.math.FlxMath;
 import haxe.io.Path;
-import sys.FileSystem;
 import sys.io.FileOutput;
-import sys.io.File;
 #end
 
 using StringTools;

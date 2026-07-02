@@ -1,19 +1,12 @@
 package funkin.ui.debug.charting.dialogs;
 
 #if FEATURE_CHART_EDITOR
-import flixel.math.FlxPoint;
 import funkin.play.character.BaseCharacter.CharacterType;
-import funkin.data.character.CharacterData;
 import funkin.data.character.CharacterData.CharacterDataParser;
-import funkin.play.components.HealthIcon;
 import funkin.util.SortUtil;
-import haxe.ui.components.Label;
 import haxe.ui.containers.Grid;
-import haxe.ui.containers.ScrollView;
 import haxe.ui.core.Screen;
-import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
-import haxe.ui.components.Button;
 
 // @:nullSafety // TODO: Fix null safety when used with HaxeUI build macros.
 @:access(funkin.ui.debug.charting.ChartEditorState)

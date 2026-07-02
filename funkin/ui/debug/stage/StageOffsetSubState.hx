@@ -1,23 +1,14 @@
 package funkin.ui.debug.stage;
 
 #if FEATURE_STAGE_EDITOR
-import flixel.FlxSprite;
 import flixel.input.mouse.FlxMouseEvent;
-import flixel.math.FlxPoint;
 import funkin.play.PlayState;
-import funkin.data.stage.StageData;
 import funkin.play.stage.StageProp;
-import funkin.graphics.shaders.StrokeShader;
 import funkin.ui.haxeui.HaxeUISubState;
-import funkin.ui.debug.stage.StageEditorCommand.MovePropCommand;
 import funkin.ui.debug.stage.StageEditorCommand.SelectPropCommand;
-import funkin.data.stage.StageRegistry;
 import funkin.util.MouseUtil;
-import haxe.ui.containers.ListView;
 import haxe.ui.core.Component;
-import haxe.ui.events.UIEvent;
 import openfl.events.Event;
-import openfl.events.IOErrorEvent;
 import openfl.net.FileReference;
 
 /**

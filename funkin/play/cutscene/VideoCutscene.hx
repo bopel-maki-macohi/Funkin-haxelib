@@ -1,16 +1,11 @@
 package funkin.play.cutscene;
 
-import flixel.FlxSprite;
 import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
-import flixel.util.FlxSignal;
 import funkin.play.PlayState;
 #if html5
-import funkin.graphics.video.FlxVideo;
 #end
 #if hxvlc
-import funkin.graphics.video.FunkinVideoSprite;
 #end
 
 /**

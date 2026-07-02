@@ -1,8 +1,6 @@
 package funkin.ui;
 
-import flixel.FlxG;
 import flixel.FlxSprite;
-import funkin.ui.AtlasText.AtlasFont;
 
 /**
  * Opens a yes/no dialog box as a substate over the current state.

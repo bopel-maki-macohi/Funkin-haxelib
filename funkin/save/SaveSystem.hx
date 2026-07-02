@@ -1,8 +1,6 @@
 package funkin.save;
 
-import funkin.save.migrator.RawSaveData_v1_0_0;
 import funkin.save.migrator.SaveDataMigrator;
-import flixel.util.FlxSave;
 
 /**
  * A bit more of the backend and nitty gritty of FNF's save system

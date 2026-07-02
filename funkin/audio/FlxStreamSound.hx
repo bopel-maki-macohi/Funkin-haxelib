@@ -1,11 +1,8 @@
 package funkin.audio;
 
-import flash.media.Sound;
 import flixel.sound.FlxSound;
-import flixel.system.FlxAssets.FlxSoundAsset;
 import openfl.Assets;
 #if (openfl >= "8.0.0")
-import openfl.utils.AssetType;
 #end
 
 /**

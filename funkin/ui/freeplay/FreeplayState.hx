@@ -1,74 +1,41 @@
 package funkin.ui.freeplay;
 
-import flixel.FlxCamera;
 import flixel.FlxObject;
-import flixel.FlxSprite;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.math.FlxMath;
-import flixel.math.FlxPoint;
 import flixel.text.FlxText;
-import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-import flixel.util.FlxColor;
 import openfl.filters.ShaderFilter;
-import flixel.util.FlxTimer;
 import funkin.audio.FunkinSound;
-import funkin.data.freeplay.player.PlayerRegistry;
 import funkin.ui.freeplay.dj.BaseFreeplayDJ;
-import funkin.ui.freeplay.dj.AnimateAtlasFreeplayDJ;
 import funkin.ui.freeplay.dj.SparrowFreeplayDJ;
-import funkin.ui.freeplay.dj.MultiSparrowFreeplayDJ;
 import funkin.ui.freeplay.dj.PackerFreeplayDJ;
-import funkin.data.freeplay.style.FreeplayStyleRegistry;
 import funkin.data.song.SongRegistry;
-import funkin.data.story.level.LevelRegistry;
 import funkin.effects.IntervalShake;
-import funkin.graphics.FunkinCamera;
 import funkin.graphics.FunkinSprite;
-import funkin.graphics.shaders.AngleMask;
 import funkin.graphics.shaders.BlueFade;
-import funkin.graphics.shaders.HSVShader;
 import funkin.graphics.shaders.PureColor;
-import funkin.graphics.shaders.StrokeShader;
 import funkin.input.Controls;
-import funkin.modding.events.ScriptEvent;
 import funkin.modding.events.ScriptEventDispatcher;
-import funkin.play.PlayStatePlaylist;
 import funkin.play.scoring.Scoring;
-import funkin.play.scoring.Scoring.ScoringRank;
 import funkin.play.song.Song;
-import funkin.save.Save;
 import funkin.save.Save.SaveScoreData;
-import funkin.ui.AtlasText;
 import funkin.ui.FullScreenScaleMode;
-import funkin.ui.MusicBeatSubState;
 import funkin.ui.freeplay.backcards.*;
-import funkin.ui.freeplay.components.DifficultySprite;
 import funkin.ui.freeplay.charselect.PlayableCharacter;
-import funkin.ui.mainmenu.MainMenuState;
 import funkin.ui.story.Level;
-import funkin.ui.transition.LoadingState;
 import funkin.ui.transition.stickers.StickerSubState;
-import funkin.util.HapticUtil;
 import funkin.util.MathUtil;
-import funkin.util.SortUtil;
 import openfl.display.BlendMode;
-import funkin.ui.freeplay.DifficultyDot;
 import funkin.data.freeplay.style.FreeplayStyleRegistry;
 #if FEATURE_CHART_EDITOR
-import funkin.ui.debug.charting.ChartEditorState;
 #end
 #if FEATURE_STAGE_EDITOR
-import funkin.ui.debug.stageeditor.StageEditorState;
 #end
 #if FEATURE_DISCORD_RPC
-import funkin.api.discord.DiscordClient;
 #end
 #if FEATURE_TOUCH_CONTROLS
-import funkin.util.TouchUtil;
 import funkin.util.SwipeUtil;
-import funkin.mobile.input.ControlsHandler;
 #end
 
 /**

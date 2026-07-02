@@ -1,12 +1,8 @@
 package funkin.play.components;
 
-import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
-import flixel.util.FlxColor;
 import flixel.sound.FlxSound;
-import flixel.FlxSprite;
 import funkin.util.SRTUtil.SubtitleEntry;
-import funkin.util.SRTUtil.SRTParser;
 
 /**
  * A Sprite Group for displaying in-game subtitles.

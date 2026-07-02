@@ -1,12 +1,8 @@
 package funkin.data.song.importer;
 
-import funkin.data.song.SongData.SongMetadata;
 import funkin.data.song.SongData.SongChartData;
-import funkin.data.song.SongData.SongCharacterData;
 import funkin.data.song.SongData.SongNoteData;
-import funkin.data.song.SongData.SongTimeChange;
 import funkin.data.song.importer.OsuManiaData;
-import funkin.data.song.importer.OsuManiaData.TimingPoint;
 import funkin.data.song.importer.OsuManiaData.ManiaHitObject;
 
 class OsuManiaImporter

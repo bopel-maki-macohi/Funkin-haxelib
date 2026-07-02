@@ -1,8 +1,6 @@
 package funkin.ui.debug.charting.commands;
 
-import funkin.data.song.SongData.SongNoteData;
 import funkin.data.song.SongData.SongEventData;
-import funkin.data.song.SongDataUtils;
 
 /**
  * Command that selects all notes and/or events above or past the time given in the chart editor.

@@ -1,8 +1,6 @@
 package funkin.play.event;
 
-import funkin.data.song.SongData.SongEventData;
 import funkin.data.event.SongEventSchema;
-import funkin.modding.IScriptedClass.IPlayStateScriptedClass;
 import funkin.modding.events.ScriptEvent;
 
 /**

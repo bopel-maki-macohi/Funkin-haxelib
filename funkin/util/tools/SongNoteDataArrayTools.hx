@@ -1,6 +1,5 @@
 package funkin.util.tools;
 
-import funkin.data.song.SongData.SongNoteData;
 
 /**
  * A static extension which provides utility functions for `Array<SongNoteData>`s.

@@ -1,30 +1,17 @@
 package funkin.graphics;
 
-import flixel.FlxSprite;
 import flixel.util.FlxColor;
-import flixel.graphics.FlxGraphic;
 import flixel.tweens.FlxTween;
-import openfl.display3D.textures.TextureBase;
 import funkin.graphics.framebuffer.FixedBitmapData;
-import funkin.graphics.framebuffer.FunkinFilterRenderer;
 import openfl.display.BitmapData;
-import flixel.math.FlxRect;
 import flixel.math.FlxPoint;
-import flixel.math.FlxMatrix;
 import flixel.graphics.frames.FlxFrame;
-import flixel.FlxCamera;
 import openfl.system.System;
-import flixel.system.FlxAssets.FlxGraphicAsset;
 import funkin.FunkinMemory;
-import animate.internal.SymbolItem;
 import animate.internal.elements.Element;
-import animate.internal.elements.AtlasInstance;
 import animate.internal.elements.SymbolInstance;
-import animate.FlxAnimate;
 import animate.FlxAnimateFrames;
-import animate.internal.RenderTexture;
 import openfl.filters.BitmapFilter;
-import haxe.io.Path;
 
 using StringTools;
 

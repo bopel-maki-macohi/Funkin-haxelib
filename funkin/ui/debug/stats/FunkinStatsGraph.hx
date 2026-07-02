@@ -1,10 +1,7 @@
 package funkin.ui.debug.stats;
 
-import flixel.math.FlxMath;
 import flixel.util.FlxColor;
-import openfl.display.Shape;
 import openfl.display.Sprite;
-import openfl.text.TextField;
 import openfl.text.TextFormat;
 
 class FunkinStatsGraph extends Sprite

@@ -1,48 +1,27 @@
 package funkin.ui.mainmenu;
 
-import flixel.addons.transition.FlxTransitionableState;
 #if FEATURE_DEBUG_MENU
-import funkin.ui.debug.DebugMenuSubState;
 #end
-import flixel.FlxObject;
 import flixel.FlxSubState;
-import flixel.FlxSprite;
 import flixel.effects.FlxFlicker;
-import flixel.math.FlxPoint;
 import flixel.util.typeLimit.NextState;
-import flixel.util.FlxColor;
 import flixel.tweens.FlxEase;
-import funkin.graphics.FunkinCamera;
 import funkin.audio.FunkinSound;
-import funkin.util.SwipeUtil;
 import funkin.util.InputUtil;
-import flixel.tweens.FlxTween;
 import funkin.ui.MusicBeatState;
-import funkin.ui.UIStateMachine;
 import funkin.ui.UIStateMachine.UIState;
-import flixel.util.FlxTimer;
 import funkin.ui.AtlasMenuList.AtlasMenuItem;
-import funkin.ui.freeplay.FreeplayState;
 import funkin.ui.MenuList.MenuTypedList;
-import funkin.ui.MenuList.MenuListItem;
 import funkin.ui.title.TitleState;
-import funkin.ui.story.StoryMenuState;
 import funkin.ui.Prompt;
-import funkin.util.WindowUtil;
 import funkin.mobile.ui.FunkinButton;
-import funkin.util.MathUtil;
 import funkin.util.TouchUtil;
-import funkin.api.newgrounds.Referral;
 import funkin.ui.mainmenu.UpgradeSparkle;
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 #if FEATURE_DISCORD_RPC
-import funkin.api.discord.DiscordClient;
 #end
 #if FEATURE_NEWGROUNDS
-import funkin.api.newgrounds.NewgroundsClient;
 #end
 #if mobile
-import funkin.mobile.input.ControlsHandler;
 import funkin.mobile.util.InAppPurchasesUtil;
 #end
 

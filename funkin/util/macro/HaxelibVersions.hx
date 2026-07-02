@@ -1,6 +1,5 @@
 package funkin.util.macro;
 
-import haxe.io.Path;
 
 @:nullSafety
 class HaxelibVersions

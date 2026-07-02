@@ -1,22 +1,13 @@
 package funkin.play.song;
 
-import funkin.audio.VoicesGroup;
 import funkin.audio.FunkinSound;
-import funkin.data.IRegistryEntry;
 import funkin.data.song.SongData.SongCharacterData;
-import funkin.data.song.SongData.SongChartData;
 import funkin.data.song.SongData.SongEventData;
-import funkin.data.song.SongData.SongMetadata;
 import funkin.data.song.SongData.SongNoteData;
-import funkin.data.song.SongData.SongOffsets;
 import funkin.data.song.SongData.SongTimeChange;
-import funkin.data.song.SongData.SongTimeFormat;
 import funkin.data.song.SongRegistry;
-import funkin.modding.IScriptedClass.IPlayStateScriptedClass;
 import funkin.modding.events.ScriptEvent;
-import funkin.ui.freeplay.charselect.PlayableCharacter;
 import funkin.data.freeplay.player.PlayerRegistry;
-import funkin.util.SortUtil;
 
 /**
  * This is a data structure managing information about the current song.

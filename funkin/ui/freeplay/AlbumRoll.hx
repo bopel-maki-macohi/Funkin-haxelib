@@ -1,12 +1,8 @@
 package funkin.ui.freeplay;
 
-import funkin.graphics.FunkinSprite;
 import flixel.group.FlxSpriteGroup;
-import flixel.util.FlxSort;
 import flixel.util.FlxTimer;
-import funkin.data.freeplay.album.AlbumRegistry;
 import funkin.graphics.FunkinSprite;
-import funkin.util.SortUtil;
 
 /**
  * The graphic for the album roll in the FreeplayState.

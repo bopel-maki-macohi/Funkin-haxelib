@@ -1,13 +1,8 @@
 package funkin.ui.debug.stageeditor.toolboxes;
 
 #if FEATURE_STAGE_EDITOR
-import haxe.ui.containers.VBox;
 import haxe.ui.components.CheckBox;
-import haxe.ui.components.DropDown;
 import haxe.ui.components.NumberStepper;
-import haxe.ui.events.MouseEvent;
-import haxe.ui.events.UIEvent;
-import haxe.ui.util.Color;
 import flixel.util.FlxColor;
 import haxe.ui.events.UIEvent;
 

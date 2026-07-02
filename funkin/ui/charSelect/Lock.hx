@@ -1,8 +1,6 @@
 package funkin.ui.charSelect;
 
-import flixel.util.FlxColor;
 import funkin.graphics.FunkinSprite;
-import flixel.FlxCamera;
 import flixel.math.FlxPoint;
 
 @:nullSafety

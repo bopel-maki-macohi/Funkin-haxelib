@@ -1,15 +1,10 @@
 package funkin.ui.debug.charting.handlers;
 
 #if FEATURE_CHART_EDITOR
-import funkin.ui.debug.charting.contextmenus.ChartEditorDefaultContextMenu;
 import funkin.ui.debug.charting.contextmenus.ChartEditorEventContextMenu;
-import funkin.ui.debug.charting.contextmenus.ChartEditorHoldNoteContextMenu;
 import funkin.ui.debug.charting.contextmenus.ChartEditorNoteContextMenu;
-import funkin.ui.debug.charting.contextmenus.ChartEditorSelectionContextMenu;
 import haxe.ui.containers.menus.Menu;
-import haxe.ui.core.Screen;
 import funkin.data.song.SongData.SongNoteData;
-import funkin.data.song.SongData.SongEventData;
 import haxe.ui.events.UIEvent;
 
 /**

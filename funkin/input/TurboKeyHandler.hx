@@ -1,6 +1,5 @@
 package funkin.input;
 
-import flixel.input.keyboard.FlxKey;
 import flixel.FlxBasic;
 
 /**

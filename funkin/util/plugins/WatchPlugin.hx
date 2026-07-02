@@ -1,6 +1,5 @@
 package funkin.util.plugins;
 
-import flixel.FlxBasic;
 
 /**
  * A plugin which adds functionality to display several universally important values

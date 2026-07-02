@@ -1,10 +1,7 @@
 package funkin;
 
-import flixel.graphics.frames.FlxAtlasFrames;
 import animate.FlxAnimateFrames;
-import funkin.graphics.FunkinSprite.AtlasSpriteSettings;
 import openfl.utils.AssetType;
-import funkin.util.macro.ConsoleMacro;
 import haxe.io.Path;
 
 /**

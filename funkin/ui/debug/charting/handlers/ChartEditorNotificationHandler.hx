@@ -1,13 +1,9 @@
 package funkin.ui.debug.charting.handlers;
 
 #if FEATURE_CHART_EDITOR
-import haxe.ui.animation.AnimationBuilder;
 import haxe.ui.components.Button;
-import haxe.ui.containers.HBox;
 import haxe.ui.core.Screen;
-import haxe.ui.notifications.Notification;
 import haxe.ui.notifications.NotificationManager;
-import haxe.ui.notifications.NotificationType;
 import haxe.ui.notifications.NotificationData.NotificationActionData;
 
 class ChartEditorNotificationHandler

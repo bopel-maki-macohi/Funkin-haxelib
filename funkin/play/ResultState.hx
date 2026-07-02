@@ -1,55 +1,31 @@
 package funkin.play;
 
-import flixel.math.FlxAngle;
 import flixel.FlxState;
-import funkin.ui.transition.stickers.StickerSubState;
 import flixel.addons.display.FlxBackdrop;
-import flixel.effects.FlxFlicker;
 import flixel.FlxSprite;
-import flixel.FlxSubState;
 import flixel.graphics.frames.FlxBitmapFont;
-import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxPoint;
-import flixel.math.FlxRect;
 import flixel.text.FlxBitmapText;
-import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-import flixel.util.FlxColor;
 import flixel.util.FlxGradient;
-import flixel.util.FlxTimer;
 import funkin.audio.FunkinSound;
-import funkin.data.freeplay.player.PlayerData.PlayerResultsAnimationData;
 import funkin.data.freeplay.player.PlayerRegistry;
-import funkin.data.song.SongRegistry;
 import funkin.graphics.FunkinCamera;
-import funkin.graphics.FunkinSprite;
 import funkin.graphics.shaders.LeftMaskShader;
-import funkin.play.components.ClearPercentCounter;
 import funkin.play.components.TallyCounter;
-import funkin.play.scoring.Scoring;
 import funkin.play.song.Song;
-import funkin.save.Save.SaveScoreData;
 import funkin.ui.freeplay.charselect.PlayableCharacter;
-import funkin.ui.freeplay.FreeplayState;
 import funkin.ui.FullScreenScaleMode;
-import funkin.ui.MusicBeatSubState;
 import funkin.ui.story.StoryMenuState;
-import funkin.util.HapticUtil;
 import funkin.graphics.ScriptedFunkinSprite;
-import funkin.ui.debug.charting.ChartEditorState;
 #if FEATURE_NEWGROUNDS
-import funkin.api.newgrounds.Medals;
 #end
 #if mobile
-import funkin.util.TouchUtil;
 #if FEATURE_MOBILE_ADVERTISEMENTS
-import funkin.mobile.util.AdMobUtil;
 #end
 #if FEATURE_MOBILE_IAR
-import funkin.mobile.util.InAppReviewUtil;
 #end
 #end
-import funkin.util.DeviceUtil;
 
 /**
  * The state for the results screen after a song or week is finished.

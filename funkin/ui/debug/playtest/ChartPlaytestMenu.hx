@@ -1,17 +1,11 @@
 package funkin.ui.debug.playtest;
 
 #if sys
-import flixel.text.FlxText;
 import flixel.util.FlxColor;
-import flixel.tweens.FlxTween;
 import funkin.util.file.FNFCUtil;
-import funkin.play.song.Song;
 import funkin.graphics.FunkinSprite;
-import funkin.graphics.FunkinCamera;
 import funkin.ui.debug.playtest.ChartPlaytestMenuButton;
-import funkin.ui.debug.playtest.ChartPlaytestMenuButton.ChartPlaytestMenuButtonListToggle;
 #if NO_FEATURE_TOUCH_CONTROLS
-import funkin.input.Cursor;
 #end
 
 /**

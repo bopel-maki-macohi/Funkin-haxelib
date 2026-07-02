@@ -1,10 +1,7 @@
 package funkin.ui.freeplay.dj;
 
-import flixel.util.FlxSignal;
 import funkin.graphics.FunkinSprite;
-import funkin.data.freeplay.player.PlayerRegistry;
 import funkin.data.freeplay.player.PlayerData.PlayerFreeplayDJData;
-import funkin.modding.IScriptedClass.IFreeplayScriptedClass;
 import funkin.modding.events.ScriptEvent;
 
 enum FreeplayDJState

@@ -1,6 +1,5 @@
 package funkin.data.freeplay.player;
 
-import funkin.data.animation.AnimationData;
 
 @:nullSafety
 class PlayerData

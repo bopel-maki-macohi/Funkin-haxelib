@@ -1,14 +1,9 @@
 package funkin.play.character;
 
-import flixel.math.FlxPoint;
 import funkin.modding.events.ScriptEvent;
-import funkin.data.character.CharacterData;
 import funkin.data.character.CharacterData.CharacterDataParser;
-import funkin.data.character.CharacterData.CharacterRenderType;
 import funkin.play.stage.Bopper;
-import funkin.play.notes.NoteDirection;
 import funkin.play.notes.notekind.NoteKind;
-import funkin.play.notes.notekind.NoteKindManager;
 import funkin.play.stage.Stage;
 
 /**
