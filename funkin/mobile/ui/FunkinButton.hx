@@ -1,11 +1,5 @@
 package funkin.mobile.ui;
 
-import flixel.FlxG;
-import funkin.graphics.FunkinSprite;
-import flixel.input.IFlxInput;
-import flixel.math.FlxPoint;
-import flixel.util.FlxSignal;
-import haxe.ds.Map;
 
 /**
  * Enum representing the status of the button.

@@ -1,12 +1,5 @@
 package funkin.ui.options;
 
-import flixel.FlxCamera;
-import funkin.graphics.FunkinCamera;
-import flixel.input.gamepad.FlxGamepadInputID;
-import funkin.graphics.FunkinSprite;
-import funkin.input.Controls.Control;
-import funkin.ui.MenuList.MenuTypedList;
-import funkin.ui.Page;
 #if FEATURE_TOUCH_CONTROLS
 #end
 

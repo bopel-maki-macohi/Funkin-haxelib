@@ -1,9 +1,6 @@
 package funkin.ui.debug.charting.components;
 
 #if FEATURE_CHART_EDITOR
-import funkin.data.notestyle.NoteStyleRegistry;
-import flixel.FlxObject;
-import funkin.data.song.SongData.SongNoteData;
 
 /**
  * A sprite that can be used to display the trail of a hold note in a chart.

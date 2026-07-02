@@ -1,12 +1,6 @@
 package funkin.ui.debug.charting.handlers;
 
 #if FEATURE_CHART_EDITOR
-import funkin.audio.VoicesGroup;
-import funkin.play.character.BaseCharacter.CharacterType;
-import funkin.util.assets.SoundUtil;
-import funkin.audio.waveform.WaveformDataParser;
-import flixel.util.FlxColor;
-import haxe.io.Path;
 
 /**
  * Functions for loading audio for the chart editor.

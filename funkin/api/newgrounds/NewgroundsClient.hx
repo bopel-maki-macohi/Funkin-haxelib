@@ -1,12 +1,6 @@
 package funkin.api.newgrounds;
 
-import funkin.api.newgrounds.Medals.Medal;
 #if FEATURE_NEWGROUNDS
-import io.newgrounds.NG;
-import io.newgrounds.NGLite.LoginOutcome;
-import io.newgrounds.objects.events.Outcome;
-import io.newgrounds.utils.SaveSlotList;
-import io.newgrounds.objects.User;
 #if FEATURE_MOBILE_WEBVIEW
 #end
 

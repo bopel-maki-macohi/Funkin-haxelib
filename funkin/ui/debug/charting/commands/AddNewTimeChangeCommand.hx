@@ -1,7 +1,6 @@
 package funkin.ui.debug.charting.commands;
 
 #if FEATURE_CHART_EDITOR
-import funkin.ui.debug.charting.toolboxes.ChartEditorMetadataToolbox;
 
 /**
  * A command which adds a new timechange to the current song's timechanges, after the index value given, at the given timestamp.

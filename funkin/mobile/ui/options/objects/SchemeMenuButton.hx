@@ -1,9 +1,5 @@
 package funkin.mobile.ui.options.objects;
 
-import flixel.effects.FlxFlicker;
-import flixel.util.FlxSignal;
-import funkin.util.TouchUtil;
-import funkin.audio.FunkinSound;
 
 /**
  * Represents a button in the scheme menu, specifically designed for mobile touch input.

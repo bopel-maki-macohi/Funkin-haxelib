@@ -1,6 +1,5 @@
 package funkin.save;
 
-import funkin.save.migrator.SaveDataMigrator;
 
 /**
  * A bit more of the backend and nitty gritty of FNF's save system

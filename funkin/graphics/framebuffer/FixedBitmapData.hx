@@ -1,8 +1,5 @@
 package funkin.graphics.framebuffer;
 
-import openfl.display.DisplayObject;
-import openfl.display.IBitmapDrawable;
-import openfl.display3D.textures.TextureBase;
 
 /**
  * `BitmapData` is kinda broken so I fixed it.

@@ -1,7 +1,5 @@
 package funkin.play.character;
 
-import funkin.modding.events.ScriptEvent;
-import funkin.util.assets.FlxAnimationUtil;
 
 /**
  * A PackerCharacter is a Character which is rendered by

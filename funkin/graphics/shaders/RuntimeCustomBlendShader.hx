@@ -1,6 +1,5 @@
 package funkin.graphics.shaders;
 
-import openfl.display.BlendMode;
 
 class RuntimeCustomBlendShader extends RuntimePostEffectShader
 {

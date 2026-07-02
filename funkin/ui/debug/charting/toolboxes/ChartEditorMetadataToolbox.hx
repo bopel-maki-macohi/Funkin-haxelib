@@ -1,15 +1,6 @@
 package funkin.ui.debug.charting.toolboxes;
 
 #if FEATURE_CHART_EDITOR
-import funkin.data.character.CharacterData;
-import funkin.data.stage.StageRegistry;
-import funkin.play.notes.notestyle.NoteStyle;
-import funkin.ui.debug.charting.commands.ModifyTimeChangeCommand;
-import funkin.ui.debug.charting.util.ChartEditorDropdowns;
-import haxe.ui.components.DropDown;
-import haxe.ui.components.NumberStepper;
-import haxe.ui.components.TextField;
-import haxe.ui.containers.Frame;
 
 /**
  * The toolbox which allows modifying information like Song Title, Scroll Speed, Characters/Stages, and starting BPM.

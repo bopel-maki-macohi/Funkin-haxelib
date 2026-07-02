@@ -1,9 +1,5 @@
 package funkin.play;
 
-import flixel.tweens.FlxTween;
-import funkin.modding.events.ScriptEvent.CountdownScriptEvent;
-import funkin.util.EaseUtil;
-import funkin.data.notestyle.NoteStyleRegistry;
 
 class Countdown
 {

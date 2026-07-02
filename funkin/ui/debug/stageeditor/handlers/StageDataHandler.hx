@@ -1,11 +1,6 @@
 package funkin.ui.debug.stageeditor.handlers;
 
 #if FEATURE_STAGE_EDITOR
-import funkin.util.FileUtil;
-import haxe.zip.Entry;
-import funkin.play.character.BaseCharacter;
-import funkin.data.stage.StageData.StageDataCharacter;
-import openfl.utils.Assets as OpenFLAssets;
 
 using StringTools;
 

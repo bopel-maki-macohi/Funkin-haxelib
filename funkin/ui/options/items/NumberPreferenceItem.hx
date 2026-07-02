@@ -1,8 +1,5 @@
 package funkin.ui.options.items;
 
-import funkin.ui.TextMenuList.TextMenuItem;
-import funkin.input.Controls;
-import funkin.util.SwipeUtil;
 
 /**
  * Preference item that allows the player to pick a value between min and max

@@ -1,8 +1,5 @@
 package funkin.play.character;
 
-import flixel.graphics.frames.FlxFramesCollection;
-import funkin.graphics.FunkinSprite;
-import funkin.util.assets.FlxAnimationUtil;
 
 /**
  * For some characters which use Sparrow atlases, the spritesheets need to be split

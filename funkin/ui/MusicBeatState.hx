@@ -1,16 +1,6 @@
 package funkin.ui;
 
-import funkin.ui.mainmenu.MainMenuState;
-import flixel.addons.transition.FlxTransitionableState;
-import flixel.util.FlxColor;
-import flixel.util.FlxSort;
-import funkin.modding.events.ScriptEvent;
-import funkin.util.SortUtil;
-import funkin.input.Controls;
 #if mobile
-import funkin.mobile.ui.FunkinHitbox;
-import funkin.mobile.ui.FunkinBackButton;
-import funkin.play.notes.NoteDirection;
 #end
 
 /**

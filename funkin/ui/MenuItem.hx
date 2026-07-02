@@ -1,8 +1,5 @@
 package funkin.ui;
 
-import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.math.FlxMath;
-import flixel.util.FlxColor;
 
 @:nullSafety
 class MenuItem extends FlxSpriteGroup

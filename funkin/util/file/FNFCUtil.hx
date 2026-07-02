@@ -1,11 +1,6 @@
 package funkin.util.file;
 
 #if sys
-import funkin.ui.transition.LoadingState;
-import funkin.util.assets.SoundUtil;
-import funkin.data.song.SongRegistry;
-import funkin.data.song.SongData.SongMetadata;
-import thx.semver.Version as SemverVersion;
 
 /**
  * Utility functions for interacting with .FNFC files.

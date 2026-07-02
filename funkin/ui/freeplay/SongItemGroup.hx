@@ -1,7 +1,5 @@
 package funkin.ui.freeplay;
 
-import flixel.FlxSprite;
-import funkin.graphics.shaders.GaussianBlurShader;
 
 /**
  * A FlxTypedGroup for capsules that does drawing in batches. This prevents memory leaks due to too many assets being rendered.

@@ -1,10 +1,5 @@
 package funkin.ui.haxeui;
 
-import haxe.ui.containers.menus.MenuCheckBox;
-import haxe.ui.core.Component;
-import funkin.ui.MusicBeatState;
-import haxe.ui.events.UIEvent;
-import lime.app.Application;
 
 class HaxeUIState extends MusicBeatState
 {

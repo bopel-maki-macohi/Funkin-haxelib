@@ -1,6 +1,5 @@
 package funkin.graphics.shaders;
 
-import flixel.util.FlxColor;
 
 class ColorSwap
 {

@@ -1,11 +1,6 @@
 package funkin.ui.debug.stageeditor.toolboxes;
 
 #if FEATURE_STAGE_EDITOR
-import funkin.ui.debug.stageeditor.handlers.AssetDataHandler;
-import haxe.ui.components.Image;
-import haxe.ui.components.TextArea;
-import haxe.ui.containers.dialogs.Dialogs;
-import openfl.display.BitmapData;
 
 @:access(funkin.ui.debug.stageeditor.StageEditorState)
 @:build(haxe.ui.macros.ComponentMacros.build("assets/exclude/data/ui/stage-editor/toolboxes/object-graphic.xml"))

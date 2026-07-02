@@ -1,10 +1,5 @@
 package funkin.play.character;
 
-import funkin.modding.events.ScriptEvent;
-import funkin.data.character.CharacterData.CharacterDataParser;
-import funkin.play.stage.Bopper;
-import funkin.play.notes.notekind.NoteKind;
-import funkin.play.stage.Stage;
 
 /**
  * A Character is a stage prop which bops to the music as well as controlled by the strumlines.

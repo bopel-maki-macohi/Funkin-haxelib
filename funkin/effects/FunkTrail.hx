@@ -1,7 +1,5 @@
 package funkin.effects;
 
-import funkin.play.stage.Bopper;
-import flixel.system.FlxAssets.FlxGraphicAsset;
 
 /**
  * An offshoot of FlxTrail, but accomodates the way Funkin

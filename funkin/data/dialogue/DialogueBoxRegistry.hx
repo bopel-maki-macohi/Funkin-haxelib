@@ -1,7 +1,5 @@
 package funkin.data.dialogue;
 
-import funkin.data.dialogue.DialogueBoxData;
-import funkin.util.tools.ISingleton;
 
 @:nullSafety
 class DialogueBoxRegistry extends BaseRegistry<DialogueBox, DialogueBoxData, DialogueBoxEntryParams> implements ISingleton implements DefaultRegistryImpl

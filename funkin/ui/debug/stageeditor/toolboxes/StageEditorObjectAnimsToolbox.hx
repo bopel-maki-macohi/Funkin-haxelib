@@ -1,10 +1,6 @@
 package funkin.ui.debug.stageeditor.toolboxes;
 
 #if FEATURE_STAGE_EDITOR
-import haxe.ui.components.CheckBox;
-import haxe.ui.components.NumberStepper;
-import haxe.ui.containers.ListView;
-import flixel.graphics.frames.FlxFrame;
 
 using StringTools;
 

@@ -1,7 +1,5 @@
 package funkin.util;
 
-import flixel.input.gamepad.FlxGamepadInputID;
-import lime.ui.GamepadButton as LimeGamepadButton;
 
 /**
  * Utilities for working with Flixel gamepads.

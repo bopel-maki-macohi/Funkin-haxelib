@@ -1,14 +1,5 @@
 package funkin.data.character;
 
-import funkin.modding.events.ScriptEvent;
-import funkin.play.character.ScriptedCharacter.ScriptedAnimateAtlasCharacter;
-import funkin.play.character.ScriptedCharacter.ScriptedMultiSparrowCharacter;
-import funkin.play.character.ScriptedCharacter.ScriptedPackerCharacter;
-import funkin.play.character.AnimateAtlasCharacter;
-import funkin.play.character.SparrowCharacter;
-import funkin.play.character.MultiAnimateAtlasCharacter;
-import funkin.util.assets.DataAssets;
-import haxe.Json;
 
 @:nullSafety
 class CharacterDataParser

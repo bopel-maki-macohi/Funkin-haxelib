@@ -1,6 +1,5 @@
 package funkin.ui.haxeui.components;
 
-import funkin.audio.waveform.WaveformData;
 
 class WaveformPlayer extends SpriteWrapper
 {

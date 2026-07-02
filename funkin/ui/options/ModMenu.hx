@@ -1,8 +1,5 @@
 package funkin.ui.options;
 
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.util.FlxColor;
-import funkin.ui.Page;
 
 class ModMenu extends Page<OptionsState.OptionsMenuPageName>
 {

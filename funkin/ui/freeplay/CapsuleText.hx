@@ -1,10 +1,5 @@
 package funkin.ui.freeplay;
 
-import flixel.text.FlxText;
-import funkin.graphics.shaders.GaussianBlurShader;
-import flixel.math.FlxRect;
-import flixel.util.FlxTimer;
-import openfl.display.BlendMode;
 
 @:nullSafety
 class CapsuleText extends FlxSpriteGroup

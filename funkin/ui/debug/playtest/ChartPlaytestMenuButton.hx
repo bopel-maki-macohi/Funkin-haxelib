@@ -1,8 +1,6 @@
 package funkin.ui.debug.playtest;
 
 #if sys
-import flixel.text.FlxText;
-import flixel.FlxG;
 #if FEATURE_TOUCH_CONTROLS
 #end
 

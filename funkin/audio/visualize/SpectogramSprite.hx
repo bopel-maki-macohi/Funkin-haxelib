@@ -1,9 +1,5 @@
 package funkin.audio.visualize;
 
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-import flixel.math.FlxPoint;
-import flixel.util.FlxColor;
-import funkin.audio.visualize.VisShit.CurAudioInfo;
 
 using Lambda;
 using flixel.util.FlxSpriteUtil;

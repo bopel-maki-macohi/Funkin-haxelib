@@ -1,8 +1,5 @@
 package funkin.ui.debug;
 
-import flixel.FlxSprite;
-import funkin.audio.FunkinSound;
-import funkin.audio.waveform.WaveformDataParser;
 
 class WaveformTestState extends MusicBeatState
 {

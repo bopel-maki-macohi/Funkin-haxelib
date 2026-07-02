@@ -1,9 +1,6 @@
 package funkin.api.discord;
 
 #if FEATURE_DISCORD_RPC
-import hxdiscord_rpc.Types.DiscordButton;
-import hxdiscord_rpc.Types.DiscordRichPresence;
-import sys.thread.Thread;
 
 @:build(funkin.util.macro.EnvironmentMacro.build())
 @:nullSafety

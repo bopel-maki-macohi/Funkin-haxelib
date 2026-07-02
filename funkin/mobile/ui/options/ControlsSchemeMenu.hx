@@ -1,14 +1,5 @@
 package funkin.mobile.ui.options;
 
-import flixel.math.FlxMath;
-import flixel.tweens.FlxTween;
-import flixel.FlxG;
-import funkin.mobile.ui.options.objects.HitboxShowcase;
-import funkin.util.TouchUtil;
-import funkin.ui.MusicBeatSubState;
-import funkin.ui.FullScreenScaleMode;
-import funkin.graphics.FunkinSprite;
-import funkin.audio.FunkinSound;
 
 /**
  * Represents the controls scheme menu.

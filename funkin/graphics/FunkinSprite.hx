@@ -1,17 +1,5 @@
 package funkin.graphics;
 
-import flixel.util.FlxColor;
-import flixel.tweens.FlxTween;
-import funkin.graphics.framebuffer.FixedBitmapData;
-import openfl.display.BitmapData;
-import flixel.math.FlxPoint;
-import flixel.graphics.frames.FlxFrame;
-import openfl.system.System;
-import funkin.FunkinMemory;
-import animate.internal.elements.Element;
-import animate.internal.elements.SymbolInstance;
-import animate.FlxAnimateFrames;
-import openfl.filters.BitmapFilter;
 
 using StringTools;
 

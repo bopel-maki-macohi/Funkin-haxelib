@@ -1,7 +1,6 @@
 package funkin.ui.debug.stageeditor.handlers;
 
 #if FEATURE_STAGE_EDITOR
-import funkin.ui.debug.stageeditor.handlers.AssetDataHandler.StageEditorObjectData;
 
 class UndoRedoHandler
 {

@@ -1,18 +1,5 @@
 package funkin.ui.freeplay;
 
-import funkin.ui.freeplay.FreeplayState.FreeplaySongData;
-import funkin.graphics.shaders.HSVShader;
-import flixel.group.FlxGroup;
-import flixel.FlxSprite;
-import flixel.math.FlxPoint;
-import flixel.util.FlxTimer;
-import funkin.graphics.shaders.Grayscale;
-import flixel.FlxObject;
-import flixel.tweens.FlxEase;
-import flixel.addons.effects.FlxTrail;
-import flixel.util.FlxColor;
-import funkin.ui.PixelatedIcon;
-import funkin.util.SwipeUtil;
 
 using StringTools;
 

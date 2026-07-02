@@ -1,7 +1,5 @@
 package funkin.ui.freeplay;
 
-import funkin.data.freeplay.style.FreeplayStyleRegistry;
-import flixel.graphics.FlxGraphic;
 
 /**
  * A class representing the data for a style of the Freeplay menu.

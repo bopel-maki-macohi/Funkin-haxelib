@@ -1,13 +1,6 @@
 package funkin.ui.debug.charting.handlers;
 
 #if FEATURE_CHART_EDITOR
-import haxe.ui.RuntimeComponentBuilder;
-import haxe.ui.components.CheckBox;
-import haxe.ui.containers.dialogs.Dialog.DialogButton;
-import funkin.ui.debug.charting.toolboxes.ChartEditorBaseToolbox;
-import funkin.ui.debug.charting.toolboxes.ChartEditorOffsetsToolbox;
-import funkin.ui.debug.charting.toolboxes.ChartEditorEventDataToolbox;
-import funkin.ui.debug.charting.toolboxes.ChartEditorDifficultyToolbox;
 
 /**
  * Static functions which handle building themed UI elements for a provided ChartEditorState.

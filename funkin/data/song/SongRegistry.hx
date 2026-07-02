@@ -1,11 +1,5 @@
 package funkin.data.song;
 
-import funkin.data.song.SongData;
-import funkin.data.song.migrator.SongData_v2_1_0.SongMetadata_v2_1_0;
-import funkin.data.song.SongData.SongMetadata;
-import funkin.play.song.Song;
-import funkin.util.VersionUtil;
-import funkin.data.DefaultRegistryImpl;
 
 using funkin.data.song.migrator.SongDataMigrator;
 

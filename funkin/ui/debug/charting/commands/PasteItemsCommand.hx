@@ -1,9 +1,6 @@
 package funkin.ui.debug.charting.commands;
 
 #if FEATURE_CHART_EDITOR
-import funkin.data.song.SongData.SongNoteData;
-import funkin.data.song.SongDataUtils.SongClipboardItems;
-import funkin.ui.debug.charting.ChartEditorState;
 
 /**
  * A command which inserts the contents of the clipboard into the chart editor.

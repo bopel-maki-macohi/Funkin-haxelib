@@ -1,6 +1,5 @@
 package funkin.ui.debug.charting.commands;
 
-import funkin.data.song.SongData.SongEventData;
 
 /**
  * Command that deselects all selected notes and/or events above or past the time given in the chart editor.

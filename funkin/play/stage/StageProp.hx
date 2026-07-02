@@ -1,6 +1,5 @@
 package funkin.play.stage;
 
-import funkin.graphics.FunkinSprite;
 
 class StageProp extends FunkinSprite implements IStateStageProp
 {

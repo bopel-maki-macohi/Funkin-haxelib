@@ -1,7 +1,6 @@
 package funkin.ui.debug.charting.commands;
 
 #if FEATURE_CHART_EDITOR
-import funkin.data.song.SongDataUtils;
 
 /**
  * Adds the given events to the current chart in the chart editor.

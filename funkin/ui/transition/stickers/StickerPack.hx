@@ -1,7 +1,5 @@
 package funkin.ui.transition.stickers;
 
-import funkin.data.stickers.StickerRegistry;
-import funkin.graphics.FunkinSprite;
 
 /**
  * A class representing the data for a sticker pack as displayed in the Sticker SubState.

@@ -1,11 +1,6 @@
 package funkin.ui.debug.charting.components;
 
 #if FEATURE_CHART_EDITOR
-import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.FlxObject;
-import flixel.graphics.frames.FlxFramesCollection;
-import haxe.ui.tooltips.ToolTipRegionOptions;
-import haxe.ui.tooltips.ToolTipManager;
 
 /**
  * A sprite that can be used to display a song event in a chart.

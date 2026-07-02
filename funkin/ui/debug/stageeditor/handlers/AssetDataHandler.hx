@@ -1,9 +1,6 @@
 package funkin.ui.debug.stageeditor.handlers;
 
 #if FEATURE_STAGE_EDITOR
-import openfl.display.BitmapData;
-import flixel.util.FlxColor;
-import funkin.data.stage.StageData.StageDataProp;
 
 using StringTools;
 

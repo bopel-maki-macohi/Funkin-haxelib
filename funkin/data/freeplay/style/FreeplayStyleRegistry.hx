@@ -1,7 +1,5 @@
 package funkin.data.freeplay.style;
 
-import funkin.data.freeplay.style.FreeplayStyleData;
-import funkin.util.tools.ISingleton;
 
 @:nullSafety
 class FreeplayStyleRegistry extends BaseRegistry<FreeplayStyle, FreeplayStyleData, FreeplayStyleEntryParams> implements ISingleton

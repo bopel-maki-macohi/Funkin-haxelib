@@ -1,7 +1,5 @@
 package funkin.play.notes;
 
-import flixel.graphics.frames.FlxAtlasFrames;
-import funkin.play.notes.NoteSprite;
 
 /**
  * The actual receptor that you see on screen.

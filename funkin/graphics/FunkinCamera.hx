@@ -1,13 +1,5 @@
 package funkin.graphics;
 
-import flash.geom.ColorTransform;
-import flixel.graphics.FlxGraphic;
-import flixel.math.FlxMatrix;
-import flixel.system.FlxAssets.FlxShader;
-import funkin.graphics.shaders.RuntimeCustomBlendShader;
-import openfl.Lib;
-import openfl.display.BlendMode;
-import flixel.graphics.tile.FlxDrawTrianglesItem;
 
 using funkin.graphics.framebuffer.BitmapDataUtil;
 

@@ -1,17 +1,5 @@
 package funkin.play;
 
-import funkin.ui.story.StoryMenuState;
-import flixel.addons.transition.FlxTransitionableState;
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-import flixel.text.FlxText;
-import flixel.tweens.FlxTween;
-import funkin.audio.FunkinSound;
-import funkin.ui.freeplay.FreeplayState;
-import funkin.play.cutscene.VideoCutscene;
-import flixel.util.FlxTimer;
-import funkin.util.HapticUtil;
-import funkin.ui.transition.stickers.StickerSubState;
-import funkin.util.TouchUtil;
 #if FEATURE_MOBILE_ADVERTISEMENTS
 #end
 

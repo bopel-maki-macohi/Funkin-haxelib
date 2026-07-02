@@ -1,10 +1,6 @@
 package funkin.ui.debug.stageeditor.components;
 
 #if FEATURE_STAGE_EDITOR
-import lime.utils.Bytes;
-import openfl.net.URLLoader;
-import openfl.events.Event;
-import openfl.events.SecurityErrorEvent;
 
 @:build(haxe.ui.macros.ComponentMacros.build("assets/exclude/data/ui/stage-editor/dialogs/load-url.xml"))
 class LoadFromUrlDialog extends Dialog

@@ -1,20 +1,5 @@
 package funkin.ui.charSelect;
 
-import flixel.FlxObject;
-import flixel.group.FlxSpriteGroup;
-import flixel.math.FlxPoint;
-import flixel.system.debug.watch.Tracker.TrackerProfile;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxColor;
-import funkin.data.freeplay.player.PlayerData.PlayerCharSelectData;
-import funkin.graphics.FunkinSprite;
-import funkin.modding.events.ScriptEvent;
-import funkin.play.stage.Stage;
-import funkin.ui.freeplay.FreeplayState;
-import funkin.ui.PixelatedIcon;
-import funkin.util.FramesJSFLParser.FramesJSFLInfo;
-import funkin.util.MathUtil;
-import openfl.display.BlendMode;
 import openfl.filters.BitmapFilter;
 #if FEATURE_NEWGROUNDS
 #end

@@ -1,7 +1,6 @@
 package funkin.ui.debug.charting.commands;
 
 #if FEATURE_CHART_EDITOR
-import funkin.data.song.SongData.SongEventData;
 
 /**
  * Command to set the current selection in the chart editor (rather than appending it).

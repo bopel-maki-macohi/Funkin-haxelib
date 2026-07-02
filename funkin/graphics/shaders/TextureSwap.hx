@@ -1,6 +1,5 @@
 package funkin.graphics.shaders;
 
-import openfl.display.BitmapData;
 
 class TextureSwap extends FlxShader
 {

@@ -1,8 +1,5 @@
 package funkin.ui.charSelect;
 
-import funkin.modding.IScriptedClass.IBPMSyncedScriptedClass;
-import funkin.vis.dsp.SpectralAnalyzer;
-import funkin.ui.FullScreenScaleMode;
 
 @:nullSafety
 class CharSelectGF extends FunkinSprite implements IBPMSyncedScriptedClass

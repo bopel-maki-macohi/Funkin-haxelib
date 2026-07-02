@@ -1,7 +1,5 @@
 package funkin.modding.module;
 
-import funkin.modding.IScriptedClass.IStateChangingScriptedClass;
-import funkin.modding.IScriptedClass.ICharacterSelectScriptedClass;
 
 /**
  * Parameters used to initialize a module.

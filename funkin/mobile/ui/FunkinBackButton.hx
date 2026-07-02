@@ -1,8 +1,5 @@
 package funkin.mobile.ui;
 
-import flixel.tweens.FlxEase;
-import flixel.util.FlxColor;
-import funkin.audio.FunkinSound;
 
 class FunkinBackButton extends FunkinButton
 {

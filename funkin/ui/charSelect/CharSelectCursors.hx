@@ -1,8 +1,5 @@
 package funkin.ui.charSelect;
 
-import flixel.tweens.FlxTween;
-import flixel.math.FlxPoint;
-import flixel.group.FlxSpriteContainer.FlxTypedSpriteContainer;
 
 class CharSelectCursors extends FlxTypedSpriteContainer<FunkinSprite>
 {

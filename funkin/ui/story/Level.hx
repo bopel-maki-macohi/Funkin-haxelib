@@ -1,9 +1,5 @@
 package funkin.ui.story;
 
-import flixel.FlxSprite;
-import funkin.play.song.Song;
-import funkin.data.song.SongRegistry;
-import funkin.data.story.level.LevelData;
 
 /**
  * An object used to retrieve data about a story mode level (also known as "weeks").

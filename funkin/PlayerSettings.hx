@@ -1,7 +1,5 @@
 package funkin;
 
-import funkin.input.Controls;
-import flixel.input.gamepad.FlxGamepad;
 
 /**
  * A core class which represents the current player(s) and their controls and other configuration.

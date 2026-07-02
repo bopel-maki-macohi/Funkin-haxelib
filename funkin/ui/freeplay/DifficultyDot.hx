@@ -1,8 +1,5 @@
 package funkin.ui.freeplay;
 
-import flixel.tweens.FlxEase;
-import flixel.group.FlxSpriteGroup;
-import flixel.util.FlxColor;
 
 enum DotType
 {

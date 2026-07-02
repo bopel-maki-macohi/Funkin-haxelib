@@ -1,9 +1,5 @@
 package funkin.ui.debug;
 
-import funkin.ui.debug.stats.FunkinStatsGraph;
-import openfl.display.Shape;
-import openfl.text.TextField;
-import openfl.Lib;
 
 /**
  * A debug overlay showing useful info.

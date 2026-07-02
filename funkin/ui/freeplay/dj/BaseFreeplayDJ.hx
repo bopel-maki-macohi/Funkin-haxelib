@@ -1,8 +1,5 @@
 package funkin.ui.freeplay.dj;
 
-import funkin.graphics.FunkinSprite;
-import funkin.data.freeplay.player.PlayerData.PlayerFreeplayDJData;
-import funkin.modding.events.ScriptEvent;
 
 enum FreeplayDJState
 {

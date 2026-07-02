@@ -1,9 +1,5 @@
 package funkin.mobile.ui.options.objects;
 
-import flixel.group.FlxSpriteGroup;
-import flixel.util.FlxSignal;
-import flixel.FlxG;
-import funkin.audio.FunkinSound;
 
 /**
  * Represents a showcase hitbox in the scheme menu.

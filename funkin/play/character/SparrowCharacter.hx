@@ -1,7 +1,5 @@
 package funkin.play.character;
 
-import funkin.util.assets.FlxAnimationUtil;
-import funkin.data.character.CharacterData.CharacterRenderType;
 
 /**
  * A SparrowCharacter is a Character which is rendered by

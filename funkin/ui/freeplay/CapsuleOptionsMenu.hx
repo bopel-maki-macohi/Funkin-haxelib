@@ -1,9 +1,5 @@
 package funkin.ui.freeplay;
 
-import funkin.input.Controls;
-import funkin.graphics.FunkinSprite;
-import flixel.util.FlxTimer;
-import flixel.text.FlxText.FlxTextAlign;
 #if mobile
 #end
 

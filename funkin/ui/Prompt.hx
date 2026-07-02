@@ -1,6 +1,5 @@
 package funkin.ui;
 
-import flixel.FlxSprite;
 
 /**
  * Opens a yes/no dialog box as a substate over the current state.

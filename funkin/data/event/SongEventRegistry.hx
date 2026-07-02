@@ -1,9 +1,5 @@
 package funkin.data.event;
 
-import funkin.data.song.SongData.SongEventData;
-import funkin.modding.events.ScriptEventDispatcher;
-import funkin.play.event.SongEvent;
-import funkin.util.macro.ClassMacro;
 
 /**
  * This class statically handles the parsing of internal and scripted song event handlers.

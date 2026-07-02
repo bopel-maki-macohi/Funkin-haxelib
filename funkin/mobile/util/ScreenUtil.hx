@@ -3,7 +3,6 @@ package funkin.mobile.util;
 #if ios
 #elseif android
 #end
-import lime.app.Application;
 
 /**
  * A Utility class to get mobile screen related informations.

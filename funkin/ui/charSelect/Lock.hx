@@ -1,7 +1,5 @@
 package funkin.ui.charSelect;
 
-import funkin.graphics.FunkinSprite;
-import flixel.math.FlxPoint;
 
 @:nullSafety
 class Lock extends FunkinSprite

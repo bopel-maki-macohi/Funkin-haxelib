@@ -1,6 +1,5 @@
 package funkin;
 
-import funkin.util.macro.ConsoleMacro;
 
 /**
  * A wrapper around `openfl.utils.Assets` which disallows access to the harmful functions.

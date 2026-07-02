@@ -1,8 +1,5 @@
 package funkin.group;
 
-import flixel.FlxG;
-import flixel.util.FlxSort;
-import flixel.math.FlxPoint;
 
 /**
  * A FunkinGroup of FlxSprites.

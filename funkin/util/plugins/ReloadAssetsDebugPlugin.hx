@@ -1,7 +1,5 @@
 package funkin.util.plugins;
 
-import flixel.FlxG;
-import funkin.ui.MusicBeatState;
 #if android
 #end
 

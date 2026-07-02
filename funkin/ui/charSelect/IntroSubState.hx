@@ -4,7 +4,6 @@ package funkin.ui.charSelect;
 #end
 #if hxvlc
 #end
-import funkin.save.Save;
 
 /**
  * When you first enter the character select state, it will play an introductory video opening up the lights

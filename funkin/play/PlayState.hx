@@ -1,50 +1,17 @@
 package funkin.play;
 
-import funkin.play.PauseSubState.PauseMode;
-import flixel.addons.transition.Transition;
-import flixel.FlxCamera;
-import flixel.FlxSubState;
-import flixel.math.FlxPoint;
-import flixel.text.FlxBitmapFont;
-import flixel.tweens.FlxTween;
-import flixel.ui.FlxBar;
-import flixel.util.FlxStringUtil;
-import funkin.audio.FunkinSound;
-import funkin.data.dialogue.ConversationRegistry;
-import funkin.data.notestyle.NoteStyleRegistry;
-import funkin.data.song.SongData.SongEventData;
-import funkin.data.song.SongRegistry;
-import funkin.graphics.FunkinCamera;
 import funkin.Highscore.Tallies;
-import funkin.modding.events.ScriptEvent;
-import funkin.modding.events.ScriptEventDispatcher;
-import funkin.data.character.CharacterData.CharacterDataParser;
-import funkin.play.components.PopUpStuff;
-import funkin.play.cutscene.dialogue.Conversation;
-import funkin.play.notes.NoteDirection;
-import funkin.play.notes.notekind.NoteKind;
-import funkin.play.notes.notestyle.NoteStyle;
-import funkin.play.notes.SustainTrail;
-import funkin.play.scoring.Scoring;
-import funkin.play.stage.Stage;
 #if FEATURE_CHART_EDITOR
 #end
 #if FEATURE_STAGE_EDITOR
 #end
-import funkin.ui.mainmenu.MainMenuState;
-import funkin.ui.transition.LoadingState;
-import funkin.util.HapticUtil;
-import haxe.Int64;
 #if mobile
-import funkin.mobile.ui.FunkinHitbox;
-import funkin.mobile.ui.FunkinHitbox.FunkinHitboxControlSchemes;
 #if FEATURE_MOBILE_ADVERTISEMENTS
 #end
 #end
 #if FEATURE_DISCORD_RPC
 #end
 #if FEATURE_NEWGROUNDS
-import funkin.api.newgrounds.Leaderboards;
 #end
 
 /**

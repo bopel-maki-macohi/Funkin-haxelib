@@ -1,15 +1,6 @@
 package funkin.ui.debug.stage;
 
 #if FEATURE_STAGE_EDITOR
-import flixel.input.mouse.FlxMouseEvent;
-import funkin.play.PlayState;
-import funkin.play.stage.StageProp;
-import funkin.ui.haxeui.HaxeUISubState;
-import funkin.ui.debug.stage.StageEditorCommand.SelectPropCommand;
-import funkin.util.MouseUtil;
-import haxe.ui.core.Component;
-import openfl.events.Event;
-import openfl.net.FileReference;
 
 /**
  * A substate dedicated to allowing the user to create and edit stages/props

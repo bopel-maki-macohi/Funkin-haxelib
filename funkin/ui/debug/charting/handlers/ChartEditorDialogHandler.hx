@@ -1,27 +1,7 @@
 package funkin.ui.debug.charting.handlers;
 
 #if FEATURE_CHART_EDITOR
-import funkin.data.song.importer.FNFLegacyData;
-import funkin.data.song.importer.OsuManiaData;
-import funkin.data.song.importer.StepManiaData;
-import funkin.data.song.SongData.SongCharacterData;
-import funkin.data.song.SongData.SongMetadata;
-import funkin.data.song.SongRegistry;
-import funkin.play.character.BaseCharacter.CharacterType;
-import funkin.ui.debug.charting.dialogs.ChartEditorBaseDialog.DialogDropTarget;
-import funkin.ui.debug.charting.dialogs.ChartEditorUploadChartDialog;
-import funkin.ui.debug.charting.dialogs.ChartEditorUploadVocalsDialog;
-import funkin.util.Constants;
-import funkin.util.FileUtil;
-import haxe.io.Path;
-import haxe.ui.components.DropDown;
-import haxe.ui.components.NumberStepper;
 import haxe.ui.components.TextField;
-import haxe.ui.containers.dialogs.Dialog;
-import haxe.ui.containers.dialogs.Dialogs;
-import haxe.ui.containers.Form;
-import haxe.ui.core.Component;
-import haxe.ui.RuntimeComponentBuilder;
 
 using Lambda;
 

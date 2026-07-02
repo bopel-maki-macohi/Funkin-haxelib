@@ -1,10 +1,6 @@
 package funkin.ui.debug.charting.dialogs;
 
 #if FEATURE_CHART_EDITOR
-import funkin.ui.debug.charting.dialogs.ChartEditorBaseDialog.DialogDropTarget;
-import funkin.util.FileUtil;
-import haxe.ui.containers.dialogs.Dialog.DialogButton;
-import haxe.ui.containers.dialogs.Dialogs.SelectedFileInfo;
 
 // @:nullSafety // TODO: Fix null safety when used with HaxeUI build macros.
 @:build(haxe.ui.ComponentBuilder.build("assets/exclude/data/ui/chart-editor/dialogs/upload-chart.xml"))

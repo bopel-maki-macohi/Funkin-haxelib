@@ -1,6 +1,5 @@
 package funkin.ui.freeplay;
 
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 
 @:nullSafety
 class FreeplayScore extends FlxTypedSpriteGroup<ScoreNum>

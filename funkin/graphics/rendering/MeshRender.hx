@@ -1,6 +1,5 @@
 package funkin.graphics.rendering;
 
-import flixel.util.FlxColor;
 
 /**
  * Yoinked from AustinEast, thanks hopefully u dont mind me using some of ur good code

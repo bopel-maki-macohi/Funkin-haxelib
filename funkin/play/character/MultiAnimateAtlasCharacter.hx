@@ -1,8 +1,5 @@
 package funkin.play.character;
 
-import funkin.util.assets.FlxAnimationUtil;
-import flixel.graphics.frames.FlxAtlasFrames;
-import funkin.data.animation.AnimationData;
 
 /**
  * This render type is the most complex, and is used by characters which use

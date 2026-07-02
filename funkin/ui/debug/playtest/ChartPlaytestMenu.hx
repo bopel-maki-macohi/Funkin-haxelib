@@ -1,10 +1,6 @@
 package funkin.ui.debug.playtest;
 
 #if sys
-import flixel.util.FlxColor;
-import funkin.util.file.FNFCUtil;
-import funkin.graphics.FunkinSprite;
-import funkin.ui.debug.playtest.ChartPlaytestMenuButton;
 #if NO_FEATURE_TOUCH_CONTROLS
 #end
 

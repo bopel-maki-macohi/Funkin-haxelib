@@ -1,10 +1,5 @@
 package funkin.ui.debug;
 
-import flixel.FlxObject;
-import funkin.ui.MusicBeatSubState;
-import funkin.audio.FunkinSound;
-import funkin.ui.debug.charting.ChartEditorState;
-import flixel.addons.transition.FlxTransitionableState;
 
 class DebugMenuSubState extends MusicBeatSubState
 {

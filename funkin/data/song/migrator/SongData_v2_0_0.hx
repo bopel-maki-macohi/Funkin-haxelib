@@ -1,6 +1,5 @@
 package funkin.data.song.migrator;
 
-import funkin.data.song.SongData;
 
 class SongMetadata_v2_0_0
 {

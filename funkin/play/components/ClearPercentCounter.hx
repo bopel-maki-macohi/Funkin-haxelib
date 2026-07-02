@@ -1,7 +1,5 @@
 package funkin.play.components;
 
-import funkin.graphics.shaders.PureColor;
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 
 /**
  * Numerical counters used to display the clear percent.

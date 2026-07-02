@@ -1,6 +1,5 @@
 package funkin.play.notes.notekind;
 
-import funkin.modding.events.ScriptEvent;
 
 /**
  * Class for note scripts

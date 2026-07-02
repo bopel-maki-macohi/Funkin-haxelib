@@ -1,11 +1,5 @@
 package funkin.ui.transition.preload;
 
-import openfl.events.MouseEvent;
-import flash.display.BitmapData;
-import flash.Lib;
-import funkin.util.MathUtil;
-import openfl.text.TextField;
-import openfl.text.TextFormatAlign;
 
 using StringTools;
 

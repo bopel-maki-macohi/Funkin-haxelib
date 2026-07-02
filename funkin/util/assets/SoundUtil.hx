@@ -1,7 +1,5 @@
 package funkin.util.assets;
 
-import openfl.media.Sound as OpenFLSound;
-import lime.media.AudioBuffer;
 
 @:nullSafety
 class SoundUtil

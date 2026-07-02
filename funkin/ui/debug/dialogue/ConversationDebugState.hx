@@ -1,7 +1,5 @@
 package funkin.ui.debug.dialogue;
 
-import funkin.modding.events.ScriptEvent;
-import funkin.data.dialogue.ConversationRegistry;
 
 /**
  * A state with displays a conversation with no background.

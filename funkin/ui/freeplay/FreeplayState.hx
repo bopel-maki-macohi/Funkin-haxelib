@@ -1,33 +1,6 @@
 package funkin.ui.freeplay;
 
-import flixel.FlxObject;
-import flixel.addons.transition.FlxTransitionableState;
-import flixel.math.FlxMath;
-import flixel.text.FlxText;
-import flixel.tweens.FlxTween;
-import openfl.filters.ShaderFilter;
-import funkin.audio.FunkinSound;
-import funkin.ui.freeplay.dj.BaseFreeplayDJ;
-import funkin.ui.freeplay.dj.SparrowFreeplayDJ;
-import funkin.ui.freeplay.dj.PackerFreeplayDJ;
-import funkin.data.song.SongRegistry;
-import funkin.effects.IntervalShake;
-import funkin.graphics.FunkinSprite;
-import funkin.graphics.shaders.BlueFade;
-import funkin.graphics.shaders.PureColor;
 import funkin.input.Controls;
-import funkin.modding.events.ScriptEventDispatcher;
-import funkin.play.scoring.Scoring;
-import funkin.play.song.Song;
-import funkin.save.Save.SaveScoreData;
-import funkin.ui.FullScreenScaleMode;
-import funkin.ui.freeplay.backcards.*;
-import funkin.ui.freeplay.charselect.PlayableCharacter;
-import funkin.ui.story.Level;
-import funkin.ui.transition.stickers.StickerSubState;
-import funkin.util.MathUtil;
-import openfl.display.BlendMode;
-import funkin.data.freeplay.style.FreeplayStyleRegistry;
 #if FEATURE_CHART_EDITOR
 #end
 #if FEATURE_STAGE_EDITOR
@@ -35,7 +8,6 @@ import funkin.data.freeplay.style.FreeplayStyleRegistry;
 #if FEATURE_DISCORD_RPC
 #end
 #if FEATURE_TOUCH_CONTROLS
-import funkin.util.SwipeUtil;
 #end
 
 /**

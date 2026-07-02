@@ -1,6 +1,5 @@
 package funkin.graphics.shaders;
 
-import flixel.util.FlxColor;
 
 /*
   A shader that takes in various values for certain "lights" in the "sserafim" stage and uses those

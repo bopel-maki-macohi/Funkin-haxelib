@@ -1,14 +1,5 @@
 package funkin.ui.transition.stickers;
 
-import flixel.FlxG;
-import flixel.FlxCamera;
-import flixel.math.FlxMath;
-import flixel.util.FlxTimer;
-import funkin.util.HapticUtil;
-import funkin.graphics.FunkinSprite;
-import funkin.ui.MusicBeatSubState;
-import funkin.FunkinMemory;
-import funkin.Preferences;
 
 using Lambda;
 using StringTools;

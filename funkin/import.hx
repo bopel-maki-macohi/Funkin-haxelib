@@ -2,9 +2,6 @@ package;
 
 #if !macro
 // Only import these when we aren't in a macro.
-import funkin.Assets;
-import funkin.Preferences;
-import flixel.system.debug.watch.Tracker;
 
 // These are great.
 using Lambda;

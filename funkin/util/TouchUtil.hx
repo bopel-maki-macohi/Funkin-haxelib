@@ -7,11 +7,8 @@
 // - Zack
 package funkin.util;
 
-import flixel.FlxCamera;
-import flixel.FlxObject;
 #if FLX_TOUCH
 #end
-import flixel.math.FlxPoint;
 
 /**
  * Utility class for handling touch input within the FlxG context.

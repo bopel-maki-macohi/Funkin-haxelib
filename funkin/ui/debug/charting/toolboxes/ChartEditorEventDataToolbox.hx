@@ -1,19 +1,6 @@
 package funkin.ui.debug.charting.toolboxes;
 
 #if FEATURE_CHART_EDITOR
-import funkin.data.event.SongEventSchema;
-import haxe.ui.components.CheckBox;
-import haxe.ui.components.Label;
-import haxe.ui.core.Component;
-import haxe.ui.components.TextField;
-import haxe.ui.containers.HBox;
-import haxe.ui.containers.Frame;
-import haxe.ui.data.ArrayDataSource;
-import haxe.ui.components.Image;
-import openfl.display.Bitmap;
-import openfl.geom.Rectangle;
-import flixel.util.FlxTimer;
-import flixel.FlxG;
 
 /**
  * The toolbox which allows modifying information like Song Title, Scroll Speed, Characters/Stages, and starting BPM.

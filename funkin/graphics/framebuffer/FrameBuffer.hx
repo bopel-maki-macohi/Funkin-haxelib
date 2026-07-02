@@ -1,9 +1,5 @@
 package funkin.graphics.framebuffer;
 
-import flixel.FlxCamera;
-import openfl.Lib;
-import openfl.display3D.textures.TextureBase;
-import openfl.geom.Rectangle;
 
 /**
  * A single frame buffer. Used by `FrameBufferManager`.

@@ -1,14 +1,5 @@
 package funkin.play.cutscene.dialogue;
 
-import flixel.tweens.FlxEase;
-import flixel.util.FlxColor;
-import funkin.audio.FunkinSound;
-import funkin.data.dialogue.ConversationData.DialogueEntryData;
-import funkin.data.dialogue.DialogueBoxRegistry;
-import funkin.data.IRegistryEntry;
-import funkin.modding.events.ScriptEvent;
-import funkin.modding.IScriptedClass.IDialogueScriptedClass;
-import funkin.util.SortUtil;
 
 /**
  * A high-level handler for dialogue.

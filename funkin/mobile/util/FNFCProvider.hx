@@ -3,9 +3,7 @@ package funkin.mobile.util;
 #if ios
 #end
 #if android
-import funkin.external.android.CallbackUtil;
 #end
-import flixel.util.FlxSignal;
 
 /**
  * A class for handling the flow of loading FNFC song packs on mobile.

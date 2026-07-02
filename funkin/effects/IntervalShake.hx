@@ -1,9 +1,5 @@
 package funkin.effects;
 
-import flixel.util.FlxDestroyUtil.IFlxDestroyable;
-import flixel.util.FlxTimer;
-import flixel.util.FlxAxes;
-import flixel.math.FlxMath;
 
 /**
  * pretty much a copy of FlxFlicker geared towards making sprites

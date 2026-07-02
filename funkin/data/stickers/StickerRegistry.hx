@@ -1,6 +1,5 @@
 package funkin.data.stickers;
 
-import funkin.ui.transition.stickers.StickerPack;
 
 @:nullSafety
 class StickerRegistry extends BaseRegistry<StickerPack, StickerData, StickerEntryParams>

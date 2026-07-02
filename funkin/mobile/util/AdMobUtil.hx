@@ -1,9 +1,6 @@
 package funkin.mobile.util;
 
 #if FEATURE_MOBILE_ADVERTISEMENTS
-import extension.admob.AdmobBannerAlign;
-import extension.admob.AdmobEvent;
-import funkin.play.cutscene.VideoCutscene;
 
 /**
  * Provides utility functions for working with admob advertisements.

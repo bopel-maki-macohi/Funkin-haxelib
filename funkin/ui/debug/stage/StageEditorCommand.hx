@@ -1,7 +1,6 @@
 package funkin.ui.debug.stage;
 
 #if FEATURE_STAGE_EDITOR
-import flixel.FlxSprite;
 
 /**
  * Very similar to eric's implementation

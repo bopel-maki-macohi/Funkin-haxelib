@@ -1,6 +1,5 @@
 package funkin.util.macro;
 
-import haxe.macro.Expr;
 #if !macro
 #end
 

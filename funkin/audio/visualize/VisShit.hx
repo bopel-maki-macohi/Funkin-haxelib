@@ -1,7 +1,5 @@
 package funkin.audio.visualize;
 
-import flixel.sound.FlxSound;
-import lime.utils.Int16Array;
 
 using Lambda;
 

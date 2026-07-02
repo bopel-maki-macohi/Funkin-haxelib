@@ -1,23 +1,6 @@
 package funkin.play;
 
-import flixel.FlxState;
-import flixel.addons.display.FlxBackdrop;
-import flixel.FlxSprite;
-import flixel.graphics.frames.FlxBitmapFont;
-import flixel.math.FlxPoint;
-import flixel.text.FlxBitmapText;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxGradient;
-import funkin.audio.FunkinSound;
-import funkin.data.freeplay.player.PlayerRegistry;
-import funkin.graphics.FunkinCamera;
-import funkin.graphics.shaders.LeftMaskShader;
-import funkin.play.components.TallyCounter;
-import funkin.play.song.Song;
-import funkin.ui.freeplay.charselect.PlayableCharacter;
 import funkin.ui.FullScreenScaleMode;
-import funkin.ui.story.StoryMenuState;
-import funkin.graphics.ScriptedFunkinSprite;
 #if FEATURE_NEWGROUNDS
 #end
 #if mobile

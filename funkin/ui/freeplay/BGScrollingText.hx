@@ -1,7 +1,5 @@
 package funkin.ui.freeplay;
 
-import flixel.text.FlxText;
-import flixel.util.FlxSort;
 
 // its kinda like marqeee html lol!
 @:nullSafety

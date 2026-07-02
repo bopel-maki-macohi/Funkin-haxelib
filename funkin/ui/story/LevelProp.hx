@@ -1,6 +1,5 @@
 package funkin.ui.story;
 
-import funkin.util.assets.FlxAnimationUtil;
 
 class LevelProp extends Bopper
 {

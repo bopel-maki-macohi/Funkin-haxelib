@@ -1,15 +1,6 @@
 package funkin.save;
 
-import funkin.input.Controls.Device;
-import funkin.play.scoring.Scoring;
-import funkin.save.migrator.RawSaveData_v1_0_0;
-import funkin.ui.debug.charting.ChartEditorState.ChartEditorLiveInputStyle;
-import funkin.ui.debug.stageeditor.StageEditorState.StageEditorTheme;
-import funkin.util.macro.ConsoleMacro;
-import funkin.util.SerializerUtil;
-import thx.semver.Version;
 #if FEATURE_NEWGROUNDS
-import funkin.api.newgrounds.Leaderboards;
 #end
 
 @:nullSafety

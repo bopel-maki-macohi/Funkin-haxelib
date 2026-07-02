@@ -1,9 +1,7 @@
 package funkin.play.event;
 
-import funkin.play.character.BaseCharacter;
 // Data from the chart
 // Data from the event schema
-import funkin.data.event.SongEventSchema.SongEventFieldType;
 
 /**
  * This class handles song events which force a specific character or stage prop to play an animation.

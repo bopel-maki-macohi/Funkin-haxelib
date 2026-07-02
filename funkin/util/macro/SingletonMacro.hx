@@ -1,7 +1,5 @@
 package funkin.util.macro;
 
-import haxe.macro.Type.ClassType;
-import haxe.macro.Expr.ComplexType;
 
 using haxe.macro.Tools;
 

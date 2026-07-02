@@ -1,16 +1,5 @@
 package funkin.mobile.ui;
 
-import flixel.graphics.FlxGraphic;
-import flixel.input.actions.FlxActionInput;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxDestroyUtil;
-import funkin.graphics.shaders.HSVShader;
-import funkin.mobile.input.ControlsHandler;
-import openfl.display.BitmapData;
-import openfl.geom.Matrix;
-import funkin.data.notestyle.NoteStyleRegistry;
-import funkin.data.animation.AnimationData;
-import funkin.ui.FullScreenScaleMode;
 
 enum FunkinHintAlphaStyle
 {

@@ -1,8 +1,5 @@
 package funkin;
 
-import animate.FlxAnimateFrames;
-import openfl.utils.AssetType;
-import haxe.io.Path;
 
 /**
  * A core class which handles determining asset paths.

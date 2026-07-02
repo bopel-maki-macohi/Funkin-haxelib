@@ -1,8 +1,6 @@
 package funkin.util.macro;
 
 #if macro
-import haxe.macro.Expr;
-import sys.io.File;
 #end
 
 using StringTools;

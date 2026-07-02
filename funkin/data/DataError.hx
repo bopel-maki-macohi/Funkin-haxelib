@@ -1,6 +1,5 @@
 package funkin.data;
 
-import json2object.Position.Line;
 
 @:nullSafety
 class DataError

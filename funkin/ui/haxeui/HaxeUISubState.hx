@@ -1,10 +1,6 @@
 package funkin.ui.haxeui;
 
 #if FEATURE_HAXEUI
-import haxe.ui.components.CheckBox;
-import haxe.ui.core.Component;
-import funkin.ui.MusicBeatSubState;
-import haxe.ui.events.UIEvent;
 
 class HaxeUISubState extends MusicBeatSubState
 {

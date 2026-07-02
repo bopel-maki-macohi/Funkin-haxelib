@@ -1,20 +1,6 @@
 package funkin.ui.debug.anim;
 
 #if FEATURE_ANIMATION_EDITOR
-import flixel.addons.display.FlxGridOverlay;
-import flixel.FlxSprite;
-import flixel.graphics.frames.FlxFrame;
-import flixel.math.FlxPoint;
-import flixel.util.FlxColor;
-import funkin.play.character.BaseCharacter;
-import funkin.data.character.CharacterData.CharacterDataParser;
-import funkin.util.MouseUtil;
-import funkin.util.SortUtil;
-import haxe.ui.containers.dialogs.CollapsibleDialog;
-import haxe.ui.events.UIEvent;
-import lime.utils.Assets as LimeAssets;
-import openfl.events.IOErrorEvent;
-import openfl.net.FileReference;
 
 using flixel.util.FlxSpriteUtil;
 

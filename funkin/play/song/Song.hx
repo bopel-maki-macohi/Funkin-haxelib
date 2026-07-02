@@ -1,13 +1,5 @@
 package funkin.play.song;
 
-import funkin.audio.FunkinSound;
-import funkin.data.song.SongData.SongCharacterData;
-import funkin.data.song.SongData.SongEventData;
-import funkin.data.song.SongData.SongNoteData;
-import funkin.data.song.SongData.SongTimeChange;
-import funkin.data.song.SongRegistry;
-import funkin.modding.events.ScriptEvent;
-import funkin.data.freeplay.player.PlayerRegistry;
 
 /**
  * This is a data structure managing information about the current song.

@@ -1,7 +1,5 @@
 package funkin.input;
 
-import flixel.FlxBasic;
-import funkin.input.Controls.Action;
 
 /**
  * Handles repeating behavior when holding down a control action.

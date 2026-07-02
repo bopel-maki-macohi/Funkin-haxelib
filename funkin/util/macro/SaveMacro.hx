@@ -1,7 +1,6 @@
 package funkin.util.macro;
 
 #if macro
-import haxe.macro.Expr;
 
 using haxe.macro.Tools;
 #end

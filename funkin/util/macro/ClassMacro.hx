@@ -1,6 +1,5 @@
 package funkin.util.macro;
 
-import haxe.macro.Expr;
 
 /**
  * Macros to generate lists of classes at compile time.

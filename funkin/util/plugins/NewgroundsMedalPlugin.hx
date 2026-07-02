@@ -1,11 +1,6 @@
 package funkin.util.plugins;
 
 #if FEATURE_NEWGROUNDS
-import flixel.group.FlxContainer.FlxTypedContainer;
-import funkin.audio.FunkinSound;
-import funkin.graphics.FunkinSprite;
-import funkin.api.newgrounds.Medals;
-import funkin.ui.FullScreenScaleMode;
 
 /**
  * Handles global display of the Newgrounds medal popup.

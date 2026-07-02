@@ -1,6 +1,5 @@
 package funkin.ui.options;
 
-import openfl.display.Bitmap;
 
 /**
  *  Extends the default flixel soundtray, but with some art

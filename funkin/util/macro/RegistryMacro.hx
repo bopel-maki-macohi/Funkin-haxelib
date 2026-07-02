@@ -1,9 +1,5 @@
 package funkin.util.macro;
 
-import haxe.macro.Expr;
-import haxe.macro.Expr.Field;
-import haxe.macro.Expr.MetadataEntry;
-import haxe.macro.Type.ClassType;
 
 using Lambda;
 using haxe.macro.ExprTools;

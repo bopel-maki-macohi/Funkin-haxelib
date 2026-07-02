@@ -1,18 +1,7 @@
 package funkin.ui.options;
 
-import flixel.FlxObject;
-import flixel.text.FlxText;
-import flixel.FlxG;
-import flixel.math.FlxPoint;
-import funkin.ui.Page;
-import funkin.graphics.FunkinSprite;
-import funkin.ui.options.items.CheckboxPreferenceItem;
-import funkin.ui.options.items.EnumPreferenceItem;
 #if mobile
-import funkin.mobile.input.ControlsHandler;
-import funkin.util.TouchUtil;
 #end
-import lime.ui.WindowVSyncMode;
 
 class PreferencesMenu extends Page<OptionsState.OptionsMenuPageName>
 {

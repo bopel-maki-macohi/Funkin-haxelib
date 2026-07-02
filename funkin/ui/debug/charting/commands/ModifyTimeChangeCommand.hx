@@ -1,7 +1,6 @@
 package funkin.ui.debug.charting.commands;
 
 #if FEATURE_CHART_EDITOR
-import funkin.ui.debug.charting.toolboxes.ChartEditorMetadataToolbox;
 
 /**
  * A command which modifies the give time change in the current song's time changes.

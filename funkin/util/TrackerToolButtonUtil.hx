@@ -1,6 +1,5 @@
 package funkin.util;
 
-import flixel.system.debug.interaction.Interaction;
 
 /**
  * the name is a bit of a mouthful, but this adds a button to the

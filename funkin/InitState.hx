@@ -1,24 +1,6 @@
 package funkin;
 
-import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
-import flixel.FlxSprite;
-import flixel.graphics.FlxGraphic;
-import flixel.math.FlxRect;
-import flixel.util.FlxColor;
-import funkin.data.dialogue.ConversationRegistry;
-import funkin.data.dialogue.SpeakerRegistry;
-import funkin.data.freeplay.player.PlayerRegistry;
-import funkin.data.notestyle.NoteStyleRegistry;
-import funkin.data.stickers.StickerRegistry;
-import funkin.data.event.SongEventRegistry;
-import funkin.data.story.level.LevelRegistry;
-import funkin.data.character.CharacterData.CharacterDataParser;
-import funkin.play.PlayStatePlaylist;
-import funkin.ui.debug.stageeditor.StageEditorState;
 import funkin.ui.transition.LoadingState;
-import funkin.util.CLIUtil.CLIParams;
-import funkin.util.TrackerUtil;
-import openfl.display.BitmapData;
 #if FEATURE_DISCORD_RPC
 #end
 #if FEATURE_NEWGROUNDS

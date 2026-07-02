@@ -1,7 +1,5 @@
 package funkin.play;
 
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-import flixel.util.FlxTimer;
 
 class ResultScore extends FlxTypedSpriteGroup<ScoreNum>
 {

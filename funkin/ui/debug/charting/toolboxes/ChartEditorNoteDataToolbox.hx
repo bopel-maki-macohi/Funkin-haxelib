@@ -1,12 +1,6 @@
 package funkin.ui.debug.charting.toolboxes;
 
 #if FEATURE_CHART_EDITOR
-import haxe.ui.components.TextField;
-import haxe.ui.components.NumberStepper;
-import haxe.ui.core.Component;
-import funkin.ui.debug.charting.util.ChartEditorDropdowns;
-import funkin.play.notes.notekind.NoteKind.NoteKindParam;
-import funkin.data.song.SongData.NoteParamData;
 
 /**
  * The toolbox which allows modifying information like Note Kind.

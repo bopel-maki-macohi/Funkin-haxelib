@@ -1,12 +1,6 @@
 package funkin.util;
 
-import lime.utils.Bytes;
-import openfl.Lib;
-import haxe.io.Path;
-import openfl.events.Event;
 #if FEATURE_HAXEUI
-import haxe.ui.containers.dialogs.Dialogs;
-import haxe.ui.containers.dialogs.Dialogs.FileDialogExtensionInfo;
 #end
 
 using StringTools;

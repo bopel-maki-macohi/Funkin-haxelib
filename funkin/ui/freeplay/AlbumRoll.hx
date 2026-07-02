@@ -1,8 +1,5 @@
 package funkin.ui.freeplay;
 
-import flixel.group.FlxSpriteGroup;
-import flixel.util.FlxTimer;
-import funkin.graphics.FunkinSprite;
 
 /**
  * The graphic for the album roll in the FreeplayState.

@@ -1,6 +1,5 @@
 package funkin.ui.freeplay;
 
-import flixel.FlxSprite;
 
 @:nullSafety
 class FreeplayFlames extends FlxSpriteGroup

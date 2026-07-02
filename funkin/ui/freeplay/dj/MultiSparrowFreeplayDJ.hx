@@ -1,7 +1,5 @@
 package funkin.ui.freeplay.dj;
 
-import flixel.graphics.frames.FlxAtlasFrames;
-import funkin.data.freeplay.player.PlayerRegistry;
 
 /**
  * A script that can be tied to a MultiSparrowFreeplayDJ.

@@ -1,7 +1,5 @@
 package funkin.play.components;
 
-import flixel.tweens.FlxTween;
-import funkin.util.EaseUtil;
 
 @:nullSafety
 class PopUpStuff extends FlxTypedGroup<FunkinSprite>

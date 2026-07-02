@@ -1,8 +1,6 @@
 package funkin.ui.debug.charting.components;
 
 #if FEATURE_CHART_EDITOR
-import flixel.math.FlxRect;
-import funkin.data.song.SongData.SongNoteData;
 
 /**
  * A sprite that can be used to display a square over a selected note or event in the chart.

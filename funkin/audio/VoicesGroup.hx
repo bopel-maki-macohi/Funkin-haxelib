@@ -1,6 +1,5 @@
 package funkin.audio;
 
-import funkin.audio.waveform.WaveformData;
 
 @:nullSafety
 class VoicesGroup extends SoundGroup

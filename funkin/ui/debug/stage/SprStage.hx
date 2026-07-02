@@ -1,7 +1,6 @@
 package funkin.ui.debug.stage;
 
 #if FEATURE_STAGE_EDITOR
-import flixel.input.mouse.FlxMouseEvent;
 
 class SprStage extends FlxSprite
 {

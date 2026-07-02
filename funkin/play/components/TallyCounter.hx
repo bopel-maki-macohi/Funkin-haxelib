@@ -1,7 +1,5 @@
 package funkin.play.components;
 
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-import funkin.util.MathUtil;
 
 /**
  * Numerical counters used next to each judgement in the Results screen.

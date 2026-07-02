@@ -1,13 +1,6 @@
 package funkin.ui.debug.stageeditor.toolboxes;
 
 #if FEATURE_STAGE_EDITOR
-import funkin.play.character.BaseCharacter.CharacterType;
-import funkin.data.character.CharacterData;
-import funkin.save.Save;
-import haxe.ui.components.Slider;
-import haxe.ui.core.Screen;
-import flixel.tweens.FlxEase;
-import haxe.ui.events.UIEvent;
 
 using StringTools;
 

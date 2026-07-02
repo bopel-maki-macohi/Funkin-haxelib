@@ -1,6 +1,5 @@
 package funkin.input;
 
-import flixel.input.gamepad.FlxGamepad;
 
 /**
  * Handles repeating behavior when holding down a gamepad button or button combination.

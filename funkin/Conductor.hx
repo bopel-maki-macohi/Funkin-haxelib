@@ -1,10 +1,5 @@
 package funkin;
 
-import flixel.util.FlxSignal;
-import funkin.data.song.SongData.SongTimeChange;
-import funkin.play.PlayState;
-import funkin.util.TimerUtil.SongSequence;
-import flixel.sound.FlxSound;
 
 /**
  * A core class which handles musical timing throughout the game,

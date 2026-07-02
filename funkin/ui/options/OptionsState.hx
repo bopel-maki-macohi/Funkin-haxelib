@@ -1,18 +1,8 @@
 package funkin.ui.options;
 
-import funkin.ui.transition.LoadingState;
-import funkin.ui.TextMenuList;
-import funkin.ui.TextMenuList.TextMenuItem;
-import flixel.FlxSprite;
-import flixel.FlxSubState;
-import flixel.util.FlxSignal;
-import funkin.ui.mainmenu.MainMenuState;
-import funkin.graphics.shaders.HSVShader;
 #if FEATURE_NEWGROUNDS
 #end
 #if mobile
-import funkin.mobile.ui.FunkinBackButton;
-import funkin.mobile.ui.options.ControlsSchemeMenu;
 #end
 #if FEATURE_MOBILE_IAP
 #end

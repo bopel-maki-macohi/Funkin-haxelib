@@ -1,8 +1,5 @@
 package funkin.data.freeplay.player;
 
-import funkin.ui.freeplay.charselect.PlayableCharacter;
-import funkin.save.Save;
-import funkin.data.DefaultRegistryImpl;
 
 @:nullSafety
 class PlayerRegistry extends BaseRegistry<PlayableCharacter, PlayerData, PlayerEntryParams> implements ISingleton implements DefaultRegistryImpl

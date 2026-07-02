@@ -1,6 +1,5 @@
 package funkin.effects;
 
-import flixel.FlxCamera;
 
 @:nullSafety
 class RetroCameraFade

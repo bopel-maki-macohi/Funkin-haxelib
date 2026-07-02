@@ -1,10 +1,5 @@
 package funkin.mobile.input;
 
-import flixel.input.FlxInput;
-import flixel.input.actions.FlxActionInput;
-import funkin.mobile.ui.FunkinButton;
-import funkin.play.notes.NoteDirection;
-import openfl.events.TouchEvent;
 #if android
 #end
 

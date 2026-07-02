@@ -1,9 +1,5 @@
 package funkin.play.cutscene.dialogue;
 
-import funkin.data.IRegistryEntry;
-import flixel.graphics.frames.FlxFramesCollection;
-import funkin.modding.IScriptedClass.IDialogueScriptedClass;
-import funkin.data.dialogue.SpeakerRegistry;
 
 /**
  * The character sprite which displays during dialogue.

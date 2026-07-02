@@ -1,8 +1,5 @@
 package funkin.audio.visualize;
 
-import flixel.math.FlxPoint;
-import flixel.util.FlxColor;
-import funkin.graphics.rendering.MeshRender;
 
 class PolygonSpectogram extends MeshRender
 {

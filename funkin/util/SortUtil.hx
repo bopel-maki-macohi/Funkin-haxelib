@@ -1,9 +1,7 @@
 package funkin.util;
 
 #if !macro
-import flixel.util.FlxSort;
 #end
-import funkin.data.song.SongData.SongEventData;
 
 /**
  * Utility functions related to sorting.

@@ -1,6 +1,5 @@
 package funkin.play.scoring;
 
-import funkin.save.Save.SaveScoreTallyData;
 
 /**
  * Which system to use when scoring and judging notes.

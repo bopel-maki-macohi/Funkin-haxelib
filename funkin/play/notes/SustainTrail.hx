@@ -1,8 +1,5 @@
 package funkin.play.notes;
 
-import funkin.data.song.SongData.SongNoteData;
-import flixel.FlxSprite;
-import flixel.graphics.tile.FlxDrawTrianglesItem.DrawData;
 
 /**
  * This is based heavily on the `FlxStrip` class. It uses `drawTriangles()` to clip a sustain note

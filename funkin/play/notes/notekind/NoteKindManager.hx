@@ -1,9 +1,5 @@
 package funkin.play.notes.notekind;
 
-import funkin.modding.events.ScriptEventDispatcher;
-import funkin.ui.debug.charting.util.ChartEditorDropdowns;
-import funkin.play.notes.notestyle.NoteStyle;
-import funkin.play.notes.notekind.NoteKind.NoteKindParam;
 
 class NoteKindManager
 {

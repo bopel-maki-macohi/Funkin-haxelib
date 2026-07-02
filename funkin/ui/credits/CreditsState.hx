@@ -1,9 +1,5 @@
 package funkin.ui.credits;
 
-import flixel.util.FlxColor;
-import flixel.FlxSprite;
-import flixel.group.FlxSpriteGroup;
-import funkin.ui.credits.CreditsData.CreditsDataRole;
 
 /**
  * The state used to display the credits scroll.

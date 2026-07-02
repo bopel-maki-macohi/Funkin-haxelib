@@ -1,13 +1,5 @@
 package funkin.ui.freeplay;
 
-import flixel.FlxObject;
-import flixel.group.FlxGroup;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxColor;
-import funkin.input.Controls;
-import funkin.util.TouchUtil;
-import flixel.FlxCamera;
-import funkin.audio.FunkinSound;
 
 class LetterSort extends FlxSpriteGroup
 {

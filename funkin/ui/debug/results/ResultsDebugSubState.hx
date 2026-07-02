@@ -1,9 +1,5 @@
 package funkin.ui.debug.results;
 
-import funkin.ui.MenuList.MenuTypedList;
-import flixel.text.FlxText;
-import funkin.ui.freeplay.charselect.PlayableCharacter;
-import flixel.util.FlxTimer;
 
 /**
  * Debug substate to configure the results screen for testing purposes,

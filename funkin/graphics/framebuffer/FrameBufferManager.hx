@@ -1,7 +1,5 @@
 package funkin.graphics.framebuffer;
 
-import flixel.FlxG;
-import flixel.util.FlxColor;
 
 /**
  * Manages frame buffers and gives access to each frame buffer.

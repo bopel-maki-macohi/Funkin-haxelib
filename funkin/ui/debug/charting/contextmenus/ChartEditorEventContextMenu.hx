@@ -1,10 +1,6 @@
 package funkin.ui.debug.charting.contextmenus;
 
 #if FEATURE_CHART_EDITOR
-import haxe.ui.components.NumberStepper;
-import haxe.ui.components.Label;
-import haxe.ui.events.UIEvent;
-import funkin.ui.debug.charting.commands.MoveEventsCommand;
 
 @:access(funkin.ui.debug.charting.ChartEditorState)
 @:build(haxe.ui.ComponentBuilder.build("assets/exclude/data/ui/chart-editor/context-menus/event.xml"))

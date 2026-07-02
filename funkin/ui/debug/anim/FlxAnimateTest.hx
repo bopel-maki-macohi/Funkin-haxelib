@@ -1,7 +1,5 @@
 package funkin.ui.debug.anim;
 
-import funkin.graphics.FunkinSprite;
-import funkin.util.macro.ConsoleMacro;
 
 /**
  * A simple test of FlxAnimate.

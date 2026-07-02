@@ -1,10 +1,6 @@
 package funkin.ui.debug.charting.components;
 
 #if FEATURE_CHART_EDITOR
-import flixel.FlxSprite;
-import flixel.text.FlxText;
-import funkin.graphics.FunkinSprite;
-import openfl.geom.Rectangle;
 
 /**
  * Handles the display of the measure ticks and numbers on the left side.

@@ -1,6 +1,5 @@
 package funkin.graphics.shaders;
 
-import flixel.math.FlxPoint;
 
 @:nullSafety
 class MosaicEffect extends FlxRuntimeShader

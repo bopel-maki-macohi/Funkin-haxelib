@@ -1,7 +1,5 @@
 package funkin.ui.story;
 
-import flixel.group.FlxSpriteGroup;
-import funkin.util.MathUtil;
 
 class LevelTitle extends FlxSpriteGroup
 {

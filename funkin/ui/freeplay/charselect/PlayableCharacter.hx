@@ -1,7 +1,5 @@
 package funkin.ui.freeplay.charselect;
 
-import funkin.data.freeplay.player.PlayerData;
-import funkin.play.scoring.Scoring.ScoringRank;
 
 /**
  * An object used to retrieve data about a playable character (also known as "weeks").

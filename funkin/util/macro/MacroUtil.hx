@@ -1,6 +1,5 @@
 package funkin.util.macro;
 
-import haxe.macro.Expr;
 
 /**
  * A collection of utility functions for Haxe macros.

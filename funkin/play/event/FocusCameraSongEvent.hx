@@ -2,7 +2,6 @@ package funkin.play.event;
 
 // Data from the chart
 // Data from the event schema
-import funkin.data.event.SongEventSchema.SongEventFieldType;
 
 /**
  * This class handles song events which change the camera focus.

@@ -1,9 +1,5 @@
 package funkin.data.song.importer; // import is a reserved word dumbass
 
-import funkin.data.song.SongData.SongChartData;
-import funkin.data.song.SongData.SongEventData;
-import funkin.data.song.SongData.SongTimeChange;
-import funkin.data.song.importer.FNFLegacyData.LegacyNoteSection;
 
 @:nullSafety
 class FNFLegacyImporter

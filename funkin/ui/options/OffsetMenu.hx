@@ -1,20 +1,7 @@
 package funkin.ui.options;
 
-import funkin.ui.TextMenuList.TextMenuItem;
-import funkin.mobile.ui.FunkinBackButton;
 #if mobile
-import funkin.mobile.ui.FunkinHitbox.FunkinHitboxControlSchemes;
-import funkin.util.TouchUtil;
 #end
-import funkin.audio.FunkinSound;
-import funkin.play.notes.NoteSprite;
-import funkin.graphics.FunkinSprite;
-import funkin.data.notestyle.NoteStyleRegistry;
-import funkin.play.notes.NoteSplash;
-import haxe.Int64;
-import flixel.text.FlxText;
-import flixel.math.FlxMath;
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 
 /**
  * Data structure for an arrow in the offset calibration/testing screen.

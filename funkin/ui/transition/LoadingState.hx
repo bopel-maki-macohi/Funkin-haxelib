@@ -1,15 +1,5 @@
 package funkin.ui.transition;
 
-import flixel.FlxSprite;
-import flixel.tweens.FlxEase;
-import flixel.util.FlxTimer;
-import funkin.graphics.FunkinSprite;
-import funkin.play.PlayState;
-import funkin.play.song.Song.SongDifficulty;
-import haxe.io.Path;
-import lime.app.Promise;
-import lime.utils.AssetManifest;
-import openfl.filters.ShaderFilter;
 
 @:nullSafety
 class LoadingState extends MusicBeatSubState

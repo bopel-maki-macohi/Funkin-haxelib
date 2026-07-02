@@ -1,8 +1,5 @@
 package funkin.graphics.shaders;
 
-import flixel.FlxG;
-import flixel.addons.display.FlxRuntimeShader;
-import lime.utils.Log;
 
 class RuntimePostEffectShader extends FlxRuntimeShader
 {

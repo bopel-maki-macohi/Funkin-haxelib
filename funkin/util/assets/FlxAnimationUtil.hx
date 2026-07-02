@@ -1,7 +1,5 @@
 package funkin.util.assets;
 
-import funkin.graphics.FunkinSprite;
-import funkin.data.animation.AnimationData;
 
 @:nullSafety
 class FlxAnimationUtil

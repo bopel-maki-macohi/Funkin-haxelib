@@ -1,6 +1,5 @@
 package funkin.ui;
 
-import funkin.ui.MenuList;
 
 typedef AtlasAsset = flixel.util.typeLimit.OneOfTwo<String, FlxAtlasFrames>;
 

@@ -1,14 +1,5 @@
 package funkin.audio;
 
-import flixel.math.FlxMath;
-import flixel.system.FlxAssets.FlxSoundAsset;
-import flixel.util.FlxSignal.FlxTypedSignal;
-import funkin.audio.waveform.WaveformDataParser;
-import funkin.data.song.SongRegistry;
-import funkin.util.flixel.sound.FlxPartialSound;
-import lime.app.Promise;
-import openfl.events.Event;
-import openfl.media.SoundChannel;
 
 /**
  * A FlxSound which adds additional functionality:

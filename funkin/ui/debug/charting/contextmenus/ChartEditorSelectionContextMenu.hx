@@ -1,14 +1,6 @@
 package funkin.ui.debug.charting.contextmenus;
 
 #if FEATURE_CHART_EDITOR
-import haxe.ui.containers.menus.MenuCheckBox;
-import haxe.ui.components.DropDown;
-import haxe.ui.events.UIEvent;
-import funkin.ui.debug.charting.commands.CutItemsCommand;
-import funkin.ui.debug.charting.commands.RemoveItemsCommand;
-import funkin.ui.debug.charting.commands.FlipNotesCommand;
-import funkin.ui.debug.charting.commands.SelectAllItemsCommand;
-import funkin.ui.debug.charting.commands.DeselectAllItemsCommand;
 
 @:access(funkin.ui.debug.charting.ChartEditorState)
 @:build(haxe.ui.ComponentBuilder.build("assets/exclude/data/ui/chart-editor/context-menus/selection.xml"))

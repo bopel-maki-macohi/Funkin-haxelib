@@ -1,7 +1,5 @@
 package funkin.data.dialogue;
 
-import funkin.play.cutscene.dialogue.ScriptedConversation;
-import funkin.data.DefaultRegistryImpl;
 
 @:nullSafety
 class ConversationRegistry extends BaseRegistry<Conversation, ConversationData, ConversationEntryParams> implements ISingleton implements DefaultRegistryImpl

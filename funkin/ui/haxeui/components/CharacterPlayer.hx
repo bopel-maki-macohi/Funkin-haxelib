@@ -1,11 +1,5 @@
 package funkin.ui.haxeui.components;
 
-import funkin.modding.events.ScriptEvent.NoteScriptEvent;
-import funkin.modding.events.ScriptEvent.HitNoteScriptEvent;
-import funkin.modding.events.ScriptEvent.UpdateScriptEvent;
-import funkin.data.character.CharacterData.CharacterDataParser;
-import haxe.ui.core.Component;
-import haxe.ui.geom.Size;
 
 typedef AnimationInfo =
 {

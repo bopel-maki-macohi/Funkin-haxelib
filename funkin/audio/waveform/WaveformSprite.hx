@@ -1,6 +1,5 @@
 package funkin.audio.waveform;
 
-import flixel.util.FlxColor;
 
 /**
  * A sprite which displays the waveform of audio data.

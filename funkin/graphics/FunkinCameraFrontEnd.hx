@@ -1,6 +1,5 @@
 package funkin.graphics;
 
-import flixel.system.frontEnds.CameraFrontEnd;
 
 /**
  * A `CameraFrontEnd` override that uses `FunkinCamera`!

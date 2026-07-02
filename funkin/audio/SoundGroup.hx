@@ -1,6 +1,5 @@
 package funkin.audio;
 
-import flixel.tweens.FlxTween;
 
 /**
  * A group of FunkinSounds that are all synced together.

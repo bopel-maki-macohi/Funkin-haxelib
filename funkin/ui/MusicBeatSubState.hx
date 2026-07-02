@@ -1,14 +1,6 @@
 package funkin.ui;
 
-import flixel.text.FlxText;
-import flixel.util.FlxColor;
-import funkin.modding.events.ScriptEvent;
-import funkin.modding.module.ModuleHandler;
-import funkin.util.SortUtil;
-import flixel.util.FlxSort;
 #if mobile
-import funkin.mobile.ui.FunkinHitbox;
-import funkin.mobile.ui.FunkinBackButton;
 #end
 
 /**

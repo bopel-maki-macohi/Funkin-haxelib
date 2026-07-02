@@ -1,6 +1,5 @@
 package funkin.audio.visualize;
 
-import flixel.sound.FlxSound;
 
 @:nullSafety
 class PolygonVisGroup extends FlxTypedGroup<PolygonSpectogram>

@@ -1,8 +1,6 @@
 package funkin.api.newgrounds;
 
 #if FEATURE_NEWGROUNDS_EVENTS
-import io.newgrounds.NG;
-import io.newgrounds.objects.events.Result;
 #end
 
 /**

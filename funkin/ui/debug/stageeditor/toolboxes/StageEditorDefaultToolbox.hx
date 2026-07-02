@@ -1,7 +1,6 @@
 package funkin.ui.debug.stageeditor.toolboxes;
 
 #if FEATURE_STAGE_EDITOR
-import funkin.audio.FunkinSound;
 
 @:access(funkin.ui.debug.stageeditor.StageEditorState)
 class StageEditorDefaultToolbox extends CollapsibleDialog

@@ -1,7 +1,5 @@
 package funkin.util.logging;
 
-import openfl.events.UncaughtErrorEvent;
-import flixel.FlxG.FlxRenderMethod;
 
 /**
  * A custom crash handler that writes to a log file and displays a message box.

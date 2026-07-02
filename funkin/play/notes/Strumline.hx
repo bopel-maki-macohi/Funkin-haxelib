@@ -1,15 +1,6 @@
 package funkin.play.notes;
 
-import flixel.FlxG;
-import funkin.play.notes.notestyle.NoteStyle;
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-import flixel.tweens.FlxTween;
-import funkin.graphics.FunkinSprite;
-import funkin.util.SortUtil;
-import funkin.play.notes.notekind.NoteKind;
-import flixel.math.FlxPoint;
 #if mobile
-import funkin.mobile.ui.FunkinHitbox.FunkinHitboxControlSchemes;
 #end
 
 /**

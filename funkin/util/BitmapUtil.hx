@@ -1,7 +1,5 @@
 package funkin.util;
 
-import openfl.display.BitmapData;
-import openfl.geom.Point;
 
 class BitmapUtil
 {

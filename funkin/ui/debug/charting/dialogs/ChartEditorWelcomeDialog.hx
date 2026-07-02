@@ -1,11 +1,6 @@
 package funkin.ui.debug.charting.dialogs;
 
 #if FEATURE_CHART_EDITOR
-import funkin.play.song.Song;
-import funkin.ui.debug.charting.dialogs.ChartEditorBaseDialog.DialogParams;
-import funkin.util.SortUtil;
-import haxe.ui.components.Link;
-import haxe.ui.containers.dialogs.Dialog.DialogEvent;
 
 /**
  * Builds and opens a dialog letting the user create a new chart, open a recent chart, or load from a template.

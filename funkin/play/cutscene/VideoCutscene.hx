@@ -1,8 +1,5 @@
 package funkin.play.cutscene;
 
-import flixel.tweens.FlxEase;
-import flixel.util.FlxColor;
-import funkin.play.PlayState;
 #if html5
 #end
 #if hxvlc

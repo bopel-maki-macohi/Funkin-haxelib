@@ -1,17 +1,8 @@
 package funkin.ui.title;
 
-import flixel.input.gamepad.FlxGamepad;
-import flixel.tweens.FlxEase;
-import flixel.util.FlxColor;
-import flixel.util.FlxTimer;
-import funkin.graphics.shaders.ColorSwap;
-import funkin.graphics.FunkinSprite;
-import funkin.audio.FunkinSound;
-import openfl.Assets;
 #if FEATURE_NEWGROUNDS
 #end
 #if mobile
-import funkin.util.SwipeUtil;
 #end
 
 class TitleState extends MusicBeatState

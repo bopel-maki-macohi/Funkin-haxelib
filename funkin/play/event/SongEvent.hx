@@ -1,7 +1,5 @@
 package funkin.play.event;
 
-import funkin.data.event.SongEventSchema;
-import funkin.modding.events.ScriptEvent;
 
 /**
  * Parameters used to initialize a song event.

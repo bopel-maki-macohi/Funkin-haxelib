@@ -1,6 +1,5 @@
 package funkin.play.event;
 
-import funkin.data.character.CharacterData.HealthIconData;
 
 /**
  * This class handles song events which change the player's health icon, or the opponent's health icon.

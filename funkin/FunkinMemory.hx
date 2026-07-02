@@ -1,9 +1,5 @@
 package funkin;
 
-import flixel.FlxG;
-import openfl.utils.AssetType;
-import openfl.system.System;
-import lime.app.Future;
 
 /**
  * Handles caching of textures and sounds for the game.

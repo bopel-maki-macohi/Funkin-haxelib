@@ -1,7 +1,6 @@
 package funkin.ui.debug.charting.commands;
 
 #if FEATURE_CHART_EDITOR
-import funkin.data.song.SongDataUtils;
 
 /**
  * Deletes the given notes from the current chart in the chart editor if any overlap another.

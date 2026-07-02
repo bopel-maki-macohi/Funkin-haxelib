@@ -1,10 +1,6 @@
 package funkin.ui.debug.charting.handlers;
 
 #if FEATURE_CHART_EDITOR
-import flixel.addons.display.FlxSliceSprite;
-import flixel.math.FlxRect;
-import funkin.data.song.SongData.SongTimeChange;
-import openfl.display.BitmapData;
 
 /**
  * Static functions which handle building themed UI elements for a provided ChartEditorState.

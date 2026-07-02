@@ -1,7 +1,5 @@
 package funkin.ui.charSelect;
 
-import funkin.graphics.shaders.MosaicEffect;
-import funkin.util.TimerUtil;
 
 @:nullSafety
 class Nametag extends FlxSprite

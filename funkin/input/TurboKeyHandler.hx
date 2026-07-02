@@ -1,6 +1,5 @@
 package funkin.input;
 
-import flixel.FlxBasic;
 
 /**
  * Handles repeating behavior when holding down a key or key combination.

@@ -1,12 +1,6 @@
 package funkin.ui.debug.charting.dialogs;
 
 #if FEATURE_CHART_EDITOR
-import funkin.ui.debug.charting.dialogs.ChartEditorBaseDialog.DialogDropTarget;
-import funkin.util.FileUtil;
-import haxe.io.Path;
-import haxe.ui.components.Label;
-import haxe.ui.containers.dialogs.Dialog.DialogEvent;
-import haxe.ui.containers.dialogs.Dialogs;
 
 // @:nullSafety // TODO: Fix null safety when used with HaxeUI build macros.
 

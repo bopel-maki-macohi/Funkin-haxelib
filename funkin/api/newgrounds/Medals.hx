@@ -1,8 +1,6 @@
 package funkin.api.newgrounds;
 
 #if FEATURE_NEWGROUNDS
-import funkin.util.plugins.NewgroundsMedalPlugin;
-import openfl.display.BitmapData;
 
 /**
  * Handles interactions with the medals on the Newgrounds website.

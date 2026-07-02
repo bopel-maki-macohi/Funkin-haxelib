@@ -1,11 +1,6 @@
 package funkin.ui.debug.charting.handlers;
 
 #if FEATURE_CHART_EDITOR
-import funkin.ui.debug.charting.contextmenus.ChartEditorEventContextMenu;
-import funkin.ui.debug.charting.contextmenus.ChartEditorNoteContextMenu;
-import haxe.ui.containers.menus.Menu;
-import funkin.data.song.SongData.SongNoteData;
-import haxe.ui.events.UIEvent;
 
 /**
  * Handles context menus (the little menus that appear when you right click on stuff) for the new Chart Editor.

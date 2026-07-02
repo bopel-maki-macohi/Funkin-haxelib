@@ -1,8 +1,5 @@
 package funkin.ui;
 
-import flixel.FlxG;
-import flixel.util.FlxSignal;
-import funkin.audio.FunkinSound;
 
 /**
  * A page in a menu system.

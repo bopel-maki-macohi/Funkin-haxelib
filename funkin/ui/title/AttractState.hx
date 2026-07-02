@@ -6,9 +6,6 @@ package funkin.ui.title;
 #end
 #if FEATURE_TOUCH_CONTROLS
 #end
-import funkin.ui.FullScreenScaleMode;
-import flixel.math.FlxMath;
-import flixel.addons.display.FlxRadialGauge;
 
 /**
  * After 40 seconds of inactivity on the title screen,

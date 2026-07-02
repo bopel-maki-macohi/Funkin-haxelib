@@ -1,15 +1,5 @@
 package funkin.input;
 
-import flixel.input.FlxInput;
-import flixel.input.FlxKeyManager;
-import flixel.input.gamepad.FlxGamepadInputID;
-import flixel.input.keyboard.FlxKeyboard.FlxKeyInput;
-import flixel.util.FlxSignal.FlxTypedSignal;
-import funkin.util.FlxGamepadUtil;
-import lime.ui.Gamepad as LimeGamepad;
-import lime.ui.GamepadButton as LimeGamepadButton;
-import lime.ui.KeyModifier;
-import openfl.ui.Keyboard;
 
 /**
  * A precise input manager that:

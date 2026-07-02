@@ -1,7 +1,5 @@
 package funkin.data.notestyle;
 
-import funkin.play.notes.notestyle.ScriptedNoteStyle;
-import funkin.util.tools.ISingleton;
 
 @:nullSafety
 class NoteStyleRegistry extends BaseRegistry<NoteStyle, NoteStyleData, NoteStyleEntryParams> implements ISingleton implements DefaultRegistryImpl

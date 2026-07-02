@@ -1,8 +1,5 @@
 package funkin.mobile.ui.mainmenu;
 
-import flixel.tweens.FlxTween;
-import flixel.util.FlxTimer;
-import funkin.util.HapticUtil;
 
 class FunkinOptionsButton extends FunkinButton
 {

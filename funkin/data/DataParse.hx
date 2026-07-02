@@ -1,10 +1,5 @@
 package funkin.data;
 
-import funkin.data.song.importer.FNFLegacyData.LegacyNoteData;
-import funkin.data.song.importer.FNFLegacyData.LegacyScrollSpeeds;
-import hxjsonast.Json;
-import hxjsonast.Tools;
-import thx.semver.VersionRule;
 
 /**
  * `json2object` has an annotation `@:jcustomparse` which allows for mutation of parsed values.

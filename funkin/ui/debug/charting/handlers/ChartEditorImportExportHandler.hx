@@ -1,13 +1,6 @@
 package funkin.ui.debug.charting.handlers;
 
 #if FEATURE_CHART_EDITOR
-import funkin.util.VersionUtil;
-import haxe.io.Path;
-import funkin.util.FileUtil;
-import haxe.io.Bytes;
-import funkin.data.song.SongData.SongChartData;
-import funkin.data.song.SongRegistry;
-import thx.semver.Version as SemverVersion;
 
 /**
  * Contains functions for importing, loading, saving, and exporting charts.

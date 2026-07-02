@@ -2,7 +2,6 @@ package funkin.input;
 
 #if FEATURE_HAXEUI
 #end
-import openfl.display.BitmapData;
 
 @:nullSafety
 class Cursor

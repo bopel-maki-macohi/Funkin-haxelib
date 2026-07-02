@@ -1,6 +1,5 @@
 package funkin.data.notestyle;
 
-import funkin.data.animation.AnimationData;
 
 /**
  * A type definition for the data in a note style JSON file.

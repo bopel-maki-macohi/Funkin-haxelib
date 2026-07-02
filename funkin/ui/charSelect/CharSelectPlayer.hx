@@ -1,6 +1,5 @@
 package funkin.ui.charSelect;
 
-import funkin.modding.IScriptedClass.IBPMSyncedScriptedClass;
 
 @:nullSafety
 class CharSelectPlayer extends FunkinSprite implements IBPMSyncedScriptedClass

@@ -1,7 +1,5 @@
 package funkin.data;
 
-import thx.semver.Version;
-import haxe.ds.Either;
 
 /**
  * `json2object` has an annotation `@:jcustomwrite` which allows for custom serialization of values to be written to JSON.

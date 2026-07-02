@@ -1,19 +1,5 @@
 package funkin.ui.story;
 
-import flixel.FlxSprite;
-import flixel.text.FlxText;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxColor;
-import flixel.util.FlxStringUtil;
-import funkin.data.story.level.LevelRegistry;
-import funkin.graphics.FunkinSprite;
-import funkin.modding.events.ScriptEventDispatcher;
-import funkin.play.song.Song;
-import funkin.save.Save.SaveScoreData;
-import funkin.ui.MusicBeatState;
-import funkin.ui.transition.stickers.StickerSubState;
-import funkin.util.SwipeUtil;
-import funkin.ui.FullScreenScaleMode;
 #if FEATURE_DISCORD_RPC
 #end
 

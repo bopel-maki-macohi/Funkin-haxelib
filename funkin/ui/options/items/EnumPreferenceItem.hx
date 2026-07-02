@@ -1,6 +1,5 @@
 package funkin.ui.options.items;
 
-import funkin.ui.AtlasText;
 #if mobile
 #end
 

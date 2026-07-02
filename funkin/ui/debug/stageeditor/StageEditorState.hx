@@ -1,31 +1,7 @@
 package funkin.ui.debug.stageeditor;
 
 #if FEATURE_STAGE_EDITOR
-import flixel.text.FlxText;
-import flixel.util.FlxTimer;
-import flixel.addons.display.shapes.FlxShapeCircle;
-import flixel.FlxSprite;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import funkin.play.character.BaseCharacter;
-import funkin.data.character.CharacterData.CharacterDataParser;
-import funkin.input.Cursor;
-import haxe.ui.containers.menus.MenuItem;
-import haxe.ui.containers.menus.MenuBar;
-import haxe.ui.containers.menus.MenuCheckBox;
-import funkin.ui.mainmenu.MainMenuState;
-import funkin.ui.debug.stageeditor.handlers.AssetDataHandler.StageEditorObjectData;
-import funkin.ui.debug.stageeditor.handlers.UndoRedoHandler.UndoAction;
-import funkin.ui.debug.stageeditor.components.*;
 import haxe.ui.containers.dialogs.Dialogs;
-import haxe.ui.containers.dialogs.MessageBox.MessageBoxType;
-import haxe.ui.containers.windows.WindowList;
-import flixel.FlxObject;
-import funkin.ui.debug.GraphicCursorCross;
-import haxe.ui.core.Screen;
-import funkin.audio.FunkinSound;
-import haxe.ui.notifications.NotificationManager;
-import funkin.graphics.shaders.Grayscale;
-import funkin.graphics.FunkinCamera;
 
 /**
  * Da Stage Editor woo!!

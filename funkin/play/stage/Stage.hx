@@ -1,15 +1,5 @@
 package funkin.play.stage;
 
-import funkin.graphics.framebuffer.FrameBufferManager;
-import funkin.graphics.FunkinCamera;
-import flixel.group.FlxSpriteGroup;
-import flixel.system.FlxAssets.FlxShader;
-import openfl.display.BitmapData;
-import funkin.modding.events.ScriptEvent;
-import funkin.play.character.BaseCharacter;
-import funkin.data.stage.StageData;
-import funkin.data.stage.StageRegistry;
-import funkin.util.assets.FlxAnimationUtil;
 
 typedef StagePropGroup = FlxTypedSpriteGroup<StageProp>;
 

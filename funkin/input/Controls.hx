@@ -1,12 +1,5 @@
 package funkin.input;
 
-import flixel.input.gamepad.FlxGamepad;
-import flixel.input.FlxInput.FlxInputState;
-import flixel.input.actions.FlxActionInput;
-import flixel.input.actions.FlxActionManager;
-import flixel.input.android.FlxAndroidKey;
-import flixel.input.keyboard.FlxKey;
-import flixel.math.FlxPoint;
 
 /**
  * A core class which handles receiving player input and interpreting it into game actions.

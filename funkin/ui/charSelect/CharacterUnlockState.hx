@@ -1,13 +1,6 @@
 package funkin.ui.charSelect;
 
-import flixel.FlxState;
-import flixel.text.FlxText;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxColor;
-import funkin.play.components.HealthIcon;
-import funkin.data.freeplay.player.PlayerRegistry;
 #if mobile
-import funkin.util.DeviceUtil;
 #end
 
 using flixel.util.FlxSpriteUtil;

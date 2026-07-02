@@ -1,8 +1,5 @@
 package funkin.audio.visualize;
 
-import flixel.FlxSprite;
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-import funkin.vis.dsp.SpectralAnalyzer;
 
 using Lambda;
 

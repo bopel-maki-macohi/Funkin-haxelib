@@ -1,6 +1,5 @@
 package funkin.play.event;
 
-import openfl.display.BitmapData;
 
 class SongEventHelper
 {

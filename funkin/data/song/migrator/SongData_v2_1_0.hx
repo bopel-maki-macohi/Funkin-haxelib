@@ -1,6 +1,5 @@
 package funkin.data.song.migrator;
 
-import funkin.data.song.SongRegistry;
 
 @:nullSafety
 class SongMetadata_v2_1_0

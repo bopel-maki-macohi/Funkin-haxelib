@@ -1,6 +1,5 @@
 package funkin.ui.freeplay.dj;
 
-import funkin.util.assets.FlxAnimationUtil;
 
 /**
  * A script that can be tied to a PackerFreeplayDJ.

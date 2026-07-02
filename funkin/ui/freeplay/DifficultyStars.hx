@@ -1,6 +1,5 @@
 package funkin.ui.freeplay;
 
-import funkin.graphics.FunkinSprite;
 
 @:nullSafety
 class DifficultyStars extends FlxSpriteGroup

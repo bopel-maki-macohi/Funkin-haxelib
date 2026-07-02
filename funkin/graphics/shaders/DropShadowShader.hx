@@ -1,8 +1,5 @@
 package funkin.graphics.shaders;
 
-import flixel.util.FlxColor;
-import flixel.math.FlxAngle;
-import openfl.display.BitmapData;
 
 /**
  * A shader that aims to *mostly recreate how Adobe Animate/Flash handles drop shadows, but its main use here is for rim lighting.

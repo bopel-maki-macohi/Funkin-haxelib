@@ -1,9 +1,5 @@
 package funkin.graphics.framebuffer;
 
-import openfl.display.BitmapData;
-import flixel.graphics.FlxGraphic;
-import funkin.graphics.FunkinSprite;
-import animate.internal.FilterRenderer;
 
 /**
  * A helper for rendering filters on `FunkinSprite` instances.

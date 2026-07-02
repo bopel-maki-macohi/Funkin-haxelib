@@ -1,10 +1,6 @@
 package funkin.play;
 
-import funkin.play.PlayState.PlayStateParams;
-import funkin.ui.MusicBeatState;
-import funkin.ui.mainmenu.MainMenuState;
 #if mobile
-import funkin.util.SwipeUtil;
 #end
 
 class GitarooPause extends MusicBeatState

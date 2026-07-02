@@ -1,7 +1,5 @@
 package funkin.util;
 
-import flixel.util.FlxTimer;
-import haxe.ds.ArraySort;
 
 /**
  * A data structure representing a sequence event.

@@ -2,7 +2,6 @@ package funkin.api.newgrounds;
 
 #if FEATURE_NEWGROUNDS
 #end
-import funkin.util.WindowUtil;
 
 /**
  * Handles referrals to links retrieved from the Newgrounds API.

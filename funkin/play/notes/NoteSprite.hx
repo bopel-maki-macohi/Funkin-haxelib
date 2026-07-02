@@ -1,7 +1,5 @@
 package funkin.play.notes;
 
-import funkin.data.song.SongData.NoteParamData;
-import funkin.graphics.FunkinSprite;
 
 class NoteSprite extends FunkinSprite
 {

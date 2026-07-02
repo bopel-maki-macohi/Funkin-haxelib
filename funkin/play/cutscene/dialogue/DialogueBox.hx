@@ -1,11 +1,5 @@
 package funkin.play.cutscene.dialogue;
 
-import funkin.data.IRegistryEntry;
-import flixel.graphics.frames.FlxFramesCollection;
-import funkin.util.assets.FlxAnimationUtil;
-import funkin.audio.FunkinSound;
-import flixel.util.FlxColor;
-import funkin.data.dialogue.DialogueBoxRegistry;
 
 class DialogueBox extends FlxSpriteGroup implements IDialogueScriptedClass implements IRegistryEntry<DialogueBoxData>
 {

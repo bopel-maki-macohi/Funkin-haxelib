@@ -1,6 +1,5 @@
 package funkin.ui;
 
-import flixel.group.FlxGroup;
 
 /**
  * The Codex class is what holds our `Page` objects together. Apologies for the potentially obtuse quirky name.

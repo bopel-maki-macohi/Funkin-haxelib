@@ -1,16 +1,5 @@
 package funkin.modding;
 
-import funkin.data.dialogue.ConversationRegistry;
-import funkin.data.dialogue.SpeakerRegistry;
-import funkin.data.story.level.LevelRegistry;
-import funkin.play.notes.notekind.NoteKindManager;
-import funkin.data.freeplay.player.PlayerRegistry;
-import funkin.data.stage.StageRegistry;
-import funkin.data.freeplay.album.AlbumRegistry;
-import funkin.data.character.CharacterData.CharacterDataParser;
-import funkin.util.FileUtil;
-import polymod.backends.PolymodAssets.PolymodAssetType;
-import polymod.Polymod;
 
 /**
  * A class for interacting with Polymod, the atomic modding framework for Haxe.

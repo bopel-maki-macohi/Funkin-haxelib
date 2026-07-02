@@ -1,7 +1,5 @@
 package funkin.ui;
 
-import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.util.FlxStringUtil;
 
 /**
  * AtlasText is an improved version of Alphabet and FlxBitmapText.

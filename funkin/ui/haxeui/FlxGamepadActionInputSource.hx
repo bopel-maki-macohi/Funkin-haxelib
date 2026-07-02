@@ -1,6 +1,5 @@
 package funkin.ui.haxeui;
 
-import flixel.input.gamepad.FlxGamepad;
 
 /**
  * Receives button presses from the Flixel gamepad and emits HaxeUI events.

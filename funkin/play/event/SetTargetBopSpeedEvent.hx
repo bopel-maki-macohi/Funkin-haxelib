@@ -1,9 +1,7 @@
 package funkin.play.event;
 
-import funkin.play.character.BaseCharacter;
 // Data from the chart
 // Data from the event schema
-import funkin.data.event.SongEventSchema.SongEventFieldType;
 
 /**
  * This class handles song events which changes dance speed of specific character or stage prop.

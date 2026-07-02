@@ -1,8 +1,5 @@
 package funkin.graphics.video;
 
-import funkin.audio.FunkinSound;
-import openfl.media.SoundTransform;
-import openfl.net.NetConnection;
 
 /**
  * Plays a video via a NetStream. Only works on HTML5.

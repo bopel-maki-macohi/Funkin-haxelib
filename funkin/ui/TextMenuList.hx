@@ -1,6 +1,5 @@
 package funkin.ui;
 
-import funkin.ui.MenuList;
 
 @:nullSafety
 class TextMenuList extends MenuTypedList<TextMenuItem>

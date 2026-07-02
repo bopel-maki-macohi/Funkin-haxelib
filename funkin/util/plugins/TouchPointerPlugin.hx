@@ -1,11 +1,5 @@
 package funkin.util.plugins;
 
-import flixel.FlxSprite;
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-import flixel.math.FlxAngle;
-import flixel.system.FlxAssets.FlxGraphicAsset;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxTimer;
 
 // TODO: Replace all the touchBuddy littered around the game's code with the ACTUAL touchBuddy.
 // Thnk u agua and toffee <3

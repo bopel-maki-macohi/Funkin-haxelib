@@ -1,7 +1,5 @@
 package funkin.ui.freeplay;
 
-import funkin.data.animation.AnimationData;
-import flixel.graphics.FlxGraphic;
 
 /**
  * A class representing the data for an album as displayed in Freeplay.

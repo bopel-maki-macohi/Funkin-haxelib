@@ -1,7 +1,5 @@
 package funkin.mobile.input;
 
-import funkin.input.PreciseInputManager;
-import funkin.play.notes.NoteDirection;
 
 /**
  * Handles setting up and managing precise input controls for the game.

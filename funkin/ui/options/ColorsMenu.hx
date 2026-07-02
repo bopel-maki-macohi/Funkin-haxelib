@@ -1,8 +1,5 @@
 package funkin.ui.options;
 
-import flixel.addons.effects.chainable.FlxEffectSprite;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import funkin.ui.Page;
 
 class ColorsMenu extends Page<OptionsState.OptionsMenuPageName>
 {

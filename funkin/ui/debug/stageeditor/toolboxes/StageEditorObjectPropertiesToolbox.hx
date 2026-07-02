@@ -1,10 +1,6 @@
 package funkin.ui.debug.stageeditor.toolboxes;
 
 #if FEATURE_STAGE_EDITOR
-import haxe.ui.components.CheckBox;
-import haxe.ui.components.NumberStepper;
-import flixel.util.FlxColor;
-import haxe.ui.events.UIEvent;
 
 @:access(funkin.ui.debug.stageeditor.StageEditorState)
 @:build(haxe.ui.macros.ComponentMacros.build("assets/exclude/data/ui/stage-editor/toolboxes/object-properties.xml"))

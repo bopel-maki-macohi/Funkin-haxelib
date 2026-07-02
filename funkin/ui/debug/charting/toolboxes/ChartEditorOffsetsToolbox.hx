@@ -1,13 +1,6 @@
 package funkin.ui.debug.charting.toolboxes;
 
 #if FEATURE_CHART_EDITOR
-import haxe.ui.components.Button;
-import flixel.addons.display.FlxTiledSprite;
-import haxe.ui.components.NumberStepper;
-import funkin.ui.debug.charting.commands.SetAudioOffsetCommand;
-import haxe.ui.containers.Absolute;
-import haxe.ui.core.Screen;
-import haxe.ui.events.UIEvent;
 
 /**
  * The toolbox which allows modifying information like Song Title, Scroll Speed, Characters/Stages, and starting BPM.

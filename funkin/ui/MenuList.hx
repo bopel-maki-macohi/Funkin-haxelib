@@ -1,11 +1,5 @@
 package funkin.ui;
 
-import flixel.util.FlxColor;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import funkin.audio.FunkinSound;
-import funkin.util.SwipeUtil;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
 
 @:nullSafety
 class MenuTypedList<T:MenuListItem> extends FlxTypedGroup<T>

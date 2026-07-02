@@ -1,9 +1,7 @@
 package funkin.util;
 
-import flixel.FlxObject;
 #if FLX_POINTER_INPUT
 #end
-import flixel.util.FlxAxes;
 
 /**
  * Utility class for handling swipe gestures in HaxeFlixel and dispatching signals for different swipe directions.

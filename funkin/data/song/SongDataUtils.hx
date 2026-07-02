@@ -1,7 +1,5 @@
 package funkin.data.song;
 
-import funkin.data.song.SongData.SongEventData;
-import funkin.data.song.SongData.SongTimeChange;
 
 using Lambda;
 

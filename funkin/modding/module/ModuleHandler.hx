@@ -1,8 +1,5 @@
 package funkin.modding.module;
 
-import funkin.modding.events.ScriptEvent.UpdateScriptEvent;
-import funkin.modding.events.ScriptEventDispatcher;
-import funkin.modding.module.ScriptedModule;
 
 /**
  * Utility functions for loading and manipulating active modules.

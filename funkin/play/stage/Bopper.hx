@@ -1,8 +1,5 @@
 package funkin.play.stage;
 
-import flixel.math.FlxPoint;
-import flixel.util.FlxTimer;
-import funkin.modding.events.ScriptEvent;
 
 typedef AnimationFrameCallback = String->Int->Int->Void;
 typedef AnimationFinishedCallback = String->Void;

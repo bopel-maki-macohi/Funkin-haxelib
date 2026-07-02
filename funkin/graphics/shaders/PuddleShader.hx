@@ -1,6 +1,5 @@
 package funkin.graphics.shaders;
 
-import openfl.Assets;
 
 @:nullSafety
 class PuddleShader extends FlxRuntimeShader

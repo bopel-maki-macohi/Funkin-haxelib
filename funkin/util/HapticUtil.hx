@@ -1,6 +1,5 @@
 package funkin.util;
 
-import flixel.math.FlxMath;
 #if FEATURE_HAPTICS
 #end
 

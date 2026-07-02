@@ -1,7 +1,5 @@
 package funkin.ui.mainmenu;
 
-import flixel.tweens.FlxEase;
-import flixel.util.FlxTimer;
 
 class UpgradeSparkle extends FlxSprite
 {

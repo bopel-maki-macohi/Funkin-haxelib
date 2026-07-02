@@ -1,9 +1,5 @@
 package funkin.data.song;
 
-import funkin.data.event.SongEventRegistry;
-import funkin.data.event.SongEventSchema;
-import thx.semver.Version;
-import funkin.play.notes.notekind.NoteKind;
 
 /**
  * Data containing information about a song.

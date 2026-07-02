@@ -1,11 +1,6 @@
 package funkin.ui.debug.stageeditor.components;
 
 #if FEATURE_STAGE_EDITOR
-import haxe.ui.containers.dialogs.Dialogs;
-import haxe.ui.components.Link;
-import funkin.util.FileUtil;
-import funkin.data.stage.StageData;
-import funkin.ui.debug.stageeditor.StageEditorState.StageEditorDialogType;
 
 @:build(haxe.ui.macros.ComponentMacros.build("assets/exclude/data/ui/stage-editor/dialogs/welcome.xml"))
 class WelcomeDialog extends Dialog

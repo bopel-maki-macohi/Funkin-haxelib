@@ -2,27 +2,11 @@ package funkin.ui.mainmenu;
 
 #if FEATURE_DEBUG_MENU
 #end
-import flixel.FlxSubState;
-import flixel.effects.FlxFlicker;
-import flixel.util.typeLimit.NextState;
-import flixel.tweens.FlxEase;
-import funkin.audio.FunkinSound;
-import funkin.util.InputUtil;
-import funkin.ui.MusicBeatState;
-import funkin.ui.UIStateMachine.UIState;
-import funkin.ui.AtlasMenuList.AtlasMenuItem;
-import funkin.ui.MenuList.MenuTypedList;
-import funkin.ui.title.TitleState;
-import funkin.ui.Prompt;
-import funkin.mobile.ui.FunkinButton;
-import funkin.util.TouchUtil;
-import funkin.ui.mainmenu.UpgradeSparkle;
 #if FEATURE_DISCORD_RPC
 #end
 #if FEATURE_NEWGROUNDS
 #end
 #if mobile
-import funkin.mobile.util.InAppPurchasesUtil;
 #end
 
 @:nullSafety

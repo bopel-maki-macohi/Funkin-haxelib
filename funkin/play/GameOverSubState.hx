@@ -1,15 +1,5 @@
 package funkin.play;
 
-import flixel.FlxState;
-import flixel.FlxG;
-import flixel.FlxSprite;
-import flixel.util.FlxTimer;
-import funkin.audio.FunkinSound;
-import funkin.modding.events.ScriptEvent;
-import funkin.play.character.BaseCharacter;
-import funkin.ui.MusicBeatSubState;
-import funkin.util.MathUtil;
-import flixel.math.FlxPoint;
 #if FEATURE_MOBILE_ADVERTISEMENTS
 #end
 

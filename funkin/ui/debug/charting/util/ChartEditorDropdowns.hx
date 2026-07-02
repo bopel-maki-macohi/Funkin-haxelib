@@ -1,12 +1,6 @@
 package funkin.ui.debug.charting.util;
 
 #if FEATURE_CHART_EDITOR
-import funkin.play.notes.notestyle.NoteStyle;
-import funkin.play.event.SongEvent;
-import funkin.data.character.CharacterData;
-import funkin.play.stage.Stage;
-import funkin.play.notes.notekind.NoteKindManager;
-import funkin.data.event.SongEventRegistry;
 
 /**
  * Functions for populating dropdowns based on game data.

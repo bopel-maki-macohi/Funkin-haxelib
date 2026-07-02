@@ -1,15 +1,5 @@
 package funkin.util.plugins;
 
-import flixel.FlxG;
-import flixel.tweens.FlxEase;
-import flixel.util.FlxColor;
-import flixel.util.FlxTimer;
-import funkin.util.logging.CrashHandler;
-import funkin.input.Cursor;
-import openfl.display.Bitmap;
-import openfl.display.BitmapData;
-import openfl.geom.Rectangle;
-import openfl.events.MouseEvent;
 
 /**
  * Parameters for starting the `ScreenshotPlugin`.

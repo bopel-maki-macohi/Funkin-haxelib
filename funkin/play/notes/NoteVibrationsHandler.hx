@@ -1,6 +1,5 @@
 package funkin.play.notes;
 
-import funkin.util.HapticUtil.HapticsMode;
 
 /**
  * Handles vibrations on note presses.

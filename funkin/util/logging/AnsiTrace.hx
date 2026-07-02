@@ -1,9 +1,6 @@
 package funkin.util.logging;
 
 #if (sys && FEATURE_DEBUG_FILE_LOGGING)
-import funkin.util.FileUtil;
-import haxe.io.Path;
-import sys.io.FileOutput;
 #end
 
 using StringTools;

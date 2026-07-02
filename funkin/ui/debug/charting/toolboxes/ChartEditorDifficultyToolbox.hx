@@ -1,17 +1,6 @@
 package funkin.ui.debug.charting.toolboxes;
 
 #if FEATURE_CHART_EDITOR
-import haxe.ui.components.Button;
-import haxe.ui.containers.dialogs.Dialog.DialogButton;
-import funkin.data.song.SongData.SongMetadata;
-import haxe.ui.components.DropDown;
-import funkin.util.VersionUtil;
-import openfl.net.FileReference;
-import haxe.ui.components.Label;
-import haxe.ui.components.Slider;
-import funkin.play.stage.Stage;
-import haxe.ui.containers.TreeView;
-import haxe.ui.events.UIEvent;
 
 /**
  * The toolbox which allows viewing the list of difficulties, switching to a specific one,

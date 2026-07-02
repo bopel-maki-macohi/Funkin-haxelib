@@ -1,6 +1,5 @@
 package funkin.ui.charSelect;
 
-import flixel.FlxG;
 
 /**
  * Utility class for handling the atlases loaded by CharSelect & co. in an efficient way.

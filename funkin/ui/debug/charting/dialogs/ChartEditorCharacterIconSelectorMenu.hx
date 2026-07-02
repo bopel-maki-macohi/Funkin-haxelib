@@ -1,12 +1,6 @@
 package funkin.ui.debug.charting.dialogs;
 
 #if FEATURE_CHART_EDITOR
-import funkin.play.character.BaseCharacter.CharacterType;
-import funkin.data.character.CharacterData.CharacterDataParser;
-import funkin.util.SortUtil;
-import haxe.ui.containers.Grid;
-import haxe.ui.core.Screen;
-import flixel.tweens.FlxEase;
 
 // @:nullSafety // TODO: Fix null safety when used with HaxeUI build macros.
 @:access(funkin.ui.debug.charting.ChartEditorState)
