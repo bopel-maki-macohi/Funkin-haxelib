@@ -1,35 +1,75 @@
+package funkin.mobile.util;
 
+#if ios
+import funkin.external.apple.FNFCExtern;
+#end
+#if android
+import funkin.external.android.JNIUtil;
+import funkin.external.android.CallbackUtil;
+#end
+import lime.system.System;
+import flixel.util.FlxSignal;
 
 /**
-* A class for handling the flow of loading FNFC song packs on mobile.
-*/
+ * A class for handling the flow of loading FNFC song packs on mobile.
+ */
 class FNFCProvider
 {
+  public static var onFNFCOpen:FlxTypedSignal<String->Void>;
 
-public static function init():Void
-{
+  public static function init():Void
+  {
+    onFNFCOpen = new FlxTypedSignal<String->Void>();
 
-{
-}
+    #if ios
+    FlxG.stage.window.onDropFile.add(function(path:String, state:String, x:Float, y:Float):Void
+    {
+      queryFNFC();
+    });
+    #elseif android
+    CallbackUtil.onFNFCOpen.add(onFNFCOpen.dispatch);
+    #end
+  }
 
-public static function queryFNFC():Null<String>
-{
-}
+  public static function queryFNFC():Null<String>
+  {
+    #if ios
+    final fileURL:Null<String> = System.getHint("IOS_UIApplicationLaunchOptionsURLKey");
+    if (fileURL != null && fileURL.length > 0) getFNFCFromURL(fileURL);
+    #elseif android
+    final staticField = JNIUtil.createStaticField('funkin/extensions/FNFCExtension', 'lastFNFC', 'Ljava/lang/String;');
+    if (staticField != null) return staticField.get();
+    #end
+    return null;
+  }
 
+  #if ios
+  @:noCompletion
+  private static var _lastFNFC:Null<String> = null;
 
-private static function getFNFCFromURL(url:String):Void
-{
-}
+  @:noCompletion
+  private static function getFNFCFromURL(url:String):Void
+  {
+    var cURL:cpp.ConstCharStar = cast url;
+    FNFCExtern.copyFNFCIntoCache(cURL, cpp.Callable.fromStaticFunction(fnfcCallback));
+  }
 
-private static function fnfcCallback(cEvent:cpp.ConstCharStar, cValue:cpp.ConstCharStar)
-{
+  @:noCompletion
+  private static function fnfcCallback(cEvent:cpp.ConstCharStar, cValue:cpp.ConstCharStar)
+  {
+    var event:String = cast cEvent;
+    var value:String = cast cValue;
 
-{
-switch (event)
-{
-case "FNFC_RESULTS":
-default:
-}
-}
-}
+    if (event != null && value != null)
+    {
+      trace('[$event] $value');
+      switch (event)
+      {
+        case "FNFC_RESULTS":
+          onFNFCOpen.dispatch(value);
+        default:
+      }
+    }
+  }
+  #end
 }

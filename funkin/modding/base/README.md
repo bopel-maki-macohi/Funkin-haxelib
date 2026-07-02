@@ -1,3 +1,4 @@
+# modding.base
 
 This package is used to allow modders to create scripted classes which extend these base classes.
 For example, one script can extend FlxSprite and another can call `ScriptedFlxSprite.init('ClassName')`.

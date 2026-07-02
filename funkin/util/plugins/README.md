@@ -1,3 +1,4 @@
+# funkin.util.plugins
 
 Flixel plugins are objects with `update()` functions that are called from every state.
 
