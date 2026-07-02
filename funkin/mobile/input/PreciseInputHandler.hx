@@ -1,4 +1,3 @@
-package funkin.mobile.input;
 
 
 /**
@@ -13,8 +12,6 @@ class PreciseInputHandler
 */
 public static function initializeHitbox(hitbox:FunkinHitbox):Void
 {
-hitbox.onHintDown.add(handleHintDown);
-hitbox.onHintUp.add(handleHintUp);
 }
 
 /**

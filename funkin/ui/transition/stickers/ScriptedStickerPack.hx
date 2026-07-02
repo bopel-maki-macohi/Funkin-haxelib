@@ -1,4 +1,3 @@
-package funkin.ui.transition.stickers;
 
 /**
 * A script that can be tied to a StickerPack.

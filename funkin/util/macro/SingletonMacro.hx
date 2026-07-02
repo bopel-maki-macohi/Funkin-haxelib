@@ -1,7 +1,5 @@
-package funkin.util.macro;
 
 
-using haxe.macro.Tools;
 
 /**
 * A macro which automatically creates a Singleton `instance` property for a class.
@@ -27,7 +25,6 @@ static function get_instance():$clsType
 _instance = ${Context.parse(newExpr, Context.currentPos())};
 }
 }
-}).fields);
 
 }
 }

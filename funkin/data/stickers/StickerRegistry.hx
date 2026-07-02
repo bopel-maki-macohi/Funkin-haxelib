@@ -1,4 +1,3 @@
-package funkin.data.stickers;
 
 
 class StickerRegistry extends BaseRegistry<StickerPack, StickerData, StickerEntryParams>
@@ -8,15 +7,12 @@ class StickerRegistry extends BaseRegistry<StickerPack, StickerData, StickerEntr
 * Handle breaking changes by incrementing this value
 * and adding migration to the `migrateStickerData()` function.
 */
-public static final STICKER_DATA_VERSION:thx.semver.Version = '1.0.0';
 
-public static final STICKER_DATA_VERSION_RULE:thx.semver.VersionRule = '1.0.x';
 
 public static final instance:StickerRegistry = new StickerRegistry();
 
 public function new()
 {
-super('STICKER', 'stickerpacks', STICKER_DATA_VERSION_RULE);
 }
 
 public function fetchDefault():StickerPack
@@ -30,17 +26,14 @@ public function fetchDefault():StickerPack
 */
 public function parseEntryData(id:String):Null<StickerData>
 {
-parser.ignoreUnknownVariables = false;
 
 switch (loadEntryFile(id))
 {
 case {fileName: fileName, contents: contents}:
-parser.fromJson(contents, fileName);
 default:
 }
 
 {
-printErrors(parser.errors, id);
 }
 }
 
@@ -54,11 +47,8 @@ printErrors(parser.errors, id);
 */
 public function parseEntryDataRaw(contents:String, ?fileName:String):Null<StickerData>
 {
-parser.ignoreUnknownVariables = false;
-parser.fromJson(contents, fileName);
 
 {
-printErrors(parser.errors, fileName);
 }
 }
 

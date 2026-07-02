@@ -1,4 +1,3 @@
-package funkin.play.notes.notekind;
 
 /**
 * A script that can be tied to a NoteKind.

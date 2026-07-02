@@ -1,4 +1,3 @@
-package funkin.ui.mainmenu;
 
 
 class MainMenuState extends MusicBeatState
@@ -15,14 +14,8 @@ function get_canInteract():Bool
 
 public function new(_overrideMusic:Bool = false)
 {
-super();
-overrideMusic = _overrideMusic;
 
-uiStateMachine.transition(EnteringMainMenu);
 
-upgradeSparkles = new FlxTypedSpriteGroup<UpgradeSparkle>();
-magenta = new FlxSprite(Paths.image('menuBGMagenta'));
-camFollow = new FlxObject(0, 0, 1, 1);
 
 }
 
@@ -30,179 +23,104 @@ override function create():Void
 {
 
 
-transIn = FlxTransitionableState.defaultTransIn;
-transOut = FlxTransitionableState.defaultTransOut;
-
-hasUpgraded = Preferences.noAds;
-hasUpgraded = true;
 
 
-persistentUpdate = true;
-persistentDraw = true;
 
-bg = new FlxSprite(Paths.image('menuBG'));
+
 bg.scrollFactor.x = #if !mobile 0 #else 0.17 #end; // we want a lil x scroll on mobile
-bg.scrollFactor.y = 0.17;
-bg.setGraphicSize(Std.int(FlxG.width * 1.2));
-bg.updateHitbox();
-bg.screenCenter();
-add(bg);
-
-add(camFollow);
-
-magenta.scrollFactor.copyFrom(bg.scrollFactor);
-magenta.setGraphicSize(Std.int(bg.width));
-magenta.updateHitbox();
-magenta.x = bg.x;
-magenta.y = bg.y;
-magenta.visible = false;
 
 
-menuItems = new MenuTypedList<AtlasMenuItem>();
-add(menuItems);
 
-menuItems.onChange.add(onMenuItemChange);
+
+
 menuItems.onAcceptPress.add(_ ->
 {
-FlxFlicker.flicker(magenta, 1.1, 0.15, false, true);
-uiStateMachine.transition(Interacting);
-});
 
-menuItems.enabled = true;
 
 createMenuItem('storymode', 'mainmenu/storymode', () ->
 {
 {
-funkin.FunkinMemory.clearFreeplay();
-funkin.FunkinMemory.purgeCache();
-});
-startExitState(() -> new StoryMenuState());
-});
 
 createMenuItem('freeplay', 'mainmenu/freeplay', function()
 {
-persistentDraw = true;
-persistentUpdate = false;
-rememberedSelectedIndex = menuItems?.selectedIndex ?? 0;
-FlxTransitionableState.skipNextTransIn = true;
-FlxTransitionableState.skipNextTransOut = true;
 
-FreeplayState.CUTOUT_WIDTH = funkin.ui.FullScreenScaleMode.gameCutoutSize.x / 1.5;
 
 
 {
 for (i in 0...upgradeSparkles.length)
 {
-upgradeSparkles.members[i].cancelSparkle();
 }
 }
 
 openSubState(new FreeplayState({
 character: targetCharacter
-}));
-});
 
 {
-createMenuItem('merch', 'mainmenu/merch', selectMerch, hasPopupBlocker);
 }
 else
 {
-add(upgradeSparkles);
 
 createMenuItem('upgrade', 'mainmenu/upgrade', function()
 {
-InAppPurchasesUtil.purchase(InAppPurchasesUtil.UPGRADE_PRODUCT_ID, FlxG.resetState);
-uiStateMachine.transition(Idle);
-});
 }
 
 {
 createMenuItem('options', 'mainmenu/options', function()
 {
-startExitState(() -> new funkin.ui.options.OptionsState());
-});
 }
 
 createMenuItem('credits', 'mainmenu/credits', function()
 {
-startExitState(() -> new funkin.ui.credits.CreditsState());
-});
 
 
 for (index => menuItem in menuItems)
 {
-menuItem.x = FlxG.width / 2;
-menuItem.y = top + spacing * index;
 menuItem.scrollFactor.x = #if !mobile 0.0 #else 0.4 #end; // we want a lil scroll on mobile, for the cute gyro effect
-menuItem.scrollFactor.y = 0.4;
 
 }
 
-menuItems.selectItem(rememberedSelectedIndex);
 
 {
 for (_ in 0...8)
 {
-targetItem.height, FlxG.random.bool(80));
-upgradeSparkles.add(sparkle);
 
-sparkle.scrollFactor.x = 0.0;
-sparkle.scrollFactor.y = 0.4;
 }
 
 subStateClosed.add(_ ->
 {
 for (i in 0...upgradeSparkles.length)
 {
-upgradeSparkles.members[i].restartSparkle();
 }
-});
 }
 
-resetCamStuff();
 
-subStateClosed.add(_ -> resetCamStuff(false));
 
 subStateOpened.add((sub:FlxSubState) ->
 {
 {
 FlxTimer.wait(0.5, () ->
 {
-magenta.visible = false;
-});
 }
-});
 
 
-gyroPan = new FlxPoint();
 
-camFollow.y = bg.getGraphicMidpoint().y;
 
-addBackButton(FlxG.width - 230, FlxG.height - 200, FlxColor.WHITE, goBack, 1.0);
 
 {
-addOptionsButton(35, FlxG.height - 210, goOptions);
 }
 
 backButton?.onConfirmStart.add(() ->
 {
-uiStateMachine.transition(Interacting);
-});
 
 optionsButton?.onConfirmStart.add(() ->
 {
-uiStateMachine.transition(Interacting);
-});
 
-super.create();
 
-initLeftWatermarkText();
 }
 
 function initLeftWatermarkText():Void
 {
 
-leftWatermarkText.text = Constants.VERSION;
 
 {
 leftWatermarkText.text += ' | Newgrounds: Logged in as ${NewgroundsClient.instance.user?.name}';
@@ -215,7 +133,6 @@ FunkinSound.playMusic('freakyMenu', {
 overrideExisting: true,
 restartTrack: false,
 persist: true
-});
 }
 
 function resetCamStuff(snap:Bool = true):Void
@@ -226,115 +143,77 @@ function resetCamStuff(snap:Bool = true):Void
 function createMenuItem(name:String, atlas:String, callback:Void->Void, fireInstantly:Bool = false):Void
 {
 
-item.fireInstantly = fireInstantly;
-item.ID = menuItems.length;
-item.scrollFactor.set();
 
-item.centered = true;
-item.changeAnim('idle');
-menuItems.addItem(name, item);
 }
 
 
 function createMenuButtion(name:String, atlas:String, callback:Void->Void):Void
 {
-item.makeGraphic(250, 250, FlxColor.BLUE);
-item.onDown.add(callback);
-buttonGrp.push(item);
 }
 
 override function closeSubState():Void
 {
-magenta.visible = false;
 
 {
-uiStateMachine.transition(Idle);
 
 
-backButton?.animation.play('idle');
-backButton?.resetCallbacks();
 
-optionsButton?.animation.play('idle');
-optionsButton?.resetCallbacks();
 }
 
-super.closeSubState();
 }
 
 function onMenuItemChange(selected:MenuListItem)
 {
-selected.getGraphicMidpoint().y);
 }
 
 function selectDonate()
 {
-WindowUtil.openURL(Constants.URL_ITCH);
 }
 
 function selectMerch()
 {
-Referral.doMerchReferral();
-uiStateMachine.transition(Idle);
 }
 
 public function openPrompt(prompt:Prompt, onClose:Void->Void):Void
 {
-uiStateMachine.transition(Interacting);
-persistentUpdate = false;
 
 prompt.closeCallback = function()
 {
 }
 
-openSubState(prompt);
 }
 
 function startExitState(state:NextState):Void
 {
 
 uiStateMachine.transition(Exiting); // Start fade out
-rememberedSelectedIndex = menuItems.selectedIndex;
 
 menuItems.forEach(item ->
 {
 else
-item.visible = false;
-});
 
 
 FlxTimer.wait(fadeOutDuration, () ->
 {
-});
 }
 
 override function update(elapsed:Float):Void
 {
-super.update(elapsed);
 
 Conductor.instance.update();
 
 {
-gyroPan.add(FlxG.gyroscope.pitch * -1.25, FlxG.gyroscope.roll * -1.25);
 
-gyroPan.x = MathUtil.smoothLerpPrecision(gyroPan.x, 0, elapsed, 2.5);
-gyroPan.y = MathUtil.smoothLerpPrecision(gyroPan.y, 0, elapsed, 2.5);
 
-camFollow.x = bg.getGraphicMidpoint().x - gyroPan.x;
-camFollow.y = bg.getGraphicMidpoint().y - gyroPan.y;
 }
 
 {
 }
-handleInputs();
 
 
 {
-optionsButton.active = canInteract || optionsButton.confirming;
-optionsButton.enabled = optionsButton.active;
 }
 {
-backButton.active = canInteract || backButton.confirming;
-backButton.enabled = backButton.active;
 }
 }
 
@@ -342,8 +221,6 @@ function handleInputs():Void
 {
 
 {
-persistentUpdate = false;
-uiStateMachine.transition(Interacting);
 
 
 }
@@ -353,7 +230,6 @@ uiStateMachine.transition(Interacting);
 }
 
 {
-FunkinSound.playOnce(Paths.sound('confirmMenu'));
 funkin.save.Save.instance.setLevelScore('weekend1', 'easy', {
 score: 1,
 tallies: {
@@ -367,11 +243,9 @@ maxCombo: 0,
 totalNotesHit: 0,
 totalNotes: 0,
 }
-});
 }
 
 {
-FunkinSound.playOnce(Paths.sound('confirmMenu'));
 for (diff in ['easy', 'normal', 'hard'])
 {
 funkin.save.Save.instance.setLevelScore('weekend1', diff, {
@@ -387,7 +261,6 @@ maxCombo: 0,
 totalNotesHit: 0,
 totalNotes: 0,
 }
-});
 }
 }
 
@@ -405,7 +278,6 @@ maxCombo: 0,
 totalNotesHit: 1,
 totalNotes: 10,
 }
-});
 }
 
 {
@@ -423,14 +295,10 @@ funkin.save.Save.instance.debug_dumpSaveJsonSave();
 
 function goOptions():Void
 {
-startExitState(() -> new funkin.ui.options.OptionsState());
 }
 
 function goBack():Void
 {
-uiStateMachine.transition(Exiting);
-rememberedSelectedIndex = menuItems?.selectedIndex ?? 0;
-FunkinSound.playOnce(Paths.sound('cancelMenu'));
 
 }
 }

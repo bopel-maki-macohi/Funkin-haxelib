@@ -1,4 +1,3 @@
-package funkin.ui;
 
 
 class FullScreenScaleMode extends flixel.system.scaleModes.BaseScaleMode
@@ -79,12 +78,10 @@ class FullScreenScaleMode extends flixel.system.scaleModes.BaseScaleMode
 */
 public function new(enable:Bool = true):Void
 {
-super();
 
 instance = this;
 
 
-enabled = enable;
 }
 
 /**
@@ -95,14 +92,10 @@ enabled = enable;
 override public function onMeasure(Width:Int, Height:Int):Void
 {
 {
-onMeasureAwait(Width, Height);
 }
 else
 {
-onMeasureInstant(Width, Height);
-mustAwait = true;
 }
-onMeasureInstant(Width, Height);
 }
 
 /**
@@ -112,16 +105,8 @@ onMeasureInstant(Width, Height);
 */
 public function onMeasureAwait(Width:Int, Height:Int):Void
 {
-horizontalAlign = CENTER;
-verticalAlign = CENTER;
 
-updateGameSize(FlxG.width, FlxG.height);
-updateDeviceSize(Width, Height);
-updateDeviceNotch(funkin.mobile.util.ScreenUtil.getNotchRect());
-updateScaleOffset();
-updateGamePosition();
 
-awaitedSize.set(Width, Height);
 }
 
 /**
@@ -130,11 +115,7 @@ awaitedSize.set(Width, Height);
 public function onMeasurePostAwait():Void
 {
 
-horizontalAlign = enabled ? LEFT : CENTER;
-verticalAlign = enabled ? TOP : CENTER;
-onMeasureInstant(Math.ceil(awaitedSize.x), Math.ceil(awaitedSize.y));
 
-awaitedSize.set(0, 0);
 }
 
 /**
@@ -144,20 +125,9 @@ awaitedSize.set(0, 0);
 */
 public function onMeasureInstant(Width:Int, Height:Int):Void
 {
-finishingAwait = true;
-untyped FlxG.width = FlxG.initialWidth;
-untyped FlxG.height = FlxG.initialHeight;
 
-updateGameSize(Width, Height);
-updateDeviceSize(Width, Height);
-updateDeviceCutout(Width, Height);
-updateDeviceNotch(funkin.mobile.util.ScreenUtil.getNotchRect());
-updateScaleOffset();
-updateGamePosition();
 
-adjustGameSize();
 
-finishingAwait = false;
 }
 
 /**
@@ -176,38 +146,26 @@ for (i => bitmap in cutoutBitmaps)
 {
 
 cutoutBitmaps[i] = bitmap = new Bitmap(new BitmapData((ratioAxis == X ? Math.ceil(cutoutSize.x / 2) : Math.ceil(FlxG.scaleMode.gameSize.x)) + 1,
-(ratioAxis == Y ? Math.ceil(cutoutSize.y / 2) : Math.ceil(FlxG.scaleMode.gameSize.y)) + 1, true, 0xFF000000));
-game.parent.addChildAt(bitmap, game.parent.getChildIndex(game) + 1);
 }
 
 
 {
 bitmap.x = instance.offset.x + ((i == 0) ? -bitmap.width - 1 : FlxG.scaleMode.gameSize.x + 1);
 targetX = instance.offset.x + ((i == 0) ? -1 : FlxG.scaleMode.gameSize.x - bitmap.width + 1);
-bitmap.y = 0;
-targetY = 0;
 }
 else
 {
-bitmap.x = 0;
-targetX = 0;
 bitmap.y = instance.offset.y + ((i == 0) ? -bitmap.height - 1 : FlxG.scaleMode.gameSize.y + 1);
 targetY = instance.offset.y + ((i == 0) ? -1 : FlxG.scaleMode.gameSize.y - bitmap.height + 1);
 }
 
-bitmap.alpha = 0;
 
 {
-FlxTween.tween(bitmap, {x: targetX, y: targetY, alpha: 1}, tweenDuration, {ease: ease ?? FlxEase.linear});
 }
 else
 {
-bitmap.x = targetX;
-bitmap.y = targetY;
-bitmap.alpha = 1;
 }
 }
-hasFakeCutouts = true;
 }
 
 /**
@@ -221,75 +179,46 @@ public static function removeCutouts(tweenDuration:Float = 0.0, ?ease:Float->Flo
 for (i => bitmap in cutoutBitmaps)
 {
 {
-continue;
 }
 
 
 {
-FlxTween.tween(bitmap, {x: targetX, y: targetY, alpha: 0}, tweenDuration, {ease: ease ?? FlxEase.linear});
 }
 else
 {
-bitmap.x = targetX;
-bitmap.y = targetY;
-bitmap.alpha = 0;
 }
 }
-hasFakeCutouts = false;
 }
 
 private function updateDeviceCutout(Width:Int, Height:Int):Void
 {
 {
-cutoutSize.x = ratioAxis == X ? Math.ceil(Width - logicalSize.x) : 0;
-cutoutSize.y = ratioAxis == Y ? Math.ceil(Height - logicalSize.y) : 0;
-gameCutoutSize.copyFrom(cutoutSize);
-gameCutoutSize /= logicalSize.x / FlxG.initialWidth;
 }
 else
 {
-cutoutSize.set(0, 0);
-gameCutoutSize.set(0, 0);
 }
 }
 
 override public function updateGameSize(Width:Int, Height:Int):Void
 {
-gameRatio = FlxG.width / FlxG.height;
-screenRatio = Width / Height;
-ratioAxis = screenRatio < gameRatio ? FlxAxes.Y : FlxAxes.X;
 
-logicalSize.set(Width, Height);
 
 {
-gameSize.x = Width;
-logicalSize.y = Math.ceil(gameSize.x / gameRatio);
-gameSize.y = enabled ? Height : logicalSize.y;
 }
 else
 {
-gameSize.y = Height;
-logicalSize.x = Math.ceil(gameSize.y * gameRatio);
-gameSize.x = enabled ? Width : logicalSize.x;
 }
 }
 
 override public function updateScaleOffset():Void
 {
 {
-scale.x = ratioAxis == X ? logicalSize.x / FlxG.width : deviceSize.x / FlxG.width;
-scale.y = ratioAxis == Y ? logicalSize.y / FlxG.height : deviceSize.y / FlxG.height;
 }
 else
 {
-scale.x = deviceSize.x / FlxG.width;
-scale.y = deviceSize.y / FlxG.height;
 
 else
-scale.y = scale.x;
 }
-updateOffsetX();
-updateOffsetY();
 }
 
 override function updateOffsetX():Void
@@ -297,11 +226,8 @@ override function updateOffsetX():Void
 offset.x = switch (horizontalAlign)
 {
 case FlxHorizontalAlign.LEFT:
-0;
 case FlxHorizontalAlign.CENTER:
-Math.ceil((finishingAwait && enabled) ? (deviceSize.x - gameSize.x) : (deviceSize.x - (gameSize.x #if desktop * (enabled ? scale.x : 1) #end)) * 0.5);
 case FlxHorizontalAlign.RIGHT:
-deviceSize.x - gameSize.x;
 }
 }
 
@@ -310,103 +236,55 @@ override function updateOffsetY():Void
 offset.y = switch (verticalAlign)
 {
 case FlxVerticalAlign.TOP:
-0;
 case FlxVerticalAlign.CENTER:
-Math.ceil((finishingAwait && enabled) ? (deviceSize.y - gameSize.y) : (deviceSize.y - (gameSize.y #if desktop * (enabled ? scale.y : 1) #end)) * 0.5);
 case FlxVerticalAlign.BOTTOM:
-deviceSize.y - gameSize.y;
 }
 }
 
 private function updateDeviceNotch(notch:openfl.geom.Rectangle):Void
 {
-notchPosition.set(enabled ? notch.x : 0, enabled ? notch.y : 0);
-notchSize.set(enabled ? notch.width : 0, enabled ? notch.height : 0);
-gameNotchPosition.copyFrom(notchPosition);
-gameNotchSize.copyFrom(notchSize);
 
 {
-gameNotchPosition /= scale;
-gameNotchSize /= scale;
 }
 else
 {
-gameNotchPosition *= scale;
-gameNotchSize *= scale;
 }
 }
 
 public function reset():Void
 {
-cutoutSize.set(0, 0);
-gameCutoutSize.set(0, 0);
-notchSize.set(0, 0);
-gameNotchSize.set(0, 0);
-notchPosition.set(0, 0);
-gameNotchPosition.set(0, 0);
 }
 
 private function adjustGameSize():Void
 {
 {
-wideScale.set(1, 1);
 
 {
 
 {
-gameSize.y -= cutoutSize.y;
-offset.y = Math.ceil((deviceSize.y - gameSize.y) * 0.5);
-updateGamePosition();
-reset();
 }
 
 {
-gameHeight = ((gameSize.x / scale.x) / maxAspectRatio.x) * maxAspectRatio.y;
-gameSize.y = gameHeight * scale.y;
 
-cutoutSize.set(0, cutoutSize.y - sizeDifference);
-gameCutoutSize.copyFrom(cutoutSize);
-gameCutoutSize /= scale;
 
-notchSize.y = Math.max(0, notchSize.y - sizeDifference);
-gameNotchSize.y = notchSize.y / scale;
 
-offset.y = Math.ceil((deviceSize.y - gameSize.y) * 0.5);
-updateGamePosition();
 }
 
-untyped FlxG.height = Math.ceil(gameHeight);
 
-wideScale.y = FlxG.height / FlxG.initialHeight;
 }
 else
 {
 
 {
-gameSize.x -= cutoutSize.x;
-offset.x = Math.ceil((deviceSize.x - gameSize.x) * 0.5);
-updateGamePosition();
-reset();
 }
 
 {
-gameWidth = ((gameSize.y / scale.y) / maxAspectRatio.y) * maxAspectRatio.x;
-gameSize.x = gameWidth * scale.x;
 
-cutoutSize.set(cutoutSize.x - sizeDifference, 0);
-gameCutoutSize.copyFrom(cutoutSize);
-gameCutoutSize /= scale;
 
-notchSize.x = Math.max(0, notchSize.x - sizeDifference);
-gameNotchSize.x = notchSize.x / scale;
 
-offset.x = Math.ceil((deviceSize.x - gameSize.x) * 0.5);
-updateGamePosition();
 }
 
-untyped FlxG.width = Math.ceil(gameWidth);
 
-wideScale.x = FlxG.width / FlxG.initialWidth;
 }
 }
 }
@@ -416,15 +294,12 @@ private static function set_enabled(Value:Bool):Bool
 && (extension.androidtools.os.Build.VERSION.SDK_INT >= extension.androidtools.os.Build.VERSION_CODES.P
 || extension.androidtools.Tools.isTablet()) #end)
 {
-enabled = Value;
 }
 else
 {
-enabled = false;
 }
 
 {
-mustAwait = false;
 instance.horizontalAlign = enabled ? LEFT : CENTER;
 instance.verticalAlign = enabled ? TOP : CENTER;
 instance.onMeasure(FlxG.stage.stageWidth, FlxG.stage.stageHeight);

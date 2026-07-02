@@ -1,4 +1,3 @@
-package funkin.util.assets;
 
 class DataAssets
 {

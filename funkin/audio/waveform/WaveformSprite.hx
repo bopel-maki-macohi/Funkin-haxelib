@@ -1,4 +1,3 @@
-package funkin.audio.waveform;
 
 
 /**
@@ -27,8 +26,6 @@ class WaveformSprite extends MeshRender
 function set_waveformData(value:Null<WaveformData>):Null<WaveformData>
 {
 
-waveformData = value;
-isWaveformDirty = true;
 }
 
 /**
@@ -38,8 +35,6 @@ isWaveformDirty = true;
 function set_waveformColor(value:FlxColor):FlxColor
 {
 
-waveformColor = value;
-rebuildGraphic();
 }
 
 /**
@@ -49,8 +44,6 @@ rebuildGraphic();
 function set_orientation(value:WaveformOrientation):WaveformOrientation
 {
 
-orientation = value;
-isWaveformDirty = true;
 }
 
 /**
@@ -60,15 +53,11 @@ isWaveformDirty = true;
 function set_time(value:Float):Float
 {
 
-time = value;
-isWaveformDirty = true;
 }
 
 override function set_visible(value:Bool):Bool
 {
 
-visible = value;
-isWaveformDirty = true;
 }
 
 /**
@@ -79,8 +68,6 @@ isWaveformDirty = true;
 function set_duration(value:Float):Float
 {
 
-duration = value;
-isWaveformDirty = true;
 }
 
 /**
@@ -89,7 +76,6 @@ isWaveformDirty = true;
 override function set_height(value:Float):Float
 {
 
-isWaveformDirty = true;
 }
 
 /**
@@ -98,7 +84,6 @@ isWaveformDirty = true;
 override function set_width(value:Float):Float
 {
 
-isWaveformDirty = true;
 }
 
 /**
@@ -115,22 +100,9 @@ isWaveformDirty = true;
 
 public function new(?waveformData:WaveformData, ?orientation:WaveformOrientation, ?color:FlxColor, ?duration:Float)
 {
-super(DEFAULT_X, DEFAULT_Y, DEFAULT_COLOR);
-this.waveformColor = color ?? DEFAULT_COLOR;
-this.width = DEFAULT_WIDTH;
-this.height = DEFAULT_HEIGHT;
 
-this.minWaveformSize = 1;
-this.amplitude = 1.0;
-this.isWaveformDirty = true;
-this.forceUpdate = false;
 
-this.waveformData = waveformData;
-this.orientation = orientation ?? DEFAULT_ORIENTATION;
-this.time = 0.0;
-this.duration = duration ?? DEFAULT_DURATION;
 
-this.forceUpdate = false;
 }
 
 /**
@@ -138,27 +110,21 @@ this.forceUpdate = false;
 */
 public function markDirty():Void
 {
-isWaveformDirty = true;
 }
 
 public override function update(elapsed:Float):Void
 {
-super.update(elapsed);
 
 {
-drawWaveform();
-isWaveformDirty = false;
 }
 }
 
 function rebuildGraphic():Void
 {
-makeGraphic(1, 1, this.waveformColor);
 }
 
 public override function draw():Void
 {
-super.draw();
 }
 
 /**
@@ -167,7 +133,6 @@ super.draw();
 function drawWaveform():Void
 {
 
-this.clear();
 
 
 
@@ -177,10 +142,6 @@ this.clear();
 
 
 {
-topLeftVertexIndex = this.build_vertex(clipRect.x, clipRect.y);
-topRightVertexIndex = this.build_vertex(clipRect.x + clipRect.width, clipRect.y);
-bottomLeftVertexIndex = this.build_vertex(clipRect.x, clipRect.y + clipRect.height);
-bottomRightVertexIndex = this.build_vertex(clipRect.x + clipRect.width, clipRect.y + clipRect.height);
 }
 
 {
@@ -189,41 +150,29 @@ for (i in startIndex...endIndex)
 
 
 {
-continue;
 }
 
-&& ((orientation == HORIZONTAL) ? pixelPos > (clipRect.x + clipRect.width) : pixelPos > (clipRect.y + clipRect.height));
 
 {
-break;
-};
 
 
 
 
 {
 {
-vertexTopIndex = buildClippedVertex(pixelPos, vertexTopY, topLeftVertexIndex, topRightVertexIndex, bottomLeftVertexIndex, bottomRightVertexIndex);
 vertexBottomIndex = buildClippedVertex(pixelPos, vertexBottomY, topLeftVertexIndex, topRightVertexIndex, bottomLeftVertexIndex,
-bottomRightVertexIndex);
 }
 else
 {
-vertexTopIndex = buildClippedVertex(vertexTopY, pixelPos, topLeftVertexIndex, topRightVertexIndex, bottomLeftVertexIndex, bottomRightVertexIndex);
 vertexBottomIndex = buildClippedVertex(vertexBottomY, pixelPos, topLeftVertexIndex, topRightVertexIndex, bottomLeftVertexIndex,
-bottomRightVertexIndex);
 }
 }
 else
 {
 {
-vertexTopIndex = this.build_vertex(pixelPos, vertexTopY);
-vertexBottomIndex = this.build_vertex(pixelPos, vertexBottomY);
 }
 else
 {
-vertexTopIndex = this.build_vertex(vertexTopY, pixelPos);
-vertexBottomIndex = this.build_vertex(vertexBottomY, pixelPos);
 }
 }
 
@@ -234,14 +183,10 @@ vertexBottomIndex = this.build_vertex(vertexBottomY, pixelPos);
 switch (orientation) // the line of code that makes you gay
 {
 case HORIZONTAL:
-this.add_quad(prevVertexTopIndex, vertexTopIndex, vertexBottomIndex, prevVertexBottomIndex);
 case VERTICAL:
-this.add_quad(prevVertexBottomIndex, prevVertexTopIndex, vertexTopIndex, vertexBottomIndex);
 }
 }
 
-prevVertexTopIndex = vertexTopIndex;
-prevVertexBottomIndex = vertexBottomIndex;
 }
 }
 else
@@ -251,38 +196,27 @@ for (i in 0...waveformLengthPixels)
 
 
 
-&& ((orientation == HORIZONTAL) ? pixelPos > (clipRect.x + clipRect.width) : pixelPos > (clipRect.y + clipRect.height));
 
 {
-break;
-};
 
 
 
 
 {
 {
-vertexTopIndex = buildClippedVertex(pixelPos, vertexTopY, topLeftVertexIndex, topRightVertexIndex, bottomLeftVertexIndex, bottomRightVertexIndex);
 vertexBottomIndex = buildClippedVertex(pixelPos, vertexBottomY, topLeftVertexIndex, topRightVertexIndex, bottomLeftVertexIndex,
-bottomRightVertexIndex);
 }
 else
 {
-vertexTopIndex = buildClippedVertex(vertexTopY, pixelPos, topLeftVertexIndex, topRightVertexIndex, bottomLeftVertexIndex, bottomRightVertexIndex);
 vertexBottomIndex = buildClippedVertex(vertexBottomY, pixelPos, topLeftVertexIndex, topRightVertexIndex, bottomLeftVertexIndex,
-bottomRightVertexIndex);
 }
 }
 else
 {
 {
-vertexTopIndex = this.build_vertex(pixelPos, vertexTopY);
-vertexBottomIndex = this.build_vertex(pixelPos, vertexBottomY);
 }
 else
 {
-vertexTopIndex = this.build_vertex(vertexTopY, pixelPos);
-vertexBottomIndex = this.build_vertex(vertexBottomY, pixelPos);
 }
 }
 
@@ -290,13 +224,9 @@ vertexBottomIndex = this.build_vertex(vertexBottomY, pixelPos);
 switch (orientation)
 {
 case HORIZONTAL:
-this.add_quad(prevVertexTopIndex, vertexTopIndex, vertexBottomIndex, prevVertexBottomIndex);
 case VERTICAL:
-this.add_quad(prevVertexBottomIndex, prevVertexTopIndex, vertexTopIndex, vertexBottomIndex);
 }
 }
-prevVertexTopIndex = vertexTopIndex;
-prevVertexBottomIndex = vertexBottomIndex;
 }
 }
 }
@@ -365,6 +295,4 @@ public static function buildFromFunkinSound(sound:FunkinSound, ?orientation:Wave
 */
 enum WaveformOrientation
 {
-HORIZONTAL;
-VERTICAL;
 }

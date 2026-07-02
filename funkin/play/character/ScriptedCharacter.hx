@@ -1,4 +1,3 @@
-package funkin.play.character;
 
 /**
 * A script that can be tied to a BaseCharacter, which persists across states.

@@ -1,4 +1,3 @@
-package funkin.effects;
 
 
 /**
@@ -32,10 +31,8 @@ Ease:EaseFunction, ?CompletionCallback:IntervalShake->Void, ?ProgressCallback:In
 }
 
 {
-Interval = FlxG.elapsed;
 }
 
-shake.start(Object, Duration, Interval, StartIntensity, EndIntensity, Ease, CompletionCallback, ProgressCallback);
 }
 
 /**
@@ -55,7 +52,6 @@ public static function isShaking(Object:FlxObject):Bool
 public static function stopShaking(Object:FlxObject):Void
 {
 {
-boundShake.stop();
 }
 }
 
@@ -108,11 +104,6 @@ boundShake.stop();
 */
 public function destroy():Void
 {
-object = null;
-timer = null;
-ease = null;
-completionCallback = null;
-progressCallback = null;
 }
 
 /**
@@ -121,17 +112,6 @@ progressCallback = null;
 function start(Object:FlxObject, Duration:Float = 1, Interval:Float = 0.04, StartIntensity:Float = 0, EndIntensity:Float = 0, Ease:EaseFunction,
 ?CompletionCallback:IntervalShake->Void, ?ProgressCallback:IntervalShake->Void):Void
 {
-object = Object;
-duration = Duration;
-interval = Interval;
-completionCallback = CompletionCallback;
-startIntensity = StartIntensity;
-endIntensity = EndIntensity;
-initialOffset = new FlxPoint(Object.x, Object.y);
-ease = Ease;
-axes = FlxAxes.XY;
-_secondsSinceStart = 0;
-timer = new FlxTimer().start(interval, shakeProgress, Std.int(duration / interval));
 }
 
 /**
@@ -139,10 +119,6 @@ timer = new FlxTimer().start(interval, shakeProgress, Std.int(duration / interva
 */
 public function stop():Void
 {
-timer.cancel();
-object.x = initialOffset.x;
-object.y = initialOffset.y;
-release();
 }
 
 /**
@@ -150,8 +126,6 @@ release();
 */
 function release():Void
 {
-_boundObjects.remove(object);
-_pool.put(this);
 }
 
 
@@ -161,22 +135,15 @@ _pool.put(this);
 */
 function shakeProgress(timer:FlxTimer):Void
 {
-_secondsSinceStart += interval;
-scale = _secondsSinceStart / duration;
 {
-scale = 1 - ease(scale);
 }
 
-curIntensity = FlxMath.lerp(endIntensity, startIntensity, scale);
 
 
 
 
 {
-object.x = initialOffset.x;
-object.y = initialOffset.y;
 {
-completionCallback(this);
 }
 
 }

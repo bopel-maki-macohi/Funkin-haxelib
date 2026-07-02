@@ -1,4 +1,3 @@
-package funkin.ui.freeplay;
 
 
 /**
@@ -11,25 +10,19 @@ override function recycle(?cls:Class<Dynamic>, ?factory:Void->Dynamic, force:Boo
 override function recycle(?cls:Class<SongMenuItem>, ?factory:Void->SongMenuItem, force:Bool = false, revive:Bool = true):SongMenuItem
 {
 
-capsule.fakeBlurredRanking.shader = rankBlurredShader;
-capsule.blurredRanking.shader = rankBlurredShader;
-capsule.favIconBlurred.shader = favIconBlurredShader;
 
-capsule.weekText.filters = [weekTextFilter];
 
 }
 
 override function draw():Void
 {
 {
-FlxCamera._defaultCameras = _cameras;
 }
 
 
 for (capsule in this.members)
 {
 {
-capsulesToRender.push(capsule);
 }
 }
 
@@ -39,10 +32,8 @@ for (i in 0...memberCount)
 for (capsule in capsulesToRender)
 {
 
-member.draw();
 }
 }
 
-FlxCamera._defaultCameras = oldDefaultCameras;
 }
 }

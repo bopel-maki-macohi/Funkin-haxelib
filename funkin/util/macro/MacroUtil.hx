@@ -1,4 +1,3 @@
-package funkin.util.macro;
 
 
 /**
@@ -39,7 +38,6 @@ public static function getClassTypeFromExpr(e:Expr):ClassType
 
 
 {
-nextSection = null;
 
 switch (section)
 {
@@ -50,8 +48,6 @@ case CIdent(cn):
 default:
 }
 case EField(exp, field):
-nextSection = exp.expr;
-parts.unshift(field);
 
 default:
 }
@@ -63,7 +59,6 @@ switch (classTypeParsed)
 {
 case TInst(t, params):
 default:
-throw 'Class type could not be parsed: ${fullClassName}';
 }
 }
 
@@ -106,7 +101,6 @@ switch (Context.getType(name))
 {
 case TInst(t, _params):
 default:
-throw 'Class type could not be parsed: ${name}';
 }
 }
 
@@ -205,10 +199,8 @@ switch (c)
 {
 case CIdent(s):
 
-Context.warning('[ASSET] "${input}" NON-BOOLEAN', input.pos);
 
 default:
-Context.warning('[ASSET] "${input}" NON-IDENTIFIER', input.pos);
 }
 default:
 }

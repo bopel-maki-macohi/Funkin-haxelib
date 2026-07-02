@@ -1,4 +1,3 @@
-package funkin.graphics.framebuffer;
 
 
 /**
@@ -9,9 +8,7 @@ class FixedBitmapData extends BitmapData
 override function __drawGL(source:IBitmapDrawable, renderer:OpenGLRenderer):Void
 {
 {
-renderer.__stage = object.stage;
 }
-super.__drawGL(source, renderer);
 }
 
 /**
@@ -35,18 +32,12 @@ public static function create(width:Int, height:Int, useGPU:Bool = true):FixedBi
 */
 public static function fromTexture(texture:TextureBase):FixedBitmapData
 {
-bitmapData.readable = false;
-bitmapData.__texture = texture;
-bitmapData.__textureContext = texture.__textureContext;
 
-bitmapData.image = null;
 
 }
 
 static function _createTexture(width:Int, height:Int):TextureBase
 {
-width = width < 1 ? 1 : width;
-height = height < 1 ? 1 : height;
 
 }
 }

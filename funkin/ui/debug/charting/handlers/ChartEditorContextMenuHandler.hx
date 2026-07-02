@@ -1,4 +1,3 @@
-package funkin.ui.debug.charting.handlers;
 
 
 /**
@@ -10,14 +9,10 @@ class ChartEditorContextMenuHandler
 public static function openDefaultContextMenu(state:ChartEditorState, xPos:Float, yPos:Float)
 {
 {
-existingDefaultContextMenu.left = xPos;
-existingDefaultContextMenu.top = yPos;
 Screen.instance.addComponent(existingDefaultContextMenu);
 }
 else
 {
-displayMenu(state, targetMenu);
-existingDefaultContextMenu = targetMenu;
 }
 }
 
@@ -27,15 +22,10 @@ existingDefaultContextMenu = targetMenu;
 public static function openSelectionContextMenu(state:ChartEditorState, xPos:Float, yPos:Float)
 {
 {
-existingSelectionContextMenu.left = xPos;
-existingSelectionContextMenu.top = yPos;
-existingSelectionContextMenu.initialize();
 Screen.instance.addComponent(existingSelectionContextMenu);
 }
 else
 {
-displayMenu(state, targetMenu);
-existingSelectionContextMenu = targetMenu;
 }
 }
 
@@ -45,16 +35,10 @@ existingSelectionContextMenu = targetMenu;
 public static function openNoteContextMenu(state:ChartEditorState, xPos:Float, yPos:Float, data:SongNoteData)
 {
 {
-existingNoteContextMenu.left = xPos;
-existingNoteContextMenu.top = yPos;
-existingNoteContextMenu.data = data;
-existingNoteContextMenu.initialize();
 Screen.instance.addComponent(existingNoteContextMenu);
 }
 else
 {
-displayMenu(state, targetMenu);
-existingNoteContextMenu = targetMenu;
 }
 }
 
@@ -64,16 +48,10 @@ existingNoteContextMenu = targetMenu;
 public static function openHoldNoteContextMenu(state:ChartEditorState, xPos:Float, yPos:Float, data:SongNoteData)
 {
 {
-existingHoldNoteContextMenu.left = xPos;
-existingHoldNoteContextMenu.top = yPos;
-existingHoldNoteContextMenu.data = data;
-existingHoldNoteContextMenu.initialize();
 Screen.instance.addComponent(existingHoldNoteContextMenu);
 }
 else
 {
-displayMenu(state, targetMenu);
-existingHoldNoteContextMenu = targetMenu;
 }
 }
 
@@ -83,25 +61,17 @@ existingHoldNoteContextMenu = targetMenu;
 public static function openEventContextMenu(state:ChartEditorState, xPos:Float, yPos:Float, data:SongEventData)
 {
 {
-existingEventContextMenu.left = xPos;
-existingEventContextMenu.top = yPos;
-existingEventContextMenu.data = data;
-existingEventContextMenu.initialize();
 Screen.instance.addComponent(existingEventContextMenu);
 }
 else
 {
-displayMenu(state, targetMenu);
-existingEventContextMenu = targetMenu;
 }
 }
 
 static function displayMenu(state:ChartEditorState, targetMenu:Menu)
 {
-closeExistingMenu(state);
 
 Screen.instance.addComponent(targetMenu);
-existingMenu = targetMenu;
 }
 
 public static function closeExistingMenu(state:ChartEditorState)
@@ -109,12 +79,6 @@ public static function closeExistingMenu(state:ChartEditorState)
 {
 Screen.instance.removeComponent(existingMenu);
 
-existingDefaultContextMenu = null;
-existingSelectionContextMenu = null;
-existingNoteContextMenu = null;
-existingHoldNoteContextMenu = null;
-existingEventContextMenu = null;
-existingMenu = null;
 }
 }
 }

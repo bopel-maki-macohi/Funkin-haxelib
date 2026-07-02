@@ -1,4 +1,3 @@
-package funkin.util;
 
 
 /**
@@ -46,7 +45,6 @@ public static function getHitWindow(note:NoteSprite):HitWindow
 start: note.strumTime - Constants.HIT_WINDOW_MS,
 center: note.strumTime,
 end: note.strumTime + Constants.HIT_WINDOW_MS
-};
 }
 
 /**
@@ -64,22 +62,13 @@ public static function processWindow(note:NoteSprite, isControlled:Bool = true, 
 }
 
 {
-note.tooEarly = false;
-note.hasMissed = true;
-note.mayHit = false;
 }
 
 
 
 {
-note.tooEarly = false;
-note.hasMissed = false;
-note.mayHit = true;
 }
 
-note.tooEarly = true;
-note.mayHit = false;
-note.hasMissed = false;
 
 }
 

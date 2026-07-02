@@ -1,4 +1,3 @@
-package funkin.input;
 
 
 /**
@@ -14,12 +13,10 @@ class TurboKeyHandler extends FlxBasic
 /**
 * Default delay before repeating.
 */
-static inline final DEFAULT_DELAY:Float = 0.4;
 
 /**
 * Default interval between repeats.
 */
-static inline final DEFAULT_INTERVAL:Float = 0.1;
 
 /**
 * Whether all of the keys for this handler are pressed.
@@ -34,10 +31,6 @@ static inline final DEFAULT_INTERVAL:Float = 0.1;
 
 function new(keys:Array<FlxKey>, delay:Float = DEFAULT_DELAY, interval:Float = DEFAULT_INTERVAL)
 {
-super();
-this.keys = keys;
-this.delay = delay;
-this.interval = interval;
 }
 
 function get_allPressed():Bool
@@ -50,27 +43,19 @@ for (key in keys)
 
 public override function update(elapsed:Float):Void
 {
-super.update(elapsed);
 
 {
 {
-activated = true;
 }
 else if (allPressedTime >= (delay + interval))
 {
-activated = true;
-allPressedTime -= interval;
 }
 else
 {
-activated = false;
 }
-allPressedTime += elapsed;
 }
 else
 {
-allPressedTime = 0;
-activated = false;
 }
 }
 

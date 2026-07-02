@@ -1,4 +1,3 @@
-package funkin.data.notestyle;
 
 
 /**
@@ -173,7 +172,6 @@ typedef NoteStyleData_NoteSplash =
 
 
 
-};
 
 typedef NoteStyleData_HoldNoteCover =
 {
@@ -185,7 +183,6 @@ typedef NoteStyleData_HoldNoteCover =
 
 
 
-};
 
 typedef NoteStyleData_HoldNoteCoverDirectionData =
 {

@@ -1,4 +1,3 @@
-package funkin.ui.debug.charting.handlers;
 
 
 /**
@@ -43,7 +42,6 @@ public static function loadVocalsFromAsset(state:ChartEditorState, path:String, 
 */
 public static function loadVocalsFromBytes(state:ChartEditorState, bytes:Bytes, charId:String, instId:String = '', wipeFirst:Bool = false):Bool
 {
-state.audioVocalTrackData.set(trackId, bytes);
 }
 
 /**
@@ -79,25 +77,17 @@ public static function loadInstFromAsset(state:ChartEditorState, path:String, in
 */
 public static function loadInstFromBytes(state:ChartEditorState, bytes:Bytes, instId:String = '', wipeFirst:Bool = false):Bool
 {
-state.audioInstTrackData.set(instId, bytes);
 }
 
 public static function switchToInstrumental(state:ChartEditorState, instId:String = '', playerId:String, opponentId:String):Bool
 {
 
-stopExistingVocals(state);
 
-result = playVocals(state, BF, playerId, instId);
 
-result = playVocals(state, DAD, opponentId, instId);
 
-state.postLoadVocals();
 
-state.hardRefreshOffsetsToolbox();
 
-state.hardRefreshFreeplayToolbox();
 
-state.loadSubtitles();
 
 }
 
@@ -107,19 +97,12 @@ state.loadSubtitles();
 public static function playInstrumental(state:ChartEditorState, instId:String = ''):Bool
 {
 
-instTrack.important = true;
 
-stopExistingInstrumental(state);
-state.audioInstTrack = instTrack;
-state.postLoadInstrumental();
 }
 
 public static function stopExistingInstrumental(state:ChartEditorState):Void
 {
 {
-state.audioInstTrack.stop();
-state.audioInstTrack.destroy();
-state.audioInstTrack = null;
 }
 }
 
@@ -131,37 +114,29 @@ public static function playVocals(state:ChartEditorState, charType:CharacterType
 
 
 
-vocalTrack.important = true;
 
 switch (charType)
 {
 case BF:
-state.audioVocalTrackGroup.addPlayerVoice(vocalTrack);
 
 
 {
-state.audioWaveforms.add(waveformSprite);
 }
 else
 {
 }
 
-state.audioVocalTrackGroup.playerVoicesOffset = state.currentVocalOffsetPlayer;
 case DAD:
-state.audioVocalTrackGroup.addOpponentVoice(vocalTrack);
 
 
 {
-state.audioWaveforms.add(waveformSprite);
 }
 else
 {
 }
 
-state.audioVocalTrackGroup.opponentVoicesOffset = state.currentVocalOffsetOpponent;
 
 case OTHER:
-state.audioVocalTrackGroup.add(vocalTrack);
 default:
 }
 
@@ -169,19 +144,12 @@ default:
 
 static function initWaveformSprite(waveformData:WaveformData, state:ChartEditorState, charType:CharacterType):WaveformSprite
 {
-waveformSprite.y = Math.max(state.gridTiledSprite?.y ?? 0.0, ChartEditorState.GRID_INITIAL_Y_POS - ChartEditorState.GRID_TOP_PAD);
-waveformSprite.height = (ChartEditorState.GRID_SIZE) * 16;
-waveformSprite.width = (ChartEditorState.GRID_SIZE) * 2;
-waveformSprite.time = 0;
 waveformSprite.duration = Conductor.instance.getStepTimeInMs(16) * 0.001;
-waveformSprite.iconId = charType;
 }
 
 public static function stopExistingVocals(state:ChartEditorState):Void
 {
-state.audioVocalTrackGroup.clear();
 {
-state.audioWaveforms.clear();
 }
 }
 
@@ -194,9 +162,6 @@ public static function playSound(_state:ChartEditorState, path:String, volume:Fl
 {
 {
 }
-snd.autoDestroy = true;
-snd.play(true);
-snd.volume = volume;
 }
 
 /**
@@ -210,30 +175,20 @@ public static function playStretchySound(state:ChartEditorState, volume:Float = 
 {
 
 
-state.stretchySounds = !state.stretchySounds;
-state.stretchySound1.play(true);
-state.stretchySound1.volume = volume;
 }
 else
 {
 
 
-state.stretchySounds = !state.stretchySounds;
-state.stretchySound2.play(true);
-state.stretchySound2.volume = volume;
 }
 }
 
 public static function wipeInstrumentalData(state:ChartEditorState):Void
 {
-state.audioInstTrackData.clear();
-stopExistingInstrumental(state);
 }
 
 public static function wipeVocalData(state:ChartEditorState):Void
 {
-state.audioVocalTrackData.clear();
-stopExistingVocals(state);
 }
 
 /**
@@ -248,16 +203,12 @@ for (key in instTrackIds)
 {
 {
 {
-continue;
 }
-zipEntries.push(FileUtil.makeZIPEntryFromBytes('Inst.ogg', data));
 }
 else
 {
 {
-continue;
 }
-zipEntries.push(FileUtil.makeZIPEntryFromBytes('Inst-${key}.ogg', data));
 }
 }
 
@@ -274,9 +225,7 @@ public static function makeZIPEntriesFromVocals(state:ChartEditorState):Array<ha
 for (key in state.audioVocalTrackData.keys())
 {
 {
-continue;
 }
-zipEntries.push(FileUtil.makeZIPEntryFromBytes('Voices-${key}.ogg', data));
 }
 
 }

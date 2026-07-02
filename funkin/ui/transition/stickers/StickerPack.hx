@@ -1,4 +1,3 @@
-package funkin.ui.transition.stickers;
 
 
 /**
@@ -9,20 +8,15 @@ class StickerPack implements IRegistryEntry<StickerData>
 /**
 * The internal ID for this sticker pack.
 */
-public final id:String;
 
 /**
 * The full data for this sticker pack.
 */
-public final _data:StickerData;
 
 public function new(id:String, ?params:Dynamic)
 {
-this.id = id;
-this._data = _fetchData(id);
 
 {
-throw 'Could not parse sticker pack data for id: $id';
 }
 }
 

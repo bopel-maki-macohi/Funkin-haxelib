@@ -1,4 +1,3 @@
-package funkin.group;
 
 /**
 * A script that can be tied to a FunkinGroup.

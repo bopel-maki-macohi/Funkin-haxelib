@@ -1,4 +1,3 @@
-package funkin.modding.events;
 
 enum abstract ScriptEventType(String) from String to String
 {

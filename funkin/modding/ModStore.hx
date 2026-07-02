@@ -1,4 +1,3 @@
-package funkin.modding;
 
 
 /**
@@ -9,7 +8,6 @@ class ModStore
 /**
 * All registered stores for this session.
 */
-public static final stores:StringMap<Dynamic> = new StringMap<Dynamic>();
 
 /**
 * Attempts to register a new store with the given ID and return it.
@@ -22,7 +20,6 @@ public static final stores:StringMap<Dynamic> = new StringMap<Dynamic>();
 public static function register(id:String, ?data:Dynamic):Dynamic
 {
 stores.set(id, data ??= {
-});
 }
 
 /**
@@ -43,6 +40,5 @@ public static function get(id:String):Null<Dynamic>
 */
 public static function remove(id:String):Null<Dynamic>
 {
-stores.remove(id);
 }
 }

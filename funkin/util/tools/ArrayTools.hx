@@ -1,4 +1,3 @@
-package funkin.util.tools;
 
 /**
 * A static extension which provides utility functions for Arrays.
@@ -13,7 +12,6 @@ class ArrayTools
 */
 public static function pushUnique<T>(input:Array<T>, element:T):Bool
 {
-input.push(element);
 }
 
 /**
@@ -22,7 +20,6 @@ input.push(element);
 */
 public static function clear<T>(array:Array<T>):Void
 {
-array.pop();
 }
 
 /**

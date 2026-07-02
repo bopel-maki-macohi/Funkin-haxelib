@@ -1,4 +1,3 @@
-package funkin.modding.base;
 
 /**
 * A script that can be tied to an FlxRuntimeShader.

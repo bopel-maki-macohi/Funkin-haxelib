@@ -1,4 +1,3 @@
-package funkin.util;
 
 
 /**
@@ -10,19 +9,13 @@ class TrackerToolButtonUtil extends Tool
 {
 override function init(brain:Interaction):Tool
 {
-super.init(brain);
 
-_name = "Add Tracker";
-setButton(GraphicCursorCross);
 
 button.upHandler = function()
 {
 brain.selectedItems.forEach(function(item)
 {
-});
-};
 
-button.toggleMode = false;
 
 }
 }

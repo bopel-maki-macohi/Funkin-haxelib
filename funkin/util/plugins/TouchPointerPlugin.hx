@@ -1,4 +1,3 @@
-package funkin.util.plugins;
 
 
 
@@ -22,7 +21,6 @@ class TouchPointerPlugin extends FlxTypedSpriteGroup<TouchPointer>
 
 public function new()
 {
-super();
 }
 
 /**
@@ -30,8 +28,6 @@ super();
 */
 public static function initialize():Void
 {
-pointerCamera = new FlxCamera();
-pointerCamera.bgColor.alpha = 0;
 instance = new TouchPointerPlugin();
 instance.cameras = [pointerCamera];
 
@@ -55,29 +51,21 @@ function moveCameraToTop(camera:FlxCamera):Void
 {
 {
 instance.cameras = [pointerCamera = new FlxCamera()];
-moveCameraToTop(null);
-pointerCamera.bgColor.alpha = 0;
-pointerCamera.ID = FlxG.cameras.list.length - 1;
 }
 else // It's not destroyed so just move it to the top!
 {
-moveCameraToTop(null);
 }
 }
 else
 {
-moveCameraToTop(null);
 }
-});
 
 {
 instance.removeAll();
-});
 }
 
 override public function update(elapsed:Float):Void
 {
-super.update(elapsed);
 
 for (touch in FlxG.touches.list)
 {
@@ -85,26 +73,18 @@ for (touch in FlxG.touches.list)
 
 
 {
-pointer = recycle(TouchPointer);
-pointer.initialize(touch.touchPointID);
-add(pointer);
 }
 
-pointer.updateFromTouch(touch, pointerCamera);
 }
 
 for (pointer in members)
 {
 {
-pointer.alpha = 0.8;
 FlxTween.tween(pointer, {alpha: 0}, FlxG.random.float(0.8, 0.9), {
 ease: FlxEase.cubeIn,
 onComplete: function(_)
 {
-remove(pointer, true);
 }
-});
-pointer.touchId = -2;
 }
 }
 }
@@ -151,19 +131,13 @@ for (pointer in members)
 {
 
 {
-FlxTween.cancelTweensOf(pointer);
-remove(pointer, true);
-continue;
 }
 
-pointer.alpha = 0.8;
 FlxTween.tween(pointer, {alpha: 0}, FlxG.random.float(0.8, 1), {
 ease: FlxEase.quadIn,
 onComplete: function(_)
 {
-remove(pointer, true);
 }
-});
 }
 }
 }
@@ -192,11 +166,6 @@ class TouchPointer extends FlxSprite
 */
 public function new()
 {
-super();
-makeGraphic(16, 16, FlxColor.RED);
-scrollFactor.set(0, 0);
-viewPoint = FlxPoint.get();
-lastPosition = FlxPoint.get();
 }
 
 /**
@@ -207,8 +176,6 @@ lastPosition = FlxPoint.get();
 */
 public function initialize(touchId:Int):Void
 {
-this.touchId = touchId;
-loadGraphic("assets/images/cursor/michael.png");
 }
 
 /**
@@ -220,40 +187,24 @@ loadGraphic("assets/images/cursor/michael.png");
 */
 public function updateFromTouch(touch:FlxTouch, camera:FlxCamera):Void
 {
-touch.getViewPosition(camera, viewPoint);
 
-x = viewPoint.x - width / 2;
-y = viewPoint.y - height / 2;
 
 {
-x -= camera.target.x;
-y -= camera.target.y;
 }
 
 {
-this.angle = angle;
-loadGraphic("assets/images/cursor/kevin.png");
 }
 else
 {
-angle = 0;
-loadGraphic("assets/images/cursor/michael.png");
 }
 
-lastPosition.copyFrom(viewPoint);
 }
 
 override public function destroy():Void
 {
-viewPoint.put();
-lastPosition.put();
-super.destroy();
 }
 
 override public function loadGraphic(graphic:FlxGraphicAsset, animated = false, frameWidth = 0, frameHeight = 0, unique = false, ?key:String):FlxSprite
 {
-super.loadGraphic(graphic, animated, frameWidth, frameHeight, unique, key);
-color = 0xff6666e1;
-blend = "screen";
 }
 }

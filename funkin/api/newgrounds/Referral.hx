@@ -1,4 +1,3 @@
-package funkin.api.newgrounds;
 
 
 /**
@@ -19,20 +18,15 @@ NG.core?.calls.loader.loadReferral(false)
 .addResponseHandler(response ->
 {
 {
-WindowUtil.openURL(response.result.data.url);
 }
 else
 {
-WindowUtil.openURL(fallbackUrl);
 }
 })
-.send();
 }
 else
 {
-WindowUtil.openURL(fallbackUrl);
 }
-WindowUtil.openURL(fallbackUrl);
 }
 
 /**
@@ -40,6 +34,5 @@ WindowUtil.openURL(fallbackUrl);
 */
 public static function doMerchReferral():Void
 {
-doReferral("merch_link", Constants.URL_MERCH_FALLBACK);
 }
 }

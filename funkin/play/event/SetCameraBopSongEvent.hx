@@ -1,4 +1,3 @@
-package funkin.play.event;
 
 
 /**
@@ -29,7 +28,6 @@ public function new()
 {
 super('SetCameraBop', {
 processOldEvents: true
-});
 }
 
 public override function handleEvent(data:SongEventData):Void
@@ -79,6 +77,5 @@ min: 0,
 step: 0.25,
 type: SongEventFieldType.FLOAT,
 units: 'beats/zoom'
-}]);
 }
 }

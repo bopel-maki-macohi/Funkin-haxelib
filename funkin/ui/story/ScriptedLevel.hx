@@ -1,4 +1,3 @@
-package funkin.ui.story;
 
 /**
 * A script that can be tied to a Level, which persists across states.

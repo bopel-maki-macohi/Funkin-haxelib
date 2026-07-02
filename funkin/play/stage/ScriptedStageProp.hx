@@ -1,4 +1,3 @@
-package funkin.play.stage;
 
 /**
 * A script that can be tied to StageProp.

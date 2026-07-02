@@ -1,9 +1,5 @@
-package funkin.util.macro;
 
 
-using haxe.macro.TypeTools;
-using haxe.macro.ComplexTypeTools;
-using funkin.util.AnsiUtil;
 
 class ConsoleMacro
 {
@@ -23,7 +19,6 @@ for (className in classes)
 */
 public static function registerClass(className:String):Void
 {
-classes.push(className);
 }
 
 static macro function buildConsoleClass():Array<Field>
@@ -33,13 +28,9 @@ name: initFieldName,
 access: [AStatic, APrivate],
 kind: FVar(macro :Bool, macro
 {
-funkin.util.macro.ConsoleMacro.registerClass($v{cl});
-true;
 }),
 pos: Context.currentPos()
-};
 
-fields.push(initField);
 }
 }
 

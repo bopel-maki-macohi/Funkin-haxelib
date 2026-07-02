@@ -1,4 +1,3 @@
-package funkin.util.tools;
 
 /**
 * A static extension which provides utility functions for Strings.
@@ -26,9 +25,7 @@ public static function toTitleCase(value:String):String
 {
 for (i in 0...words.length)
 {
-result += word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
 {
-result += ' ';
 }
 }
 }

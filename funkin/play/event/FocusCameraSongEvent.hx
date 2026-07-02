@@ -1,4 +1,3 @@
-package funkin.play.event;
 
 
 /**
@@ -46,7 +45,6 @@ public function new()
 {
 super('FocusCamera', {
 processOldEvents: true
-});
 }
 
 
@@ -68,20 +66,14 @@ case -1: // Position ("focus" on origin)
 case 0: // Boyfriend (focus on player)
 {
 }
-targetX += bfPoint.x;
-targetY += bfPoint.y;
 
 case 1: // Dad (focus on opponent)
 {
 }
-targetX += dadPoint.x;
-targetY += dadPoint.y;
 
 case 2: // Girlfriend (focus on girlfriend)
 {
 }
-targetX += gfPoint.x;
-targetY += gfPoint.y;
 
 default:
 }
@@ -155,6 +147,5 @@ title: 'Easing Direction',
 defaultValue: SongEvent.DEFAULT_EASE_DIR,
 type: SongEventFieldType.ENUM,
 keys: ['In' => 'In', 'Out' => 'Out', 'In/Out' => 'InOut']
-}]);
 }
 }

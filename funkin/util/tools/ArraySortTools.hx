@@ -1,4 +1,3 @@
-package funkin.util.tools;
 
 /**
 * Contains code for sorting arrays using various algorithms.
@@ -17,7 +16,6 @@ class ArraySortTools
 public static function mergeSort<T>(input:Array<T>, compare:CompareFunction<T>):Void
 {
 
-haxe.ds.ArraySort.sort(input, compare);
 }
 
 /**
@@ -33,7 +31,6 @@ haxe.ds.ArraySort.sort(input, compare);
 public static function quickSort<T>(input:Array<T>, compare:CompareFunction<T>):Void
 {
 
-quickSortInner(input, 0, input.length - 1, compare);
 }
 
 /**
@@ -46,13 +43,9 @@ static function quickSortInner<T>(input:Array<T>, low:Int, high:Int, compare:Com
 {
 
 {
-quickSortInner(input, low, pivot, compare);
-low = pivot + 1;
 }
 else
 {
-quickSortInner(input, pivot + 1, high, compare);
-high = pivot;
 }
 }
 }
@@ -67,17 +60,11 @@ static function quickSortPartition<T>(input:Array<T>, low:Int, high:Int, compare
 {
 do
 {
-i++;
-} while (compare(input[i], pivot) < 0);
 
 do
 {
-j--;
-} while (compare(input[j], pivot) > 0);
 
 
-input[i] = input[j];
-input[j] = temp;
 }
 
 }
@@ -97,11 +84,8 @@ for (i in 1...input.length)
 {
 
 {
-input[j + 1] = input[j];
-j--;
 }
 
-input[j + 1] = current;
 }
 }
 }
@@ -112,4 +96,3 @@ input[j + 1] = current;
 * a positive number if the first argument is greater than the second,
 * or zero if the two arguments are equal.
 */
-typedef CompareFunction<T> = T->T->Int;

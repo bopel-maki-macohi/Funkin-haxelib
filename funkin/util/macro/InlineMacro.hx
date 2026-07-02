@@ -1,6 +1,4 @@
-package funkin.util.macro;
 
-using funkin.util.tools.ArrayTools;
 
 /**
 * A macro to make fields inline.
@@ -15,10 +13,8 @@ class InlineMacro
 public static macro function makeInline(field:String, isStatic:Bool = false):Array<haxe.macro.Expr.Field>
 {
 
-&& (MacroUtil.isFieldStatic(f) == isStatic));
 
 
-targetField.access.push(AInline);
 
 }
 }

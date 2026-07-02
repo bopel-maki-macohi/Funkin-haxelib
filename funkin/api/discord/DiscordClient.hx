@@ -1,4 +1,3 @@
-package funkin.api.discord;
 
 
 class DiscordClient
@@ -61,11 +60,7 @@ public function setPresence(params:DiscordClientPresenceParams):Void
 
 
 
-button1.label = "Play on Web";
-button1.url = Constants.URL_NEWGROUNDS;
 
-button2.label = "Download";
-button2.url = Constants.URL_ITCH;
 
 }
 

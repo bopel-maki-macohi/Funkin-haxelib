@@ -1,4 +1,3 @@
-package funkin.modding.events;
 
 
 /**
@@ -27,10 +26,6 @@ class ScriptEvent
 
 public function new(type:ScriptEventType, cancelable:Bool = false):Void
 {
-this.type = type;
-this.cancelable = cancelable;
-this.eventCanceled = false;
-this.shouldPropagate = true;
 }
 
 /**
@@ -40,7 +35,6 @@ this.shouldPropagate = true;
 public function cancelEvent():Void
 {
 {
-eventCanceled = true;
 }
 }
 
@@ -50,7 +44,6 @@ eventCanceled = true;
 */
 public function cancel():Void
 {
-cancelEvent();
 }
 
 /**
@@ -58,7 +51,6 @@ cancelEvent();
 */
 public function stopPropagation():Void
 {
-shouldPropagate = false;
 }
 
 public function toString():String
@@ -95,11 +87,6 @@ class NoteScriptEvent extends ScriptEvent
 
 public function new(type:ScriptEventType, note:NoteSprite, healthChange:Float, comboCount:Int = 0, cancelable:Bool = false):Void
 {
-super(type, cancelable);
-this.note = note;
-this.comboCount = comboCount;
-this.playSound = true;
-this.healthChange = healthChange;
 }
 
 public override function toString():String
@@ -133,17 +120,10 @@ class HitNoteScriptEvent extends NoteScriptEvent
 public function new(note:NoteSprite, healthChange:Float, score:Float, judgement:String, isComboBreak:Bool, comboCount:Int = 0, hitDiff:Float = 0,
 doesNotesplash:Bool = false):Void
 {
-super(NOTE_HIT, note, healthChange, comboCount, true);
-this.score = score;
-this.judgement = judgement;
-this.isComboBreak = isComboBreak;
-this.doesNotesplash = doesNotesplash;
-this.hitDiff = hitDiff;
 }
 
 public override function toString():String
 {
-+ isComboBreak + ', hitDiff=' + hitDiff + ', doesNotesplash=' + doesNotesplash + ')';
 }
 }
 
@@ -179,13 +159,6 @@ class GhostMissNoteScriptEvent extends ScriptEvent
 
 public function new(dir:NoteDirection, hasPossibleNotes:Bool, healthChange:Float, scoreChange:Float):Void
 {
-super(NOTE_GHOST_MISS, true);
-this.dir = dir;
-this.hasPossibleNotes = hasPossibleNotes;
-this.healthChange = healthChange;
-this.scoreChange = scoreChange;
-this.playSound = true;
-this.playAnim = true;
 }
 
 public override function toString():String
@@ -219,10 +192,6 @@ class HoldNoteScriptEvent extends NoteScriptEvent
 public function new(type:ScriptEventType, holdNote:SustainTrail, healthChange:Float, score:Float, isComboBreak:Bool, comboCount:Int = 0,
 cancelable:Bool = false):Void
 {
-super(type, null, healthChange, comboCount, true);
-this.holdNote = holdNote;
-this.score = score;
-this.isComboBreak = isComboBreak;
 }
 
 public override function toString():String
@@ -242,8 +211,6 @@ class SongEventScriptEvent extends ScriptEvent
 
 public function new(eventData:funkin.data.song.SongData.SongEventData):Void
 {
-super(SONG_EVENT, true);
-this.eventData = eventData;
 }
 
 public override function toString():String
@@ -263,8 +230,6 @@ class UpdateScriptEvent extends ScriptEvent
 
 public function new(elapsed:Float):Void
 {
-super(UPDATE, false);
-this.elapsed = elapsed;
 }
 
 public override function toString():String
@@ -288,9 +253,6 @@ class SongTimeScriptEvent extends ScriptEvent
 
 public function new(type:ScriptEventType, beat:Int, step:Int):Void
 {
-super(type, true);
-this.beat = beat;
-this.step = step;
 }
 
 public override function toString():String
@@ -310,8 +272,6 @@ class CountdownScriptEvent extends ScriptEvent
 
 public function new(type:ScriptEventType, step:CountdownStep, cancelable:Bool = true):Void
 {
-super(type, cancelable);
-this.step = step;
 }
 
 public override function toString():String
@@ -330,8 +290,6 @@ class DialogueScriptEvent extends ScriptEvent
 
 public function new(type:ScriptEventType, conversation:Conversation, cancelable:Bool = true):Void
 {
-super(type, cancelable);
-this.conversation = conversation;
 }
 
 public override function toString():String
@@ -350,8 +308,6 @@ class KeyboardInputScriptEvent extends ScriptEvent
 
 public function new(type:ScriptEventType, event:KeyboardEvent):Void
 {
-super(type, false);
-this.event = event;
 }
 
 public override function toString():String
@@ -389,21 +345,14 @@ class SongLoadScriptEvent extends ScriptEvent
 
 function set_notes(notes:Array<SongNoteData>):Array<SongNoteData>
 {
-this.notes = notes;
 }
 
 function set_events(events:Array<SongEventData>):Array<SongEventData>
 {
-this.events = events;
 }
 
 public function new(id:String, difficulty:String, notes:Array<SongNoteData>, events:Array<SongEventData>):Void
 {
-super(SONG_LOADED, false);
-this.id = id;
-this.difficulty = difficulty;
-this.notes = notes;
-this.events = events;
 }
 
 public override function toString():String
@@ -422,8 +371,6 @@ class SongRetryEvent extends ScriptEvent
 
 public function new(difficulty:String):Void
 {
-super(SONG_RETRY, false);
-this.difficulty = difficulty;
 }
 
 public override function toString():String
@@ -442,8 +389,6 @@ class StateChangeScriptEvent extends ScriptEvent
 
 public function new(type:ScriptEventType, targetState:FlxState, cancelable:Bool = false):Void
 {
-super(type, cancelable);
-this.targetState = targetState;
 }
 
 public override function toString():String
@@ -458,7 +403,6 @@ class FocusScriptEvent extends ScriptEvent
 {
 public function new(type:ScriptEventType):Void
 {
-super(type, false);
 }
 
 public override function toString():String
@@ -485,10 +429,6 @@ class CapsuleScriptEvent extends ScriptEvent
 
 public function new(type:ScriptEventType, capsule:SongMenuItem, difficultyId:String, variationId:String):Void
 {
-super(type, false);
-this.capsule = capsule;
-this.difficultyId = difficultyId;
-this.variationId = variationId;
 }
 
 public override function toString():String
@@ -503,7 +443,6 @@ class FreeplayScriptEvent extends ScriptEvent
 {
 public function new(type:ScriptEventType):Void
 {
-super(type, false);
 }
 
 public override function toString():String
@@ -522,8 +461,6 @@ class CharacterSelectScriptEvent extends ScriptEvent
 
 public function new(type:ScriptEventType, characterId:String):Void
 {
-super(type, false);
-this.characterId = characterId;
 }
 
 public override function toString():String
@@ -542,8 +479,6 @@ class SubStateScriptEvent extends ScriptEvent
 
 public function new(type:ScriptEventType, targetState:FlxSubState, cancelable:Bool = false):Void
 {
-super(type, cancelable);
-this.targetState = targetState;
 }
 
 public override function toString():String
@@ -562,7 +497,5 @@ class PauseScriptEvent extends ScriptEvent
 
 public function new(gitaroo:Bool):Void
 {
-super(PAUSE, true);
-this.gitaroo = gitaroo;
 }
 }

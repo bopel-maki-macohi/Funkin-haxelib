@@ -1,4 +1,3 @@
-package funkin.play.notes;
 
 
 class NoteSprite extends FunkinSprite
@@ -66,9 +65,7 @@ function set_params(value:Array<NoteParamData>):Array<NoteParamData>
 function set_direction(value:Int):Int
 {
 
-playNoteAnimation(value);
 
-this.direction = value;
 }
 
 /**
@@ -129,14 +126,9 @@ function get_isHoldNote():Bool
 
 public function new(noteStyle:NoteStyle, direction:Int = 0)
 {
-super(0, -9999);
-this.direction = direction;
 
-this.hsvShader = new HSVShader();
 
-this.alpha = 1;
 
-setupNoteGraphic(noteStyle);
 }
 
 /**
@@ -145,9 +137,7 @@ setupNoteGraphic(noteStyle);
 */
 public function setupNoteGraphic(noteStyle:NoteStyle):Void
 {
-noteStyle.buildNoteSprite(this);
 
-this.active = noteStyle.isNoteAnimated();
 }
 
 /**
@@ -173,56 +163,33 @@ public override function drawDebugOnCamera(camera:flixel.FlxCamera):Void
 
 
 gfx.lineStyle(2, 0xFFFF66FF, 0.5); // thickness, color, alpha
-gfx.drawRect(rect.x, rect.y, rect.width, rect.height);
 
 gfx.lineStyle(2, 0xFFFFFF66, 0.5); // thickness, color, alpha
-gfx.drawRect(rect.x, rect.y + rect.height / 2, rect.width, 1);
 
-endDrawDebug(camera);
 }
 
 function playNoteAnimation(value:Int):Void
 {
-animation.play(DIRECTION_COLORS[value] + 'Scroll');
 }
 
 public function desaturate():Void
 {
-this.hsvShader.saturation = 0.2;
-this.shader = this.hsvShader;
 }
 
 public function setHue(hue:Float):Void
 {
-this.hsvShader.hue = hue;
 }
 
 public override function revive():Void
 {
-super.revive();
-this.visible = true;
-this.alpha = 1.0;
-this.active = false;
-this.tooEarly = false;
-this.hasBeenHit = false;
-this.mayHit = false;
-this.hasMissed = false;
-this.handledMiss = false;
-this.holdNoteSprite = null;
 
-this.shader = null;
-this.hsvShader.hue = 1.0;
-this.hsvShader.saturation = 1.0;
-this.hsvShader.value = 1.0;
 }
 
 public override function kill():Void
 {
-super.kill();
 }
 
 public override function destroy():Void
 {
-super.destroy();
 }
 }

@@ -1,4 +1,3 @@
-package funkin.mobile.util;
 
 
 /**
@@ -9,7 +8,6 @@ class InAppPurchasesUtil
 /**
 * The product ID used for the "No Ads" in-app purchase upgrade.
 */
-public static final UPGRADE_PRODUCT_ID:String = 'no_ads';
 
 
 /**
@@ -27,81 +25,57 @@ public static function init():Void
 {
 IAPAndroid.onLog.add(function(message:String):Void
 {
-});
 
 IAPAndroid.onBillingSetupFinished.add(function(result:IAPResult):Void
 {
 {
 }
 
-IAPAndroid.queryPurchases();
 
-IAPAndroid.queryProductDetails([UPGRADE_PRODUCT_ID]);
-});
 
 IAPAndroid.onBillingServiceDisconnected.add(function():Void
 {
-});
 
 IAPAndroid.onProductDetailsResponse.add(function(result:IAPResult, productDetails:Array<IAPProductDetails>):Void
 {
 {
-hasInitialized = true;
-currentProductDetails = productDetails;
 }
 else
 {
-hasInitialized = false;
 }
-});
 
 IAPAndroid.onQueryPurchasesResponse.add(function(result:IAPResult, purchases:Array<IAPPurchase>):Void
 {
 else
 {
 }
-});
 
 IAPAndroid.onPurchasesUpdated.add(function(result:IAPResult, purchases:Array<IAPPurchase>):Void
 {
 else
 {
 }
-});
 
 IAPAndroid.onAcknowledgePurchaseResponse.add(function(result:IAPResult):Void
 {
 else
 {
 }
-});
 
-IAPAndroid.init();
 
-IAPAndroid.startConnection();
 IAPIOS.onProductDetailsReceived.add(function(productDetails:Array<IAPProductDetails>):Void
 {
 {
-currentProductDetails = productDetails;
 }
-});
 
 IAPIOS.onProductDetailsFailed.add(function(error:IAPError):Void
 {
-hasInitialized = false;
-});
 
 IAPIOS.onPurchasesUpdated.add(function(purchases:Array<IAPPurchase>):Void
 {
-handlePurchases(purchases);
-hasInitialized = true;
-});
 
-IAPIOS.init();
 
-IAPIOS.restorePurchases();
 
-IAPIOS.requestProducts([UPGRADE_PRODUCT_ID]);
 }
 
 /**
@@ -109,8 +83,6 @@ IAPIOS.requestProducts([UPGRADE_PRODUCT_ID]);
 */
 public static function restorePurchases():Void
 {
-IAPAndroid.queryPurchases();
-IAPIOS.restorePurchases();
 }
 
 /**
@@ -132,27 +104,22 @@ for (purchase in purchases)
 {
 {
 
-IAPAndroid.onPurchasesUpdated.remove(purchasesUpdatedEvent);
 }
 }
 }
 }
 else
 {
-IAPAndroid.onPurchasesUpdated.remove(purchasesUpdatedEvent);
 }
 
 
 {
-Toast.makeText(debugMessage, Toast.LENGTH_SHORT);
 }
 }
 
 {
-IAPAndroid.onPurchasesUpdated.add(purchasesUpdatedEvent);
 }
 
-IAPAndroid.launchPurchaseFlow(product);
 }
 {
 function purchasesUpdatedEvent(purchases:Array<IAPPurchase>):Void
@@ -164,9 +131,7 @@ switch (purchase.getTransactionState())
 {
 case IAPPurchaseState.PURCHASED:
 
-IAPIOS.onPurchasesUpdated.remove(purchasesUpdatedEvent);
 case IAPPurchaseState.FAILED:
-IAPIOS.onPurchasesUpdated.remove(purchasesUpdatedEvent);
 default:
 }
 }
@@ -174,10 +139,8 @@ default:
 }
 
 {
-IAPIOS.onPurchasesUpdated.add(purchasesUpdatedEvent);
 }
 
-IAPIOS.purchaseProduct(product);
 }
 }
 
@@ -208,20 +171,16 @@ for (purchase in purchases)
 {
 {
 {
-IAPAndroid.acknowledgePurchase(purchase.getPurchaseToken());
 }
 
 
 for (existing in currentPurchased)
 {
 {
-alreadyTracked = true;
-break;
 }
 }
 
 {
-currentPurchased.push(purchase);
 }
 else
 {
@@ -235,8 +194,6 @@ else
 for (existing in currentPurchased)
 {
 {
-alreadyTracked = true;
-break;
 }
 }
 
@@ -248,10 +205,8 @@ case IAPPurchaseState.FAILED:
 case IAPPurchaseState.PURCHASED | IAPPurchaseState.RESTORED:
 
 {
-currentPurchased.push(purchase);
 
 
-IAPIOS.finishPurchase(purchase);
 }
 else
 {

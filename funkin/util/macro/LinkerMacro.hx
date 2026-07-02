@@ -1,4 +1,3 @@
-package funkin.util.macro;
 
 /**
 * This class provides a macro to include an XML build file in the metadata of a Haxe class.
@@ -17,16 +16,13 @@ public static macro function xml(?fileName:String = 'Build.xml'):Array<haxe.macr
 
 
 {
-haxe.macro.Context.error('The specified file "$fileToInclude" could not be found at "$absSourcePath".', pos);
 }
 
 
-includeElement.set('name', fileToInclude);
 
 cls.meta.add(':buildXml', [{
 expr: EConst(CString(haxe.xml.Printer.print(includeElement, true))),
 pos: pos
-}], pos);
 
 }
 }

@@ -1,4 +1,3 @@
-package funkin.mobile.input;
 
 
 /**
@@ -36,8 +35,6 @@ public static function initInputTrackers():Void
 public static function addButton(action:FlxActionDigital, button:FunkinButton, state:FlxInputState, cachedInput:Array<FlxActionInput>):Void
 {
 
-cachedInput.push(input);
-action.add(input);
 }
 
 /**
@@ -57,23 +54,15 @@ switch (hint.noteDirection)
 case NoteDirection.LEFT:
 controls.forEachBound(Control.NOTE_LEFT, function(action:FlxActionDigital, state:FlxInputState):Void
 {
-addButton(action, hint, state, cachedInput);
-});
 case NoteDirection.DOWN:
 controls.forEachBound(Control.NOTE_DOWN, function(action:FlxActionDigital, state:FlxInputState):Void
 {
-addButton(action, hint, state, cachedInput);
-});
 case NoteDirection.UP:
 controls.forEachBound(Control.NOTE_UP, function(action:FlxActionDigital, state:FlxInputState):Void
 {
-addButton(action, hint, state, cachedInput);
-});
 case NoteDirection.RIGHT:
 controls.forEachBound(Control.NOTE_RIGHT, function(action:FlxActionDigital, state:FlxInputState):Void
 {
-addButton(action, hint, state, cachedInput);
-});
 }
 }
 }
@@ -93,8 +82,6 @@ for (action in controls.digitalActions)
 
 {
 {
-action.remove(action.inputs[i]);
-cachedInput.remove(cachedInput[j]);
 }
 }
 }
@@ -104,7 +91,6 @@ cachedInput.remove(cachedInput[j]);
 private static function get_hasExternalInputDevice():Bool
 {
 || KeyboardUtil.keyboardConnected
-|| extension.androidtools.Tools.isChromebook() #end;
 }
 
 private static function get_usingExternalInputDevice():Bool

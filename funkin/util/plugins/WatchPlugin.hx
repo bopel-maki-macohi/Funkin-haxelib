@@ -1,4 +1,3 @@
-package funkin.util.plugins;
 
 
 /**
@@ -9,7 +8,6 @@ class WatchPlugin extends FlxBasic
 {
 public function new()
 {
-super();
 }
 
 public static function initialize():Void
@@ -18,11 +16,8 @@ public static function initialize():Void
 
 public override function update(elapsed:Float):Void
 {
-super.update(elapsed);
 
 {
-subStateClassNames.push(Type.getClassName(Type.getClass(subState)));
-subState = subState.subState;
 }
 
 
@@ -31,6 +26,5 @@ subState = subState.subState;
 
 public override function destroy():Void
 {
-super.destroy();
 }
 }

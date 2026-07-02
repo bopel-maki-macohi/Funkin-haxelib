@@ -1,4 +1,3 @@
-package funkin.play.song;
 
 
 /**
@@ -15,37 +14,30 @@ class Song implements IPlayStateScriptedClass implements IRegistryEntry<SongMeta
 /**
 * The default value for the song's name
 */
-public static final DEFAULT_SONGNAME:String = 'Unknown';
 
 /**
 * The default value for the song's artist
 */
-public static final DEFAULT_ARTIST:String = 'Unknown';
 
 /**
 * The default value for the song's time format
 */
-public static final DEFAULT_TIMEFORMAT:SongTimeFormat = SongTimeFormat.MILLISECONDS;
 
 /**
 * The default value for the song's divisions
 */
-public static final DEFAULT_DIVISIONS:Null<Int> = null;
 
 /**
 * The default value for whether the song loops.
 */
-public static final DEFAULT_LOOPED:Bool = false;
 
 /**
 * The default value for the song's playable stage.
 */
-public static final DEFAULT_STAGE:String = 'mainStage';
 
 /**
 * The default value for the song's scroll speed.
 */
-public static final DEFAULT_SCROLLSPEED:Float = 1.0;
 
 
 /**
@@ -100,39 +92,27 @@ function get_charter():String
 */
 public function new(id:String, ?params:SongParams)
 {
-this.id = id;
-this.variation = params?.variation;
 
-difficulties = new Map<String, Map<String, SongDifficulty>>();
 
-_data = _fetchData(id);
 
-_metadata = _data == null ? [] : [Constants.DEFAULT_VARIATION => _data];
 
 {
 for (vari in _data.playData.songVariations)
 {
 {
-log('  WARNING '.bold().bg_yellow() + ' Variation id "$vari" is invalid, skipping...');
-continue;
 }
 
 {
-_metadata.set(variMeta.variation, variMeta);
-log('Loaded variation: $vari');
 }
 else
 {
-log('FAILED to load variation: $vari');
 }
 }
 }
 
 {
-log(' WARNING '.warning() + ' Could not find song data for songId: $id');
 }
 
-populateDifficulties();
 }
 
 /**
@@ -159,21 +139,15 @@ result = SongRegistry.instance.createEntry(songId);
 }
 
 
-result._metadata.clear();
 for (meta in metadata)
 {
-result._metadata.set(meta.variation, meta);
 }
 
-result.difficulties.clear();
-result.populateDifficulties();
 
 for (variation => chartData in charts)
 {
-result.applyChartData(chartData, variation);
 }
 
-result.validScore = validScore;
 
 }
 
@@ -197,7 +171,6 @@ for (variationMap in difficulties)
 for (difficultyId in variationMap.keys())
 {
 {
-result.set(difficultyId, meta.album);
 }
 }
 }
@@ -231,35 +204,16 @@ for (metadata in _metadata.values())
 {
 
 {
-log(' WARNING '.warning() + 'Song $id (variation ${metadata.variation}) has no difficulties listed in metadata!');
-continue;
 }
 
 
 for (diffId in metadata.playData.difficulties)
 {
 
-difficulty.songName = metadata.songName;
-difficulty.songArtist = metadata.artist;
-difficulty.charter = metadata.charter ?? Constants.DEFAULT_CHARTER;
-difficulty.timeFormat = metadata.timeFormat;
-difficulty.divisions = metadata.divisions;
-difficulty.timeChanges = metadata.timeChanges;
-difficulty.looped = metadata.looped;
-difficulty.generatedBy = metadata.generatedBy;
-difficulty.offsets = metadata?.offsets ?? new SongOffsets();
 
-difficulty.difficultyRating = metadata.playData.ratings.get(diffId) ?? 0;
-difficulty.album = metadata.playData.album;
-difficulty.stickerPack = metadata.playData.stickerPack;
 
-difficulty.stage = metadata.playData.stage;
-difficulty.noteStyle = metadata.playData.noteStyle;
 
-difficulty.characters = metadata.playData.characters;
-difficultyMap.set(diffId, difficulty);
 }
-difficulties.set(metadata.variation, difficultyMap);
 }
 }
 
@@ -270,14 +224,11 @@ difficulties.set(metadata.variation, difficultyMap);
 public function cacheCharts(force:Bool = false):Void
 {
 {
-clearCharts();
 }
 
 for (vari in variations)
 {
-applyChartData(chart, vari);
 }
-log('Cached ${variations.length} chart data files for song "$id"');
 }
 
 function applyChartData(chartData:SongChartData, vari:String):Void
@@ -288,29 +239,13 @@ for (diffId in chartNotes.keys())
 
 
 {
-difficulties.get(vari)?.set(diffId, difficulty);
 
 {
-difficulty.songName = metadata.songName;
-difficulty.songArtist = metadata.artist;
-difficulty.charter = metadata.charter ?? Constants.DEFAULT_CHARTER;
-difficulty.timeFormat = metadata.timeFormat;
-difficulty.divisions = metadata.divisions;
-difficulty.timeChanges = metadata.timeChanges;
-difficulty.looped = metadata.looped;
-difficulty.generatedBy = metadata.generatedBy;
-difficulty.offsets = metadata?.offsets ?? new SongOffsets();
 
-difficulty.stage = metadata.playData.stage;
-difficulty.noteStyle = metadata.playData.noteStyle;
 
-difficulty.characters = metadata.playData.characters;
 }
 }
-difficulty.notes = chartNotes.get(diffId) ?? [];
-difficulty.scrollSpeed = chartData.getScrollSpeed(diffId) ?? 1.0;
 
-difficulty.events = chartData.events;
 }
 }
 
@@ -342,7 +277,6 @@ for (currentVariation in variations)
 public function getFirstValidVariation(?diffId:String, ?currentCharacter:PlayableCharacter, ?possibleVariations:Array<String>):Null<String>
 {
 {
-possibleVariations = getVariationsByCharacter(currentCharacter);
 }
 
 
@@ -361,7 +295,6 @@ for (variationId in possibleVariations)
 public function getVariationsByCharacter(?char:PlayableCharacter):Array<String>
 {
 {
-result.sort(SortUtil.defaultsThenAlphabetically.bind(Constants.DEFAULT_VARIATION_LIST));
 }
 
 for (variation in variations)
@@ -369,11 +302,9 @@ for (variation in variations)
 
 
 {
-result.push(variation);
 }
 }
 
-result.sort(SortUtil.defaultsThenAlphabetically.bind(Constants.DEFAULT_VARIATION_LIST));
 
 }
 
@@ -406,16 +337,13 @@ public function listDifficulties(?variationId:String, ?variationIds:Array<String
 })
 .flatten()
 .filterNull()
-.distinct();
 
 diffFiltered = diffFiltered.filter(function(diffId:String):Bool
 {
 for (targetVariation in variationIds)
 {
 }
-});
 
-diffFiltered.sort(SortUtil.defaultsThenAlphabetically.bind(Constants.DEFAULT_DIFFICULTY_LIST_FULL));
 
 }
 
@@ -431,12 +359,9 @@ for (variation in variationIds)
 {
 for (difficulty in difficulties)
 {
-&& variation != 'erect') ? '$difficulty-${variation}' : difficulty;
-result.push(suffixedDifficulty);
 }
 }
 
-result.sort(SortUtil.defaultsThenAlphabetically.bind(Constants.DEFAULT_DIFFICULTY_LIST_FULL));
 
 }
 
@@ -477,50 +402,39 @@ for (variationMap in difficulties)
 {
 for (diff in variationMap)
 {
-diff.clearChart();
 }
 }
 }
 
 public function onPause(event:PauseScriptEvent):Void
 {
-};
 
 public function onResume(event:ScriptEvent):Void
 {
-};
 
 public function onSongLoaded(event:SongLoadScriptEvent):Void
 {
-};
 
 public function onSongStart(event:ScriptEvent):Void
 {
-};
 
 public function onSongEnd(event:ScriptEvent):Void
 {
-};
 
 public function onGameOver(event:ScriptEvent):Void
 {
-};
 
 public function onSongRetry(event:SongRetryEvent):Void
 {
-};
 
 public function onNoteIncoming(event:NoteScriptEvent)
 {
-};
 
 public function onNoteHit(event:HitNoteScriptEvent)
 {
-};
 
 public function onNoteMiss(event:NoteScriptEvent):Void
 {
-};
 
 public function onNoteHoldDrop(event:HoldNoteScriptEvent)
 {
@@ -528,47 +442,36 @@ public function onNoteHoldDrop(event:HoldNoteScriptEvent)
 
 public function onNoteGhostMiss(event:GhostMissNoteScriptEvent):Void
 {
-};
 
 public function onSongEvent(event:SongEventScriptEvent):Void
 {
-};
 
 public function onStepHit(event:SongTimeScriptEvent):Void
 {
-};
 
 public function onBeatHit(event:SongTimeScriptEvent):Void
 {
-};
 
 public function onCountdownStart(event:CountdownScriptEvent):Void
 {
-};
 
 public function onCountdownStep(event:CountdownScriptEvent):Void
 {
-};
 
 public function onCountdownEnd(event:CountdownScriptEvent):Void
 {
-};
 
 public function onScriptEvent(event:ScriptEvent):Void
 {
-};
 
 public function onCreate(event:ScriptEvent):Void
 {
-};
 
 public function onDestroy(event:ScriptEvent):Void
 {
-};
 
 public function onUpdate(event:UpdateScriptEvent):Void
 {
-};
 
 static function _fetchData(id:String):Null<SongMetadata>
 {
@@ -599,17 +502,14 @@ class SongDifficulty
 /**
 * The parent song for this difficulty.
 */
-public final song:Song;
 
 /**
 * The difficulty ID, such as `easy` or `hard`.
 */
-public final difficulty:String;
 
 /**
 * The metadata file that contains this difficulty.
 */
-public final variation:String;
 
 /**
 * The note chart for this difficulty.
@@ -626,14 +526,10 @@ public final variation:String;
 
 public function new(song:Song, diffId:String, variation:String)
 {
-this.song = song;
-this.difficulty = diffId;
-this.variation = variation;
 }
 
 public function clearChart():Void
 {
-notes = null;
 }
 
 public function getStartingBPM():Float
@@ -663,7 +559,6 @@ else
 
 public function cacheInst(instrumental = ''):Void
 {
-funkin.FunkinMemory.cacheSound(getInstPath(instrumental));
 }
 
 public function playInst(volume:Float = 1.0, instId:String = '', looped:Bool = false):Void
@@ -680,7 +575,6 @@ public function cacheVocals():Void
 {
 for (voice in buildVoiceList())
 {
-funkin.FunkinMemory.cacheSound(voice);
 }
 }
 
@@ -692,8 +586,6 @@ funkin.FunkinMemory.cacheSound(voice);
 */
 public function buildVoiceList():Array<String>
 {
-result = result.concat(buildPlayerVoiceList());
-result = result.concat(buildOpponentVoiceList());
 {
 }
 }
@@ -710,15 +602,9 @@ for (voice in playerVoices)
 
 
 {
-playerId = playerId.split('-').slice(0, -1).join('-');
-playerVoice = playerId == '' ? null : Paths.voices(this.song.id, '-${playerId}$suffix');
 }
 {
-playerId = characters.player;
-playerVoice = Paths.voices(this.song.id, '-${playerId}');
 {
-playerId = playerId.split('-').slice(0, -1).join('-');
-playerVoice = playerId == '' ? null : Paths.voices(this.song.id, '-${playerId}$suffix');
 }
 }
 
@@ -736,15 +622,9 @@ for (voice in opponentVoices)
 
 
 {
-opponentId = opponentId.split('-').slice(0, -1).join('-');
-opponentVoice = opponentId == '' ? null : Paths.voices(this.song.id, '-${opponentId}$suffix');
 }
 {
-opponentId = characters.opponent;
-opponentVoice = Paths.voices(this.song.id, '-${opponentId}');
 {
-opponentId = opponentId.split('-').slice(0, -1).join('-');
-opponentVoice = opponentId == '' ? null : Paths.voices(this.song.id, '-${opponentId}$suffix');
 }
 }
 
@@ -761,29 +641,21 @@ public function buildVocals(?instId:String = ''):VoicesGroup
 
 for (playerVoice in playerVoiceList)
 {
-result.addPlayerVoice(FunkinSound.load(playerVoice, 1.0, false, false, false, false, null, null, true));
 }
 
 for (opponentVoice in opponentVoiceList)
 {
-result.addOpponentVoice(FunkinSound.load(opponentVoice, 1.0, false, false, false, false, null, null, true));
 }
 
 {
 {
-result.addPlayerVoice(FunkinSound.load(legacyPath, 1.0, false, false, false, false, null, null, true));
 }
 }
 
 {
-result.legacyVoiceSystem = true;
-result.legacyVoiceUsesPlayer = result.getPlayerVoice(0) != null;
 }
 
-result.forEach((snd:FunkinSound) -> snd.important = true);
 
-result.playerVoicesOffset = offsets.getVocalOffset(characters.player, instId);
-result.opponentVoicesOffset = offsets.getVocalOffset(characters.opponent, instId);
 
 }
 }

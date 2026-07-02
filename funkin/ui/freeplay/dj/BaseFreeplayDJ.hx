@@ -1,4 +1,3 @@
-package funkin.ui.freeplay.dj;
 
 
 enum FreeplayDJState
@@ -6,50 +5,41 @@ enum FreeplayDJState
 /**
 * Character enters the frame and transitions to Idle.
 */
-Intro;
 
 /**
 * Character loops in idle.
 */
-Idle;
 
 /**
 * Plays an easter egg animation after a period in Idle, then reverts to Idle.
 */
-IdleEasterEgg;
 
 /**
 * Plays an elaborate easter egg animation. Does not revert until another animation is triggered.
 */
-Cartoon;
 
 /**
 * Player has selected a song.
 */
-Confirm;
 
 /**
 * Character preps to play the fist pump animation; plays after the Results screen.
 * The actual frame label that gets played may vary based on the player's success.
 */
-FistPumpIntro;
 
 /**
 * Character plays the fist pump animation.
 * The actual frame label that gets played may vary based on the player's success.
 */
-FistPump;
 
 /**
 * Plays an animation to indicate that the player has a new unlock in Character Select.
 * Overrides all idle animations as well as the fist pump. Only Confirm and CharSelect will override this.
 */
-NewUnlock;
 
 /**
 * Plays an animation to transition to the Character Select screen.
 */
-CharSelect;
 }
 
 /**
@@ -70,11 +60,8 @@ class BaseFreeplayDJ extends FunkinSprite implements IFreeplayScriptedClass
 
 public function new(x:Float, y:Float, characterId:String)
 {
-this.characterId = characterId;
 
-playableCharData = playableChar?.getFreeplayDJData();
 
-super(x, y);
 }
 
 function onFinishAnim(name:String):Void
@@ -87,18 +74,14 @@ public function onCharSelectComplete():Void
 
 public function playFlashAnimation(id:String, Force:Bool = false, Reverse:Bool = false, Loop:Bool = false, Frame:Int = 0):Void
 {
-applyAnimationOffset();
 }
 
 public function onPlayerAction():Void
 {
-resetAFKTimer();
 }
 
 public function resetAFKTimer():Void
 {
-timeIdling = 0;
-seenIdleEasterEgg = false;
 }
 
 public function getMusicPreviewMult():Float
@@ -108,72 +91,54 @@ public function getMusicPreviewMult():Float
 public function onConfirm():Void
 {
 {
-currentState = NewUnlock;
 }
 
-currentState = Confirm;
 }
 
 public function toCharSelect():Void
 {
 {
-currentState = CharSelect;
-playFlashAnimation(animPrefix, true, false, false, 0);
 }
 else
 {
-currentState = Confirm;
-onCharSelectComplete();
 }
 }
 
 public function fistPumpIntro():Void
 {
 {
-currentState = NewUnlock;
 }
 
-currentState = FistPumpIntro;
 }
 
 public function fistPump():Void
 {
 {
-currentState = NewUnlock;
 }
 
-currentState = FistPump;
 }
 
 public function fistPumpLossIntro():Void
 {
 {
-currentState = NewUnlock;
 }
 
-currentState = FistPumpIntro;
 }
 
 public function fistPumpLoss():Void
 {
 {
-currentState = NewUnlock;
 }
 
-currentState = FistPump;
 }
 
 public function resetPosition():Void
 {
 
 {
-this.x = (FreeplayState.CUTOUT_WIDTH * FreeplayState.DJ_POS_MULTI);
-this.y = 0;
 }
 else
 {
-this.x = (FreeplayState.CUTOUT_WIDTH * FreeplayState.DJ_POS_MULTI) + 640;
-this.y = 366;
 }
 }
 
@@ -181,8 +146,6 @@ function applyAnimationOffset():Void
 {
 
 
-globalOffsets[0] -= playableCharData.getGlobalOffsets()[0];
-globalOffsets[1] -= playableCharData.getGlobalOffsets()[1];
 
 {
 
@@ -192,11 +155,9 @@ else
 {
 }
 
-offset.set(finalOffsetX, finalOffsetY);
 }
 else
 {
-offset.set(0, 0);
 }
 }
 

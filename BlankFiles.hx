@@ -1,5 +1,6 @@
 package;
 
+import haxe.Timer;
 import haxe.Constraints.Function;
 import sys.io.File;
 import haxe.io.Path;
@@ -41,7 +42,10 @@ class BlankFiles {
 		];
 	}
 
-	static var keywords_contains:Array<String> = [';'];
+	static var keep_keywords_contains:Array<String> = ['instance'];
+
+	static var keywords_contains:Array<String> = [];
+	static var keywords_endsWith:Array<String> = [';'];
 	static var keywords_startsWith:Array<String> = [
 		'import',
 		'if',
@@ -60,15 +64,6 @@ class BlankFiles {
 		'// ',
 		'return',
 		'trace',
-		'trace',
-		'#',
-		'handlers',
-		'Discord',
-		'createDaemon',
-		'daemon',
-		'while',
-		'Sys',
-		'presence',
 	];
 
 	static var logs = [];
@@ -81,9 +76,9 @@ class BlankFiles {
 
 		var i = 0;
 
-		while (i < 1) {
+		while (i < 10) {
 			i++;
-			cleanse(i);
+			Timer.measure(() -> cleanse(i));
 		}
 
 		trace('${removedKeywordLines.length} removed keyword lines after $i iterations');
@@ -118,26 +113,48 @@ class BlankFiles {
 				var lineSplit = line.split(' ');
 
 				var lineCleared = false;
+				var forceKeep = false;
 
-				for (keywords in keywords_startsWith) {
-					if (!lineCleared && line.startsWith(keywords)) {
-						// trace(keywords);
-						clearLine(line);
-						lineCleared = true;
-					} else
-						continue;
+				for (keyword in keep_keywords_contains) {
+					for (piece in lineSplit) {
+						if (!forceKeep && piece.contains(keyword)) {
+							forceKeep = true;
+							break;
+						}
+					}
 				}
 
-				for (keyword in keywords_contains) {
-					if (!lineCleared && lineSplit.contains(keyword)) {
-						// trace(keyword);
-						clearLine(line);
-						lineCleared = true;
-					} else
-						continue;
+				if (!forceKeep) {
+					for (keywords in keywords_startsWith) {
+						if (!lineCleared && line.startsWith(keywords)) {
+							// trace(keywords);
+							clearLine(line);
+							lineCleared = true;
+						} else
+							continue;
+					}
+
+					for (keyword in keywords_contains) {
+						for (piece in lineSplit) {
+							if (!lineCleared && piece.contains(keyword)) {
+								// trace(keyword);
+								clearLine(line);
+								lineCleared = true;
+								break;
+							}
+						}
+					}
+
+					for (keyword in keywords_endsWith) {
+						if (!lineCleared && line.endsWith(keyword)) {
+							// trace(keyword);
+							clearLine(line);
+							lineCleared = true;
+						}
+					}
 				}
 
-				if (!lineCleared) {
+				if (!lineCleared || forceKeep) {
 					logs.push('$file : $line');
 					newLines.push(line);
 				}
@@ -146,7 +163,7 @@ class BlankFiles {
 			}
 
 			fileContent = newLines.join('\n');
-			trace('$j : ' + file + ' : ${cleared.length}');
+			// trace('$j : ' + file + ' : ${cleared.length}');
 			File.saveContent(file, fileContent);
 		}
 	}

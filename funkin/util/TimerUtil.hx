@@ -1,4 +1,3 @@
-package funkin.util;
 
 
 /**
@@ -15,7 +14,6 @@ time:Float,
 * The callback to run when the event is triggered.
 */
 callback:() -> Void
-};
 
 /**
 * A timer-based event sequence.
@@ -31,18 +29,13 @@ class Sequence
 public function new(events:Array<SequenceEvent>, mult:Float = 1, start:Bool = true)
 {
 
-mult = Math.max(0, mult);
 
 for (event in events)
 {
 timers.push(new FlxTimer().start(event.time * mult, function(timer:FlxTimer)
 {
-event.callback();
-timers.remove(timer);
-}));
 }
 
-running = start;
 }
 
 /**
@@ -62,9 +55,7 @@ function set_running(v:Bool):Bool
 {
 for (timer in timers)
 {
-timer.active = v;
 }
-_running = v;
 }
 
 /**
@@ -81,8 +72,6 @@ function get_completed():Bool
 public function destroy():Void
 {
 {
-timer?.cancel();
-timer?.destroy();
 }
 }
 }
@@ -105,20 +94,14 @@ class SongSequence
 public function new(events:Array<SequenceEvent>, mult:Float = 1, start:Bool = true)
 {
 
-mult = Math.max(0, mult);
 
 for (event in events)
 {
-event.time *= mult * 1000;
-this.events.push(event);
 }
 
 ArraySort.sort(this.events, function(a:SequenceEvent, b:SequenceEvent):Int
 {
-});
 
-running = start;
-update.add(onUpdate);
 }
 
 /**
@@ -135,7 +118,6 @@ update.add(onUpdate);
 function onUpdate():Void
 {
 {
-events.shift()?.callback();
 }
 }
 
@@ -150,7 +132,6 @@ function get_running():Bool
 
 function set_running(v:Bool):Bool
 {
-_running = v;
 }
 
 /**
@@ -166,9 +147,7 @@ function get_completed():Bool
 */
 public function destroy():Void
 {
-update.remove(onUpdate);
 {
-events.pop();
 }
 }
 }

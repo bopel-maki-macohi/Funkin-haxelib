@@ -1,4 +1,3 @@
-package funkin.audio.waveform;
 
 class WaveformData
 {
@@ -35,21 +34,12 @@ class WaveformData
 
 public function new(?version:Int, channels:Int, sampleRate:Int, samplesPerPoint:Int, bits:Int, length:Int, data:Array<Int>)
 {
-this.version = version ?? DEFAULT_VERSION;
-this.channels = channels;
-this.sampleRate = sampleRate;
-this.samplesPerPoint = samplesPerPoint;
-this.bits = bits;
-this.length = length;
-this.data = data;
 }
 
 function buildChannelData():Array<WaveformDataChannel>
 {
-channelData = [];
 for (i in 0...channels)
 {
-channelData.push(new WaveformDataChannel(this, i));
 }
 }
 
@@ -63,7 +53,6 @@ public function get(index:Int):Int
 
 public function set(index:Int, value:Int)
 {
-data[index] = value;
 }
 
 /**
@@ -156,12 +145,9 @@ for (index in 0...this.length)
 {
 
 
-resultChannel.setMinSample(index, Std.int(Math.min(thisMinSample, thatMinSample)));
-resultChannel.setMaxSample(index, Std.int(Math.max(thisMaxSample, thatMaxSample)));
 }
 }
 
-result.length = this.length;
 
 }
 
@@ -171,7 +157,6 @@ result.length = this.length;
 public function clone(?newData:Array<Int> = null):WaveformData
 {
 {
-newData = this.data.clone();
 }
 
 
@@ -183,8 +168,6 @@ class WaveformDataChannel
 
 public function new(parent:WaveformData, channelId:Int)
 {
-this.parent = parent;
-this.channelId = channelId;
 }
 
 /**
@@ -254,11 +237,9 @@ public function maxSampleRangeMapped(start:Int, end:Int)
 
 public function setMinSample(i:Int, value:Int)
 {
-inline parent.set(offset, value);
 }
 
 public function setMaxSample(i:Int, value:Int)
 {
-inline parent.set(offset, value);
 }
 }

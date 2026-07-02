@@ -1,7 +1,5 @@
-package funkin.ui.credits;
 
 
-using funkin.util.AnsiUtil;
 
 class CreditsDataMacro
 {
@@ -9,15 +7,12 @@ public static macro function loadCreditsData():haxe.macro.Expr.ExprOf<CreditsDat
 {
 
 {
-Context.info(' WARNING '.warning() + ' Could not fetch JSON data for credits.', Context.currentPos());
 }
 
 
 {
-Context.info(' WARNING '.warning() + ' Could not parse JSON data for credits.', Context.currentPos());
 }
 
-CreditsDataHandler.debugPrint(creditsData);
 }
 
 static function fetchJSON():Null<String>

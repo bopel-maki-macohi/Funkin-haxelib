@@ -1,4 +1,3 @@
-package funkin.api.newgrounds;
 
 
 class NGSaveSlot
@@ -24,7 +23,6 @@ static function loadSlot(slot:Int):NGSaveSlot
 
 public function new(?ngSaveSlot:Null<SaveSlot>)
 {
-this.ngSaveSlot = ngSaveSlot;
 }
 
 /**
@@ -43,7 +41,6 @@ switch (outcome)
 case SUCCESS:
 case FAIL(error):
 }
-});
 }
 catch (error:String)
 {
@@ -61,21 +58,17 @@ switch (outcome)
 case SUCCESS(value):
 
 {
-onComplete(decodedData);
 }
 case FAIL(error):
 
 {
-onError(error);
 }
 }
-});
 }
 catch (error:String)
 {
 
 {
-onError(RESPONSE({message: error, code: 500}));
 }
 }
 }
@@ -91,7 +84,6 @@ switch (outcome)
 case SUCCESS:
 case FAIL(error):
 }
-});
 }
 catch (error:String)
 {

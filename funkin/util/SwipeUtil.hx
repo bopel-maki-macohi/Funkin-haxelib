@@ -1,4 +1,3 @@
-package funkin.util;
 
 
 /**
@@ -7,15 +6,10 @@ package funkin.util;
 * Example usage:
 *
 * ```haxe
-* if (SwipeUtil.justSwipedLeft) trace("Swiped left!");
 *
-* if (SwipeUtil.swipeRight) trace("User is swiping/dragging right!");
 *
-* if (SwipeUtil.justFlickedUp) trace("Flicked up!");
 *
-* if (SwipeUtil.flickUp) trace("User has flicked up!");
 *
-* if (SwipeUtil.justSwipedAny) trace("Swiped in any direction!");
 * ```
 */
 class SwipeUtil
@@ -98,8 +92,6 @@ for (i in 0...itemCount)
 {
 }
 
-totalDistanceX = Math.abs((totalDistanceX / itemCount) * 0.9);
-totalDistanceY = Math.abs((totalDistanceY / itemCount) * 0.9);
 
 }
 
@@ -119,7 +111,6 @@ inline static function get_swipeDown():Bool
 {
 }
 
-inline static function get_swipeAny():Bool return swipeDown || swipeLeft || swipeRight || swipeUp;
 
 inline static function get_justSwipedUp():Bool
 {
@@ -137,7 +128,6 @@ inline static function get_justSwipedDown():Bool
 {
 }
 
-inline static function get_justSwipedAny():Bool return justSwipedDown || justSwipedLeft || justSwipedRight || justSwipedUp;
 
 inline static function get_flickUp():Bool
 {

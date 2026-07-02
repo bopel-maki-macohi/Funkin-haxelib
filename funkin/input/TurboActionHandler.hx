@@ -1,4 +1,3 @@
-package funkin.input;
 
 
 /**
@@ -14,12 +13,10 @@ class TurboActionHandler extends FlxBasic
 /**
 * Default delay before repeating.
 */
-static inline final DEFAULT_DELAY:Float = 0.4;
 
 /**
 * Default interval between repeats.
 */
-static inline final DEFAULT_INTERVAL:Float = 0.1;
 
 /**
 * Whether the action for this handler is pressed.
@@ -43,11 +40,6 @@ function get_controls():Controls
 
 function new(action:Action, delay:Float = DEFAULT_DELAY, interval:Float = DEFAULT_INTERVAL, gamepadOnly:Bool = false)
 {
-super();
-this.action = action;
-this.delay = delay;
-this.interval = interval;
-this.gamepadOnly = gamepadOnly;
 }
 
 function get_pressed():Bool
@@ -56,27 +48,19 @@ function get_pressed():Bool
 
 public override function update(elapsed:Float):Void
 {
-super.update(elapsed);
 
 {
 {
-activated = true;
 }
 else if (pressedTime >= (delay + interval))
 {
-activated = true;
-pressedTime -= interval;
 }
 else
 {
-activated = false;
 }
-pressedTime += elapsed;
 }
 else
 {
-pressedTime = 0;
-activated = false;
 }
 }
 

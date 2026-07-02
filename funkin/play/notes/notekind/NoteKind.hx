@@ -1,4 +1,3 @@
-package funkin.play.notes.notekind;
 
 
 /**
@@ -38,12 +37,6 @@ class NoteKind implements INoteScriptedClass
 
 public function new(noteKind:String, description:String = "", ?noteStyleId:String, ?params:Array<NoteKindParam>, ?noanim:Bool, ?suffix:String)
 {
-this.noteKind = noteKind;
-this.description = description;
-this.noteStyleId = noteStyleId;
-this.params = params ?? [];
-this.noanim = noanim ?? false;
-this.suffix = suffix ?? '';
 }
 
 public function toString():String
@@ -58,7 +51,6 @@ public function toString():String
 function getNotes(visibleCheck:Bool = false):Array<NoteSprite>
 {
 {
-});
 }
 
 /**
@@ -69,7 +61,6 @@ function getNotes(visibleCheck:Bool = false):Array<NoteSprite>
 function getOtherNotes(visibleCheck:Bool = false):Array<NoteSprite>
 {
 {
-});
 }
 
 public function onScriptEvent(event:ScriptEvent):Void
@@ -111,11 +102,8 @@ public function onNoteHoldDrop(event:HoldNoteScriptEvent)
 */
 abstract NoteKindParamType(String) from String to String
 {
-public static final STRING:String = 'String';
 
-public static final INT:String = 'Int';
 
-public static final FLOAT:String = 'Float';
 }
 
 typedef NoteKindParamData =

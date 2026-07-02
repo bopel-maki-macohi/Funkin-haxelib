@@ -1,4 +1,3 @@
-package funkin.play.notes;
 
 
 /**
@@ -86,16 +85,9 @@ class SustainTrail extends FlxSprite
 */
 public function new(noteDirection:NoteDirection, sustainLength:Float, noteStyle:NoteStyle)
 {
-super(0, 0);
 
-setupHoldNoteGraphic(noteStyle);
-noteStyleOffsets = noteStyle.getHoldNoteOffsets();
 
-this.sustainLength = sustainLength;
-this.fullSustainLength = sustainLength;
-this.noteDirection = noteDirection;
 
-setIndices(TRIANGLE_VERTEX_INDICES);
 
 this.active = true; // This NEEDS to be true for the note to be drawn!
 }
@@ -109,12 +101,10 @@ public function setIndices(indices:Array<Int>):Void
 {
 for (i in 0...indices.length)
 {
-this.indices[i] = indices[i];
 }
 }
 else
 {
-this.indices = new DrawData<Int>(indices.length, false, indices);
 }
 }
 
@@ -127,12 +117,10 @@ public function setVertices(vertices:Array<Float>):Void
 {
 for (i in 0...vertices.length)
 {
-this.vertices[i] = vertices[i];
 }
 }
 else
 {
-this.vertices = new DrawData<Float>(vertices.length, false, vertices);
 }
 }
 
@@ -145,12 +133,10 @@ public function setUVTData(uvtData:Array<Float>):Void
 {
 for (i in 0...uvtData.length)
 {
-this.uvtData[i] = uvtData[i];
 }
 }
 else
 {
-this.uvtData = new DrawData<Float>(uvtData.length, false, uvtData);
 }
 }
 
@@ -160,35 +146,21 @@ this.uvtData = new DrawData<Float>(uvtData.length, false, uvtData);
 */
 public function setupHoldNoteGraphic(noteStyle:NoteStyle):Void
 {
-loadGraphic(noteStyle.getHoldNoteAssetPath());
 
-antialiasing = true;
 
-this.isPixel = noteStyle.isHoldNotePixel();
 {
-endOffset = bottomClip = 1;
-antialiasing = false;
 }
 else
 {
-endOffset = 0.5;
-bottomClip = 0.9;
 }
 
-zoom = 1.0;
-zoom *= noteStyle.fetchHoldNoteScale();
 
 graphicWidth = graphic.width / 8 * zoom; // amount of notes * 2
-graphicHeight = sustainHeight(sustainLength, parentStrumline?.scrollSpeed ?? 1.0);
 
 flipY = Preferences.downscroll #if mobile
 || (Preferences.controlsScheme == FunkinHitboxControlSchemes.Arrows
-&& !funkin.mobile.input.ControlsHandler.hasExternalInputDevice) #end;
 
-alpha = 1.0;
-updateColorTransform();
 
-updateClipping();
 }
 
 function getBaseScrollSpeed()
@@ -198,11 +170,8 @@ function getBaseScrollSpeed()
 
 override function update(elapsed)
 {
-super.update(elapsed);
 {
-triggerRedraw();
 }
-previousScrollSpeed = parentStrumline?.scrollSpeed ?? 1.0;
 }
 
 /**
@@ -217,23 +186,14 @@ public static inline function sustainHeight(susLength:Float, scroll:Float)
 function set_sustainLength(s:Float):Float
 {
 
-this.sustainLength = s;
-triggerRedraw();
 }
 
 function triggerRedraw()
 {
-graphicHeight = sustainHeight(sustainLength, parentStrumline?.scrollSpeed ?? 1.0);
-updateClipping();
-updateHitbox();
 }
 
 public override function updateHitbox():Void
 {
-width = graphicWidth;
-height = graphicHeight;
-offset.set(noteStyleOffsets[0], noteStyleOffsets[1]);
-origin.set(width * 0.5, height * 0.5);
 }
 
 /**
@@ -247,31 +207,25 @@ public function updateClipping(songTime:Float = 0):Void
 }
 
 {
-visible = false;
 }
 else
 {
-visible = true;
 }
 
 
 vertices[0 * 2] = 0.0; // Inline with left side
-vertices[0 * 2 + 1] = flipY ? clipHeight : graphicHeight - clipHeight;
 
-vertices[1 * 2] = graphicWidth;
 vertices[1 * 2 + 1] = vertices[0 * 2 + 1]; // Inline with top left vertex
 
 vertices[2 * 2] = 0.0; // Inline with left side
 vertices[2 * 2 + 1] = if (partHeight > 0)
 {
-flipY ? 0.0 + bottomHeight : vertices[1] + partHeight;
 }
 else
 {
 vertices[0 * 2 + 1]; // Inline with top left vertex (no partHeight available)
 }
 
-vertices[3 * 2] = graphicWidth;
 vertices[3 * 2 + 1] = vertices[2 * 2 + 1]; // Inline with bottom left vertex
 
 
@@ -295,7 +249,6 @@ vertices[5 * 2] = vertices[3 * 2]; // Inline with bottom right vertex of hold
 vertices[5 * 2 + 1] = vertices[3 * 2 + 1]; // Inline with bottom right vertex of hold
 
 vertices[6 * 2] = vertices[2 * 2]; // Inline with left side
-vertices[6 * 2 + 1] = flipY ? (graphic.height * (-bottomClip + endOffset) * zoom) : (graphicHeight + graphic.height * (bottomClip - endOffset) * zoom);
 
 vertices[7 * 2] = vertices[3 * 2]; // Inline with right side
 vertices[7 * 2 + 1] = vertices[6 * 2 + 1]; // Inline with bottom of end cap
@@ -303,12 +256,9 @@ vertices[7 * 2 + 1] = vertices[6 * 2 + 1]; // Inline with bottom of end cap
 uvtData[4 * 2] = uvtData[2 * 2] + 1 / 8; // 12.5%/37.5%/62.5%/87.5% of the way through the image (1/8th past the top left of hold)
 uvtData[4 * 2 + 1] = if (partHeight > 0)
 {
-0;
 }
 else
 {
-(bottomHeight - clipHeight) / zoom / graphic.height;
-};
 
 uvtData[5 * 2] = uvtData[4 * 2] + 1 / 8; // 25%/50%/75%/100% of the way through the image (1/8th past the top left of cap)
 uvtData[5 * 2 + 1] = uvtData[4 * 2 + 1]; // top bound
@@ -326,47 +276,24 @@ override public function draw():Void
 for (camera in cameras)
 {
 
-getScreenPosition(_point, camera).subtractPoint(offset);
-camera.drawTriangles(graphic, vertices, indices, uvtData, null, _point, blend, true, antialiasing, colorTransform, shader);
 }
 
 }
 
 public override function kill():Void
 {
-super.kill();
 
-strumTime = 0;
-noteDirection = 0;
-sustainLength = 0;
-fullSustainLength = 0;
-noteData = null;
 
-hitNote = false;
-missedNote = false;
 }
 
 public override function revive():Void
 {
-super.revive();
 
-strumTime = 0;
-noteDirection = 0;
-sustainLength = 0;
-fullSustainLength = 0;
-noteData = null;
 
-hitNote = false;
-missedNote = false;
-handledMiss = false;
 }
 
 override public function destroy():Void
 {
-vertices = null;
-indices = null;
-uvtData = null;
 
-super.destroy();
 }
 }

@@ -1,4 +1,3 @@
-package funkin.audio.visualize;
 
 
 class PolygonVisGroup extends FlxTypedGroup<PolygonSpectogram>
@@ -6,9 +5,6 @@ class PolygonVisGroup extends FlxTypedGroup<PolygonSpectogram>
 
 public function new()
 {
-super();
-playerVis = new PolygonSpectogram();
-opponentVis = new PolygonSpectogram();
 }
 
 /**
@@ -17,8 +13,6 @@ opponentVis = new PolygonSpectogram();
 */
 public function addPlayerVis(visSnd:FlxSound):Void
 {
-super.add(vis);
-playerVis = vis;
 }
 
 /**
@@ -27,8 +21,6 @@ playerVis = vis;
 */
 public function addOpponentVis(visSnd:FlxSound):Void
 {
-super.add(vis);
-opponentVis = vis;
 }
 
 /**
@@ -37,42 +29,28 @@ opponentVis = vis;
 */
 public function addInstVis(visSnd:FlxSound):Void
 {
-super.add(vis);
-instVis = vis;
 }
 
 public function clearPlayerVis():Void
 {
 {
-remove(playerVis);
-playerVis.destroy();
-playerVis = null;
 }
 }
 
 public function clearOpponentVis():Void
 {
 {
-remove(opponentVis);
-opponentVis.destroy();
-opponentVis = null;
 }
 }
 
 public function clearInstVis():Void
 {
 {
-remove(instVis);
-instVis.destroy();
-instVis = null;
 }
 }
 
 public function clearAllVis():Void
 {
-clearPlayerVis();
-clearOpponentVis();
-clearInstVis();
 }
 
 /**
@@ -87,11 +65,8 @@ public override function add(vis:PolygonSpectogram):PolygonSpectogram
 public override function destroy():Void
 {
 {
-playerVis.destroy();
 }
 {
-opponentVis.destroy();
 }
-super.destroy();
 }
 }

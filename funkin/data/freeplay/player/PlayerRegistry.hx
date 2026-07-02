@@ -1,4 +1,3 @@
-package funkin.data.freeplay.player;
 
 
 class PlayerRegistry extends BaseRegistry<PlayableCharacter, PlayerData, PlayerEntryParams> implements ISingleton implements DefaultRegistryImpl
@@ -8,9 +7,7 @@ class PlayerRegistry extends BaseRegistry<PlayableCharacter, PlayerData, PlayerE
 * Handle breaking changes by incrementing this value
 * and adding migration to the `migratePlayerData()` function.
 */
-public static final PLAYER_DATA_VERSION:thx.semver.Version = "1.0.0";
 
-public static final PLAYER_DATA_VERSION_RULE:thx.semver.VersionRule = "1.0.x";
 
 /**
 * A mapping between stage character IDs and Freeplay playable character IDs.
@@ -18,23 +15,19 @@ public static final PLAYER_DATA_VERSION_RULE:thx.semver.VersionRule = "1.0.x";
 
 public function new()
 {
-super('PLAYER', 'players', PLAYER_DATA_VERSION_RULE);
 }
 
 public override function loadEntries():Void
 {
-super.loadEntries();
 
 for (playerId in listEntryIds())
 {
 
 for (characterId in currentPlayerCharIds)
 {
-ownedCharacterIds.set(characterId, playerId);
 }
 }
 
-log('Loaded ${countEntries()} playable characters with ${ownedCharacterIds.size()} associations.');
 }
 
 public function countUnlockedCharacters():Int
@@ -43,7 +36,6 @@ public function countUnlockedCharacters():Int
 for (charId in listEntryIds())
 {
 
-count++;
 }
 
 }
@@ -66,7 +58,6 @@ for (charId in listEntryIds())
 {
 
 
-result.push(charId);
 }
 
 }

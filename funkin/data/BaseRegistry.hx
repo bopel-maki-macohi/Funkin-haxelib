@@ -1,10 +1,8 @@
-package funkin.data;
 
 
 /**
 * The entry's constructor function takes 2 arguments, the entry ID and optional parameters.
 */
-typedef EntryConstructorFunction = (String, ?Dynamic) -> Void;
 
 /**
 * A base type for a Registry, which is an object which handles loading scriptable objects.
@@ -18,7 +16,6 @@ abstract class BaseRegistry<T:(IRegistryEntry<J> & Constructible<EntryConstructo
 /**
 * The ID of the registry. Used when logging.
 */
-public final registryId:String;
 
 
 /**
@@ -41,12 +38,7 @@ public final registryId:String;
 */
 public function new(registryId:String, dataFilePath:String, ?versionRule:thx.semver.VersionRule)
 {
-this.registryId = registryId;
-this.dataFilePath = dataFilePath;
-this.versionRule = versionRule == null ? '1.0.x' : versionRule;
 
-this.entries = new Map<String, T>();
-this.scriptedEntryIds = [];
 
 {
 }
@@ -57,53 +49,38 @@ this.scriptedEntryIds = [];
 */
 public function loadEntries():Void
 {
-clearEntries();
 
 //
 //
-log(' INFO '.info() + 'Parsing ${scriptedEntryClassNames.length} scripted entries...');
 
 for (entryCls in scriptedEntryClassNames)
 {
 try
 {
-entry = createScriptedEntry(entryCls);
 }
 catch (e)
 {
-log('Failed to create scripted entry (${entryCls})');
-continue;
 }
 
 {
-log('Successfully created scripted entry (${entryCls} = ${entry.id})');
-entries.set(entry.id, entry);
-scriptedEntryIds.set(entry.id, entryCls);
 }
 else
 {
-log('Failed to create scripted entry (${entryCls})');
 }
 }
 
 //
 //
 {
-});
-log(' INFO '.info() + 'Parsing ${unscriptedEntryIds.length} unscripted entries...');
 for (entryId in unscriptedEntryIds)
 {
 try
 {
 {
-log('Loaded entry data: ${entry}');
-entries.set(entry.id, entry);
 }
 }
 catch (e)
 {
-log(' WARNING '.warning() + ' Failed to load entry data: ${entryId}');
-continue;
 }
 }
 }
@@ -192,17 +169,14 @@ function loadEntryFile(id:String):JsonFile
 {
 fileName: entryFilePath,
 contents: rawJson
-};
 }
 
 function clearEntries():Void
 {
 for (entry in entries)
 {
-entry.destroy();
 }
 
-entries.clear();
 }
 
 //
@@ -215,7 +189,6 @@ entries.clear();
 * @param id The ID of the entry.
 * @return The created entry.
 */
-public abstract function parseEntryData(id:String):Null<J>;
 
 /**
 * Parse and validate the JSON data and produce the corresponding data object.
@@ -225,7 +198,6 @@ public abstract function parseEntryData(id:String):Null<J>;
 * @param fileName An optional file name for error reporting.
 * @return The created entry.
 */
-public abstract function parseEntryDataRaw(contents:String, ?fileName:String):Null<J>;
 
 /**
 * Read, parse, and validate the JSON data and produce the corresponding data object,
@@ -239,14 +211,12 @@ public abstract function parseEntryDataRaw(contents:String, ?fileName:String):Nu
 public function parseEntryDataWithMigration(id:String, version:Null<thx.semver.Version>):Null<J>
 {
 {
-throw '[${registryId}] Entry ${id} could not be JSON-parsed or does not have a parseable version.';
 }
 
 {
 }
 else
 {
-throw '[${registryId}] Entry ${id} does not support migration to version ${versionRule}.';
 }
 
 /*
@@ -254,9 +224,7 @@ throw '[${registryId}] Entry ${id} does not support migration to version ${versi
 *
 * ```haxe
 * if (VersionUtil.validateVersion(version, "0.1.x")) {
-*   return parseEntryData_v0_1_x(id);
 * } else {
-*   super.parseEntryDataWithMigration(id, version);
 * }
 * ```
 */
@@ -266,7 +234,6 @@ throw '[${registryId}] Entry ${id} does not support migration to version ${versi
 * Retrieve the list of scripted class names to load.
 * @return An array of scripted class names.
 */
-abstract function getScriptedClassNames():Array<String>;
 
 /**
 * Create an entry from the given ID.
@@ -280,14 +247,12 @@ function createEntry(id:String):Null<T>
 * Create a entry, attached to a scripted class, from the given class name.
 * @param clsName
 */
-abstract function createScriptedEntry(clsName:String):Null<T>;
 
 function printErrors(errors:Array<json2object.Error>, id:String = ''):Void
 {
 
 for (error in errors)
 {
-DataError.printError(error);
 }
 }
 }

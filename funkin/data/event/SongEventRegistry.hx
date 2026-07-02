@@ -1,4 +1,3 @@
-package funkin.data.event;
 
 
 /**
@@ -18,12 +17,9 @@ class SongEventRegistry
 
 public static function loadEventCache():Void
 {
-clearEventCache();
 
 //
 //
-registerBaseEvents();
-registerScriptedEvents();
 }
 
 static function registerBaseEvents()
@@ -33,7 +29,6 @@ for (eventCls in BUILTIN_EVENTS)
 
 
 {
-eventCache.set(event.id, event);
 }
 else
 {
@@ -48,7 +43,6 @@ for (eventCls in scriptedEventClassNames)
 {
 
 {
-eventCache.set(event.id, event);
 }
 else
 {
@@ -75,27 +69,23 @@ public static function getEventSchema(id:String):Null<SongEventSchema>
 
 static function clearEventCache()
 {
-eventCache.clear();
 }
 
 public static function handleEvent(data:SongEventData):Void
 {
 
 {
-eventHandler.handleEvent(data);
 }
 else
 {
 }
 
-data.activated = true;
 }
 
 public static inline function handleEvents(events:Array<SongEventData>):Void
 {
 for (event in events)
 {
-handleEvent(event);
 }
 }
 
@@ -115,17 +105,14 @@ handleEvent(event);
 */
 public static function queryEvents(events:Array<SongEventData>, currentTime:Float, ?startIndex:Int):Array<SongEventData>
 {
-startIndex ??= nextEventIndex;
 
 
 for (i in startIndex...events.length)
 {
 
 {
-nextEventIndex = i;
 }
 
-result.push(events[i]);
 }
 
 }
@@ -140,11 +127,9 @@ public static function handleSkippedEvents(events:Array<SongEventData>, currentT
 for (event in events)
 {
 {
-event.activated = false;
 }
 
 {
-event.activated = true;
 }
 }
 }
@@ -154,13 +139,9 @@ event.activated = true;
 */
 public static function resetEvents(events:Array<SongEventData>):Void
 {
-events.sort(SortUtil.eventDataByTime.bind(FlxSort.ASCENDING));
-nextEventIndex = 0;
-allEventHandlers.resize(0);
 
 for (event in events)
 {
-event.activated = false;
 
 }
 }
@@ -170,7 +151,6 @@ public static inline function callEvent(scriptEvent:ScriptEvent):Void
 {
 for (event in allEventHandlers)
 {
-ScriptEventDispatcher.callEvent(event, scriptEvent);
 }
 }
 }

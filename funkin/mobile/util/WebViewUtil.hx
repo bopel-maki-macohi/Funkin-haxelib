@@ -1,4 +1,3 @@
-package funkin.mobile.util;
 
 
 /**
@@ -11,7 +10,6 @@ class WebViewUtil
 */
 public static function init():Void
 {
-WebView.init();
 }
 
 /**
@@ -28,25 +26,19 @@ public static function openURL(url:String, ?onCloseButtonPressed:Void->Void):Voi
 {
 
 {
-url = 'https://${url}';
 }
 else if (protocol[0] != 'http' && protocol[0] != 'https')
 {
-throw "openURL can only open http and https links.";
 }
 
 function onButtonClicked():Void
 {
-WebViewUtil.close();
 
 {
-onCloseButtonPressed();
 }
 }
 
-WebView.onCloseButtonClicked.add(onButtonClicked);
 
-WebView.openWithURL(url, false, true);
 }
 }
 
@@ -60,9 +52,7 @@ WebView.openWithURL(url, false, true);
 public static function close():Void
 {
 {
-WebView.onCloseButtonClicked.removeAll();
 
-WebView.close();
 }
 }
 }

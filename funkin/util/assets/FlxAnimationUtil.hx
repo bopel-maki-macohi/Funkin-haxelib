@@ -1,4 +1,3 @@
-package funkin.util.assets;
 
 
 class FlxAnimationUtil
@@ -11,11 +10,9 @@ public static function addAtlasAnimation(target:FlxSprite, anim:AnimationData):V
 
 
 {
-target.animation.addByIndices(anim.name, anim.prefix, anim.frameIndices, '', frameRate, looped, flipX, flipY);
 }
 else
 {
-target.animation.addByPrefix(anim.name, anim.prefix, frameRate, looped, flipX, flipY);
 }
 }
 
@@ -30,9 +27,7 @@ public static function addTextureAtlasAnimation(target:FunkinSprite, anim:Animat
 switch (animType)
 {
 case "framelabel":
-target.anim.addByFrameLabelIndices(anim.name, anim.prefix, anim.frameIndices, frameRate, looped, flipX, flipY);
 case "symbol":
-target.anim.addBySymbolIndices(anim.name, anim.prefix, anim.frameIndices, frameRate, looped, flipX, flipY);
 }
 }
 else
@@ -40,9 +35,7 @@ else
 switch (animType)
 {
 case "framelabel":
-target.anim.addByFrameLabel(anim.name, anim.prefix, frameRate, looped, flipX, flipY);
 case "symbol":
-target.anim.addBySymbol(anim.name, anim.prefix, frameRate, looped, flipX, flipY);
 }
 }
 }
@@ -54,7 +47,6 @@ public static function addAtlasAnimations(target:FlxSprite, animations:Array<Ani
 {
 for (anim in animations)
 {
-addAtlasAnimation(target, anim);
 }
 }
 
@@ -65,7 +57,6 @@ public static function addTextureAtlasAnimations(target:FunkinSprite, animations
 {
 for (anim in animations)
 {
-addTextureAtlasAnimation(target, anim);
 }
 }
 
@@ -80,11 +71,9 @@ public static function combineFramesCollections(a:FlxFramesCollection, b:FlxFram
 
 for (frame in a.frames)
 {
-result.pushFrame(frame);
 }
 for (frame in b.frames)
 {
-result.pushFrame(frame);
 }
 
 }

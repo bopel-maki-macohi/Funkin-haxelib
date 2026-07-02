@@ -1,4 +1,3 @@
-package funkin.api.newgrounds;
 
 
 class NewgroundsClient
@@ -20,9 +19,7 @@ private function new()
 }
 
 {
-NG.create(API_NG_APP_ID, getSessionId(), #if FEATURE_NEWGROUNDS_DEBUG true #else false #end, onLoginResolved);
 
-NG.core.setupEncryption(API_NG_ENC_KEY);
 }
 }
 
@@ -30,15 +27,12 @@ public function init()
 {
 
 
-NG.core.verbose = true;
 
-NG.core.onLogin.add(onLoginSuccessful);
 
 {
 }
 else
 {
-this.autoLogin();
 }
 }
 
@@ -56,26 +50,17 @@ public function login(?onSuccess:Void->Void, ?onError:Void->Void):Void
 
 {
 {
-NG.core.logVerbose('Loading passport from WebView: ${passportUrl}');
 
 WebViewUtil.openURL(passportUrl, function():Void
 {
-NG.core.cancelLoginRequest();
-});
 
-NG.core.onPassportUrlOpen();
 }
 else
-NG.core.logError("Cannot open passport");
-NG.core.openPassportUrl();
-};
 
 {
-NG.core.requestLogin(onLoginResolvedWithCallbacks.bind(_, onSuccess, onError), passportHandler);
 }
 else
 {
-NG.core.requestLogin(onLoginResolved, passportHandler);
 }
 }
 
@@ -85,15 +70,11 @@ public function autoLogin(?onSuccess:Void->Void, ?onError:Void->Void):Void
 }
 
 {
-NG.core.cancelLoginRequest();
-};
 
 {
-NG.core.requestLogin(onLoginResolvedWithCallbacks.bind(_, onSuccess, onError), dummyPassport);
 }
 else
 {
-NG.core.requestLogin(onLoginResolved, dummyPassport);
 }
 }
 
@@ -105,11 +86,9 @@ public function logout(?onSuccess:Void->Void, ?onError:Void->Void):Void
 {
 {
 {
-NG.core.logOut(onLogoutResolvedWithCallbacks.bind(_, onSuccess, onError));
 }
 else
 {
-NG.core.logOut(onLogoutResolved);
 }
 }
 
@@ -132,32 +111,25 @@ static function hasValidCredentials():Bool
 || (API_NG_APP_ID != null && API_NG_APP_ID.contains(" "))
 || API_NG_ENC_KEY == null
 || API_NG_ENC_KEY == ""
-|| (API_NG_ENC_KEY != null && API_NG_ENC_KEY.contains(" ")));
 }
 
 function onLoginResolved(outcome:LoginOutcome):Void
 {
-WebViewUtil.close();
 
 switch (outcome)
 {
 case SUCCESS:
-onLoginSuccessful();
 case FAIL(result):
-onLoginFailed(result);
 }
 }
 
 function onLoginResolvedWithCallbacks(outcome:LoginOutcome, onSuccess:Void->Void, onError:Void->Void):Void
 {
-onLoginResolved(outcome);
 
 switch (outcome)
 {
 case SUCCESS:
-onSuccess();
 case FAIL(result):
-onError();
 }
 }
 
@@ -166,22 +138,17 @@ function onLogoutResolved(outcome:Outcome<CallError>):Void
 switch (outcome)
 {
 case SUCCESS:
-onLogoutSuccessful();
 case FAIL(result):
-onLogoutFailed(result);
 }
 }
 
 function onLogoutResolvedWithCallbacks(outcome:Outcome<CallError>, onSuccess:Void->Void, onError:Void->Void):Void
 {
-onLogoutResolved(outcome);
 
 switch (outcome)
 {
 case SUCCESS:
-onSuccess();
 case FAIL(result):
-onError();
 }
 }
 
@@ -192,10 +159,7 @@ function onLoginSuccessful():Void
 Save.instance.ngSessionId.value = NG.core.sessionId;
 
 
-NG.core.requestMedals(onFetchedMedals);
 
-NG.core.scoreBoards.loadList(onFetchedLeaderboards);
-NG.core.saveSlots.loadList(onFetchedSaveSlots);
 }
 
 function onLoginFailed(result:LoginFail):Void

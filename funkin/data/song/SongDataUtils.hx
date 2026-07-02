@@ -1,7 +1,5 @@
-package funkin.data.song;
 
 
-using Lambda;
 
 /**
 * Utility functions for working with song data, including note data, event data, metadata, etc.
@@ -19,7 +17,6 @@ class SongDataUtils
 public static function offsetSongNoteData(notes:Array<SongNoteData>, offset:Float):Array<SongNoteData>
 {
 {
-};
 
 }
 
@@ -34,7 +31,6 @@ public static function offsetSongNoteData(notes:Array<SongNoteData>, offset:Floa
 public static function offsetSongEventData(events:Array<SongEventData>, offset:Float):Array<SongEventData>
 {
 {
-});
 }
 
 /**
@@ -48,7 +44,6 @@ public static function offsetSongEventData(events:Array<SongEventData>, offset:F
 public static function clampSongNoteData(notes:Array<SongNoteData>, startTime:Float, endTime:Float):Array<SongNoteData>
 {
 {
-});
 }
 
 /**
@@ -62,7 +57,6 @@ public static function clampSongNoteData(notes:Array<SongNoteData>, startTime:Fl
 public static function clampSongEventData(events:Array<SongEventData>, startTime:Float, endTime:Float):Array<SongEventData>
 {
 {
-});
 }
 
 /**
@@ -80,7 +74,6 @@ for (x in subtrahend)
 {
 }
 
-});
 
 }
 
@@ -98,7 +91,6 @@ public static function subtractEvents(events:Array<SongEventData>, subtrahend:Ar
 for (x in subtrahend)
 {
 }
-});
 }
 
 /**
@@ -110,9 +102,7 @@ public static function flipNotes(notes:Array<SongNoteData>, strumlineSize:Int = 
 {
 
 else
-newData -= strumlineSize;
 
-});
 }
 
 /**
@@ -129,26 +119,20 @@ mirrorY:Bool = true):Array<SongNoteData>
 for (note in notes)
 {
 {
-else if (note.data > maxStrumline) maxStrumline = note.data;
 }
-else if (note.time > maxTime) maxTime = note.time;
 }
 
 {
-notes = flipNotes(notes);
 }
 
 {
 
 {
 else
-newData = strumlineSize + strumlineSize * 2 - 1 - newData;
 }
 {
-else if (newTime > timeDiff) newTime -= (newTime - timeDiff) * 2;
 }
 
-});
 }
 
 /**
@@ -176,7 +160,6 @@ public static function sortNotes(notes:Array<SongNoteData>, desc:Bool = false):A
 {
 notes.sort(function(a:SongNoteData, b:SongNoteData):Int
 {
-});
 }
 
 /**
@@ -186,7 +169,6 @@ public static function sortEvents(events:Array<SongEventData>, desc:Bool = false
 {
 events.sort(function(a:SongEventData, b:SongEventData):Int
 {
-});
 }
 
 /**
@@ -196,7 +178,6 @@ public static function sortTimeChanges(timeChanges:Array<SongTimeChange>, desc:B
 {
 timeChanges.sort(function(a:SongTimeChange, b:SongTimeChange):Int
 {
-});
 }
 
 /**
@@ -205,7 +186,6 @@ timeChanges.sort(function(a:SongTimeChange, b:SongTimeChange):Int
 public static function writeItemsToClipboard(data:SongClipboardItems):Void
 {
 
-ClipboardUtil.setClipboard(dataString);
 
 }
 
@@ -216,19 +196,14 @@ public static function readItemsFromClipboard():SongClipboardItems
 {
 
 
-parser.ignoreUnknownVariables = false;
-parser.fromJson(notesString, 'clipboard');
 {
 for (error in parser.errors)
-DataError.printError(error);
 valid: false,
 notes: [],
 events: []
-};
 }
 else
 {
-data.valid = true;
 }
 }
 
@@ -238,7 +213,6 @@ data.valid = true;
 public static function getNotesInTimeRange(notes:Array<SongNoteData>, start:Float, end:Float):Array<SongNoteData>
 {
 {
-});
 }
 
 /**
@@ -247,7 +221,6 @@ public static function getNotesInTimeRange(notes:Array<SongNoteData>, start:Floa
 public static function getEventsInTimeRange(events:Array<SongEventData>, start:Float, end:Float):Array<SongEventData>
 {
 {
-});
 }
 
 /**
@@ -256,7 +229,6 @@ public static function getEventsInTimeRange(events:Array<SongEventData>, start:F
 public static function getNotesInDataRange(notes:Array<SongNoteData>, start:Int, end:Int):Array<SongNoteData>
 {
 {
-});
 }
 
 /**
@@ -265,7 +237,6 @@ public static function getNotesInDataRange(notes:Array<SongNoteData>, start:Int,
 public static function getNotesWithData(notes:Array<SongNoteData>, data:Array<Int>):Array<SongNoteData>
 {
 {
-});
 }
 
 /**
@@ -274,7 +245,6 @@ public static function getNotesWithData(notes:Array<SongNoteData>, data:Array<In
 public static function getEventsWithKind(events:Array<SongEventData>, kinds:Array<String>):Array<SongEventData>
 {
 {
-});
 }
 }
 

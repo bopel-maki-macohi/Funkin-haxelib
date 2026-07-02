@@ -1,4 +1,3 @@
-package funkin.ui.debug.charting.dialogs;
 
 
 class ChartEditorCharacterIconSelectorMenu extends ChartEditorBaseMenu
@@ -7,41 +6,24 @@ class ChartEditorCharacterIconSelectorMenu extends ChartEditorBaseMenu
 
 public function new(chartEditorState2:ChartEditorState, charType:CharacterType, lockPosition:Bool = false)
 {
-super(chartEditorState2);
 
-initialize(charType, lockPosition);
-this.alpha = 0;
-this.y -= 10;
 FlxTween.tween(this, {alpha: 1, y: this.y + 10}, 0.2, {
 ease: FlxEase.quartOut,
 onComplete: function(_)
 {
 else
-chartEditorState.error('Failure', 'Could not find character of ${currentCharId} in registry (Is the character in the registry?)');
 }
-});
 }
 
 function initialize(charType:CharacterType, lockPosition:Bool)
 {
 currentCharId = switch (charType)
 {
-case BF: chartEditorState.currentSongMetadata.playData.characters.player;
-case GF: chartEditorState.currentSongMetadata.playData.characters.girlfriend;
-case DAD: chartEditorState.currentSongMetadata.playData.characters.opponent;
-default: throw 'Invalid charType: ' + charType;
-};
-
-{
-case BF: chartEditorState.healthIconBF;
-case DAD: chartEditorState.healthIconDad;
-default: null;
-};
 
 {
 
-this.x = healthIconBottomCenter.x - this.width / 2;
-this.y = healthIconBottomCenter.y;
+{
+
 }
 else
 {
@@ -49,11 +31,7 @@ this.x = Screen.instance.currentMouseX;
 this.y = Screen.instance.currentMouseY;
 }
 
-charGrid.columns = 5;
-charGrid.width = this.width;
-charSelectScroll.addComponent(charGrid);
 
-charIds.sort(SortUtil.alphabetically);
 
 charIds.insert(0, ""); // Add none/null/NuN character option
 
@@ -61,55 +39,28 @@ charIds.insert(0, ""); // Add none/null/NuN character option
 for (charIndex => charId in charIds)
 {
 
-charButton.width = 70;
-charButton.height = 70;
-charButton.padding = 8;
-charButton.iconPosition = "top";
 
 {
-charSelectScroll.vscrollPos = Math.floor(charIndex / 5) * 80;
-charButton.focus = true;
 
-defaultText = (currentCharId != "") ? '${charData.name} [${charId}]' : 'None';
 
-currentCharButton = charButton;
 }
 
-charButton.icon = haxe.ui.util.Variant.fromImageData(CharacterDataParser.getCharPixelIconAsset(charId));
-charButton.text = (charId != "") ? (charData.name.length > LIMIT ? '${charData.name.substr(0, LIMIT)}.' : '${charData.name}') : 'None';
 
 charButton.onClick = _ ->
 {
 switch (charType)
 {
 case BF:
-chartEditorState.currentSongMetadata.playData.characters.player = charId;
-chartEditorState.playerPreviewDirty = true;
-case GF: chartEditorState.currentSongMetadata.playData.characters.girlfriend = charId;
 case DAD:
-chartEditorState.currentSongMetadata.playData.characters.opponent = charId;
-chartEditorState.opponentPreviewDirty = true;
-default: throw 'Invalid charType: ' + charType;
-};
 
-defaultText = (charId != "") ? '${charData.name} [${charId}]' : 'None';
-chartEditorState.healthIconsDirty = true;
 
-chartEditorState.refreshToolbox(ChartEditorState.CHART_EDITOR_TOOLBOX_METADATA_LAYOUT);
-};
 
 charButton.onMouseOver = _ ->
 {
-charIconName.text = (charId != "") ? '${charData.name} [${charId}]' : 'None';
-};
 charButton.onMouseOut = _ ->
 {
-charIconName.text = defaultText;
-};
-charGrid.addComponent(charButton);
 }
 
-charIconName.text = defaultText;
 }
 
 public static function build(chartEditorState:ChartEditorState, charType:CharacterType, lockPosition:Bool = false):ChartEditorCharacterIconSelectorMenu

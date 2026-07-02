@@ -1,4 +1,3 @@
-package funkin.util;
 
 
 /**
@@ -85,8 +84,6 @@ public static inline function byFrameName(a:FlxFrame, b:FlxFrame):Int
 */
 public static function alphabetically(a:String, b:String):Int
 {
-a = a.toUpperCase();
-b = b.toUpperCase();
 
 }
 
@@ -115,6 +112,5 @@ public static function defaultThenAlphabetically(defaultValue:String, a:String, 
 public static function defaultsThenAlphabetically(defaultValues:Array<String>, a:String, b:String):Int
 {
 {
-};
 }
 }

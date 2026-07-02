@@ -1,4 +1,3 @@
-package funkin.graphics.video;
 
 /**
 * A script that can be tied to a FunkinVideoSprite.

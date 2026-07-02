@@ -1,4 +1,3 @@
-package funkin.util.tools;
 
 
 /**
@@ -6,7 +5,6 @@ package funkin.util.tools;
 */
 class Int64Tools
 {
-private inline static var MAX_32_PRECISION:Float = 4294967296.0;
 
 public static function fromFloat(f:Float):Int64
 {
@@ -27,7 +25,6 @@ try
 }
 catch (e:Dynamic)
 {
-throw 'Could not represent value "${Int64.toStr(i)}" as an integer.';
 }
 }
 }

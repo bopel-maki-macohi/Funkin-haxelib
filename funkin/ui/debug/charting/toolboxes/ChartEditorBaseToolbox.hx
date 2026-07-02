@@ -1,4 +1,3 @@
-package funkin.ui.debug.charting.toolboxes;
 
 
 /**
@@ -9,9 +8,7 @@ class ChartEditorBaseToolbox extends CollapsibleDialog
 
 private function new(chartEditorState:ChartEditorState)
 {
-super();
 
-this.chartEditorState = chartEditorState;
 }
 
 /**

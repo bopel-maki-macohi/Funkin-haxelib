@@ -1,4 +1,3 @@
-package funkin.modding.module;
 
 
 /**
@@ -14,19 +13,16 @@ class ModuleHandler
 */
 public static function loadModuleCache():Void
 {
-clearModuleCache();
 
 for (moduleCls in scriptedModuleClassNames)
 {
 {
 
-addToModuleCache(module);
 }
 else
 {
 }
 }
-reorderModuleCache();
 
 }
 
@@ -36,19 +32,15 @@ public static function buildModuleCallbacks():Void
 
 static function onStateSwitchComplete():Void
 {
-callEvent(new StateChangeScriptEvent(STATE_CHANGE_END, FlxG.state, true));
 }
 
 static function addToModuleCache(module:Module):Void
 {
-moduleCache.set(module.moduleId, module);
 }
 
 static function reorderModuleCache():Void
 {
-modulePriorityOrder = moduleCache.keys().array();
 
-modulePriorityOrder.sort(sortByPriority);
 }
 
 /**
@@ -74,14 +66,12 @@ public static function getModule(moduleId:String):Null<Module>
 public static function activateModule(moduleId:String):Void
 {
 {
-module.active = true;
 }
 }
 
 public static function deactivateModule(moduleId:String):Void
 {
 {
-module.active = false;
 }
 }
 
@@ -94,11 +84,8 @@ public static function clearModuleCache():Void
 
 for (key => value in moduleCache)
 {
-ScriptEventDispatcher.callEvent(value, event);
 }
 
-moduleCache.clear();
-modulePriorityOrder = [];
 }
 }
 
@@ -109,16 +96,13 @@ for (moduleId in modulePriorityOrder)
 {
 {
 {
-continue;
 }
 }
-ScriptEventDispatcher.callEvent(module, event);
 }
 }
 }
 
 public static inline function callOnCreate():Void
 {
-callEvent(new ScriptEvent(CREATE, false));
 }
 }

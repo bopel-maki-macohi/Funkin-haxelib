@@ -1,4 +1,3 @@
-package funkin.ui.options.items;
 
 
 /**
@@ -27,66 +26,40 @@ public function new(x:Float, y:Float, name:String, defaultValue:Float, min:Float
 {
 super(x, y, name, function()
 {
-callback(this.currentValue);
-});
-lefthandText = new AtlasText(x + 15, y, formatted(defaultValue), AtlasFont.DEFAULT);
 
-updateHitbox();
 
-this.currentValue = defaultValue;
-this.min = min;
-this.max = max;
-this.step = step;
-this.precision = precision;
-this.onChangeCallback = callback;
-this.valueFormatter = valueFormatter;
-this.dragStepMultiplier = dragStepMultiplier;
 
-this.fireInstantly = true;
 }
 
 override function update(elapsed:Float):Void
 {
-super.update(elapsed);
-lefthandText.text = formatted(currentValue);
 
 
-holdDelayTimer -= elapsed;
 {
-changeRateTimer -= elapsed;
 }
 
 
 {
-holdDelayTimer = HOLD_DELAY;
-changeRateTimer = 0.0;
 }
 
 
 
 {
-valueChangeMultiplier = dragStepMultiplier;
 }
 
 {
 {
-shouldDecrease = true;
-changeRateTimer = CHANGE_RATE;
 }
 else if (controls().UI_RIGHT #if FEATURE_TOUCH_CONTROLS || (TouchUtil.touch != null && TouchUtil.touch.deltaX >= dragThreshold) #end)
 {
-shouldIncrease = true;
-changeRateTimer = CHANGE_RATE;
 }
 }
 
 {
-currentValue = (currentValue - step * valueChangeMultiplier).clamp(min, max);
 
 }
 else if (shouldIncrease)
 {
-currentValue = (currentValue + step * valueChangeMultiplier).clamp(min, max);
 
 }
 }

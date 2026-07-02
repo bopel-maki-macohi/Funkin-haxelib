@@ -1,4 +1,3 @@
-package funkin.graphics.framebuffer;
 
 
 /**
@@ -9,8 +8,6 @@ class SpriteCopy
 
 public function new(sprite:FlxSprite, color:Null<FlxColor>)
 {
-this.sprite = sprite;
-this.color = color;
 }
 
 /**
@@ -20,22 +17,12 @@ this.color = color;
 public function render(camera:FlxCamera):Void
 {
 {
-sprite._cameras = [camera];
-sprite.draw();
-sprite._cameras = tmpCameras;
 }
 else
 {
 
-sprite._cameras = [camera];
-sprite.shader = null;
 
-sprite.setColorTransform(0, 0, 0, 1, color.red, color.green, color.blue, 0);
-sprite.draw();
 
-sprite._cameras = tmpCameras;
-sprite.shader = tmpShader;
-sprite.setColorTransform(rMult, gMult, bMult, aMult, rOff, gOff, bOff, aOff);
 }
 }
 }

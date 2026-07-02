@@ -1,4 +1,3 @@
-package funkin.data.dialogue;
 
 
 /**
@@ -83,4 +82,3 @@ typedef DialogueBoxTextData =
 /**
 * The width of the shadow of the text.
 */
-};

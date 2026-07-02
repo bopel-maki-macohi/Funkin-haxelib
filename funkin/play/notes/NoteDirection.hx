@@ -1,4 +1,3 @@
-package funkin.play.notes;
 
 
 /**
@@ -11,11 +10,6 @@ enum abstract NoteDirection(Int) from Int to Int
 public static function fromInt(value:Int):NoteDirection
 {
 {
-case 0: LEFT;
-case 1: DOWN;
-case 2: UP;
-case 3: RIGHT;
-default: LEFT;
 }
 }
 
@@ -23,15 +17,10 @@ function get_name():String
 {
 {
 case LEFT:
-'left';
 case DOWN:
-'down';
 case UP:
-'up';
 case RIGHT:
-'right';
 default:
-'unknown';
 }
 }
 
@@ -47,15 +36,10 @@ function get_colorName():String
 {
 {
 case LEFT:
-'purple';
 case DOWN:
-'blue';
 case UP:
-'green';
 case RIGHT:
-'red';
 default:
-'unknown';
 }
 }
 

@@ -1,4 +1,3 @@
-package funkin.graphics.video;
 
 
 /**
@@ -8,7 +7,6 @@ class FunkinVideoSprite extends FlxVideoSprite
 {
 public function new(x:Float = 0, y:Float = 0)
 {
-super(x, y);
 
 {
 bitmap.onOpening.add(function():Void
@@ -18,7 +16,6 @@ bitmap.onOpening.add(function():Void
 bitmap.rate = PlayState.instance.playbackRate;
 }
 }
-});
 }
 }
 }

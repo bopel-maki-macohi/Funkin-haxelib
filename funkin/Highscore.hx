@@ -1,4 +1,3 @@
-package funkin;
 
 /**
 * A core class which handles tracking score and combo for the current song.
@@ -23,16 +22,7 @@ class Highscore
 */
 public static function combineTallies(newTally:Tallies, baseTally:Tallies):Tallies
 {
-combinedTally.missed = newTally.missed + baseTally.missed;
-combinedTally.shit = newTally.shit + baseTally.shit;
-combinedTally.bad = newTally.bad + baseTally.bad;
-combinedTally.good = newTally.good + baseTally.good;
-combinedTally.sick = newTally.sick + baseTally.sick;
-combinedTally.totalNotes = newTally.totalNotes + baseTally.totalNotes;
-combinedTally.totalNotesHit = newTally.totalNotesHit + baseTally.totalNotesHit;
 
-combinedTally.combo = newTally.combo;
-combinedTally.maxCombo = Std.int(Math.max(newTally.maxCombo, baseTally.maxCombo));
 
 }
 }

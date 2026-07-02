@@ -1,4 +1,3 @@
-package funkin.util.macro;
 
 
 /**
@@ -21,12 +20,9 @@ class ClassMacro
 public static macro function listClassesInPackage(targetPackage:String, includeSubPackages:Bool = true):ExprOf<Iterable<Class<Dynamic>>>
 {
 {
-onGenerateCallbackRegistered = true;
-Context.onGenerate(onGenerate);
 }
 
 
-classListsToGenerate.push(request);
 
 }
 
@@ -41,13 +37,10 @@ classListsToGenerate.push(request);
 public static macro function listSubclassesOf<T>(targetClassExpr:ExprOf<Class<T>>):ExprOf<List<Class<T>>>
 {
 {
-onGenerateCallbackRegistered = true;
-Context.onGenerate(onGenerate);
 }
 
 
 
-classListsToGenerate.push(request);
 
 }
 
@@ -59,11 +52,9 @@ classListsToGenerate.push(request);
 */
 static function onGenerate(allTypes:Array<haxe.macro.Type>)
 {
-classListsRaw = [];
 
 for (request in classListsToGenerate)
 {
-classListsRaw.set(request, []);
 }
 
 for (type in allTypes)
@@ -79,16 +70,13 @@ else
 for (request in classListsToGenerate)
 {
 {
-classListsRaw.get(request).push(className);
 }
 }
 }
 default:
-continue;
 }
 }
 
-compileClassLists();
 }
 
 /**
@@ -107,13 +95,10 @@ for (request in classListsToGenerate)
 {
 for (i in classListsRaw.get(request))
 {
-classListEntries.push(macro $v{i});
 }
 
-classLists.push(macro $a{classListEntries});
 }
 
-compiledClassList.meta.add('classLists', classLists, Context.currentPos());
 }
 
 static function doesClassMatchRequest(classType:ClassType, request:String):Bool
@@ -141,7 +126,6 @@ else if (MacroUtil.isSubclassOf(classType, targetClassType))
 
 
 default:
-throw 'Unknown request type: ${requestType}';
 }
 }
 

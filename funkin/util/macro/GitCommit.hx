@@ -1,6 +1,4 @@
-package funkin.util.macro;
 
-using funkin.util.AnsiUtil;
 
 class GitCommit
 {
@@ -11,11 +9,9 @@ public static macro function getGitCommitHash():haxe.macro.Expr.ExprOf<String>
 {
 
 {
-haxe.macro.Context.info(' WARNING '.warning() + ' Could not determine current git commit; is this a proper Git repository?', pos);
 }
 
 
-process.close();
 
 }
 
@@ -26,10 +22,8 @@ public static macro function getGitBranch():haxe.macro.Expr.ExprOf<String>
 {
 
 {
-haxe.macro.Context.info(' WARNING '.warning() + ' Could not determine current git commit; is this a proper Git repository?', pos);
 }
 
-branchProcess.close();
 
 }
 

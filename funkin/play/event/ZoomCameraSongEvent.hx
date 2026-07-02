@@ -1,4 +1,3 @@
-package funkin.play.event;
 
 
 /**
@@ -18,13 +17,8 @@ public function new()
 {
 super('ZoomCamera', {
 processOldEvents: true
-});
 }
 
-public static final DEFAULT_ZOOM:Float = 1.0;
-public static final DEFAULT_WIDESCREEN_SCALE:Float = 0.0;
-public static final DEFAULT_DURATION:Float = 4.0;
-public static final DEFAULT_MODE:String = 'direct';
 
 public override function handleEvent(data:SongEventData):Void
 {
@@ -125,6 +119,5 @@ max: 1,
 type: SongEventFieldType.FLOAT,
 units: 'x'
 }]
-}]);
 }
 }

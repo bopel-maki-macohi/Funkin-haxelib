@@ -1,4 +1,3 @@
-package funkin.mobile.util;
 
 
 /**
@@ -9,12 +8,8 @@ class FNFCProvider
 
 public static function init():Void
 {
-onFNFCOpen = new FlxTypedSignal<String->Void>();
 
 {
-queryFNFC();
-});
-CallbackUtil.onFNFCOpen.add(onFNFCOpen.dispatch);
 }
 
 public static function queryFNFC():Null<String>
@@ -24,7 +19,6 @@ public static function queryFNFC():Null<String>
 
 private static function getFNFCFromURL(url:String):Void
 {
-FNFCExtern.copyFNFCIntoCache(cURL, cpp.Callable.fromStaticFunction(fnfcCallback));
 }
 
 private static function fnfcCallback(cEvent:cpp.ConstCharStar, cValue:cpp.ConstCharStar)
@@ -34,7 +28,6 @@ private static function fnfcCallback(cEvent:cpp.ConstCharStar, cValue:cpp.ConstC
 switch (event)
 {
 case "FNFC_RESULTS":
-onFNFCOpen.dispatch(value);
 default:
 }
 }

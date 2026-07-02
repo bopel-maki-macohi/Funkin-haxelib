@@ -1,4 +1,3 @@
-package funkin.ui.debug.charting.commands;
 
 
 /**
@@ -10,10 +9,6 @@ class ExtendNoteLengthCommand implements ChartEditorCommand
 
 public function new(note:SongNoteData, newLength:Float, unit:Unit = MILLISECONDS)
 {
-this.note = note;
-this.oldLength = note.length;
-this.newLength = newLength;
-this.unit = unit;
 }
 
 public function execute(state:ChartEditorState):Void
@@ -21,29 +16,17 @@ public function execute(state:ChartEditorState):Void
 switch (unit)
 {
 case MILLISECONDS:
-this.note.length = newLength;
 case STEPS:
-this.note.setStepLength(newLength);
 }
 
-state.saveDataDirty = true;
-state.noteDisplayDirty = true;
-state.notePreviewDirty = true;
 
-state.sortChartData();
 }
 
 public function undo(state:ChartEditorState):Void
 {
-state.playSound(Paths.sound('chartingSounds/undo'));
 
-this.note.length = oldLength;
 
-state.saveDataDirty = true;
-state.noteDisplayDirty = true;
-state.notePreviewDirty = true;
 
-state.sortChartData();
 }
 
 public function shouldAddToHistory(state:ChartEditorState):Bool
@@ -65,6 +48,4 @@ else
 
 enum Unit
 {
-MILLISECONDS;
-STEPS;
 }

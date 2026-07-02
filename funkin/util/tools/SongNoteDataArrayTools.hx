@@ -1,4 +1,3 @@
-package funkin.util.tools;
 
 
 /**
@@ -24,11 +23,9 @@ public static function fastIndexOf(input:Array<SongNoteData>, note:SongNoteData)
 {
 
 {
-lowIndex = midIndex + 1;
 }
 else if (midNote.time > note.time)
 {
-highIndex = midIndex - 1;
 }
 else if (midNote == note)
 {
@@ -36,15 +33,11 @@ else if (midNote == note)
 else
 {
 {
-i--;
 }
 
-i = midIndex + 1;
 {
-i++;
 }
 
-break;
 }
 }
 }

@@ -1,4 +1,3 @@
-package funkin.graphics;
 
 
 class FunkinAnimationController extends FlxAnimateController
@@ -9,13 +8,10 @@ class FunkinAnimationController extends FlxAnimateController
 
 public function new(sprite:FunkinSprite)
 {
-super(sprite);
-_parentSprite = sprite;
 }
 
 override function set_frameIndex(frame:Int):Int
 {
-_parentSprite._renderTextureDirty = true;
 }
 
 /**
@@ -27,6 +23,5 @@ public override function play(animName:String, force = false, reversed = false, 
 {
 }
 
-super.play(animName, force, reversed, frame);
 }
 }

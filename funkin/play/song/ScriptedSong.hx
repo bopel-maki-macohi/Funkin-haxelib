@@ -1,4 +1,3 @@
-package funkin.play.song;
 
 /**
 * A script that can be tied to a Song.

@@ -1,4 +1,3 @@
-package funkin.ui.debug.results;
 
 
 /**
@@ -18,7 +17,6 @@ combo: 69,
 maxCombo: 69,
 totalNotesHit: 170,
 totalNotes: 2400
-};
 
 /**
 * 275 total notes = 69% = NICE
@@ -32,7 +30,6 @@ combo: 69,
 maxCombo: 69,
 totalNotesHit: 190,
 totalNotes: 275
-};
 
 /**
 * 240 total notes = 79% = GOOD
@@ -46,7 +43,6 @@ combo: 69,
 maxCombo: 69,
 totalNotesHit: 190,
 totalNotes: 240
-};
 
 /**
 * 230 total notes = 82% = GREAT
@@ -60,7 +56,6 @@ combo: 69,
 maxCombo: 69,
 totalNotesHit: 190,
 totalNotes: 230
-};
 
 /**
 * 210 total notes = 90% = EXCELLENT
@@ -74,7 +69,6 @@ combo: 69,
 maxCombo: 69,
 totalNotesHit: 190,
 totalNotes: 210
-};
 
 /**
 * 190 total notes = PERFECT
@@ -88,7 +82,6 @@ combo: 69,
 maxCombo: 69,
 totalNotesHit: 190,
 totalNotes: 190
-};
 
 /**
 * 190 total sicks and total notes = PERFECT GOLD
@@ -102,18 +95,10 @@ combo: 69,
 maxCombo: 69,
 totalNotesHit: 190,
 totalNotes: 190
-};
 
 public static function getTallyForRank(rank:DebugRank):SaveScoreTallyData
 {
 {
-case LOSS_RANK: LOSS;
-case NICE_RANK: NICE;
-case GOOD_RANK: GOOD;
-case GREAT_RANK: GREAT;
-case EXCELLENT_RANK: EXCELLENT;
-case PERFECT_RANK: PERFECT;
-case PERFECT_GOLD_RANK: PERFECT_GOLD;
 }
 }
 

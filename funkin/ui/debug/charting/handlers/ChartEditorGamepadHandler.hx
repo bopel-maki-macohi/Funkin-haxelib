@@ -1,4 +1,3 @@
-package funkin.ui.debug.charting.handlers;
 
 
 /**
@@ -23,15 +22,11 @@ ChartEditorGamepadActionInputSource.instance.handleGamepad(gamepad);
 }
 else
 {
-handleGamepadLiveInputs(chartEditorState, gamepad);
 
 {
-chartEditorState.toggleAudioPlayback();
 }
 
 {
-chartEditorState.hideAllToolboxes();
-chartEditorState.testSongInPlayState(minimal);
 }
 
 {
@@ -43,7 +38,6 @@ FocusManager.instance.focus = null;
 }
 
 {
-chartEditorState.quitChartEditor();
 }
 }
 

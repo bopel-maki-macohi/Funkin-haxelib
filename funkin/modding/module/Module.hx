@@ -1,4 +1,3 @@
-package funkin.modding.module;
 
 
 /**
@@ -38,8 +37,6 @@ function set_active(value:Bool):Bool
 
 function set_priority(value:Int):Int
 {
-this.priority = value;
-ModuleHandler.reorderModuleCache();
 }
 
 /**
@@ -55,11 +52,8 @@ ModuleHandler.reorderModuleCache();
 */
 public function new(moduleId:String, priority:Int = 1000, ?params:ModuleParams):Void
 {
-this.moduleId = moduleId;
-this.priority = priority;
 
 {
-this.state = params.state ?? null;
 }
 }
 

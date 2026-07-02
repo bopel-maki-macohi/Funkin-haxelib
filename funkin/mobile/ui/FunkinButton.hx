@@ -1,4 +1,3 @@
-package funkin.mobile.ui;
 
 
 /**
@@ -97,14 +96,7 @@ class FunkinButton extends FunkinSprite implements IFlxInput
 */
 public function new(x:Float = 0, y:Float = 0):Void
 {
-super(x, y);
 
-status = FunkinButtonStatus.NORMAL;
-solid = false;
-immovable = true;
-ignoreDrawDebug = true;
-scrollFactor.set();
-input = new FlxInput(0);
 }
 
 /**
@@ -112,15 +104,9 @@ input = new FlxInput(0);
 */
 public override function destroy():Void
 {
-deadZones = FlxDestroyUtil.destroyArray(deadZones);
-currentInput = null;
-input = null;
 
-buttonsTouchID.remove(touchID);
 
-touchID = -1;
 
-super.destroy();
 }
 
 /**
@@ -128,19 +114,16 @@ super.destroy();
 */
 public override function update(elapsed:Float):Void
 {
-super.update(elapsed);
 
 {
 
 {
-onUpHandler();
 }
 
 {
 }
 }
 
-input.update();
 }
 
 function checkTouchOverlap(?touch:FlxTouch):Bool
@@ -157,30 +140,24 @@ for (zone in deadZones)
 
 function updateTouchID():Void
 {
-touchID = touch.touchPointID;
 {
 
 }
-buttonsTouchID.set(touchID, this);
 
-updateStatus(touch);
 }
 
 {
 {
-updateTouchID();
 }
 }
 else if (radius > 0)
 {
 {
-updateTouchID();
 }
 }
 else
 {
 {
-updateTouchID();
 }
 }
 }
@@ -191,8 +168,6 @@ updateTouchID();
 function circleOverlapsPoint(point:FlxPoint, ?camera:FlxCamera):Bool
 {
 
-getScreenPosition(_point, camera);
-point.putWeak();
 
 
 }
@@ -203,7 +178,6 @@ function polygonOverlapsPoint(point:FlxPoint, inScreenSpace:Bool = false, ?camer
 
 
 
-point.putWeak();
 
 }
 
@@ -216,21 +190,15 @@ for (i in 0...numsPoints)
 {
 
 {
-inside = !inside;
 }
 }
 
-point.putWeak();
-offset.putWeak();
 
 }
 
 static inline function checkRayIntersection(vertex1:FlxPoint, vertex2:FlxPoint, point:FlxPoint):Bool
 {
-&& point.x < (vertex1.x + ((point.y - vertex1.y) / (vertex2.y - vertex1.y)) * (vertex2.x - vertex1.x));
 
-vertex1.putWeak();
-vertex2.putWeak();
 
 }
 
@@ -241,100 +209,73 @@ function isPressed(check:Bool):Bool
 function updateStatus(newInput:IFlxInput):Void
 {
 {
-currentInput = newInput;
 
-onDownHandler();
 }
 else if (status == FunkinButtonStatus.NORMAL && !ignoreDownHandler)
 {
 {
-onDownHandler();
 }
 }
 }
 
 function onUpHandler():Void
 {
-status = FunkinButtonStatus.NORMAL;
 
-input.release();
 
-buttonsTouchID.remove(touchID);
 
-touchID = -1;
 
-currentInput = null;
 
-onUp.dispatch();
 }
 
 function onDownHandler():Void
 {
-status = FunkinButtonStatus.PRESSED;
 
-input.press();
 
-onDown.dispatch();
 }
 
 function onOutHandler():Void
 {
-status = FunkinButtonStatus.NORMAL;
 
-input.release();
 
-buttonsTouchID.remove(touchID);
 
-touchID = -1;
 
-onOut.dispatch();
 }
 
 public override function drawDebugOnCamera(camera:FlxCamera):Void
 {
 {
 
-getScreenPosition(_point, camera);
 
 
 
 
-endDrawDebug(camera);
 }
 else if (radius > 0)
 {
 
-getScreenPosition(_point, camera);
 
 
 
 
-endDrawDebug(camera);
 }
 else
 {
-super.drawDebugOnCamera(camera);
 }
 }
 
 function drawDebugCircleColor(gfx:Graphics, color:FlxColor):Void
 {
-gfx.lineStyle(2, color, 0.75);
-gfx.drawCircle(radius, radius, radius);
 }
 
 function drawDebugPolygonColor(gfx:Graphics, vertices:Array<Float>, color:FlxColor):Void
 {
-gfx.lineStyle(2, color, 0.75);
 
 for (i in 0...Math.floor(vertices.length / 2))
 {
 {
-gfx.moveTo(vertices[i * 2] + _point.x, vertices[i * 2 + 1] + _point.y);
 }
 else
 {
-gfx.lineTo(vertices[i * 2] + _point.x, vertices[i * 2 + 1] + _point.y);
 }
 }
 }

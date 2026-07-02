@@ -1,4 +1,3 @@
-package funkin.util;
 
 /**
 * Utility functions for working with the system clipboard.

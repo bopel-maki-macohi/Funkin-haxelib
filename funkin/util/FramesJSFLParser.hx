@@ -1,4 +1,3 @@
-package funkin.util;
 
 
 /**
@@ -26,8 +25,6 @@ y: y,
 alpha: alpha,
 scaleX: scaleX,
 scaleY: scaleY
-};
-output.frames.push(shit);
 }
 
 }

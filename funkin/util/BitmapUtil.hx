@@ -1,4 +1,3 @@
-package funkin.util;
 
 
 class BitmapUtil
@@ -6,11 +5,7 @@ class BitmapUtil
 public static function createResultsBar():BitmapData
 {
 
-matrix.rotate(-3.8 * Math.PI / 180);
-matrix.translate(-15, 0);
-rect.width -= 15;
 
-bitmap.draw(mainBitmap, matrix, rect, true);
 }
 
 /**
@@ -23,10 +18,7 @@ bitmap.draw(mainBitmap, matrix, rect, true);
 public static function scalePart(bitmap:BitmapData, scale:Float, ?scalePosition:Float):BitmapData
 {
 
-matrix.scale(scale, 1);
-rect.width = scaledPartWidth;
 
-rect.x = scalePosition;
 
 }
 
@@ -40,10 +32,7 @@ rect.x = scalePosition;
 public static function scalePartByWidth(bitmap:BitmapData, additionalWidth:Float, ?scalePosition:Float):BitmapData
 {
 
-matrix.scale(scale, 1);
-rect.width = scaledPartWidth;
 
-rect.x = scalePosition;
 
 }
 }

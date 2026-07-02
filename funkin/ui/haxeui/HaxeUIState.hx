@@ -1,4 +1,3 @@
-package funkin.ui.haxeui;
 
 
 class HaxeUIState extends MusicBeatState
@@ -7,13 +6,10 @@ class HaxeUIState extends MusicBeatState
 
 public function new(key:String)
 {
-super();
-_componentKey = key;
 }
 
 override function create():Void
 {
-super.create();
 
 }
 
@@ -24,7 +20,6 @@ try
 }
 catch (e)
 {
-Application.current.window.alert('Error building component "$assetPath": $e', 'HaxeUI Parsing Error');
 
 }
 }
@@ -39,11 +34,8 @@ Application.current.window.alert('Error building component "$assetPath": $e', 'H
 function showContextMenu(assetPath:String, xPos:Float, yPos:Float):Component
 {
 
-contextMenu = buildComponent(assetPath);
 
 {
-contextMenu.left = xPos;
-contextMenu.top = yPos;
 Screen.instance.addComponent(contextMenu);
 }
 
@@ -59,15 +51,11 @@ public function registerContextMenu(target:Null<Component>, assetPath:String):Vo
 {
 Screen.instance.registerEvent(MouseEvent.RIGHT_CLICK, function(e:MouseEvent)
 {
-showContextMenu(assetPath, e.screenX, e.screenY);
-});
 }
 else
 {
 target.registerEvent(MouseEvent.RIGHT_CLICK, function(e:MouseEvent)
 {
-showContextMenu(assetPath, e.screenX, e.screenY);
-});
 }
 }
 
@@ -80,7 +68,6 @@ function addUIClickListener(key:String, callback:MouseEvent->Void):Void
 }
 else
 {
-target.onClick = callback;
 }
 }
 
@@ -93,7 +80,6 @@ function addUIRightClickListener(key:String, callback:MouseEvent->Void):Void
 }
 else
 {
-target.onRightClick = callback;
 }
 }
 
@@ -103,7 +89,6 @@ function setComponentText(key:String, text:String):Void
 }
 else
 {
-target.text = text;
 }
 }
 
@@ -113,7 +98,6 @@ function setComponentShortcutText(key:String, text:String):Void
 }
 else
 {
-target.shortcutText = text;
 }
 }
 
@@ -123,7 +107,6 @@ function addTooltip(key:String, text:String):Void
 }
 else
 {
-target.tooltip = text;
 }
 }
 
@@ -136,7 +119,6 @@ function addUIChangeListener(key:String, callback:UIEvent->Void):Void
 }
 else
 {
-target.onChange = callback;
 }
 }
 
@@ -175,8 +157,6 @@ public function findComponent<T:Component>(criteria:String = null, type:Class<T>
 
 override function destroy():Void
 {
-component = null;
 
-super.destroy();
 }
 }

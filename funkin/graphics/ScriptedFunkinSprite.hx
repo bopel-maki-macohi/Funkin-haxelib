@@ -1,4 +1,3 @@
-package funkin.graphics;
 
 /**
 * A script that can be tied to a FunkinSprite.

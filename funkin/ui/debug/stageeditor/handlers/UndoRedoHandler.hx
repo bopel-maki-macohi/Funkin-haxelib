@@ -1,4 +1,3 @@
-package funkin.ui.debug.stageeditor.handlers;
 
 
 class UndoRedoHandler
@@ -9,18 +8,13 @@ public static function performLastAction(state:StageEditorState, redo:Bool = fal
 switch (actionToDo.type)
 {
 case CHARACTER_MOVED:
-createAndPushAction(state, actionToDo.type, !redo);
 
 
 for (char in state.getCharacters())
 {
 }
 
-state.selectedChar.x = pos[0] - state.selectedChar.characterOrigin.x + state.selectedChar.globalOffsets[0];
-state.selectedChar.y = pos[1] - state.selectedChar.characterOrigin.y + state.selectedChar.globalOffsets[1];
 
-state.updateMarkerPos();
-state.updateDialog(StageEditorDialogType.CHARACTER);
 
 case OBJECT_MOVED:
 
@@ -29,12 +23,8 @@ for (obj in state.spriteArray)
 }
 
 {
-createAndPushAction(state, actionToDo.type, !redo);
 
-state.selectedSprite.x = pos[0];
-state.selectedSprite.y = pos[1];
 
-state.updateDialog(StageEditorDialogType.OBJECT_PROPERTIES);
 }
 
 case OBJECT_CREATED: // this removes the object
@@ -42,37 +32,18 @@ case OBJECT_CREATED: // this removes the object
 for (obj in state.spriteArray)
 {
 {
-state.selectedSprite = obj;
-createAndPushAction(state, OBJECT_DELETED, !redo);
 
-state.selectedSprite = null;
 
-obj.kill();
-state.remove(obj, true);
-obj.destroy();
 
-state.updateArray();
-state.updateDialog(StageEditorDialogType.OBJECT_GRAPHIC);
-state.updateDialog(StageEditorDialogType.OBJECT_ANIMS);
-state.updateDialog(StageEditorDialogType.OBJECT_PROPERTIES);
 
-continue;
 }
 }
 
 case OBJECT_DELETED: // this creates the object
 
 
-obj.ID = id;
-state.selectedSprite = obj;
 
-createAndPushAction(state, OBJECT_CREATED, !redo);
-state.add(obj);
 
-state.updateDialog(StageEditorDialogType.OBJECT_GRAPHIC);
-state.updateDialog(StageEditorDialogType.OBJECT_ANIMS);
-state.updateDialog(StageEditorDialogType.OBJECT_PROPERTIES);
-state.updateArray();
 
 case OBJECT_ROTATED: // primarily copied from OBJECT_MOVED
 
@@ -81,9 +52,6 @@ for (obj in state.spriteArray)
 }
 
 {
-createAndPushAction(state, actionToDo.type, !redo);
-state.selectedSprite.angle = angle;
-state.updateDialog(StageEditorDialogType.OBJECT_PROPERTIES);
 }
 
 default: // do nothing dumbass
@@ -114,7 +82,6 @@ default: // nop
 }
 
 
-else if (!redo) state.undoArray.push(finalAction);
 }
 }
 

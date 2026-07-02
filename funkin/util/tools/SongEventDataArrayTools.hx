@@ -1,4 +1,3 @@
-package funkin.util.tools;
 
 
 /**
@@ -21,22 +20,17 @@ public static function fastIndexOf(input:Array<SongEventData>, note:SongEventDat
 
 
 {
-midIndex = Std.int((lowIndex + highIndex) / 2);
 
-midNote = input[midIndex];
 {
-lowIndex = midIndex + 1;
 }
 else if (midNote.time > note.time)
 {
-highIndex = midIndex - 1;
 }
 else if (midNote == note)
 {
 }
 else
 {
-highIndex -= 1;
 }
 }
 }

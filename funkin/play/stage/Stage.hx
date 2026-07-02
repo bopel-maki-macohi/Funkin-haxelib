@@ -1,7 +1,5 @@
-package funkin.play.stage;
 
 
-typedef StagePropGroup = FlxTypedSpriteGroup<StageProp>;
 
 /**
 * A Stage is a group of objects rendered in the PlayState.
@@ -35,13 +33,9 @@ function get_camZoom():Float
 */
 public function new(id:String, ?params:Dynamic)
 {
-super();
 
-this.id = id;
-_data = _fetchData(id);
 
 {
-throw 'Could not find stage data for stage id: $id';
 }
 }
 
@@ -50,55 +44,31 @@ throw 'Could not find stage data for stage id: $id';
 */
 public function onCreate(event:ScriptEvent):Void
 {
-frameBufferMan = new FrameBufferManager(FlxG.camera);
-setupFrameBuffers();
 
-buildStage();
-this.refresh();
 
-debugIconGroup = new FlxSpriteGroup();
-debugIconGroup.visible = false;
-debugIconGroup.zIndex = 1000000;
 }
 
 public function resetStage():Void
 {
 {
-getBoyfriend().setScale(finalScale);
-getBoyfriend().resetCharacter(true);
 
-getBoyfriend().cameraFocusPoint.x += stageCharData.cameraOffsets[0];
-getBoyfriend().cameraFocusPoint.y += stageCharData.cameraOffsets[1];
 }
 else
 {
-log(' WARNING '.warning() + ' No boyfriend found while resetting stage.');
 }
 {
-getGirlfriend().setScale(finalScale);
-getGirlfriend().resetCharacter(true);
 
-getGirlfriend().cameraFocusPoint.x += stageCharData.cameraOffsets[0];
-getGirlfriend().cameraFocusPoint.y += stageCharData.cameraOffsets[1];
 }
 {
-getDad().setScale(finalScale);
-getDad().resetCharacter(true);
 
-getDad().cameraFocusPoint.x += stageCharData.cameraOffsets[0];
-getDad().cameraFocusPoint.y += stageCharData.cameraOffsets[1];
 }
 
 for (dataProp in _data.props)
 {
 
 {
-prop.x = dataProp.position[0];
-prop.y = dataProp.position[1];
-prop.zIndex = dataProp.zIndex;
 
 {
-cast(prop, Bopper).danceEvery = dataProp.danceEvery;
 }
 }
 }
@@ -111,32 +81,24 @@ cast(prop, Bopper).danceEvery = dataProp.danceEvery;
 */
 function buildStage():Void
 {
-log('Building stage "${this.id}" for display...');
 
-this.debugIconGroup = new FlxSpriteGroup();
 
 for (dataProp in _data.props)
 {
-log('Placing prop ${dataProp.name} (${dataProp.assetPath})');
 
 
 {
-propSprite = new Bopper(dataProp.danceEvery);
 }
 else
 {
-propSprite = new StageProp();
 }
 
 {
 switch (dataProp.animType)
 {
 case 'packer':
-propSprite.loadPacker(dataProp.assetPath);
 case 'animateatlas':
-propSprite.loadTextureAtlas(dataProp.assetPath, _data.directory, cast dataProp.atlasSettings);
 default: // 'sparrow'
-propSprite.loadSparrow(dataProp.assetPath);
 }
 }
 else if (isSolidColor)
@@ -144,76 +106,49 @@ else if (isSolidColor)
 switch (dataProp.scale)
 {
 case Left(value):
-width = Std.int(value);
-height = Std.int(value);
 
 case Right(values):
-width = Std.int(values[0]);
-height = Std.int(values[1]);
 }
-propSprite.makeSolidColor(width, height, FlxColor.fromString(dataProp.assetPath));
 }
 else
 {
-propSprite.loadTexture(dataProp.assetPath);
 
-propSprite.active = false;
 }
 
 {
-log(' ERROR '.error() + ' Could not build texture for prop. Check the asset path (${Paths.currentLevel ?? 'default'}, ${dataProp.assetPath}).');
-continue;
 }
 
 {
 switch (dataProp.scale)
 {
 case Left(value):
-propSprite.scale.set(value, value);
 
 case Right(values):
-propSprite.scale.set(values[0], values[1]);
 }
 }
-propSprite.updateHitbox();
-
-propSprite.x = dataProp.position[0];
-propSprite.y = dataProp.position[1];
-
-propSprite.alpha = dataProp.alpha;
-
-propSprite.antialiasing = !dataProp.isPixel;
 
 
-propSprite.scrollFactor.x = dataProp.scroll[0];
-propSprite.scrollFactor.y = dataProp.scroll[1];
 
-propSprite.angle = dataProp.angle;
 
-propSprite.zIndex = dataProp.zIndex;
 
-propSprite.flipX = dataProp.flipX;
-propSprite.flipY = dataProp.flipY;
+
+
+
 
 switch (dataProp.animType)
 {
 case 'packer':
 for (propAnim in dataProp.animations)
 {
-propSprite.animation.add(propAnim.name, propAnim.frameIndices);
 
 {
-cast(propSprite, Bopper).setAnimationOffsets(propAnim.name, propAnim.offsets[0], propAnim.offsets[1]);
 }
 }
 case 'animateatlas':
-FlxAnimationUtil.addTextureAtlasAnimations(propSprite, dataProp.animations);
 default: // 'sparrow'
-FlxAnimationUtil.addAtlasAnimations(propSprite, dataProp.animations);
 {
 for (propAnim in dataProp.animations)
 {
-cast(propSprite, Bopper).setAnimationOffsets(propAnim.name, propAnim.offsets[0], propAnim.offsets[1]);
 }
 }
 }
@@ -221,28 +156,22 @@ cast(propSprite, Bopper).setAnimationOffsets(propAnim.name, propAnim.offsets[0],
 {
 for (propAnim in dataProp.animations)
 {
-cast(propSprite, Bopper).setAnimationOffsets(propAnim.name, propAnim.offsets[0], propAnim.offsets[1]);
 }
 
 {
-cast(propSprite, Bopper).originalPosition.x = dataProp.position[0];
-cast(propSprite, Bopper).originalPosition.y = dataProp.position[1];
 }
 }
 
 {
-cast(propSprite, Bopper).playAnimation(dataProp.startingAnimation);
 }
 
 {
 }
 else if (Std.isOfType(propSprite, Bopper))
 {
-addBopper(cast propSprite, dataProp.name);
 }
 else
 {
-addProp(propSprite, dataProp.name);
 }
 }
 }
@@ -256,10 +185,7 @@ addProp(propSprite, dataProp.name);
 public function addProp(prop:StageProp, ?name:String = null):Void
 {
 {
-namedProps.set(name, prop);
-prop.name = name;
 }
-this.add(prop);
 }
 
 /**
@@ -267,9 +193,6 @@ this.add(prop);
 */
 public function addBopper(bopper:Bopper, ?name:String = null):Void
 {
-boppers.push(bopper);
-this.addProp(bopper, name);
-bopper.name = name;
 }
 
 /**
@@ -278,7 +201,6 @@ bopper.name = name;
 */
 public function refresh():Void
 {
-sort(SortUtil.byZIndex, FlxSort.ASCENDING);
 }
 
 /**
@@ -289,8 +211,6 @@ public function setShader(shader:FlxShader):Void
 {
 forEachAlive(function(prop:FlxSprite)
 {
-prop.shader = shader;
-});
 }
 
 /**
@@ -301,9 +221,6 @@ prop.shader = shader;
 */
 override function preAdd(Sprite:FlxSprite):Void
 {
-sprite.x += x;
-sprite.y += y;
-sprite.alpha *= alpha;
 sprite.cameras = _cameras; // _cameras instead of cameras because get_cameras() will not return null
 
 }
@@ -315,74 +232,32 @@ sprite.cameras = _cameras; // _cameras instead of cameras because get_cameras() 
 public function addCharacter(character:BaseCharacter, charType:CharacterType):Void
 {
 
-debugIcon.makeGraphic(8, 8, 0xffff00ff);
-debugIcon2.makeGraphic(8, 8, 0xff00ffff);
-debugIcon.visible = true;
-debugIcon2.visible = true;
-debugIcon.zIndex = 1000000;
-debugIcon2.zIndex = 1000000;
 
 switch (charType)
 {
 case BF:
-this.characters.set('bf', character);
-stageCharData = _data.characters.bf;
-character.flipX = !character.getDataFlipX();
-character.name = 'bf';
-character.initHealthIcon(false);
 case GF:
-this.characters.set('gf', character);
-stageCharData = _data.characters.gf;
-character.flipX = character.getDataFlipX();
-character.name = 'gf';
 case DAD:
-this.characters.set('dad', character);
-stageCharData = _data.characters.dad;
-character.flipX = character.getDataFlipX();
-character.name = 'dad';
-character.initHealthIcon(true);
 default:
-this.characters.set(character.characterId, character);
 }
 
-character.resetCharacter(true);
 
 {
-character.zIndex = stageCharData.zIndex;
 
-character.x = stageCharData.position[0] - character.characterOrigin.x;
-character.y = stageCharData.position[1] - character.characterOrigin.y;
 
 character.setScale(finalScale); // Don't use scale.set for characters!
-character.originalPosition.set(character.x, character.y);
 
-character.resetCameraFocusPoint();
 
-character.cameraFocusPoint.x += stageCharData.cameraOffsets[0];
-character.cameraFocusPoint.y += stageCharData.cameraOffsets[1];
 
-character.scrollFactor.x = stageCharData.scroll[0];
-character.scrollFactor.y = stageCharData.scroll[1];
 
-character.alpha = stageCharData.alpha;
-character.angle = stageCharData.angle;
 
 {
-debugIcon.x = stageCharData.position[0];
-debugIcon.y = stageCharData.position[1];
-debugIcon2.x = character.x;
-debugIcon2.y = character.y;
 }
 }
 
-character.characterType = charType;
 
-this.add(character);
 
-ScriptEventDispatcher.callEvent(character, new ScriptEvent(ADDED, false));
 
-debugIconGroup.add(debugIcon);
-debugIconGroup.add(debugIcon2);
 }
 
 /**
@@ -425,8 +300,6 @@ public function getBoyfriend(pop:Bool = false):BaseCharacter
 {
 {
 
-this.remove(boyfriend);
-this.characters.remove('bf');
 
 }
 else
@@ -452,8 +325,6 @@ public function getGirlfriend(pop:Bool = false):BaseCharacter
 {
 {
 
-this.remove(girlfriend);
-this.characters.remove('gf');
 
 }
 else
@@ -470,8 +341,6 @@ public function getDad(pop:Bool = false):BaseCharacter
 {
 {
 
-this.remove(dad);
-this.characters.remove('dad');
 
 }
 else
@@ -504,7 +373,6 @@ public function pause():Void
 {
 forEachAlive(function(prop:FlxSprite)
 {
-});
 }
 
 /**
@@ -514,7 +382,6 @@ public function resume():Void
 {
 forEachAlive(function(prop:FlxSprite)
 {
-});
 }
 
 /**
@@ -527,7 +394,6 @@ public function fetchAssetPaths():Array<String>
 {
 for (dataProp in _data.props)
 {
-result.push(Paths.image(dataProp.assetPath));
 }
 }
 
@@ -540,23 +406,16 @@ public function dispatchToCharacters(event:ScriptEvent):Void
 
 
 {
-dispatchToCharacter('dad', event);
-charList.remove('dad');
 }
 
 {
-dispatchToCharacter('bf', event);
-charList.remove('bf');
 }
 
 {
-dispatchToCharacter('gf', event);
-charList.remove('gf');
 }
 
 for (characterId in charList)
 {
-dispatchToCharacter(characterId, event);
 }
 }
 
@@ -568,7 +427,6 @@ dispatchToCharacter(characterId, event);
 public function dispatchToCharacter(characterId:String, event:ScriptEvent):Void
 {
 {
-ScriptEventDispatcher.callEvent(character, event);
 }
 }
 
@@ -578,60 +436,40 @@ ScriptEventDispatcher.callEvent(character, event);
 */
 public function onDestroy(event:ScriptEvent):Void
 {
-kill();
 
 for (prop in this.namedProps)
 {
 {
-remove(prop);
-prop.kill();
-prop.destroy();
 }
 }
-namedProps.clear();
 
 for (char in this.characters)
 {
 {
-remove(char);
-char.kill();
-char.destroy();
 }
 }
-characters.clear();
 
 for (bopper in boppers)
 {
 {
-remove(bopper);
-bopper.kill();
-bopper.destroy();
 }
 }
-boppers = [];
 
 {
 for (sprite in this.group)
 {
 {
-sprite.kill();
-sprite.destroy();
-remove(sprite);
 }
 }
-group.clear();
 }
 
 {
-debugIconGroup.kill();
 }
 else
 {
-debugIconGroup = null;
 }
 
 {
-frameBufferMan.dispose();
 }
 }
 
@@ -657,30 +495,19 @@ public function onUpdate(event:UpdateScriptEvent)
 
 public override function kill()
 {
-_skipTransformChildren = true;
-alive = false;
-exists = false;
-_skipTransformChildren = false;
 }
 
 public override function remove(Sprite:FlxSprite, Splice:Bool = false):FlxSprite
 {
-sprite.x -= x;
-sprite.y -= y;
-sprite.cameras = null;
 
 }
 
 override function draw():Void
 {
 {
-frameBufferMan.lock();
 }
-super.draw();
 {
-frameBufferMan.unlock();
 }
-frameBuffersUpdated();
 }
 
 /**
@@ -705,7 +532,6 @@ public function onScriptEvent(event:ScriptEvent)
 {
 for (bopper in boppers)
 {
-ScriptEventDispatcher.callEvent(bopper, event);
 }
 }
 

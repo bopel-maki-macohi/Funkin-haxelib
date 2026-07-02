@@ -1,4 +1,3 @@
-package funkin.util;
 
 
 /**
@@ -38,16 +37,11 @@ amplitude:Float = Constants.DEFAULT_VIBRATION_AMPLITUDE, sharpness:Float = Const
 
 for (i in 0...Math.ceil(duration / durationPeriod))
 {
-durations[i] = durationPeriod;
-amplitudes[i] = amplitudeValue;
-sharpnesses[i] = sharpness;
 }
 
-Haptic.vibratePattern(durations, amplitudes, sharpnesses);
 }
 else
 {
-Haptic.vibrateOneShot(duration, amplitudeValue, sharpness);
 }
 }
 
@@ -60,7 +54,6 @@ public static function vibrateByPreset(vibrationPreset:VibrationPreset = null):V
 {
 
 
-vibrate(preset.period, preset.duration, preset.amplitude, preset.sharpness);
 }
 
 /**
@@ -78,12 +71,9 @@ amplitudeTween = FlxTween.num(startAmplitude, targetAmplitude, tweenDuration, {
 onComplete: function(_)
 {
 
-vibrate(Constants.DEFAULT_VIBRATION_PERIOD, Constants.DEFAULT_VIBRATION_DURATION, finalAmplitude);
 }
 }, function(currentAmplitude:Float)
 {
-vibrate(0, Constants.DEFAULT_VIBRATION_DURATION / 10, currentAmplitude);
-});
 }
 
 static function get_defaultVibrationPreset():VibrationPreset
@@ -92,7 +82,6 @@ period: Constants.DEFAULT_VIBRATION_PERIOD,
 duration: Constants.DEFAULT_VIBRATION_DURATION,
 amplitude: Constants.DEFAULT_VIBRATION_AMPLITUDE,
 sharpness: Constants.DEFAULT_VIBRATION_SHARPNESS
-};
 }
 
 static function get_hapticsAvailable():Bool

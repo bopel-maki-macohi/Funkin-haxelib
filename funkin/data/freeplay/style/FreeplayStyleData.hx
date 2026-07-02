@@ -1,4 +1,3 @@
-package funkin.data.freeplay.style;
 
 
 /**

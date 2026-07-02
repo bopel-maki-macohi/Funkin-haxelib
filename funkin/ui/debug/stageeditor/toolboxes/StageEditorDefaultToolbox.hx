@@ -1,4 +1,3 @@
-package funkin.ui.debug.stageeditor.toolboxes;
 
 
 class StageEditorDefaultToolbox extends CollapsibleDialog
@@ -7,13 +6,8 @@ class StageEditorDefaultToolbox extends CollapsibleDialog
 
 private function new(stageEditorState:StageEditorState)
 {
-super();
 
-this.stageEditorState = stageEditorState;
 
-closable = true;
-modal = true;
-destroyOnClose = false;
 }
 
 /**
@@ -22,12 +16,9 @@ destroyOnClose = false;
 */
 public function toggle(on:Bool)
 {
-else if (dialogVisible && !on) FunkinSound.playOnce(Paths.sound('chartingSounds/exitWindow'));
 
 else
-hide();
 
-dialogVisible = on;
 }
 
 /**

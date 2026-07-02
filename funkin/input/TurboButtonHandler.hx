@@ -1,4 +1,3 @@
-package funkin.input;
 
 
 /**
@@ -14,12 +13,10 @@ class TurboButtonHandler extends FlxBasic
 /**
 * Default delay before repeating.
 */
-static inline final DEFAULT_DELAY:Float = 0.4;
 
 /**
 * Default interval between repeats.
 */
-static inline final DEFAULT_INTERVAL:Float = 0.1;
 
 /**
 * Whether all of the keys for this handler are pressed.
@@ -34,11 +31,6 @@ static inline final DEFAULT_INTERVAL:Float = 0.1;
 
 function new(inputs:Array<FlxGamepadInputID>, delay:Float = DEFAULT_DELAY, interval:Float = DEFAULT_INTERVAL, ?targetGamepad:FlxGamepad)
 {
-super();
-this.inputs = inputs;
-this.delay = delay;
-this.interval = interval;
-this.targetGamepad = targetGamepad ?? FlxG.gamepads.firstActive;
 }
 
 function get_allPressed():Bool
@@ -51,31 +43,22 @@ for (input in inputs)
 
 public override function update(elapsed:Float):Void
 {
-super.update(elapsed);
 
 {
-targetGamepad = FlxG.gamepads.firstActive;
 }
 
 {
 {
-activated = true;
 }
 else if (allPressedTime >= (delay + interval))
 {
-activated = true;
-allPressedTime -= interval;
 }
 else
 {
-activated = false;
 }
-allPressedTime += elapsed;
 }
 else
 {
-allPressedTime = 0;
-activated = false;
 }
 }
 

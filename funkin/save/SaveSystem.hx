@@ -1,4 +1,3 @@
-package funkin.save;
 
 
 /**
@@ -26,7 +25,6 @@ public function clearSlot(slot:Int):Save
 
 public function fetchLegacySaveData():Option<RawSaveData_v1_0_0>
 {
-legacySave.bind(Constants.SAVE_NAME_LEGACY, Constants.SAVE_PATH_LEGACY);
 
 {
 }
@@ -42,13 +40,9 @@ public function archiveBadSaveData(data:Dynamic):Int
 function writeToAvailableSlot(slot:Int, data:Dynamic):Int
 {
 
-targetSaveData.bind(Constants.SAVE_NAME + slot, Constants.SAVE_PATH);
 {
-slot++;
-targetSaveData.bind(Constants.SAVE_NAME + slot, Constants.SAVE_PATH);
 }
 
-targetSaveData.mergeData(data, true);
 
 }
 }

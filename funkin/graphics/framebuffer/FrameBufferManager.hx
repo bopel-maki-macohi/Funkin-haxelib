@@ -1,4 +1,3 @@
-package funkin.graphics.framebuffer;
 
 
 /**
@@ -13,7 +12,6 @@ class FrameBufferManager
 */
 public function new(camera:FlxCamera)
 {
-this.camera = camera;
 }
 
 /**
@@ -26,11 +24,7 @@ this.camera = camera;
 public function createFrameBuffer(name:String, bgColor:FlxColor):BitmapData
 {
 {
-frameBufferMap[name].dispose();
-frameBufferMap.remove(name);
 }
-fb.create(camera.width, camera.height, bgColor);
-frameBufferMap[name] = fb;
 }
 
 /**
@@ -44,7 +38,6 @@ public function copySpriteTo(name:String, sprite:FlxSprite, color:Null<FlxColor>
 {
 {
 }
-frameBufferMap[name].addSpriteCopy(new SpriteCopy(sprite, color));
 }
 
 /**
@@ -56,7 +49,6 @@ public function moveSpriteTo(name:String, sprite:FlxSprite):Void
 {
 {
 }
-frameBufferMap[name].moveSprite(sprite);
 }
 
 /**
@@ -66,8 +58,6 @@ public function lock():Void
 {
 for (_ => fb in frameBufferMap)
 {
-fb.follow(camera);
-fb.lock();
 }
 }
 
@@ -78,11 +68,9 @@ public function unlock():Void
 {
 for (_ => fb in frameBufferMap)
 {
-fb.render();
 }
 for (_ => fb in frameBufferMap)
 {
-fb.unlock();
 }
 }
 
@@ -102,8 +90,6 @@ public function dispose():Void
 {
 for (_ => fb in frameBufferMap)
 {
-fb.dispose();
 }
-frameBufferMap.clear();
 }
 }

@@ -1,4 +1,3 @@
-package funkin.data;
 
 
 /**
@@ -24,7 +23,6 @@ switch (json.value)
 {
 case JString(s):
 default:
-throw 'Expected property $name to be a string, but it was ${json.value}.';
 }
 }
 
@@ -40,7 +38,6 @@ switch (json.value)
 {
 case JString(s):
 default:
-throw 'Expected version property $name to be a string, but it was ${json.value}.';
 }
 }
 
@@ -56,7 +53,6 @@ switch (json.value)
 {
 case JString(s):
 default:
-throw 'Expected version rule property $name to be a string, but it was ${json.value}.';
 }
 }
 
@@ -81,7 +77,6 @@ switch (json.value)
 case JArray(values):
 case JObject(fields):
 default:
-throw 'Expected property $name to be note data, but it was ${json.value}.';
 }
 }
 
@@ -95,7 +90,6 @@ switch (json.value)
 case JNumber(f):
 case JArray(fields):
 default:
-throw 'Expected property $name to be one or multiple floats, but it was ${json.value}.';
 }
 }
 
@@ -110,20 +104,16 @@ for (field in fields)
 switch (field.name)
 {
 case 'type':
-backdropType = Tools.getValue(field.value);
 }
-Reflect.setField(result, field.name, Tools.getValue(field.value));
 }
 
 switch (backdropType)
 {
 case 'solid':
 default:
-throw 'Expected Backdrop property $name to be specify a valid "type", but it was "${backdropType}".';
 }
 
 default:
-throw 'Expected property $name to be an object, but it was ${json.value}.';
 }
 }
 
@@ -138,9 +128,7 @@ for (field in fields)
 switch (field.name)
 {
 case 'type':
-outroType = Tools.getValue(field.value);
 }
-Reflect.setField(result, field.name, Tools.getValue(field.value));
 }
 
 switch (outroType)
@@ -148,10 +136,8 @@ switch (outroType)
 case 'none':
 case 'fade':
 default:
-throw 'Expected Outro property $name to be specify a valid "type", but it was "${outroType}".';
 }
 default:
-throw 'Expected property $name to be an object, but it was ${json.value}.';
 }
 }
 
@@ -166,7 +152,6 @@ switch (json.value)
 case JNumber(f):
 case JObject(fields):
 default:
-throw 'Expected property $name to be scroll speeds, but it was ${json.value}.';
 }
 }
 
@@ -179,7 +164,6 @@ static function jsonFieldsToDynamicObject(fields:Array<JObjectField>):Dynamic
 {
 for (field in fields)
 {
-Reflect.setField(result, field.name, Tools.getValue(field.value));
 }
 }
 
@@ -198,7 +182,6 @@ switch (json.value)
 {
 case JArray(values):
 default:
-throw 'Expected property to be an array, but it was ${json.value}.';
 }
 }
 
@@ -209,28 +192,20 @@ switch (json.value)
 case JObject(fields):
 mustHitSection: false,
 sectionNotes: [],
-};
 for (field in fields)
 {
 switch (field.name)
 {
 case 'sectionNotes':
-result.sectionNotes = legacyNotes(field.value, field.name);
 
 case 'mustHitSection':
-result.mustHitSection = Tools.getValue(field.value);
 case 'typeOfSection':
-result.typeOfSection = Tools.getValue(field.value);
 case 'lengthInSteps':
-result.lengthInSteps = Tools.getValue(field.value);
 case 'changeBPM':
-result.changeBPM = Tools.getValue(field.value);
 case 'bpm':
-result.bpm = Tools.getValue(field.value);
 }
 }
 default:
-throw 'Expected property $name to be an object, but it was ${json.value}.';
 }
 }
 
@@ -241,10 +216,8 @@ switch (json.value)
 case JObject(fields):
 for (field in fields)
 {
-Reflect.setField(result, field.name, legacyNoteSectionArray(field.value, field.name));
 }
 default:
-throw 'Expected property $name to be an object, but it was ${json.value}.';
 }
 }
 
@@ -254,7 +227,6 @@ switch (json.value)
 {
 case JArray(values):
 default:
-throw 'Expected property $name to be an array of notes, but it was ${json.value}.';
 }
 }
 
@@ -265,7 +237,6 @@ switch (json.value)
 case JArray(values):
 
 default:
-throw 'Expected property $name to be a note, but it was ${json.value}.';
 }
 }
 }

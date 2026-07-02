@@ -1,4 +1,3 @@
-package funkin.util;
 
 
 typedef ScoreInput =
@@ -26,7 +25,6 @@ public static function toJSON(input:Dynamic, pretty:Bool = true):String
 */
 public static function fromJSON(input:String):Dynamic
 {
-input = sanitizeJSON(input);
 
 try
 {
@@ -72,9 +70,6 @@ static function sanitizeJSON(data:String):String
 for (i => c in data)
 {
 {
-startIndex = i;
-closeChar = (c == '{'.code) ? '}' : ']';
-break;
 }
 }
 

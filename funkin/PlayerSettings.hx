@@ -1,4 +1,3 @@
-package funkin;
 
 
 /**
@@ -25,10 +24,6 @@ class PlayerSettings
 public static function get(id:Int):Null<PlayerSettings>
 {
 {
-case 1: player1;
-case 2: player2;
-default: null;
-};
 }
 
 /**
@@ -37,8 +32,6 @@ default: null;
 public static function init():Void
 {
 {
-player1 = new PlayerSettings(1);
-++numPlayers;
 }
 
 
@@ -52,9 +45,6 @@ for (i in 0...numGamepads)
 */
 public static function reset():Void
 {
-player1 = null;
-player2 = null;
-numPlayers = 0;
 }
 
 /**
@@ -63,7 +53,6 @@ numPlayers = 0;
 */
 static function onGamepadAdded(gamepad:FlxGamepad):Void
 {
-player1.addGamepad(gamepad);
 }
 
 /**
@@ -72,25 +61,18 @@ player1.addGamepad(gamepad);
 function new(id:Int)
 {
 
-this.id = id;
-this.controls = new Controls('player$id', None);
 
-addKeyboard();
 }
 
 function addKeyboard():Void
 {
 {
-useDefault = false;
-controls.fromSaveData(keyControlData, Keys);
 }
 else
 {
-useDefault = true;
 }
 
 {
-controls.setKeyboardScheme(Solo);
 }
 
 PreciseInputManager.instance.initializeKeys(controls);
@@ -103,16 +85,12 @@ PreciseInputManager.instance.initializeKeys(controls);
 function addGamepad(gamepad:FlxGamepad):Void
 {
 {
-useDefault = false;
-controls.addGamepadWithSaveData(gamepad.id, padControlData);
 }
 else
 {
-useDefault = true;
 }
 
 {
-controls.addDefaultGamepad(gamepad.id);
 }
 PreciseInputManager.instance.initializeButtons(controls, gamepad);
 }

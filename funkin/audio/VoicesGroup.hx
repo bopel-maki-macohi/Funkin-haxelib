@@ -1,4 +1,3 @@
-package funkin.audio;
 
 
 class VoicesGroup extends SoundGroup
@@ -27,9 +26,6 @@ class VoicesGroup extends SoundGroup
 
 public function new()
 {
-super();
-playerVoices = new FlxTypedGroup<FunkinSound>();
-opponentVoices = new FlxTypedGroup<FunkinSound>();
 }
 
 /**
@@ -37,33 +33,23 @@ opponentVoices = new FlxTypedGroup<FunkinSound>();
 */
 public function addPlayerVoice(sound:FunkinSound):Void
 {
-super.add(sound);
-playerVoices?.add(sound);
 }
 
 function set_playerVolume(volume:Float):Float
 {
 playerVoices?.forEachAlive(function(voice:FunkinSound)
 {
-voice.volume = volume;
-});
 }
 
 override function set_time(time:Float):Float
 {
 forEachAlive(function(snd)
 {
-snd.time = time;
-});
 
 playerVoices?.forEachAlive(function(voice:FunkinSound)
 {
-voice.time -= playerVoicesOffset;
-});
 opponentVoices?.forEachAlive(function(voice:FunkinSound)
 {
-voice.time -= opponentVoicesOffset;
-});
 
 }
 
@@ -71,18 +57,12 @@ function set_playerVoicesOffset(offset:Float):Float
 {
 playerVoices?.forEachAlive(function(voice:FunkinSound)
 {
-voice.time += playerVoicesOffset;
-voice.time -= offset;
-});
 }
 
 function set_opponentVoicesOffset(offset:Float):Float
 {
 opponentVoices?.forEachAlive(function(voice:FunkinSound)
 {
-voice.time += opponentVoicesOffset;
-voice.time -= offset;
-});
 }
 
 /**
@@ -90,16 +70,12 @@ voice.time -= offset;
 */
 public function addOpponentVoice(sound:FunkinSound):Void
 {
-super.add(sound);
-opponentVoices?.add(sound);
 }
 
 function set_opponentVolume(volume:Float):Float
 {
 opponentVoices?.forEachAlive(function(voice:FunkinSound)
 {
-voice.volume = volume;
-});
 }
 
 public function getPlayerVoice(index:Int = 0):Null<FunkinSound>
@@ -138,23 +114,15 @@ public function getOpponentVoiceLength():Float
 
 public override function clear():Void
 {
-playerVoices?.clear();
-opponentVoices?.clear();
-super.clear();
 }
 
 public override function destroy():Void
 {
 {
-playerVoices?.destroy();
-playerVoices = null;
 }
 
 {
-opponentVoices?.destroy();
-opponentVoices = null;
 }
 
-super.destroy();
 }
 }

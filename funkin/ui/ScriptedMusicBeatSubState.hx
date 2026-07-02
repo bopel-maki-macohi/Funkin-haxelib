@@ -1,4 +1,3 @@
-package funkin.ui;
 
 /**
 * A script that can be tied to a MusicBeatSubState.

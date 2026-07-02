@@ -1,4 +1,3 @@
-package funkin.util.logging;
 
 /**
 * A small utility class for timing how long functions take.
@@ -7,9 +6,7 @@ package funkin.util.logging;
 * Example:
 * ```haxe
 *
-* var perf = new Perf();
 * ...
-* perf.print();
 * ```
 */
 class Perf
@@ -23,9 +20,6 @@ class Perf
 */
 public function new(?label:String, ?posInfos:haxe.PosInfos)
 {
-this.label = label;
-this.posInfos = posInfos;
-startTime = current();
 }
 
 /**

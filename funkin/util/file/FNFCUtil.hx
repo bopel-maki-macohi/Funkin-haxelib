@@ -1,4 +1,3 @@
-package funkin.util.file;
 
 
 /**
@@ -31,11 +30,9 @@ public static function playSongFromFNFCPath(fnfcPath:String, difficulty:String, 
 
 try
 {
-audioInstTrack = loadSoundFromFNFCZipEntries(mappedFileEntries, audioInstTrackName);
 }
 catch (e)
 {
-throw 'Could not load instrumental: $audioInstTrackName';
 }
 
 
@@ -43,11 +40,9 @@ for (playerVocalId in playerVocalList)
 {
 try
 {
-audioVocalTrackGroup.addPlayerVoice(audioVocalTrack);
 }
 catch (e)
 {
-throw 'Could not load vocals: $audioVocalTrackName';
 }
 }
 
@@ -55,11 +50,9 @@ for (opponentVocalId in opponentVocalList)
 {
 try
 {
-audioVocalTrackGroup.addOpponentVoice(audioVocalTrack);
 }
 catch (e)
 {
-throw 'Could not load vocals: $audioVocalTrackName';
 }
 }
 
@@ -75,8 +68,6 @@ playbackRate: 1,
 overrideMusic: true,
 }, false, true, function(targetState)
 {
-targetState.vocals = audioVocalTrackGroup;
-});
 }
 
 static function loadSoundFromFNFCZipEntries(mappedFileEntries:Map<String, haxe.zip.Entry>, soundName:String):FunkinSound
@@ -96,24 +87,18 @@ static function loadSongFromFNFCZipEntries(mappedFileEntries:Map<String, haxe.zi
 {
 
 
-baseMetadataVersion) ?? throw 'Could not read metadata (default).';
-
-songMetadatas.set(Constants.DEFAULT_VARIATION, baseMetadata);
 
 
-baseChartDataVersion) ?? throw 'Could not read chart data (default).';
 
-songChartDatas.set(Constants.DEFAULT_VARIATION, baseChartData);
+
 
 
 
 for (variation in variationList)
 {
 
-songMetadatas.set(variation, variMetadata);
 
 
-songChartDatas.set(variation, variChartData);
 }
 
 

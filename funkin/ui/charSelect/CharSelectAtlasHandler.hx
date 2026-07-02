@@ -1,4 +1,3 @@
-package funkin.ui.charSelect;
 
 
 /**
@@ -14,21 +13,16 @@ public static function loadAtlas(path:String, ?settings:FlxAnimateSettings):Null
 swfMode: settings?.swfMode ?? true,
 filterQuality: settings?.filterQuality ?? MEDIUM,
 cacheOnLoad: settings?.cacheOnLoad ?? false
-});
 
 {
 }
 
-result.parent.destroyOnNoUse = false;
-framesCache.set(path, result);
 }
 
 public static function clearAtlasCache():Void
 {
 for (frames in framesCache.iterator())
 {
-frames.parent.destroyOnNoUse = true;
 }
-framesCache.clear();
 }
 }

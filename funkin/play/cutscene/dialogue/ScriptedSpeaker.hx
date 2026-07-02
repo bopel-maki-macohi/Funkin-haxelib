@@ -1,4 +1,3 @@
-package funkin.play.cutscene.dialogue;
 
 /**
 * A script that can be tied to a Speaker.

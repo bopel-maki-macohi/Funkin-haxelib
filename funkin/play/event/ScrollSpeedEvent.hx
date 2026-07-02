@@ -1,4 +1,3 @@
-package funkin.play.event;
 
 
 /**
@@ -25,7 +24,6 @@ public function new()
 {
 super('ScrollSpeed', {
 processOldEvents: true
-});
 }
 
 
@@ -46,9 +44,7 @@ scroll = scroll * (PlayState.instance?.currentChart?.scrollSpeed ?? 1.0);
 switch (strumline)
 {
 case 'both':
-strumlineNames = ['playerStrumline', 'opponentStrumline'];
 default:
-strumlineNames = [strumline + 'Strumline'];
 }
 switch (ease)
 {
@@ -124,6 +120,5 @@ title: 'Absolute',
 defaultValue: DEFAULT_ABSOLUTE,
 type: SongEventFieldType.BOOL,
 }]
-}]);
 }
 }

@@ -1,4 +1,3 @@
-package funkin.data.song.migrator;
 
 
 class SongMetadata_v2_0_0
@@ -64,9 +63,6 @@ class SongPlayableChar_v2_0_0
 
 public function new(girlfriend:String = '', opponent:String = '', inst:String = '')
 {
-this.girlfriend = girlfriend;
-this.opponent = opponent;
-this.inst = inst;
 }
 
 /**

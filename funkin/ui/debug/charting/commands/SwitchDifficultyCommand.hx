@@ -1,4 +1,3 @@
-package funkin.ui.debug.charting.commands;
 
 /**
 * Switch the current difficulty (and possibly variation) of the chart in the chart editor.
@@ -8,10 +7,6 @@ class SwitchDifficultyCommand implements ChartEditorCommand
 
 public function new(prevDifficulty:String, newDifficulty:String, prevVariation:String, newVariation:String)
 {
-this.prevDifficulty = prevDifficulty;
-this.newDifficulty = newDifficulty;
-this.prevVariation = prevVariation;
-this.newVariation = newVariation;
 }
 
 /**
@@ -20,10 +15,7 @@ this.newVariation = newVariation;
 */
 public function execute(state:ChartEditorState):Void
 {
-state.selectedVariation = newVariation != null ? newVariation : prevVariation;
-state.selectedDifficulty = newDifficulty != null ? newDifficulty : prevDifficulty;
 
-markDirty(state);
 }
 
 /**
@@ -32,17 +24,11 @@ markDirty(state);
 */
 public function undo(state:ChartEditorState):Void
 {
-state.selectedVariation = prevVariation != null ? prevVariation : newVariation;
-state.selectedDifficulty = prevDifficulty != null ? prevDifficulty : newDifficulty;
 
-markDirty(state);
 }
 
 function markDirty(state:ChartEditorState):Void
 {
-state.refreshToolbox(ChartEditorState.CHART_EDITOR_TOOLBOX_METADATA_LAYOUT);
-state.noteDisplayDirty = true;
-state.notePreviewDirty = true;
 }
 
 /**

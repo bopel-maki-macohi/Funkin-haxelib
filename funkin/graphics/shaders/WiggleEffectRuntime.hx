@@ -1,4 +1,3 @@
-package funkin.graphics.shaders;
 
 
 enum WiggleEffectType
@@ -25,45 +24,34 @@ public static function getEffectTypeId(v:Null<WiggleEffectType>):Int
 
 function set_effectType(v:Null<WiggleEffectType>):Null<WiggleEffectType>
 {
-this.setInt('effectType', getEffectTypeId(v));
 }
 
 
 function set_waveSpeed(v:Float):Float
 {
-this.setFloat('uSpeed', v);
 }
 
 
 function set_waveFrequency(v:Float):Float
 {
-this.setFloat('uFrequency', v);
 }
 
 
 function set_waveAmplitude(v:Float):Float
 {
-this.setFloat('uWaveAmplitude', v);
 }
 
 
 function set_time(v:Float):Float
 {
-this.setFloat('uTime', v);
 }
 
 public function new(speed:Float, freq:Float, amplitude:Float, ?effect:WiggleEffectType = DREAMY):Void
 {
-super(Assets.getText(Paths.frag('wiggle')));
 
-this.waveSpeed = speed;
-this.waveFrequency = freq;
-this.waveAmplitude = amplitude;
-this.effectType = effect;
 }
 
 public function update(elapsed:Float)
 {
-this.time += elapsed;
 }
 }

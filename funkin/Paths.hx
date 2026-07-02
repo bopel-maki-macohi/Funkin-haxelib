@@ -1,4 +1,3 @@
-package funkin;
 
 
 /**
@@ -10,11 +9,9 @@ class Paths implements ConsoleClass
 public static function setCurrentLevel(name:Null<String>):Void
 {
 {
-currentLevel = null;
 }
 else
 {
-currentLevel = name.toLowerCase();
 }
 }
 
@@ -135,11 +132,9 @@ public static function getAnimateAtlas(key:String, ?library:String, settings:Atl
 {
 
 {
-graphicKey = Paths.animateAtlas(key, assetLibrary);
 }
 else
 {
-graphicKey = Paths.animateAtlas(key);
 }
 
 swfMode: settings?.swfMode ?? false,
@@ -152,10 +147,8 @@ uniqueInCache: settings?.uniqueInCache ?? false,
 onSymbolCreate: settings?.onSymbolCreate ?? null,
 applyStageMatrix: settings?.applyStageMatrix ?? false,
 useRenderTexture: settings?.useRenderTexture ?? false
-};
 
 {
-throw 'No Animation.json file exists at the specified path (${graphicKey})';
 }
 
 validatedSettings.uniqueInCache, {
@@ -163,7 +156,6 @@ swfMode: validatedSettings.swfMode,
 cacheOnLoad: validatedSettings.cacheOnLoad,
 filterQuality: validatedSettings.filterQuality,
 onSymbolCreate: validatedSettings.onSymbolCreate
-});
 }
 
 public static function getPackerAtlas(key:String, ?library:String):FlxAtlasFrames

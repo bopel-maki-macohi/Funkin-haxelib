@@ -1,7 +1,5 @@
-package funkin.util;
 
 
-using StringTools;
 
 /**
 * Utilities for operating on the current window, such as changing the title.
@@ -11,7 +9,6 @@ class WindowUtil
 /**
 * A regex to match valid URLs.
 */
-public static final URL_REGEX:EReg = ~/^https?:\/?\/?(?:www\.)?[-a-zA-Z0-9@:%_\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
 
 /**
 * Sanitizes a URL via a regex.
@@ -21,12 +18,10 @@ public static final URL_REGEX:EReg = ~/^https?:\/?\/?(?:www\.)?[-a-zA-Z0-9@:%_\+
 */
 public static function sanitizeURL(targetUrl:String):String
 {
-targetUrl = (targetUrl ?? '').trim();
 {
 }
 
 {
-targetUrl = 'http://' + targetUrl;
 }
 
 {
@@ -40,14 +35,10 @@ targetUrl = 'http://' + targetUrl;
 */
 public static function openURL(targetUrl:String):Void
 {
-else if (protocol[0] != 'http' && protocol[0] != 'https') throw "openURL can only open http and https links.";
 
-targetUrl = sanitizeURL(targetUrl);
 {
-throw 'Invalid URL: "$targetUrl"';
 }
 
-throw 'Cannot open URLs on this platform.';
 }
 
 /**
@@ -58,15 +49,12 @@ public static function initTracy():Void
 {
 
 
-cpp.vm.tracy.TracyProfiler.messageAppInfo(appInfoMessage);
 
-cpp.vm.tracy.TracyProfiler.setThreadName("main");
 }
 
 /**
 * Dispatched when the game window is closed.
 */
-public static final windowExit:FlxTypedSignal<Int->Void> = new FlxTypedSignal<Int->Void>();
 
 /**
 * Wires up FlxSignals that happen based on window activity.
@@ -76,8 +64,6 @@ public static function initWindowEvents():Void
 {
 openfl.Lib.current.stage.application.onExit.add(function(exitCode:Int)
 {
-windowExit.dispatch(exitCode);
-});
 
 openfl.Lib.current.stage.addEventListener(openfl.events.KeyboardEvent.KEY_DOWN, (e:openfl.events.KeyboardEvent) ->
 {
@@ -90,10 +76,8 @@ for (key in PlayerSettings.player1.controls.getKeysForAction(WINDOW_FULLSCREEN))
 }
 
 {
-openfl.Lib.application.window.fullscreen = !openfl.Lib.application.window.fullscreen;
 }
 }
-});
 }
 
 /**

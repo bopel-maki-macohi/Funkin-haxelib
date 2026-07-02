@@ -1,4 +1,3 @@
-package funkin.util.tools;
 
 /**
 * Implement this on a class to enable `Array<T>.deepClone()` to work on it.
@@ -6,5 +5,4 @@ package funkin.util.tools;
 */
 interface ICloneable<T>
 {
-public function clone():T;
 }

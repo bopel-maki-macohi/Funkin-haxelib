@@ -1,10 +1,8 @@
-package funkin.group;
 
 
 /**
 * A FunkinGroup of FlxSprites.
 */
-typedef FunkinSpriteGroup = FunkinGroup<FlxSprite>;
 
 /**
 * FlxSpriteGroup but better. Kinda like if `FlxNestedSprite` and `FlxSpriteGroup` were merged.
@@ -40,7 +38,6 @@ function get_length():Int
 function set_maxSize(value:Int):Int
 {
 
-maxSize = value;
 
 {
 for (child in 0...size)
@@ -88,10 +85,8 @@ override function get_width():Float
 {
 
 {
-}, false)[0];
 
 {
-}, false, FlxSort.DESCENDING)[0];
 
 }
 
@@ -99,10 +94,8 @@ override function get_height():Float
 {
 
 {
-}, false, FlxSort.DESCENDING)[0];
 
 {
-}, false)[0];
 
 }
 
@@ -111,10 +104,8 @@ function get_accurateWidth():Float
 {
 
 {
-}, false)[0];
 
 {
-}, false, FlxSort.DESCENDING)[0];
 
 }
 
@@ -122,10 +113,8 @@ function get_accurateHeight():Float
 {
 
 {
-}, false, FlxSort.DESCENDING)[0];
 
 {
-}, false)[0];
 
 }
 
@@ -138,12 +127,9 @@ public function resetOrigin():Void
 {
 
 {
-}, false)[0];
 
 {
-}, false)[0];
 
-origin.set(leftMostSpr.localX + width / 2, upwardsMostSpr.localY + height / 2);
 }
 
 /**
@@ -157,11 +143,8 @@ origin.set(leftMostSpr.localX + width / 2, upwardsMostSpr.localY + height / 2);
 */
 public function new(?x:Float, ?y:Float, ?maxSize:Int, ?preciseScale:Bool, ?preciseAngle:Bool)
 {
-super(x, y);
 
-children = [];
 
-this.maxSize = maxSize ?? 0;
 
 }
 
@@ -185,14 +168,11 @@ public inline function getChildAt(index:Int):Null<T>
 public inline function setChildAt(index:Int, replacement:T):Void
 {
 
-children[index] = replacement;
 }
 
 override public function update(elapsed:Float):Void
 {
-super.update(elapsed);
 
-updateChildren();
 
 for (child in children)
 {
@@ -216,45 +196,26 @@ public function updateChildren():Void
 for (child in children)
 {
 {
-child.angle = angle + child.localAngle;
-child.scale.x = scale.x * child.localScale.x;
-child.scale.y = scale.y * child.localScale.y;
 
 
 
-dx = origin.x - child.width / 2;
-dy = origin.y - child.height / 2;
 
 {
-dx += scale.x * (child.localX - origin.x + child.width / 2);
 
-dy += scale.y * (child.localY - origin.y + child.height / 2);
 }
 else if (preciseAngle && !preciseScale)
 {
 
-dx += cos * (child.localX - origin.x + child.width / 2);
-dx -= sin * (child.localY - origin.y + child.height / 2);
 
-dy += cos * (child.localY - origin.y + child.height / 2);
-dy += sin * (child.localX - origin.x + child.width / 2);
 }
 else if (preciseAngle && preciseScale)
 {
 
-dx += scale.x * cos * (child.localX - origin.x + child.width / 2);
-dx -= scale.y * sin * (child.localY - origin.y + child.height / 2);
 
-dy += scale.y * cos * (child.localY - origin.y + child.height / 2);
-dy += scale.x * sin * (child.localX - origin.x + child.width / 2);
 }
 
 
-child.x = x + displace.x;
-child.y = y + displace.y;
 
-child.alpha = alpha * child.localAlpha;
-child.visible = visible && child.localVisible;
 }
 }
 }
@@ -269,7 +230,6 @@ child.visible = visible && child.localVisible;
 public function add(child:T):Null<T>
 {
 
-children.push(child);
 }
 
 /**
@@ -281,7 +241,6 @@ children.push(child);
 public function make():Null<T>
 {
 
-children.push(newChild);
 }
 
 /**
@@ -293,7 +252,6 @@ children.push(newChild);
 */
 public function insert(child:T, index:Int):Null<T>
 {
-children.insert(index, child);
 }
 
 /**
@@ -307,10 +265,6 @@ public function move(grp:FunkinGroup<T>, children:Array<T>):Void
 for (child in children)
 {
 {
-grp.remove(child);
-add(child);
-child.localX = x - child.x;
-child.localY = y - child.y;
 }
 }
 }
@@ -319,12 +273,9 @@ override public function destroy():Void
 {
 for (child in children)
 {
-child.destroy();
 }
 
-children = null;
 
-super.destroy();
 }
 
 /**
@@ -348,7 +299,6 @@ public function forEach(func:T->Void):Void
 for (child in children)
 {
 {
-func(child);
 }
 }
 }
@@ -368,11 +318,9 @@ func(child);
 public inline function sort(func:(Int, T, T) -> Int, setGroup:Bool = true, order = FlxSort.ASCENDING):Null<Array<T>>
 {
 {
-children.sort(func.bind(order));
 }
 else
 {
-fakeKids.sort(func.bind(order));
 }
 }
 
@@ -382,7 +330,6 @@ fakeKids.sort(func.bind(order));
 */
 public function refresh():Void
 {
-sort(SortUtil.byZIndex);
 }
 
 /**
@@ -516,7 +463,6 @@ for (child in children)
 {
 }
 
-super.kill();
 }
 
 /**
@@ -528,7 +474,6 @@ for (child in children)
 {
 }
 
-super.revive();
 }
 
 override public function clone():FunkinGroup<T>
@@ -536,7 +481,6 @@ override public function clone():FunkinGroup<T>
 
 for (child in children)
 {
-group.add(cast child.clone());
 }
 
 }
@@ -548,7 +492,6 @@ group.add(cast child.clone());
 */
 override public function makeGraphic(Width:Int, Height:Int, Color:Int = FlxColor.WHITE, Unique:Bool = false, ?Key:String):FlxSprite
 {
-throw "This function is not supported in FunkinGroup";
 }
 
 /**
@@ -557,7 +500,6 @@ throw "This function is not supported in FunkinGroup";
 */
 override public function loadGraphicFromSprite(Sprite:FlxSprite):FlxSprite
 {
-throw "This function is not supported in FunkinGroup";
 }
 
 /**
@@ -576,7 +518,6 @@ Unique:Bool = false, ?Key:String):FlxSprite
 override public function loadRotatedGraphic(Graphic:flixel.system.FlxAssets.FlxGraphicAsset, Rotations:Int = 16, Frame:Int = -1, AntiAliasing:Bool = false,
 AutoBuffer:Bool = false, ?Key:String):FlxSprite
 {
-throw "This function is not supported in FunkinGroup";
 }
 
 override function set_pixels(Value:openfl.display.BitmapData):openfl.display.BitmapData

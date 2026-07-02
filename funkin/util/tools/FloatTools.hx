@@ -1,4 +1,3 @@
-package funkin.util.tools;
 
 /**
 * Utilities for performing common math operations.
@@ -17,6 +16,5 @@ Round a float to a certain number of decimal places.
 **/
 public static function round(number:Float, precision:Int = 2):Float
 {
-number *= Math.pow(10, precision);
 }
 }

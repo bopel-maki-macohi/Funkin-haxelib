@@ -1,8 +1,5 @@
-package funkin.util.macro;
 
 
-using StringTools;
-using funkin.util.AnsiUtil;
 
 /**
 * A macro class that loads environment variables from a .env file for compile-time injection.
@@ -33,7 +30,6 @@ for (meta in field.meta)
 
 
 {
-mandatoryIfDefined = MacroUtil.extractStringConstant(mandatoryIfDefinedExpr);
 }
 }
 
@@ -45,7 +41,6 @@ switch (tp.params[0])
 {
 case TPType(TPath(tptp)):
 {
-isNullString = true;
 }
 default:
 }
@@ -54,29 +49,22 @@ default:
 }
 
 {
-Context.fatalError('Field ${field.name} must be of type Null<String> to use :envField', field.pos);
 }
 else
 {
 
 {
-e = macro $v{envFile.get(field.name)};
 }
 else if (mandatoryIfDefined != null)
 {
 
 
-errorMessage += '\nThis field is flagged as MANDATORY; populate the `.env` file in the project root,';
-errorMessage += ' or compile with -D${inverseDefine} to skip this check.';
 
-Context.fatalError(errorMessage, field.pos);
 }
 else
 {
-warning('Value for '.bright_red() + field.name.bold().bright_red() + ' not found in the environment file.'.bright_red(), field.pos);
 }
 
-buildFields[i].kind = FVar(t, e);
 }
 }
 }
@@ -96,23 +84,18 @@ static function parseEnvFile(envPath:String):Map<String, String>
 {
 for (line in envContent.split('\n'))
 {
-line = line.trim();
 
 {
-continue;
 }
 
 
 {
-continue;
 }
 
 
 {
-continue;
 }
 
-env.set(stripTargetPrefix(line.substr(0, index)), value);
 }
 }
 }
@@ -134,26 +117,19 @@ static function stripTargetPrefix(key:String):String
 
 {
 case 'ANDROID', 'MOBILE':
-rest;
 case 'IOS', 'MOBILE':
-rest;
 case 'WEB':
-rest;
 case 'DESKTOP':
-rest;
 default:
-key;
 }
 }
 
 static function warning(msg:String, pos:Position)
 {
 
-infos.line = line;
 infos.column = col0 + 1; // 1-based
 
 
-lineText = lineText.bold();
 
 
 

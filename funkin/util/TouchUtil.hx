@@ -1,5 +1,4 @@
 //
-package funkin.util;
 
 
 /**
@@ -75,10 +74,8 @@ public static function overlapsComplexPoint(?object:FlxObject, point:FlxPoint, ?
 {
 
 {
-point.putWeak();
 }
 
-point.putWeak();
 
 }
 
@@ -101,15 +98,10 @@ else if (object != null)
 }
 
 
-inline static function get_justMoved():Bool return touch != null && touch.justMoved;
 
-inline static function get_pressed():Bool return touch != null && touch.pressed;
 
-inline static function get_justPressed():Bool return touch != null && touch.justPressed;
 
-inline static function get_justReleased():Bool return touch != null && touch.justReleased;
 
-static function get_released():Bool return touch != null && touch.released;
 
 static function get_touch():FlxTouch
 {

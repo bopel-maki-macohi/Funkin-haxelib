@@ -1,17 +1,11 @@
-package funkin.util;
 
 
-using StringTools;
 
 class SubtitleEntry
 {
 
 public function new(number:Int = 0, start:Float = 0, end:Float = 0, text:String = "")
 {
-this.id = number;
-this.start = start;
-this.end = end;
-this.text = text;
 }
 
 public function toString():String
@@ -36,31 +30,21 @@ public static function parseFromString(s:String):Array<SubtitleEntry>
 
 for (block in blocks)
 {
-_timmed = block.trim();
-_lines = _timmed.split("\n");
 
 
 {
-number = Std.parseInt(_lines[0]);
-idx = 1;
 }
 {
-timeLine = _lines[idx];
-idx++;
 }
 
 
 
 {
-text = text.replace("{", "<").replace("}", ">");
 }
 
-out.push(new SubtitleEntry(number, times.start, times.end, text));
 
-_lines = null;
 }
 
-out.sort(SubtitleUtils.sortLines);
 }
 
 public static function parseFromFile(name:String, ?library:String, ?dir:String):Array<SubtitleEntry>
@@ -82,9 +66,6 @@ public static function parseTimeLine(line:String):
 for (a in timeArrowPatterns)
 {
 {
-left = parts[0].trim();
-right = parts[1].trim();
-break;
 }
 }
 
@@ -97,8 +78,6 @@ break;
 public static function parseTimecode(t:String):Float
 {
 {
-frac += "0";
-ms = Std.parseInt(frac);
 }
 }
 }
@@ -124,7 +103,6 @@ for (s in list)
 public static function findActiveIndex(list:Array<SubtitleEntry>, time:Float):Int
 {
 {
-else if (time > s.end) lo = mid + 1;
 else
 }
 }

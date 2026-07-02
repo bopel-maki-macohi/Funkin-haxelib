@@ -1,4 +1,3 @@
-package funkin.util.macro;
 
 
 class HaxelibVersions
@@ -18,15 +17,10 @@ for (library in dependencies)
 switch (library.type)
 {
 case 'haxelib':
-result.push('${library.name} haxelib(${library.version ?? 'None'})');
 case 'git':
-result.push('${library.name} git(${library.url}/${library.dir ?? ''}:${library.ref ?? 'None'}');
 case 'mercurial':
-result.push('${library.name} mercurial(${library.url}/${library.dir ?? ''}:${library.ref ?? 'None'})');
 case 'dev':
-result.push('${library.name} dev(${library.path})');
 case ty:
-throw 'Unhandled hmm library type ${ty}';
 }
 }
 

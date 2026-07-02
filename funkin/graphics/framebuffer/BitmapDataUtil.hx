@@ -1,4 +1,3 @@
-package funkin.graphics.framebuffer;
 
 
 /**
@@ -10,9 +9,6 @@ class BitmapDataUtil
 static inline function get_renderer():OpenGLRenderer
 {
 {
-_renderer = new OpenGLRenderer(FlxG.stage.context3D);
-_renderer.__worldTransform = new Matrix();
-_renderer.__worldColorTransform = new ColorTransform();
 }
 
 }
@@ -27,16 +23,13 @@ _renderer.__worldColorTransform = new ColorTransform();
 */
 public static function drawCameraScreens(bitmap:BitmapData, cameras:Array<FlxCamera>):BitmapData
 {
-bitmap.__fillRect(bitmap.rect, 0, true);
 
 for (camera in cameras)
 {
 {
-drawCameraScreen(bitmap, camera, false, true);
 }
 else
 {
-drawCameraScreen(bitmap, camera, false);
 }
 }
 
@@ -59,31 +52,15 @@ drawCameraScreen(bitmap, camera, false);
 public static function drawCameraScreen(bitmap:BitmapData, camera:FlxCamera, clearBitmap:Bool = true, drawFlashSprite:Bool = false):BitmapData
 {
 
-matrix.setTo(1 / pivotX, 0, 0, 1 / pivotY, camera.flashSprite.x / pivotX, camera.flashSprite.y / pivotY);
 
 
-camera.render();
-camera.flashSprite.__update(false, true);
 
-renderer.__cleanup();
 
-renderer.setShader(renderer.__defaultShader);
-renderer.__allowSmoothing = false;
-renderer.__pixelRatio = Lib.current.stage.window.scale;
-renderer.__worldAlpha = 1 / camera.flashSprite.__worldAlpha;
-renderer.__worldTransform.copyFrom(camera.flashSprite.__renderTransform);
-renderer.__worldTransform.invert();
-renderer.__worldTransform.concat(matrix);
-renderer.__worldColorTransform.__copyFrom(camera.flashSprite.__worldColorTransform);
-renderer.__worldColorTransform.__invert();
-renderer.__setRenderTarget(bitmap);
 
 {
-bitmap.__drawGL(camera.flashSprite, renderer);
 }
 else
 {
-bitmap.__drawGL(camera.canvas, renderer);
 }
 
 }
@@ -108,11 +85,8 @@ public static function applyFilter(bitmap:BitmapData, filter:BitmapFilter):Bitma
 public static function resize(bitmap:BitmapData, width:Int, height:Int):Void
 {
 
-bitmap.width = width;
-bitmap.height = height;
 
 {
-resizeTexture(bitmap.__texture, width, height);
 }
 }
 
@@ -126,13 +100,8 @@ public static function resizeTexture(texture:TextureBase, width:Int, height:Int)
 {
 
 
-texture.__width = width;
-texture.__height = height;
 
-context.__bindGLTexture2D(texture.__textureID);
-context.gl.texImage2D(context.gl.TEXTURE_2D, 0, texture.__internalFormat, width, height, 0, texture.__format, context.gl.UNSIGNED_BYTE, null);
 
-context.__bindGLTexture2D(null);
 }
 
 /**
@@ -143,8 +112,5 @@ context.__bindGLTexture2D(null);
 */
 public static function copy(source:BitmapData, destination:BitmapData):Void
 {
-resize(destination, source.width, source.height);
-destination.fillRect(destination.rect, 0);
-destination.draw(source);
 }
 }

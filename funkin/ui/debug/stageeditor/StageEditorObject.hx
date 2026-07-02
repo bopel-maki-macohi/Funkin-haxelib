@@ -1,4 +1,3 @@
-package funkin.ui.debug.stageeditor;
 
 
 /**
@@ -18,10 +17,7 @@ class StageEditorObject extends FunkinSprite
 
 override public function new()
 {
-super();
 
-selectedShader = new InverseDotsShader(0);
-shader = selectedShader;
 }
 
 /**
@@ -30,15 +26,10 @@ shader = selectedShader;
 
 function set_isDebugged(value:Bool):Bool
 {
-this.isDebugged = value;
 
-playAnim(startingAnimation, true);
 else
 {
 {
-animation.stop();
-offset.set();
-updateHitbox();
 }
 }
 
@@ -47,10 +38,8 @@ updateHitbox();
 public function playAnim(name:String, restart:Bool = false, reversed:Bool = false):Void
 {
 
-animation.play(name, restart, reversed, 0);
 
 else
-offset.set();
 }
 
 /**
@@ -68,13 +57,10 @@ public function dance(restart:Bool = false):Void
 
 {
 else
-playAnim("danceLeft", restart);
 
-_danced = !_danced;
 }
 else if (idle)
 {
-playAnim("idle", restart);
 }
 }
 
@@ -82,7 +68,6 @@ public function addAnim(name:String, prefix:String, offsets:Array<Float>, indice
 flipY:Bool = false)
 {
 else
-animation.addByPrefix(name, prefix, frameRate, looped, flipX, flipY);
 
 {
 animDatas.set(name, {
@@ -94,7 +79,6 @@ frameRate: frameRate,
 flipX: flipX,
 flipY: flipY,
 frameIndices: indices
-});
 }
 }
 }

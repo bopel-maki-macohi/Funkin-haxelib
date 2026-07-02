@@ -1,4 +1,3 @@
-package funkin.util;
 
 
 /**
@@ -20,13 +19,9 @@ public static function mouseCamDrag(?target:FlxPoint, ?jusPres:Bool, ?pressed:Bo
 
 
 {
-oldCamPos.set(target.x, target.y);
-oldMousePos.set(FlxG.mouse.viewX, FlxG.mouse.viewY);
 }
 
 {
-target.x = oldCamPos.x - (FlxG.mouse.viewX - oldMousePos.x);
-target.y = oldCamPos.y - (FlxG.mouse.viewY - oldMousePos.y);
 }
 }
 

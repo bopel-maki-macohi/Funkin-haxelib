@@ -1,4 +1,3 @@
-package funkin.util;
 
 /**
 * Utility functions related to specific platforms.
@@ -14,7 +13,6 @@ class PlatformUtil
 public static function isMacOS():Bool
 {
 || js.Browser.window.navigator.platform.startsWith('iPad')
-|| js.Browser.window.navigator.platform.startsWith('iPhone');
 }
 
 /**
@@ -39,10 +37,4 @@ default:
 */
 enum HostPlatform
 {
-WINDOWS;
-LINUX;
-MAC;
-HTML5;
-ANDROID;
-IOS;
 }

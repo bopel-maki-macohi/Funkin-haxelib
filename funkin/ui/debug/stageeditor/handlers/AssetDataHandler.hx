@@ -1,7 +1,5 @@
-package funkin.ui.debug.stageeditor.handlers;
 
 
-using StringTools;
 
 /**
 * Handles the Stage Props and Datas - being able to convert one to the other.
@@ -11,7 +9,6 @@ class AssetDataHandler
 
 public static function init(state:StageEditorState)
 {
-AssetDataHandler.state = state;
 }
 
 /**
@@ -43,19 +40,14 @@ animData: ""
 }
 
 {
-outputData.bitmap = obj.pixels.clone();
-outputData.animData = obj.generateXML();
 }
 
 for (name => bit in state.bitmaps)
 {
 {
-outputData.assetPath = name;
-outputData.animData = obj.generateXML(name);
 }
 }
 
-outputData.assetPath = "#FFFFFF";
 
 }
 
@@ -68,70 +60,46 @@ public static function fromData(object:StageEditorObject, data:StageEditorObject
 {
 {
 {
-object.frames = FlxAtlasFrames.fromSparrow(state.bitmaps[bitToLoad], data.animData);
 }
 else if (areTheseBitmapsEqual(data.bitmap, getDefaultGraphic()))
 {
-object.loadGraphic(getDefaultGraphic());
 }
 else
 {
-object.loadGraphic(state.bitmaps[bitToLoad]);
 }
 }
 else
 {
 {
 {
-object.frames = FlxAtlasFrames.fromSparrow(state.bitmaps[data.assetPath].clone(), data.animData);
 }
 else
 {
-object.frames = FlxAtlasFrames.fromSpriteSheetPacker(state.bitmaps[data.assetPath].clone(), data.animData);
 }
 }
 else if (data.assetPath.startsWith("#"))
 {
-object.loadGraphic(getDefaultGraphic());
-object.color = FlxColor.fromString(data.assetPath);
 }
 else
-object.loadGraphic(state.bitmaps[data.assetPath].clone());
 }
 
-object.name = data.name;
-object.setPosition(data.position[0], data.position[1]);
-object.zIndex = data.zIndex;
-object.antialiasing = !data.isPixel;
-object.alpha = data.alpha;
-object.danceEvery = data.danceEvery;
-object.scrollFactor.set(data.scroll[0], data.scroll[1]);
-object.startingAnimation = data.startingAnimation;
-object.angle = data.angle;
-object.blend = blendFromString(data.blend);
 
 for (anim in data.animations)
 {
 object.addAnim(anim.name, anim.prefix, anim.offsets ?? [0, 0], anim.frameIndices ?? [], anim.frameRate ?? 24, anim.looped ?? false, anim.flipX ?? false,
-anim.flipY ?? false);
 }
 
 
 switch (data.scale)
 {
 case Left(value):
-object.scale.set(value, value);
 
 case Right(values):
-object.scale.set(values[0], values[1]);
 }
-object.updateHitbox();
 
-object.playAnim(object.startingAnimation);
 
 flixel.util.FlxTimer.wait(StageEditorState.TIME_BEFORE_ANIM_STOP, function()
 {
-});
 
 }
 
@@ -158,10 +126,8 @@ public static function generateXML(obj:StageEditorObject, bitmapName:String = ""
 
 for (daFrame in obj.frames.frames)
 {
-xml += ' <SubTexture name="${daFrame.name}" x="${daFrame.frame.x}" y="${daFrame.frame.y}" width="${daFrame.frame.width}" height="${daFrame.frame.height}" frameX="${- daFrame.offset.x}" frameY="${- daFrame.offset.y}" frameWidth="${daFrame.sourceSize.x}" frameHeight="${daFrame.sourceSize.y}" flipX="${daFrame.flipX}" flipY="${daFrame.flipY}" rotated="${daFrame.angle == -90}"/>\n';
 }
 
-xml += "</TextureAtlas>";
 }
 
 static function areTheseBitmapsEqual(bitmap1:BitmapData, bitmap2:BitmapData)

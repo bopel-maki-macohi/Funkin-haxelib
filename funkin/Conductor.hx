@@ -1,4 +1,3 @@
-package funkin;
 
 
 /**
@@ -229,35 +228,26 @@ set_instance(new Conductor());
 
 static function dispatchMeasureHit():Void
 {
-Conductor.measureHit.dispatch();
 }
 
 static function dispatchBeatHit():Void
 {
-Conductor.beatHit.dispatch();
 }
 
 static function dispatchStepHit():Void
 {
-Conductor.stepHit.dispatch();
 }
 
 static function setupSingleton(input:Conductor):Void
 {
-input.onMeasureHit.add(dispatchMeasureHit);
 
-input.onBeatHit.add(dispatchBeatHit);
 
-input.onStepHit.add(dispatchStepHit);
 }
 
 static function clearSingleton(input:Conductor):Void
 {
-input.onMeasureHit.remove(dispatchMeasureHit);
 
-input.onBeatHit.remove(dispatchBeatHit);
 
-input.onStepHit.remove(dispatchStepHit);
 }
 
 static function get_instance():Conductor
@@ -292,14 +282,11 @@ public function new()
 public function forceBPM(?bpm:Float):Void
 {
 {
-log('Forcing BPM to ${bpm}');
 }
 else
 {
-log('Resetting BPM to default');
 }
 
-this.bpmOverride = bpm;
 }
 
 /**
@@ -316,23 +303,17 @@ public function update(?songPos:Float, applyOffsets:Bool = true, forceDispatch:B
 {
 
 {
-songPos = currentTime;
 }
 
-songPos += applyOffsets ? (combinedOffset) : 0;
 
 
 {
-this.songPosition = Math.min(this.combinedOffset, 0).clamp(songPos, currentLength);
-this.songPositionDelta += FlxG.elapsed * 1000 * FlxG.sound.music.pitch;
 }
 else
 {
-this.songPosition = songPos;
 }
 
 
-currentTimeChange = timeChanges[0];
 {
 for (i in 0...timeChanges.length)
 {
@@ -341,45 +322,26 @@ for (i in 0...timeChanges.length)
 }
 
 {
-log(' WARNING '.warning() + 'Conductor is broken, timeChanges is empty.');
 }
 else if (currentTimeChange != null && this.songPosition > 0.0)
 {
 this.currentStepTime = FlxMath.roundDecimal((currentTimeChange.beatTime * Constants.STEPS_PER_BEAT)
-+ (this.songPosition - currentTimeChange.timeStamp) / stepLengthMs, 6);
-this.currentBeatTime = currentStepTime / Constants.STEPS_PER_BEAT;
-this.currentMeasureTime = getTimeInMeasures(this.songPosition);
-this.currentStep = Math.floor(currentStepTime);
-this.currentBeat = Math.floor(currentBeatTime);
-this.currentMeasure = Math.floor(currentMeasureTime);
 }
 else
 {
-this.currentStepTime = FlxMath.roundDecimal((songPosition / stepLengthMs), 4);
-this.currentBeatTime = currentStepTime / Constants.STEPS_PER_BEAT;
-this.currentMeasureTime = currentStepTime / stepsPerMeasure;
-this.currentStep = Math.floor(currentStepTime);
-this.currentBeat = Math.floor(currentBeatTime);
-this.currentMeasure = Math.floor(currentMeasureTime);
 }
 
 {
-this.onStepHit.dispatch();
 }
 
 {
-this.onBeatHit.dispatch();
 }
 
 {
-this.onMeasureHit.dispatch();
 }
 
 {
-this.songPositionDelta = 0;
 
-prevTime = this.songPosition;
-prevTimestamp = Std.int(Timer.stamp() * 1000);
 }
 
 }
@@ -403,7 +365,6 @@ public function getTimeWithDelta():Float
 public function getTimeWithDiff(?soundToCheck:FlxSound):Float
 {
 
-this.songPosition = soundToCheck._channel.position;
 }
 
 /**
@@ -412,44 +373,34 @@ this.songPosition = soundToCheck._channel.position;
 */
 public function mapTimeChanges(songTimeChanges:Array<SongTimeChange>):Void
 {
-timeChanges = [];
 
-SongDataUtils.sortTimeChanges(songTimeChanges);
 
 for (songTimeChange in songTimeChanges)
 {
 
 {
-songTimeChange.beatTime = 0.0;
 }
 else
 {
-songTimeChange.beatTime = 0.0;
 
 {
 songTimeChange.beatTime = FlxMath.roundDecimal(prevTimeChange.beatTime
 +
 ((songTimeChange.timeStamp - prevTimeChange.timeStamp) * prevTimeChange.bpm / Constants.SECS_PER_MIN / Constants.MS_PER_SEC * (prevTimeChange.timeSignatureDen / 4)),
-4);
 }
 }
 
-timeChanges.push(songTimeChange);
 }
 
 {
-log('Done mapping single time change to ${timeChanges[0].bpm} BPM');
 }
 else if (timeChanges.length > 1)
 {
-log('Done mapping ${timeChanges.length} time changes (starting at ${timeChanges[0].bpm} BPM)');
 }
 else
 {
-log(' WARNING '.warning() + ' Conductor mapped no time changes?');
 }
 
-this.update(this.songPosition, false);
 }
 
 /**
@@ -463,22 +414,15 @@ public function getTimeInMeasures(ms:Float):Float
 }
 else
 {
-ms = ms < 0 ? 0 : ms;
 
 for (timeChange in timeChanges)
 {
 {
 {
-lastTimeChange = timeChange;
-break;
 }
-resultMeasureTime += (timeChange.timeStamp - lastTimeChange.timeStamp) / currentStepLengthMs / currentStepsPerMeasure;
-lastTimeChange = timeChange;
 }
-i++;
 }
 
-resultMeasureTime += remainingFractionalMeasure;
 
 }
 }
@@ -494,22 +438,15 @@ public function getMeasureTimeInMs(measureTime:Float):Float
 }
 else
 {
-measureTime = measureTime < 0 ? 0 : measureTime;
 
 for (timeChange in timeChanges)
 {
 {
 {
-lastTimeChange = timeChange;
-break;
 }
-resultMs += (currentTimeChangeMeasureTime - getTimeInMeasures(lastTimeChange.timeStamp)) * currentStepLengthMs * currentStepsPerMeasure;
-lastTimeChange = timeChange;
 }
-i++;
 }
 
-resultMs += remainingFractionalMeasure;
 
 }
 }
@@ -525,22 +462,15 @@ public function getTimeInSteps(ms:Float):Float
 }
 else
 {
-ms = ms < 0 ? 0 : ms;
 
 for (timeChange in timeChanges)
 {
 {
 {
-lastTimeChange = timeChange;
-break;
 }
-resultStep += (timeChange.beatTime - lastTimeChange.beatTime) * Constants.STEPS_PER_BEAT;
-lastTimeChange = timeChange;
 }
-i++;
 }
 
-resultStep += resultFractionalStep;
 
 }
 }
@@ -556,22 +486,15 @@ public function getStepTimeInMs(stepTime:Float):Float
 }
 else
 {
-stepTime = stepTime < 0 ? 0 : stepTime;
 
 for (timeChange in timeChanges)
 {
 {
 {
-lastTimeChange = timeChange;
-break;
 }
-resultMs += timeChange.timeStamp - lastTimeChange.timeStamp;
-lastTimeChange = timeChange;
 }
-i++;
 }
 
-resultMs += (stepTime - lastTimeChange.beatTime * Constants.STEPS_PER_BEAT) * lastStepLengthMs;
 
 }
 }
@@ -591,16 +514,12 @@ else
 for (timeChange in timeChanges)
 {
 {
-lastTimeChange = timeChange;
-resultMs = lastTimeChange.timeStamp;
 }
 else
 {
-break;
 }
 }
 
-resultMs += (beatTime - lastTimeChange.beatTime) * lastStepLengthMs * Constants.STEPS_PER_BEAT;
 
 }
 }
@@ -614,10 +533,8 @@ public function getTimeChange(ms:Float):SongTimeChange
 {
 {
 }
-ms = ms < 0 ? 0 : ms;
 for (timeChange in timeChanges)
 {
-i++;
 {
 }
 }
@@ -634,18 +551,12 @@ public function getTypeLengthAtMs(ms:Float, type:String = "beat"):Float
 for (timeChange in timeChanges)
 {
 {
-wantedTimeChange = timeChange;
 }
 else
 {
-break;
 }
 }
 {
-case "measure", "m": wantedBeatLengthMs * wantedTimeChange.timeSignatureNum;
-case "beat", "b": wantedBeatLengthMs;
-case "step", "s": wantedBeatLengthMs / Constants.STEPS_PER_BEAT;
-default: wantedBeatLengthMs;
 }
 }
 

@@ -1,4 +1,3 @@
-package funkin.ui.haxeui;
 
 
 class HaxeUISubState extends MusicBeatSubState
@@ -7,15 +6,11 @@ class HaxeUISubState extends MusicBeatSubState
 
 public function new(key:String)
 {
-super();
-_componentKey = key;
 }
 
 override function create()
 {
-super.create();
 
-refreshComponent();
 }
 
 /**
@@ -28,11 +23,9 @@ public function buildComponent(assetPath:String)
 
 override function update(elapsed:Float)
 {
-super.update(elapsed);
 
 
 {
-refreshComponent();
 }
 }
 
@@ -40,12 +33,9 @@ function refreshComponent()
 {
 /*
 {
-remove(component);
-component = null;
 }
 
 {
-add(component);
 }
 else
 {
@@ -53,14 +43,9 @@ else
 */
 
 {
-component = buildComponent(_componentKey);
-add(component);
 }
 else
 {
-component2.x += 100;
-add(component2);
-remove(component);
 }
 }
 
@@ -73,7 +58,6 @@ function addUIClickListener(key:String, callback:MouseEvent->Void)
 }
 else
 {
-target.onClick = callback;
 }
 }
 
@@ -86,7 +70,6 @@ function addUIChangeListener(key:String, callback:UIEvent->Void)
 }
 else
 {
-target.onChange = callback;
 }
 }
 
@@ -125,6 +108,5 @@ public function findComponent<T:Component>(criteria:String = null, type:Class<T>
 
 override function destroy()
 {
-component = null;
 }
 }

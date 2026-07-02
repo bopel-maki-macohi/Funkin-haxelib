@@ -1,10 +1,7 @@
-package funkin.mobile.ui;
 
 
 enum FunkinHintAlphaStyle
 {
-INVISIBLE_TILL_PRESS;
-VISIBLE_TILL_PRESS;
 }
 
 /**
@@ -20,7 +17,6 @@ class FunkinHint extends FunkinButton
 * - The second value corresponds to the alpha when the hint is not pressed.
 * - The third value corresponds to the duratuon it'll take to tween between the two values.
 */
-Array<Float>> = [INVISIBLE_TILL_PRESS => [0.3, 0.00001, 0.01], VISIBLE_TILL_PRESS => [0.4, 0.2, 0.08]];
 
 /**
 * Indicates whether the hint is pixel.
@@ -58,20 +54,11 @@ Array<Float>> = [INVISIBLE_TILL_PRESS => [0.3, 0.00001, 0.01], VISIBLE_TILL_PRES
 */
 public function new(x:Float, y:Float, noteDirection:NoteDirection, label:Null<FlxGraphic>):Void
 {
-super(x, y);
 
-this.noteDirection = noteDirection;
 
 {
-this.label = new FunkinSprite(x, y);
-this.label.loadGraphic(label);
 }
 
-hsvShader = new HSVShader();
-hsvShader.hue = 1.0;
-hsvShader.saturation = 1.0;
-hsvShader.value = 1.0;
-shader = hsvShader;
 }
 
 /**
@@ -85,20 +72,12 @@ public function initTween(style:FunkinHintAlphaStyle):Void
 
 function createTween(targetAlpha:Float, transitionTime:Float, isPressed:Bool):Void
 {
-alphaTween?.cancel();
-alphaTween = FlxTween.tween(this, {alpha: targetAlpha}, transitionTime, {ease: FlxEase.circInOut});
 
 {
-labelAlphaTween?.cancel();
-labelAlphaTween = FlxTween.tween(label, {alpha: (hintAlpha[0] + hintAlpha[1]) - targetAlpha}, transitionTime, {ease: FlxEase.circInOut});
 }
 }
 
-onDown.add(createTween.bind(hintAlpha[swapValues ? 1 : 0], hintAlpha[2], true));
-onUp.add(createTween.bind(hintAlpha[swapValues ? 0 : 1], hintAlpha[2], false));
-onOut.add(createTween.bind(hintAlpha[swapValues ? 0 : 1], hintAlpha[2], false));
 
-alpha = hintAlpha[swapValues ? 0 : 1];
 
 }
 
@@ -110,8 +89,6 @@ alpha = hintAlpha[swapValues ? 0 : 1];
 */
 public function follow(sprite:FunkinSprite, followTargetSize:Bool = true):Void
 {
-this.followTargetSize = followTargetSize;
-followTarget = sprite;
 }
 
 /**
@@ -119,7 +96,6 @@ followTarget = sprite;
 */
 public function desaturate():Void
 {
-hsvShader.saturation = 0.2;
 }
 
 /**
@@ -129,37 +105,29 @@ hsvShader.saturation = 0.2;
 */
 public function setHue(hue:Float):Void
 {
-hsvShader.hue = hue;
 }
 
 public override function update(elapsed:Float):Void
 {
-super.update(elapsed);
 
 {
 
 
 {
-setSize(followTarget.width * widthMultiplier + (isPixel ? 93.05 : 0), followTarget.height * heightMultiplier + (isPixel ? 118 : 0));
 }
 
-setPosition((followTarget.x - (followTarget.width * ((widthMultiplier - 1) / 2))) - xOffset, (followTarget.y - 220) - yOffset);
 }
 }
 
 public override function draw():Void
 {
-super.draw();
 
 {
-label.cameras = _cameras;
-label.draw();
 }
 }
 
 public override function drawDebug():Void
 {
-super.drawDebug();
 
 }
 
@@ -171,19 +139,16 @@ public override function destroy():Void
 
 
 
-super.destroy();
 }
 
 override function set_x(v:Float):Float
 {
-super.set_x(v);
 
 
 }
 
 override function set_y(v:Float):Float
 {
-super.set_y(v);
 
 
 }
@@ -219,7 +184,6 @@ class FunkinHitbox extends FlxTypedSpriteGroup<FunkinHint>
 */
 public function new(?schemeOverride:String, ?showGradint:Bool = true, ?directionsOverride:Array<NoteDirection>, ?colorsOverride:Array<FlxColor>):Void
 {
-super();
 
 
 
@@ -230,19 +194,14 @@ case FunkinHitboxControlSchemes.FourLanes:
 for (i in 0...hintsNoteDirections.length)
 {
 add(createHintLane(i * hintWidth, 0, hintsNoteDirections[i % hintsNoteDirections.length], hintWidth, hintHeight,
-hintsColors[i % hintsColors.length], true, showGradint));
 }
 case FunkinHitboxControlSchemes.DoubleThumbTriangle:
 
 for (i in 0...2)
 {
 
-add(createHintTriangle(xOffset, 0, hintsNoteDirections[0], Math.floor(FlxG.width / 4), FlxG.height, hintsColors[0], showGradint));
 add(createHintTriangle(xOffset, FlxG.height / 2, hintsNoteDirections[1], Math.floor(FlxG.width / 2), Math.floor(FlxG.height / 2), hintsColors[1],
-showGradint));
-add(createHintTriangle(xOffset, 0, hintsNoteDirections[2], Math.floor(FlxG.width / 2), Math.floor(FlxG.height / 2), hintsColors[2], showGradint));
 add(createHintTriangle(xOffset + Math.floor(FlxG.width / 4), 0, hintsNoteDirections[3], Math.floor(FlxG.width / 4), FlxG.height, hintsColors[3],
-showGradint));
 }
 case FunkinHitboxControlSchemes.DoubleThumbSquare:
 
@@ -255,12 +214,10 @@ for (j in 0...hintsNoteDirections.length)
 {
 {
 add(createHintLane(xOffset + hintWidth, (j == 1) ? boxHeight : 0, hintsNoteDirections[j], boxWidth, boxHeight,
-hintsColors[j % hintsColors.length], false, showGradint));
 }
 else
 {
 add(createHintLane(xOffset + (j == 0 ? 0 : hintWidth + boxWidth), 0, hintsNoteDirections[j], hintWidth, hintHeight,
-hintsColors[j % hintsColors.length], false, showGradint));
 }
 }
 }
@@ -272,7 +229,6 @@ for (j in 0...hintsAngles.length)
 {
 
 add(createHintCircle(i == 0 ? x + FullScreenScaleMode.gameNotchSize.x : x - FullScreenScaleMode.gameNotchSize.x, y,
-hintsNoteDirections[j % hintsNoteDirections.length], hintSize, outlineThickness, hintsColors[j % hintsColors.length]));
 }
 }
 case FunkinHitboxControlSchemes.Arrows:
@@ -281,20 +237,16 @@ case FunkinHitboxControlSchemes.Arrows:
 for (i in 0...hintsNoteDirections.length)
 {
 add(createHintTransparentNote(xPos + i * hintWidth + noteSpacing * i, yPos, hintsNoteDirections[i % hintsNoteDirections.length], hintWidth,
-hintHeight));
 }
 }
 
-scrollFactor.set();
 
-ControlsHandler.setupHitbox(PlayerSettings.player1.controls, this, trackedInputs);
 }
 
 public function getFirstHintByDirection(direction:NoteDirection):Null<FunkinHint>
 {
 forEachOfType(FunkinHint, function(hint:FunkinHint):Void
 {
-});
 
 }
 
@@ -313,11 +265,6 @@ forEachOfType(FunkinHint, function(hint:FunkinHint):Void
 function createHintLane(x:Float, y:Float, noteDirection:NoteDirection, width:Int, height:Int, color:FlxColor = 0xFFFFFFFF, label:Bool = true,
 gradient:Bool = true):FunkinHint
 {
-hint.loadGraphic(createHintLaneGraphic(width, height, color, gradient));
-hint.onDown.add(onHintDown.dispatch.bind(hint));
-hint.onUp.add(onHintUp.dispatch.bind(hint));
-hint.onOut.add(onHintUp.dispatch.bind(hint));
-hint.initTween(INVISIBLE_TILL_PRESS);
 }
 
 /**
@@ -335,12 +282,6 @@ hint.initTween(INVISIBLE_TILL_PRESS);
 function createHintTriangle(x:Float, y:Float, noteDirection:NoteDirection, width:Int, height:Int, color:FlxColor = 0xFFFFFFFF,
 gradient:Bool = true):FunkinHint
 {
-hint.loadGraphic(createHintTriangleGraphic(width, height, noteDirection, color, gradient));
-hint.onDown.add(onHintDown.dispatch.bind(hint));
-hint.onUp.add(onHintUp.dispatch.bind(hint));
-hint.onOut.add(onHintUp.dispatch.bind(hint));
-hint.initTween(INVISIBLE_TILL_PRESS);
-hint.polygon = getTriangleVertices(width, height, noteDirection);
 }
 
 /**
@@ -356,13 +297,6 @@ hint.polygon = getTriangleVertices(width, height, noteDirection);
 */
 function createHintCircle(x:Float, y:Float, noteDirection:NoteDirection, radius:Float, outlineThickness:Int, color:FlxColor = 0xFFFFFFFF):FunkinHint
 {
-hint.loadGraphic(createHintCircleGraphic(radius, outlineThickness, color));
-hint.limitToBounds = false;
-hint.radius = radius;
-hint.onDown.add(onHintDown.dispatch.bind(hint));
-hint.onUp.add(onHintUp.dispatch.bind(hint));
-hint.onOut.add(onHintUp.dispatch.bind(hint));
-hint.initTween(VISIBLE_TILL_PRESS);
 }
 
 /**
@@ -376,42 +310,20 @@ hint.initTween(VISIBLE_TILL_PRESS);
 */
 function createHintTransparentNote(x:Float, y:Float, noteDirection:NoteDirection, width:Int, height:Int):FunkinHint
 {
-hint.alpha = 0;
-hint.setSize(width, height);
-hint.onDown.add(onHintDown.dispatch.bind(hint));
-hint.onUp.add(onHintUp.dispatch.bind(hint));
-hint.onOut.add(onHintUp.dispatch.bind(hint));
 
 {
-hint.frames = Paths.getSparrowAtlas(noteStyle.getStrumlineAssetPath() ?? '', noteStyle.getAssetLibrary(noteStyle.getStrumlineAssetPath(true)));
-FlxAnimationUtil.addAtlasAnimations(hint, noteStyle.getStrumlineAnimationData(noteDirection));
 }
 
-hint.animation.play('static', true);
 
 hint.onDown.add(() ->
 {
-hint.animation.play('press', true);
-hint.centerOrigin();
-hint.centerOffsets();
-});
 
 hint.onUp.add(() ->
 {
-hint.animation.play('static', true);
-hint.centerOrigin();
-hint.centerOffsets();
-});
 
 hint.onOut.add(() ->
 {
-hint.animation.play('static', true);
-hint.centerOrigin();
-hint.centerOffsets();
-});
 
-hint.centerOffsets();
-hint.centerOrigin();
 
 }
 
@@ -427,37 +339,19 @@ function createHintLaneGraphic(width:Int, height:Int, baseColor:FlxColor = 0xFFF
 {
 
 {
-matrix.createGradientBox(width, height, 0, 0, 0);
-shape.graphics.beginGradientFill(RADIAL, [baseColor.rgb, baseColor.rgb], [0, baseColor.alphaFloat], [60, 255], matrix, PAD, RGB, 0);
 }
 else
 {
-shape.graphics.beginFill(baseColor.rgb, baseColor.alphaFloat);
 }
 
-shape.graphics.drawRect(0, 0, width, height);
-shape.graphics.endFill();
 
-graphicData.draw(shape, true);
 }
 
 function createHintLaneLabelGraphic(width:Int, height:Int, labelHeight:Int, baseColor:FlxColor = 0xFFFFFFFF):FlxGraphic
 {
-shape.graphics.beginFill(0, 0);
-shape.graphics.drawRect(0, 0, width, height);
-shape.graphics.endFill();
 
-matrix.createGradientBox(width, labelHeight, Math.PI / 2, 0, 0);
-shape.graphics.beginGradientFill(LINEAR, [baseColor.rgb, baseColor.rgb], [baseColor.alphaFloat, 0], [0, 255], matrix);
-shape.graphics.drawRect(0, 0, width, labelHeight);
-shape.graphics.endFill();
 
-matrix.createGradientBox(width, labelHeight, Math.PI / 2, 0, height - labelHeight);
-shape.graphics.beginGradientFill(LINEAR, [baseColor.rgb, baseColor.rgb], [0, baseColor.alphaFloat], [0, 255], matrix);
-shape.graphics.drawRect(0, height - labelHeight, width, labelHeight);
-shape.graphics.endFill();
 
-graphicData.draw(shape, true);
 }
 
 /**
@@ -472,19 +366,12 @@ function createHintTriangleGraphic(width:Int, height:Int, facing:NoteDirection, 
 {
 
 {
-matrix.createGradientBox(width, height, 0, 0, 0);
-shape.graphics.beginGradientFill(RADIAL, [baseColor.rgb, baseColor.rgb], [0, baseColor.alphaFloat], [60, 255], matrix, PAD, RGB, 0);
 }
 else
 {
-shape.graphics.beginFill(baseColor.rgb, baseColor.alphaFloat);
 }
 
-shape.graphics.drawRect(width / 2, height / 2, width / 2, height / 2);
-shape.graphics.drawTriangles(Vector.ofArray(getTriangleVertices(width, height, facing)), Vector.ofArray([0, 1, 2]));
-shape.graphics.endFill();
 
-graphicData.draw(shape, true);
 }
 
 /**
@@ -497,17 +384,10 @@ graphicData.draw(shape, true);
 */
 function createHintCircleGraphic(radius:Float, outlineThickness:Int, baseColor:FlxColor = 0xFFFFFFFF):FlxGraphic
 {
-brightColor.brightness += 0.6;
 
 
-shape.graphics.beginFill(baseColor.rgb, baseColor.alphaFloat);
-shape.graphics.lineStyle(outlineThickness, brightColor.rgb, brightColor.alpha);
-shape.graphics.drawCircle(radius, radius, radius);
-shape.graphics.endFill();
 
-matrix.translate(outlineThickness, outlineThickness);
 
-graphicData.draw(shape, matrix, true);
 }
 
 /**
@@ -519,13 +399,8 @@ graphicData.draw(shape, matrix, true);
 */
 function getTriangleVertices(width:Int, height:Int, facing:NoteDirection):Array<Float>
 {
-else if (facing == DOWN) facing = UP;
 
 {
-case UP: [width / 2, 0, 0, height, width, height];
-case DOWN: [0, 0, width, 0, width / 2, height];
-case LEFT: [0, 0, width, height / 2, 0, height];
-case RIGHT: [width, 0, 0, height / 2, width, height];
 }
 }
 
@@ -535,18 +410,12 @@ case RIGHT: [width, 0, 0, height / 2, width, height];
 public override function destroy():Void
 {
 
-FlxDestroyUtil.destroy(onHintDown);
-FlxDestroyUtil.destroy(onHintUp);
 
-super.destroy();
 }
 
 function set_isPixel(value:Bool):Bool
 {
-isPixel = value;
 forEachOfType(FunkinHint, function(hint:FunkinHint):Void
 {
-hint.isPixel = value;
-});
 }
 }

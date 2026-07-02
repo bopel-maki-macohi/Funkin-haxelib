@@ -1,4 +1,3 @@
-package funkin.modding;
 
 
 /**
@@ -8,11 +7,7 @@ package funkin.modding;
 */
 interface IScriptedClass
 {
-public function onScriptEvent(event:ScriptEvent):Void;
 
-public function onCreate(event:ScriptEvent):Void;
-public function onDestroy(event:ScriptEvent):Void;
-public function onUpdate(event:UpdateScriptEvent):Void;
 }
 
 /**
@@ -21,7 +16,6 @@ public function onUpdate(event:UpdateScriptEvent):Void;
 */
 interface IEventHandler
 {
-public function dispatchEvent(event:ScriptEvent):Void;
 }
 
 /**
@@ -29,16 +23,8 @@ public function dispatchEvent(event:ScriptEvent):Void;
 */
 interface IStateChangingScriptedClass extends IScriptedClass
 {
-public function onStateChangeBegin(event:StateChangeScriptEvent):Void;
-public function onStateChangeEnd(event:StateChangeScriptEvent):Void;
 
-public function onSubStateOpenBegin(event:SubStateScriptEvent):Void;
-public function onSubStateOpenEnd(event:SubStateScriptEvent):Void;
-public function onSubStateCloseBegin(event:SubStateScriptEvent):Void;
-public function onSubStateCloseEnd(event:SubStateScriptEvent):Void;
 
-public function onFocusLost(event:FocusScriptEvent):Void;
-public function onFocusGained(event:FocusScriptEvent):Void;
 }
 
 /**
@@ -50,7 +36,6 @@ interface IStateStageProp extends IScriptedClass
 /**
 * Called when the relevant element is added to the game state.
 */
-public function onAdd(event:ScriptEvent):Void;
 }
 
 /**
@@ -61,23 +46,19 @@ interface INoteScriptedClass extends IScriptedClass
 /**
 * Called when a note enters the field of view and approaches the strumline.
 */
-public function onNoteIncoming(event:NoteScriptEvent):Void;
 
 /**
 * Called when EITHER player hits a note.
 * Query the note attached to the event to determine if it was hit by the player or CPU.
 */
-public function onNoteHit(event:HitNoteScriptEvent):Void;
 
 /**
 * Called when EITHER player (usually the player) misses a note.
 */
-public function onNoteMiss(event:NoteScriptEvent):Void;
 
 /**
 * Called when EITHER player (usually the player) drops a hold note.
 */
-public function onNoteHoldDrop(event:HoldNoteScriptEvent):Void;
 }
 
 /**
@@ -88,12 +69,10 @@ interface IBPMSyncedScriptedClass extends IScriptedClass
 /**
 * Called once every step of the song.
 */
-public function onStepHit(event:SongTimeScriptEvent):Void;
 
 /**
 * Called once every beat of the song.
 */
-public function onBeatHit(event:SongTimeScriptEvent):Void;
 }
 
 /**
@@ -116,63 +95,51 @@ interface IPlayStateScriptedClass extends INoteScriptedClass extends IBPMSyncedS
 * Has properties to set whether the pause easter egg will happen,
 * and can be cancelled by scripts.
 */
-public function onPause(event:PauseScriptEvent):Void;
 
 /**
 * Called when the game is unpaused.
 */
-public function onResume(event:ScriptEvent):Void;
 
 /**
 * Called when the song has been parsed, before notes have been placed.
 * Use this to mutate the chart.
 */
-public function onSongLoaded(event:SongLoadScriptEvent):Void;
 
 /**
 * Called when the song starts (conductor time is 0 seconds).
 */
-public function onSongStart(event:ScriptEvent):Void;
 
 /**
 * Called when the song ends and the song is about to be unloaded.
 */
-public function onSongEnd(event:ScriptEvent):Void;
 
 /**
 * Called as the player runs out of health just before the game over substate is entered.
 */
-public function onGameOver(event:ScriptEvent):Void;
 
 /**
 * Called when the player restarts the song, either via pause menu or restarting after a game over.
 */
-public function onSongRetry(event:SongRetryEvent):Void;
 
 /**
 * Called when the player presses a key when no note is on the strumline.
 */
-public function onNoteGhostMiss(event:GhostMissNoteScriptEvent):Void;
 
 /**
 * Called when the song reaches an event.
 */
-public function onSongEvent(event:SongEventScriptEvent):Void;
 
 /**
 * Called when the countdown of the song starts.
 */
-public function onCountdownStart(event:CountdownScriptEvent):Void;
 
 /**
 * Called when the a part of the countdown happens.
 */
-public function onCountdownStep(event:CountdownScriptEvent):Void;
 
 /**
 * Called when the countdown of the song ends.
 */
-public function onCountdownEnd(event:CountdownScriptEvent):Void;
 }
 
 /**
@@ -183,32 +150,26 @@ interface IFreeplayScriptedClass extends IScriptedClass
 /**
 * Called when a capsule is selected.
 */
-public function onCapsuleSelected(event:CapsuleScriptEvent):Void;
 
 /**
 * Called when the current difficulty is changed.
 */
-public function onDifficultySwitch(event:CapsuleScriptEvent):Void;
 
 /**
 * Called when a song is selected.
 */
-public function onSongSelected(event:CapsuleScriptEvent):Void;
 
 /**
 * Called when the intro for Freeplay finishes.
 */
-public function onFreeplayIntroDone(event:FreeplayScriptEvent):Void;
 
 /**
 * Called when the Freeplay outro begins.
 */
-public function onFreeplayOutro(event:FreeplayScriptEvent):Void;
 
 /**
 * Called when Freeplay is closed.
 */
-public function onFreeplayClose(event:FreeplayScriptEvent):Void;
 }
 
 /**
@@ -219,17 +180,14 @@ interface ICharacterSelectScriptedClass extends IScriptedClass
 /**
 * Called when a character is selected.
 */
-public function onCharacterSelect(event:CharacterSelectScriptEvent):Void;
 
 /**
 * Called when the user presses BACK after confirming a character.
 */
-public function onCharacterDeselect(event:CharacterSelectScriptEvent):Void;
 
 /**
 * Called when a character has been confirmed.
 */
-public function onCharacterConfirm(event:CharacterSelectScriptEvent):Void;
 }
 
 /**
@@ -240,10 +198,5 @@ interface IDialogueScriptedClass extends IScriptedClass
 /**
 * Called as the dialogue starts, and before the first dialogue text is displayed.
 */
-public function onDialogueStart(event:DialogueScriptEvent):Void;
 
-public function onDialogueCompleteLine(event:DialogueScriptEvent):Void;
-public function onDialogueLine(event:DialogueScriptEvent):Void;
-public function onDialogueSkip(event:DialogueScriptEvent):Void;
-public function onDialogueEnd(event:DialogueScriptEvent):Void;
 }

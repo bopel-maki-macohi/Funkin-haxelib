@@ -1,4 +1,3 @@
-package funkin.api.newgrounds;
 
 
 /**
@@ -37,7 +36,6 @@ switch (outcome)
 case SUCCESS:
 case FAIL(error):
 }
-});
 }
 }
 }
@@ -61,7 +59,6 @@ case SUCCESS:
 
 case FAIL(error):
 }
-});
 }
 
 /**
@@ -73,7 +70,6 @@ case FAIL(error):
 */
 public static function submitLevelScore(levelId:String, difficultyId:String, score:Int):Void
 {
-Leaderboards.submitScore(Leaderboard.getLeaderboardByLevel(levelId), score, tag);
 }
 
 /**
@@ -85,7 +81,6 @@ Leaderboards.submitScore(Leaderboard.getLeaderboardByLevel(levelId), score, tag)
 */
 public static function submitSongScore(songId:String, difficultyId:String, score:Int):Void
 {
-Leaderboards.submitScore(Leaderboard.getLeaderboardBySong(songId, difficultyId), score, tag);
 }
 }
 
@@ -121,7 +116,6 @@ public static function getLeaderboardByLevel(levelId:String):Leaderboard
 */
 public function requestScores(leaderboard:Leaderboard, params:RequestScoresParams)
 {
-Leaderboards.requestScores(leaderboard, params);
 }
 }
 

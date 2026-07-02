@@ -1,4 +1,3 @@
-package funkin.util;
 
 /**
 * Utilities for performing mathematical operations.
@@ -9,7 +8,6 @@ class MathUtil
 * Euler's constant and the base of the natural logarithm.
 * Math.E is not a constant in Haxe, so we'll just define it ourselves.
 */
-public static final E:Float = 2.71828182845904523536;
 
 /**
 * Get the logarithm of a value with a given base.
@@ -49,7 +47,6 @@ public static function exp2(x:Float):Float
 /**
 * Performs a modulo operation to calculate the remainder of `a` divided by `b`.
 *
-* The definition of "remainder" varies by implementation;
 * this one is similar to GLSL or Python in that it uses Euclidean division, which always returns positive,
 * while Haxe's `%` operator uses signed truncated division.
 *
@@ -61,7 +58,6 @@ public static function exp2(x:Float):Float
 */
 public static function mod(a:Float, b:Float):Float
 {
-b = Math.abs(b);
 }
 
 /**
@@ -199,13 +195,7 @@ public static function smoothLerp(current:Float, target:Float, elapsed:Float, du
 */
 public static function gcd(m:Int, n:Int):Int
 {
-m = Math.floor(Math.abs(m));
-n = Math.floor(Math.abs(n));
 do
 {
-t = m;
-m = n;
-n = t % m;
-} while (true);
 }
 }

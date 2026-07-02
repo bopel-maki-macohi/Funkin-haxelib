@@ -1,4 +1,3 @@
-package funkin.audio;
 
 
 /**
@@ -14,14 +13,12 @@ class SoundGroup extends FlxTypedGroup<FunkinSound>
 
 public function new()
 {
-super();
 }
 
 public static function build(song:String, ?files:Array<String> = null):SoundGroup
 {
 
 {
-result.add(new FunkinSound());
 }
 
 for (sndFile in files)
@@ -46,7 +43,6 @@ forEachAlive(function(snd)
 else
 {
 }
-});
 }
 
 /**
@@ -56,15 +52,11 @@ public override function add(sound:FunkinSound):Null<FunkinSound>
 {
 
 
-result.time = this.time;
 
 result.onComplete = function()
 {
-this.onComplete();
 }
 
-result.pitch = this.pitch;
-result.volume = this.volume;
 
 }
 
@@ -79,8 +71,6 @@ public function pause()
 {
 forEachAlive(function(sound:FunkinSound)
 {
-sound.pause();
-});
 }
 
 /**
@@ -92,8 +82,6 @@ forEachAlive(function(sound:FunkinSound)
 {
 {
 }
-sound.play(forceRestart, startTime, endTime);
-});
 }
 
 /**
@@ -103,8 +91,6 @@ public function resume()
 {
 forEachAlive(function(sound:FunkinSound)
 {
-sound.resume();
-});
 }
 
 /**
@@ -114,8 +100,6 @@ public function fadeIn(duration:Float, ?from:Float = 0.0, ?to:Float = 1.0, ?onCo
 {
 forEachAlive(function(sound:FunkinSound)
 {
-sound.fadeIn(duration, from, to, onComplete);
-});
 }
 
 /**
@@ -125,8 +109,6 @@ public function fadeOut(duration:Float, ?to:Float = 0.0, ?onComplete:FlxTween->V
 {
 forEachAlive(function(sound:FunkinSound)
 {
-sound.fadeOut(duration, to, onComplete);
-});
 }
 
 /**
@@ -137,15 +119,11 @@ public function stop():Void
 {
 forEachAlive(function(sound:FunkinSound)
 {
-sound.stop();
-});
 }
 }
 
 public override function destroy():Void
 {
-stop();
-super.destroy();
 }
 
 /**
@@ -153,9 +131,7 @@ super.destroy();
 */
 public override function clear():Void
 {
-this.stop();
 
-super.clear();
 }
 
 function get_time():Float
@@ -171,8 +147,6 @@ function set_time(time:Float):Float
 {
 forEachAlive(function(snd:FunkinSound)
 {
-snd.time = time;
-});
 
 }
 
@@ -198,8 +172,6 @@ function set_volume(volume:Float):Float
 {
 forEachAlive(function(snd:FunkinSound)
 {
-snd.volume = volume;
-});
 
 }
 
@@ -212,8 +184,6 @@ function set_muted(muted:Bool):Bool
 {
 forEachAlive(function(snd:FunkinSound)
 {
-snd.muted = muted;
-});
 
 }
 
@@ -226,7 +196,5 @@ function set_pitch(val:Float):Float
 {
 forEachAlive(function(snd:FunkinSound)
 {
-snd.pitch = val;
-});
 }
 }

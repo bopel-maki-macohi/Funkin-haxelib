@@ -1,4 +1,3 @@
-package funkin.data.stage;
 
 
 class StageData
@@ -13,8 +12,6 @@ class StageData
 
 public function new()
 {
-this.version = StageRegistry.STAGE_DATA_VERSION;
-this.characters = makeDefaultCharacters();
 }
 
 function makeDefaultCharacters():StageDataCharacters
@@ -37,7 +34,6 @@ scale: 1,
 position: [0, 0],
 cameraOffsets: [0, 0]
 }
-};
 }
 
 /**
@@ -45,19 +41,16 @@ cameraOffsets: [0, 0]
 */
 public function serialize(pretty:Bool = true):String
 {
-updateVersionToLatest();
 
 }
 
 public function updateVersionToLatest():Void
 {
-this.version = StageRegistry.STAGE_DATA_VERSION;
 }
 }
 
 typedef StageDataCharacters =
 {
-};
 
 typedef StageDataProp =
 {
@@ -163,7 +156,6 @@ typedef StageDataProp =
 * Various settings for the prop.
 * Only available for texture atlases.
 */
-};
 
 typedef TextureAtlasData =
 {
@@ -203,7 +195,6 @@ typedef TextureAtlasData =
 * - Changes alpha to something other than 1.0
 * - Has a shader or blend mode
 */
-};
 
 typedef StageDataCharacter =
 {
@@ -244,4 +235,3 @@ typedef StageDataCharacter =
 * The angle of the character, as a float.
 * @default 0.0
 */
-};

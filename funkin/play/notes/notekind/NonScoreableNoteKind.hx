@@ -1,4 +1,3 @@
-package funkin.play.notes.notekind;
 
 
 /**
@@ -8,13 +7,9 @@ class NonScoreableNoteKind extends NoteKind
 {
 public function new()
 {
-super('non_scoreable', 'Non-scoreable');
-scoreable = false;
 }
 
 public override function onNoteMiss(event:NoteScriptEvent):Void
 {
-event.note.visible = false;
-event.cancel();
 }
 }

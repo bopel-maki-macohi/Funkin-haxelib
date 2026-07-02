@@ -1,4 +1,3 @@
-package funkin.data.event;
 
 abstract SongEventSchema(SongEventSchemaRaw)
 {
@@ -8,7 +7,6 @@ abstract SongEventSchema(SongEventSchemaRaw)
 
 public function new(?fields:Array<SongEventSchemaField>)
 {
-this = fields ?? [];
 }
 
 /**
@@ -122,11 +120,9 @@ function listAllFields(schema:SongEventSchemaRaw):Array<SongEventSchemaField>
 for (field in schema)
 {
 {
-result.push(field);
 }
 else
 {
-result = result.concat(field.children);
 }
 }
 
@@ -144,7 +140,6 @@ public function listAllFieldNames():Array<String>
 /**
 * The raw underlying data for a song event schema is an array of fields.
 */
-typedef SongEventSchemaRaw = Array<SongEventSchemaField>;
 
 /**
 * The individual fields of a song event schema.

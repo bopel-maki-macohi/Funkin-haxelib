@@ -1,4 +1,3 @@
-package funkin.util.plugins;
 
 
 /**
@@ -9,7 +8,6 @@ class EvacuateDebugPlugin extends FlxBasic
 {
 public function new()
 {
-super();
 }
 
 public static function initialize():Void
@@ -18,7 +16,6 @@ public static function initialize():Void
 
 public override function update(elapsed:Float):Void
 {
-super.update(elapsed);
 
 {
 }
@@ -26,6 +23,5 @@ super.update(elapsed);
 
 public override function destroy():Void
 {
-super.destroy();
 }
 }

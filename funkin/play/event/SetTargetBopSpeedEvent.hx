@@ -1,4 +1,3 @@
-package funkin.play.event;
 
 
 /**
@@ -8,7 +7,6 @@ class SetTargetBopSpeedSongEvent extends SongEvent
 {
 public function new()
 {
-super('SetTargetBopSpeed');
 }
 
 
@@ -33,11 +31,9 @@ else
 
 {
 {
-targetChar.danceEvery = rate;
 }
 else if (Std.isOfType(target, Bopper))
 {
-targetProp.danceEvery = rate;
 }
 }
 else
@@ -72,6 +68,5 @@ min: 0,
 step: 0.25,
 type: SongEventFieldType.FLOAT,
 units: 'beats/dance'
-}]);
 }
 }

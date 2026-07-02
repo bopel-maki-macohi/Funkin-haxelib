@@ -1,4 +1,3 @@
-package funkin.audio;
 
 
 /**
@@ -17,10 +16,7 @@ class FunkinSound extends FlxSound implements ICloneable<FunkinSound>
 static function get_onVolumeChanged():FlxTypedSignal<Float->Void>
 {
 {
-_onVolumeChanged = new FlxTypedSignal<Float->Void>();
 {
-_onVolumeChanged.dispatch(volume);
-});
 }
 }
 
@@ -36,14 +32,10 @@ _onVolumeChanged.dispatch(volume);
 
 function set_muted(value:Bool):Bool
 {
-muted = value;
-updateTransform();
 }
 
 override function set_volume(value:Float):Float
 {
-_volume = value.clamp(0.0, MAX_VOLUME);
-updateTransform();
 }
 
 
@@ -65,7 +57,6 @@ function get_isPlaying():Bool
 function get_waveformData():WaveformData
 {
 {
-_waveformData = WaveformDataParser.interpretFlxSound(this);
 }
 }
 
@@ -83,26 +74,20 @@ _waveformData = WaveformDataParser.interpretFlxSound(this);
 
 public function new()
 {
-super();
 }
 
 public override function update(elapsedSec:Float)
 {
 
 {
-_time += elapsedMs;
 {
-super.play();
-_shouldPlay = false;
 }
 }
 else
 {
-super.update(elapsedSec);
 
 {
 {
-SoundMixer.__soundChannels.push(_channel);
 }
 }
 }
@@ -111,11 +96,9 @@ SoundMixer.__soundChannels.push(_channel);
 public function togglePlayback():FunkinSound
 {
 {
-pause();
 }
 else
 {
-resume();
 }
 }
 
@@ -123,55 +106,39 @@ public override function play(forceRestart:Bool = false, startTime:Float = 0, ?e
 {
 
 {
-cleanup(false, true);
 }
 else if (playing)
 {
 }
 
 {
-this.active = true;
-this._shouldPlay = true;
-this._time = startTime;
-this.endTime = endTime;
 }
 else
 {
 {
-resume();
 }
 else
 {
-startSound(startTime);
 }
 
-this.endTime = endTime;
 }
 }
 
 public override function pause():FunkinSound
 {
 {
-_shouldPlay = false;
-_paused = true;
-active = false;
 }
 else
 {
-super.pause();
 }
 }
 
 public override function resume():FunkinSound
 {
 {
-_shouldPlay = true;
-_paused = false;
-active = true;
 }
 else
 {
-super.resume();
 }
 }
 
@@ -182,22 +149,17 @@ override function updateTransform():Void
 {
 {
 _transform.volume = #if FLX_SOUND_SYSTEM ((FlxG.sound.muted || this.muted) ? 0 : 1) * FlxG.sound.volume * #end
-(group != null ? group.volume : 1) * _volume * _volumeAdjust;
 }
 
 {
-_channel.soundTransform = _transform;
 }
 }
 
 public function clone():FunkinSound
 {
 
-sound._sound = openfl.media.Sound.fromAudioBuffer(this._sound.__buffer);
 
-sound.init(this.looped, this.autoDestroy, this.onComplete);
 
-sound._waveformData = this._waveformData;
 
 }
 
@@ -232,25 +194,18 @@ else
 }
 }
 {
-case MUSIC: Paths.music('$key/$key');
-case INST: Paths.inst('$key', suffix);
-default: Paths.music('$key/$key');
 }
 
 
 
-emptyPartialQueue();
 
 {
-params.loop ?? true, false, false, params.onComplete);
 
 {
-partialQueue.push(music);
 
 music.future.onComplete(function(partialMusic:Null<FunkinSound>)
 {
 
-});
 
 }
 else
@@ -260,7 +215,6 @@ else
 else
 {
 {
-setMusic(music);
 
 
 }
@@ -282,7 +236,6 @@ public static function setMusic(newMusic:FunkinSound):Void
 public static function emptyPartialQueue():Void
 {
 {
-partialQueue.pop().error("Cancel loading partial sound");
 }
 }
 
@@ -310,19 +263,13 @@ persist:Bool = false, ?onComplete:Void->Void, ?onLoad:Void->Void, important:Bool
 }
 
 
-sound.loadEmbedded(embeddedSound, looped, autoDestroy, onComplete);
 
 {
-sound._label = embeddedSound;
 }
 else
 {
-sound._label = 'unknown';
 }
 
-sound.volume = volume;
-sound.persist = persist;
-sound.important = important;
 
 
 
@@ -345,61 +292,37 @@ public static function loadPartial(path:String, start:Float = 0, end:Float = 1, 
 autoPlay:Bool = true, ?onComplete:Void->Void, ?onLoad:Void->Void):Promise<Null<FunkinSound>>
 {
 
-path = Paths.stripLibrary(path);
 
 
 {
-promise.complete(null);
 }
 else
 {
 promise.future.onError(function(e)
 {
-soundRequest.error("Sound loading was errored or cancelled");
-});
 
 soundRequest.future.onComplete(function(partialSound)
 {
-promise.complete(snd);
-});
 }
 
 }
 
 public override function destroy():Void
 {
-super.destroy();
 {
-fadeTween.cancel();
-fadeTween = null;
 }
-FlxTween.cancelTweensOf(this);
-this._label = 'unknown';
-this._waveformData = null;
 }
 
 override function startSound(startTime:Float)
 {
 {
-super.startSound(startTime);
 }
 
-_time = startTime;
-_paused = false;
 
 
 
-audioSource.offset = Std.int(startTime);
-audioSource.gain = volume;
 
-position.x = pan;
-position.z = -1 * Math.sqrt(1 - Math.pow(pan, 2));
-audioSource.position = position;
 
-_channel = new SoundChannel(_sound, audioSource, _transform);
-_channel.addEventListener(Event.SOUND_COMPLETE, stopped);
-pitch = _pitch;
-active = true;
 }
 
 /**
@@ -419,14 +342,12 @@ public static function stopAllAudio(musicToo:Bool = false, persistToo:Bool = fal
 {
 for (sound in pool)
 {
-sound.destroy();
 }
 }
 
 static function construct():FunkinSound
 {
 
-pool.add(sound);
 
 }
 

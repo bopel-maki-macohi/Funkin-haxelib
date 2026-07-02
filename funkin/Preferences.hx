@@ -1,4 +1,3 @@
-package funkin;
 
 /**
 * A core class which provides a store of user-configurable, globally relevant values.
@@ -21,8 +20,6 @@ static function set_framerate(value:Int):Int
 {
 
 
-save.options.framerate = value;
-Save.system.flush();
 
 {
 }
@@ -40,8 +37,6 @@ static function get_naughtyness():Bool
 
 static function set_naughtyness(value:Bool):Bool
 {
-save.options.naughtyness = value;
-Save.system.flush();
 }
 
 /**
@@ -55,8 +50,6 @@ static function get_downscroll():Bool
 
 static function set_downscroll(value:Bool):Bool
 {
-save.options.downscroll = value;
-Save.system.flush();
 }
 
 /**
@@ -70,8 +63,6 @@ static function get_flashingLights():Bool
 
 static function set_flashingLights(value:Bool):Bool
 {
-save.options.flashingLights = value;
-Save.system.flush();
 }
 
 /**
@@ -85,8 +76,6 @@ static function get_zoomCamera():Bool
 
 static function set_zoomCamera(value:Bool):Bool
 {
-save.options.zoomCamera = value;
-Save.system.flush();
 }
 
 /**
@@ -98,16 +87,12 @@ Save.system.flush();
 static function get_debugDisplay():DebugDisplayMode
 {
 {
-options.debugDisplay = convertedDebugDisplay;
-Save.system.flush();
 }
 }
 
 static function set_debugDisplay(value:DebugDisplayMode):DebugDisplayMode
 {
 
-save.options.debugDisplay = value;
-Save.system.flush();
 }
 
 /**
@@ -121,10 +106,7 @@ static function get_debugDisplayBGOpacity():Int
 
 static function set_debugDisplayBGOpacity(value:Int):Int
 {
-setDebugDisplayBGOpacity(value / 100);
 
-save.options.debugDisplayBGOpacity = value;
-Save.system.flush();
 }
 
 /**
@@ -137,12 +119,8 @@ static function get_hapticsMode():HapticsMode
 
 {
 case "None":
-HapticsMode.NONE;
 case "Notes Only":
-HapticsMode.NOTES_ONLY;
 default:
-HapticsMode.ALL;
-};
 }
 
 static function set_hapticsMode(value:HapticsMode):HapticsMode
@@ -151,15 +129,9 @@ static function set_hapticsMode(value:HapticsMode):HapticsMode
 switch (value)
 {
 case HapticsMode.NONE:
-string = "None";
 case HapticsMode.NOTES_ONLY:
-string = "Notes Only";
 default:
-string = "All";
-};
 
-save.options.hapticsMode = string;
-Save.system.flush();
 }
 
 /**
@@ -173,8 +145,6 @@ static function get_hapticsIntensityMultiplier():Float
 
 static function set_hapticsIntensityMultiplier(value:Float):Float
 {
-save.options.hapticsIntensityMultiplier = value;
-Save.system.flush();
 }
 
 /**
@@ -190,8 +160,6 @@ static function get_autoPause():Bool
 static function set_autoPause(value:Bool):Bool
 {
 
-save.options.autoPause = value;
-Save.system.flush();
 }
 
 /**
@@ -205,8 +173,6 @@ static function get_autoFullscreen():Bool
 
 static function set_autoFullscreen(value:Bool):Bool
 {
-save.options.autoFullscreen = value;
-Save.system.flush();
 }
 
 /**
@@ -221,8 +187,6 @@ static function get_globalOffset():Int
 
 static function set_globalOffset(value:Int):Int
 {
-save.options.globalOffset = value;
-Save.system.flush();
 }
 
 /**
@@ -238,7 +202,6 @@ case "Off":
 case "On":
 case "Adaptive":
 default:
-};
 }
 
 static function set_vsyncMode(value:lime.ui.WindowVSyncMode):lime.ui.WindowVSyncMode
@@ -247,19 +210,11 @@ static function set_vsyncMode(value:lime.ui.WindowVSyncMode):lime.ui.WindowVSync
 switch (value)
 {
 case lime.ui.WindowVSyncMode.OFF:
-string = "Off";
 case lime.ui.WindowVSyncMode.ON:
-string = "On";
 case lime.ui.WindowVSyncMode.ADAPTIVE:
-string = "Adaptive";
 default:
-string = "Off";
-};
 
-WindowUtil.setVSyncMode(value);
 
-save.options.vsyncMode = string;
-Save.system.flush();
 }
 
 
@@ -270,11 +225,8 @@ static function get_unlockedFramerate():Bool
 static function set_unlockedFramerate(value:Bool):Bool
 {
 {
-toggleFramerateCap(value);
 }
 
-save.options.unlockedFramerate = value;
-Save.system.flush();
 }
 
 /**
@@ -289,8 +241,6 @@ static function get_strumlineBackgroundOpacity():Int
 
 static function set_strumlineBackgroundOpacity(value:Int):Int
 {
-save.options.strumlineBackgroundOpacity = value;
-Save.system.flush();
 }
 
 /**
@@ -304,8 +254,6 @@ static function get_shouldHideMouse():Bool
 
 static function set_shouldHideMouse(value:Bool):Bool
 {
-save.options.screenshot.shouldHideMouse = value;
-Save.system.flush();
 }
 
 /**
@@ -319,8 +267,6 @@ static function get_fancyPreview():Bool
 
 static function set_fancyPreview(value:Bool):Bool
 {
-save.options.screenshot.fancyPreview = value;
-Save.system.flush();
 }
 
 /**
@@ -334,8 +280,6 @@ static function get_previewOnSave():Bool
 
 static function set_previewOnSave(value:Bool):Bool
 {
-save.options.screenshot.previewOnSave = value;
-Save.system.flush();
 }
 
 /**
@@ -344,10 +288,7 @@ Save.system.flush();
 public static function init():Void
 {
 
-setDebugDisplayMode(Preferences.debugDisplay);
-setDebugDisplayBGOpacity(Preferences.debugDisplayBGOpacity / 100);
 
-toggleFramerateCap(Preferences.unlockedFramerate);
 
 }
 
@@ -359,14 +300,12 @@ public static function setDebugDisplayMode(mode:DebugDisplayMode):Void
 {
 
 
-Main.debugDisplay.isAdvanced = (mode == DebugDisplayMode.Advanced);
 
 }
 
 static function setDebugDisplayBGOpacity(value:Float):Void
 {
 
-Main.debugDisplay.backgroundOpacity = value;
 }
 
 /**
@@ -380,8 +319,6 @@ static function get_subtitles():Bool
 
 static function set_subtitles(value:Bool):Bool
 {
-save.options.subtitles = value;
-Save.system.flush();
 }
 
 /**
@@ -396,8 +333,6 @@ static function get_screenTimeout():Bool
 static function set_screenTimeout(value:Bool):Bool
 {
 
-save.mobileOptions.screenTimeout = value;
-Save.system.flush();
 }
 
 /**
@@ -411,8 +346,6 @@ static function get_controlsScheme():String
 
 static function set_controlsScheme(value:String):String
 {
-save.mobileOptions.controlsScheme = value;
-Save.system.flush();
 }
 
 /**
@@ -426,7 +359,5 @@ static function get_noAds():Bool
 
 static function set_noAds(value:Bool):Bool
 {
-save.mobileOptions.noAds = value;
-Save.system.flush();
 }
 }

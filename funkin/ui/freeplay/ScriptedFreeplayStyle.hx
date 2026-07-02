@@ -1,4 +1,3 @@
-package funkin.ui.freeplay;
 
 /**
 * A script that can be tied to a Freeplay style.

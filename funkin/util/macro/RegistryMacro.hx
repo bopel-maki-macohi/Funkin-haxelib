@@ -1,10 +1,5 @@
-package funkin.util.macro;
 
 
-using Lambda;
-using haxe.macro.ExprTools;
-using haxe.macro.TypeTools;
-using StringTools;
 
 /**
 * The type parameters for a class extending `BaseRegistry`.
@@ -39,11 +34,8 @@ public static macro function buildRegistry():Array<Field>
 
 
 
-buildEntryImpl(typeParams.entryType, cls);
 
-fields = fields.concat(buildRegistryMethods(cls, fields, typeParams.entryType, typeParams.dataType));
 
-cls.meta.add(":funkinProcessed", [], cls.pos);
 
 }
 
@@ -57,10 +49,7 @@ public static macro function buildEntry():Array<Field>
 
 
 
-fields = fields.concat(buildEntryVariables(cls, entryData));
-fields = fields.concat(buildEntryMethods(cls));
 
-cls.meta.add(":funkinProcessed", [], cls.pos);
 
 }
 
@@ -74,11 +63,8 @@ static function getTypeParams(cls:ClassType):RegistryTypeParams
 switch (cls.superClass.t.get().kind)
 {
 case KGenericInstance(_, _params):
-params = _params;
 case KGeneric:
-params = cls.superClass.params;
 default:
-throw '${cls.name}: Could not interpret type parameters of Registry class.';
 }
 
 for (param in params)
@@ -86,11 +72,8 @@ for (param in params)
 switch (param)
 {
 case TInst(t, _):
-typeParams.push(t.get());
 case TType(t, _):
-typeParams.push(t.get());
 default:
-throw 'Not a class';
 }
 }
 }
@@ -121,7 +104,6 @@ public function listBaseGameEntryIds():Array<String>
 public function listModdedEntryIds():Array<String>
 {
 {
-});
 }
 
 function getScriptedClassNames()
@@ -134,30 +116,23 @@ function createScriptedEntry(clsName:String)
 
 public function parseEntryData(id:String)
 {
-parser.ignoreUnknownVariables = false;
 
 switch (this.loadEntryFile(id))
 {
 case {fileName: fileName, contents: contents}:
-parser.fromJson(funkin.util.SerializerUtil.sanitizeJSON(contents), fileName);
 default:
 }
 
 {
-this.printErrors(parser.errors, id);
 }
 }
 
 public function parseEntryDataRaw(contents:String, ?fileName:String)
 {
-parser.ignoreUnknownVariables = false;
-parser.fromJson(contents, fileName);
 
 {
-this.printErrors(parser.errors, fileName);
 }
 }
-}).fields.filter((field) -> return !MacroUtil.fieldAlreadyExists(field.name));
 }
 
 /**
@@ -174,12 +149,10 @@ switch (cls.interfaces[0].params[0])
 case Type.TInst(t, _):
 case Type.TType(t, _):
 default:
-throw '${cls.name}: Type parameter for Entry must be a Class or typedef';
 }
 }
 catch (e)
 {
-throw '${cls.name}: IRegistryEntry must be the last implemented interface';
 }
 }
 
@@ -193,10 +166,7 @@ static function buildEntryVariables(cls:ClassType, entryData:Dynamic):Array<Fiel
 {
 
 {
-public final id:String;
 
-public final _data:Null<$entryDataType>;
-}).fields.filter((field) -> return !MacroUtil.fieldAlreadyExists(field.name));
 }
 
 /**
@@ -218,9 +188,7 @@ public function toString()
 
 public function destroy()
 {
-${Context.parse(impl, Context.currentPos())}.destroy(this);
 }
-}).fields.filter((field) -> return !MacroUtil.fieldAlreadyExists(field.name));
 }
 
 /**
@@ -254,7 +222,6 @@ public static inline function destroy(me:$clsType)
 {
 }
 }).fields
-});
 }
 
 static function getRegistryDataFilePath(cls:ClassType, fields:Array<Field>):String
@@ -273,10 +240,8 @@ switch (superCall.expr)
 case ECall(_, args):
 
 default:
-Context.error('${cls.name}.new: RegistryMacro expected super call', field.pos);
 }
 default:
-Context.error('${cls.name}.new: RegistryMacro expected super call', field.pos);
 }
 default:
 }
@@ -290,7 +255,6 @@ static function listBaseGameEntryIds(dataFilePath:String):Array<Expr>
 
 for (file in files)
 {
-result.push(macro $v{file.replace('.json', '')});
 }
 
 }

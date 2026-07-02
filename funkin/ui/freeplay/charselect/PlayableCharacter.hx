@@ -1,4 +1,3 @@
-package funkin.ui.freeplay.charselect;
 
 
 /**
@@ -12,11 +11,8 @@ class PlayableCharacter implements IRegistryEntry<PlayerData>
 */
 public function new(id:String, ?params:Dynamic)
 {
-this.id = id;
-_data = _fetchData(id);
 
 {
-throw 'Could not parse playable character data for id: $id';
 }
 }
 

@@ -1,4 +1,3 @@
-package funkin.ui.debug.charting.commands;
 
 /**
 * Actions in the chart editor are backed by the Command pattern
@@ -15,14 +14,12 @@ interface ChartEditorCommand
 * Calling this function should perform the action that this command represents.
 * @param state The ChartEditorState to perform the action on.
 */
-public function execute(state:ChartEditorState):Void;
 
 /**
 * Calling this function should perform the inverse of the action that this command represents,
 * effectively undoing the action. Assume that the original action was the last action performed.
 * @param state The ChartEditorState to undo the action on.
 */
-public function undo(state:ChartEditorState):Void;
 
 /**
 * Return whether or not this command should be appended to the in the undo/redo history.
@@ -31,11 +28,9 @@ public function undo(state:ChartEditorState):Void;
 *
 * Called after `execute()` is performed.
 */
-public function shouldAddToHistory(state:ChartEditorState):Bool;
 
 /**
 * Get a short description of the action (for the UI).
 * For example, return `Add Left Note` to display `Undo Add Left Note` in the menu.
 */
-public function toString():String;
 }

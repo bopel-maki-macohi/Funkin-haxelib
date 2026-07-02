@@ -1,11 +1,9 @@
-package funkin.ui.debug.charting.handlers;
 
 
 class ChartEditorNotificationHandler
 {
 public static function setupNotifications(state:ChartEditorState):Void
 {
-NotificationManager.GUTTER_SIZE = 45;
 
 NotificationManager.instance.animationFn = AnimateFromBottom;
 }
@@ -16,14 +14,8 @@ public static function AnimateFromBottom(notifications:Array<Notification>):Arra
 
 for (notification in notifications)
 {
-builder.setPosition(0, "top", Std.int(notification.top), true);
-builder.setPosition(100, "top", Std.int(baselineY - notification.height), true);
 {
-builder.setPosition(0, "opacity", 0, true);
-builder.setPosition(100, "opacity", 1, true);
 }
-builders.push(builder);
-baselineY -= (notification.height + @:privateAccess NotificationManager.SPACING);
 }
 
 }
@@ -116,7 +108,6 @@ body: body,
 type: type ?? NotificationType.Default,
 expiryMs: Constants.NOTIFICATION_DISMISS_TIME,
 actions: actions
-});
 
 {
 actionsContainer.walkComponents(function(component)
@@ -125,11 +116,8 @@ actionsContainer.walkComponents(function(component)
 {
 button.onClick = function(_)
 {
-action.callback(action);
-};
 }
 }
-});
 }
 
 }

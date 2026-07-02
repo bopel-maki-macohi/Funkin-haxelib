@@ -1,4 +1,3 @@
-package funkin.ui.credits;
 
 /**
 * The members of the Funkin' Crew, organized by their roles.

@@ -1,4 +1,3 @@
-package funkin.graphics.rendering;
 
 
 /**
@@ -10,8 +9,6 @@ class MeshRender extends FlxStrip
 
 public function new(x, y, ?col:FlxColor = FlxColor.WHITE)
 {
-super(x, y);
-makeGraphic(1, 1, col);
 }
 
 /**
@@ -20,13 +17,8 @@ makeGraphic(1, 1, col);
 public inline function build_vertex(x:Float, y:Float, u:Float = 0, v:Float = 0):Int
 {
 
-vertices[pos] = x;
-vertices[pos + 1] = y;
 
-uvtData[pos] = u;
-uvtData[pos + 1] = v;
 
-vertex_count++;
 }
 
 /**
@@ -37,17 +29,12 @@ vertex_count++;
 */
 public function add_tri(a:Int, b:Int, c:Int):Void
 {
-indices[index_count] = a;
-indices[index_count + 1] = b;
-indices[index_count + 2] = c;
 
-index_count += 3;
 }
 
 public function build_tri(ax:Float, ay:Float, bx:Float, by:Float, cx:Float, cy:Float, au:Float = 0, av:Float = 0, bu:Float = 0, bv:Float = 0, cu:Float = 0,
 cv:Float = 0):Void
 {
-add_tri(build_vertex(ax, ay, au, av), build_vertex(bx, by, bu, bv), build_vertex(cx, cy, cu, cv));
 }
 
 /**
@@ -58,13 +45,10 @@ add_tri(build_vertex(ax, ay, au, av), build_vertex(bx, by, bu, bv), build_vertex
 */
 public function add_quad(a:Int, b:Int, c:Int, d:Int):Void
 {
-add_tri(a, b, c);
-add_tri(a, c, d);
 }
 
 public override function draw():Void
 {
-super.draw();
 }
 
 /**
@@ -79,17 +63,9 @@ public function build_quad(ax:Float, ay:Float, bx:Float, by:Float, cx:Float, cy:
 bv:Float = 0, cu:Float = 0, cv:Float = 0, du:Float = 0, dv:Float = 0):Void
 {
 
-add_tri(a, b, c);
-add_tri(a, c, d);
 }
 
 public function clear()
 {
-vertices.length = 0;
-indices.length = 0;
-uvtData.length = 0;
-colors.length = 0;
-vertex_count = 0;
-index_count = 0;
 }
 }

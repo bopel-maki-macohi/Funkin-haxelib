@@ -1,4 +1,3 @@
-package funkin.play.notes.notekind;
 
 
 class NoteKindManager
@@ -35,12 +34,9 @@ public static function listNoteKinds():Array<String>
 */
 public static function initialize():Void
 {
-clearNoteKindCache();
 
 //
 //
-registerBaseNoteKinds();
-registerScriptedNoteKinds();
 }
 
 /**
@@ -50,11 +46,9 @@ public static function registerBaseNoteKinds():Void
 {
 for (noteKindCls in BUILTIN_KINDS)
 {
-|| noteKindClsName == 'funkin.play.notes.notekind.ScriptedNoteKind') continue;
 
 
 {
-noteKinds.set(kind.noteKind, kind);
 }
 else
 {
@@ -72,7 +66,6 @@ for (scriptedClass in scriptedClassName)
 {
 try
 {
-noteKinds.set(script.noteKind, script);
 }
 catch (e)
 {
@@ -91,14 +84,12 @@ public static function callEvent(event:ScriptEvent):Void
 
 
 {
-ScriptEventDispatcher.callEvent(noteKind, event);
 }
 }
 else // call the event for all note kind scripts
 {
 for (noteKind in noteKinds.iterator())
 {
-ScriptEventDispatcher.callEvent(noteKind, event);
 }
 }
 }
@@ -128,7 +119,6 @@ public static function listNoteStylesByNoteData(songNoteDatas:Array<SongNoteData
 for (songNoteData in songNoteDatas)
 {
 {
-results.push(noteStyle);
 }
 }
 }
@@ -142,7 +132,6 @@ results.push(noteStyle);
 public static function getNoteStyleId(noteKind:String, ?suffix:String):Null<String>
 {
 {
-suffix = null;
 }
 
 {
@@ -169,6 +158,5 @@ public static function getParams(noteKind:Null<String>):Array<NoteKindParam>
 */
 public static function clearNoteKindCache():Void
 {
-noteKinds.clear();
 }
 }

@@ -1,4 +1,3 @@
-package funkin.util;
 
 
 /**
@@ -17,7 +16,6 @@ class ReflectUtil
 */
 public static function callMethod(obj:Any, name:String, args:Array<Any>):Any
 {
-throw "Function Reflect.callMethod is blacklisted.";
 }
 
 /**
@@ -129,8 +127,6 @@ public static function getField(obj:Any, name:String):Any
 public static function getAnonymousField(obj:Any, name:String):Any
 {
 {
-throw 'Attempted to retrieve blacklisted field "${name}"';
-};
 
 }
 
@@ -175,8 +171,6 @@ public static function getAnonymousFieldsOf(obj:Any):Array<String>
 public static function getProperty(obj:Any, name:String):Any
 {
 {
-throw 'Attempted to retrieve blacklisted field "${name}"';
-};
 
 }
 
@@ -269,7 +263,6 @@ public static function setProperty(obj:Any, name:String, value:Any):Void
 */
 public static function createEmptyInstance(cls:Class<Any>):Any
 {
-throw "Function Type.createEmptyInstance is blacklisted.";
 }
 
 /**
@@ -278,7 +271,6 @@ throw "Function Type.createEmptyInstance is blacklisted.";
 */
 public static function createInstance(cls:Class<Any>, args:Array<Any>):Any
 {
-throw "Function Type.createInstance is blacklisted.";
 }
 
 /**
@@ -287,7 +279,6 @@ throw "Function Type.createInstance is blacklisted.";
 */
 public static function resolveClass(name:String):Class<Any>
 {
-throw "Function Type.resolveClass is blacklisted.";
 }
 
 /**
@@ -296,7 +287,6 @@ throw "Function Type.resolveClass is blacklisted.";
 */
 public static function resolveEnum(name:String):Enum<Any>
 {
-throw "Function Type.resolveEnum is blacklisted.";
 }
 
 /**
@@ -305,7 +295,6 @@ throw "Function Type.resolveEnum is blacklisted.";
 */
 public static function typeof(value:Any):ValueType
 {
-throw "Function Type.typeof is blacklisted.";
 }
 
 /**

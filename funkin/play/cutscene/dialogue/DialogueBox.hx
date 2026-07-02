@@ -1,4 +1,3 @@
-package funkin.play.cutscene.dialogue;
 
 
 class DialogueBox extends FlxSpriteGroup implements IDialogueScriptedClass implements IRegistryEntry<DialogueBoxData>
@@ -23,8 +22,6 @@ function get_dialogueBoxName():String
 function set_animOffsets(value:Array<Float>):Array<Float>
 {
 
-this.x = globalOffsets[0] + originalPosition[0] + value[0];
-this.y = globalOffsets[1] + originalPosition[1] + value[1];
 
 }
 
@@ -35,13 +32,8 @@ this.y = globalOffsets[1] + originalPosition[1] + value[1];
 function set_globalOffsets(value:Array<Float>):Array<Float>
 {
 
-this.screenCenter();
 
-originalPosition[0] = this.x;
-originalPosition[1] = this.y;
 
-this.x = value[0] + originalPosition[0] + animOffsets[0];
-this.y = value[1] + originalPosition[1] + animOffsets[1];
 
 }
 
@@ -49,92 +41,59 @@ this.y = value[1] + originalPosition[1] + animOffsets[1];
 
 function set_text(value:String):String
 {
-this.text = value;
 
-textDisplay.resetText(this.text);
-textDisplay.start();
 
 }
 
 
 function set_speed(value:Float):Float
 {
-this.speed = value;
 textDisplay.delay = this.speed * 0.05; // 1.0 x 0.05
 }
 
 public function new(id:String, ?params:Dynamic)
 {
-super();
-this.id = id;
-this._data = _fetchData(id);
 
 {
-throw 'Could not parse dialogue box data for id: $id';
 }
 }
 
 public function onCreate(event:ScriptEvent):Void
 {
-this.x = 0;
-this.y = 0;
-this.globalOffsets = [0, 0];
-this.alpha = 1;
 
-loadSpritesheet();
-loadAnimations();
 
-loadText();
 }
 
 function loadSpritesheet():Void
 {
 {
-remove(this.boxSprite);
-this.boxSprite = null;
 }
 
-this.boxSprite = new FunkinSprite(0, 0);
 
 
 {
 }
 
-this.boxSprite.frames = tex;
 
 {
-this.boxSprite.antialiasing = false;
 }
 else
 {
-this.boxSprite.antialiasing = true;
 }
 
-this.flipX = _data.flipX;
-this.flipY = _data.flipY;
-this.globalOffsets = _data.offsets;
-this.setScale(_data.scale);
 
-add(this.boxSprite);
 }
 
 public function setText(newText:String):Void
 {
-textDisplay.prefix = '';
-textDisplay.resetText(newText);
-textDisplay.start();
 }
 
 public function appendText(newText:String):Void
 {
-textDisplay.prefix = this.textDisplay.text;
-textDisplay.resetText(newText);
-textDisplay.start();
 }
 
 public function skip():Void
 {
-textDisplay.skip();
 }
 
 /**
@@ -152,9 +111,6 @@ function onTypingComplete():Void
 public function setScale(scale:Null<Float>):Void
 {
 
-this.boxSprite.scale.x = scale;
-this.boxSprite.scale.y = scale;
-this.boxSprite.updateHitbox();
 }
 
 /**
@@ -163,48 +119,31 @@ this.boxSprite.updateHitbox();
 */
 public override function kill():Void
 {
-super.kill();
 {
-this.boxSprite.kill();
-this.boxSprite = null;
 }
 {
-this.textDisplay.kill();
-this.textDisplay = null;
 }
-this.clear();
 }
 
 public override function revive():Void
 {
-super.revive();
 
-this.x = 0;
-this.y = 0;
-this.globalOffsets = [0, 0];
-this.visible = true;
-this.alpha = 1.0;
 }
 
 function loadAnimations():Void
 {
 
-FlxAnimationUtil.addAtlasAnimations(this.boxSprite, _data.animations);
 
 for (anim in _data.animations)
 {
 {
-setAnimationOffsets(anim.name, 0, 0);
 }
 else
 {
-setAnimationOffsets(anim.name, anim.offsets[0], anim.offsets[1]);
 }
 }
 
 
-boxSprite.animation.onFrameChange.add(this.onAnimationFrame);
-boxSprite.animation.onFinish.add(this.onAnimationFinished);
 }
 
 /**
@@ -231,19 +170,10 @@ function onAnimationFrame(name:String = "", frameNumber:Int = -1, frameIndex:Int
 
 function loadText():Void
 {
-textDisplay = new FunkinTypeText(0, 0, 300, '', 32);
-textDisplay.fieldWidth = _data.text.width;
 textDisplay.setFormat(_data.text.fontFamily, _data.text.size, FlxColor.fromString(_data.text.color), LEFT, SHADOW,
-FlxColor.fromString(_data.text.shadowColor ?? '#00000000'), false);
-textDisplay.borderSize = _data.text.shadowWidth ?? 2;
-textDisplay.sounds = [FunkinSound.load(Paths.sound('pixelText'), 0.6)];
 
-textDisplay.completeCallback = onTypingComplete;
 
-textDisplay.x += _data.text.offsets[0];
-textDisplay.y += _data.text.offsets[1];
 
-add(textDisplay);
 }
 
 /**
@@ -254,9 +184,7 @@ add(textDisplay);
 public function playAnimation(name:String, restart:Bool = false, reversed:Bool = false):Void
 {
 
-this.boxSprite.animation.play(correctName, restart, false, 0);
 
-applyAnimationOffsets(correctName);
 }
 
 /**
@@ -299,7 +227,6 @@ public function getCurrentAnimation():String
 */
 public function setAnimationOffsets(name:String, xOffset:Float, yOffset:Float):Void
 {
-animationOffsets.set(name, [xOffset, yOffset]);
 }
 
 /**
@@ -308,11 +235,9 @@ animationOffsets.set(name, [xOffset, yOffset]);
 function applyAnimationOffsets(name:String):Void
 {
 {
-this.animOffsets = offsets;
 }
 else
 {
-this.animOffsets = [0, 0];
 }
 }
 
@@ -346,17 +271,9 @@ public function onUpdate(event:UpdateScriptEvent):Void
 
 public function onDestroy(event:ScriptEvent):Void
 {
-boxSprite = null;
-textDisplay = null;
 
-this.clear();
 
-this.x = 0;
-this.y = 0;
-this.globalOffsets = [0, 0];
-this.alpha = 0;
 
-this.kill();
 }
 
 public function onScriptEvent(event:ScriptEvent):Void

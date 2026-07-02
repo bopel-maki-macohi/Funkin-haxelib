@@ -1,10 +1,7 @@
-package funkin.save;
 
 
 class Save implements ConsoleClass
 {
-public static final SAVE_DATA_VERSION:thx.semver.Version = "2.1.1";
-public static final SAVE_DATA_VERSION_RULE:thx.semver.VersionRule = ">=2.1.0 <2.2.0";
 
 
 /**
@@ -34,9 +31,7 @@ _instance = Save.system.clearSlot(Constants.BASE_SAVE_SLOT);
 */
 public function new(?data:RawSaveData)
 {
-this.data = data ??= Save.getDefaultData();
 
-updateVersionToLatest();
 }
 
 public static function getDefaultData():RawSaveData
@@ -133,7 +128,6 @@ bfChar: "bf",
 gfChar: "gf",
 dadChar: "dad"
 }
-};
 }
 
 /**
@@ -217,37 +211,28 @@ function get_modOptions():Map<String, Dynamic>
 
 function get_stageBoyfriendChar():String
 {
-|| CharacterDataParser.fetchCharacterData(data.optionsStageEditor.bfChar) == null) data.optionsStageEditor.bfChar = "bf";
 }
 
 function set_stageBoyfriendChar(value:String):String
 {
-data.optionsStageEditor.bfChar = value;
-Save.system.flush();
 }
 
 
 function get_stageGirlfriendChar():String
 {
-|| CharacterDataParser.fetchCharacterData(data.optionsStageEditor.gfChar ?? "") == null) data.optionsStageEditor.gfChar = "gf";
 }
 
 function set_stageGirlfriendChar(value:String):String
 {
-data.optionsStageEditor.gfChar = value;
-Save.system.flush();
 }
 
 
 function get_stageDadChar():String
 {
-|| CharacterDataParser.fetchCharacterData(data.optionsStageEditor.dadChar ?? "") == null) data.optionsStageEditor.dadChar = "dad";
 }
 
 function set_stageDadChar(value:String):String
 {
-data.optionsStageEditor.dadChar = value;
-Save.system.flush();
 }
 
 /// UTIL FUNCTIONS
@@ -257,7 +242,6 @@ Save.system.flush();
 */
 public function flush():Void
 {
-Save.system.flush();
 }
 
 /**
@@ -267,8 +251,6 @@ Save.system.flush();
 public function addCharacterSeen(character:String):Void
 {
 {
-data.unlocks.charactersSeen.push(character);
-Save.system.flush();
 }
 }
 
@@ -286,16 +268,12 @@ public function getLevelScore(levelId:String, difficultyId:String = 'normal'):Nu
 data.scores = {
 songs: [],
 levels: []
-};
 }
 else
 {
-data.scores.levels = [];
 }
 }
 {
-level = [];
-data.scores.levels.set(levelId, level);
 }
 }
 
@@ -305,18 +283,12 @@ data.scores.levels.set(levelId, level);
 public function setLevelScore(levelId:String, difficultyId:String, score:SaveScoreData):Void
 {
 {
-level = [];
-data.scores.levels.set(levelId, level);
 }
-level.set(difficultyId, score);
-Save.system.flush();
 }
 
 public function isLevelHighScore(levelId:String, difficultyId:String = 'normal', score:SaveScoreData):Bool
 {
 {
-level = [];
-data.scores.levels.set(levelId, level);
 }
 {
 }
@@ -325,7 +297,6 @@ data.scores.levels.set(levelId, level);
 public function hasBeatenLevel(levelId:String, ?difficultyList:Array<String>):Bool
 {
 {
-difficultyList = ['easy', 'normal', 'hard'];
 }
 for (difficulty in difficultyList)
 {
@@ -334,7 +305,6 @@ for (difficulty in difficultyList)
 }
 else
 {
-continue;
 }
 }
 }
@@ -351,11 +321,8 @@ continue;
 public function getSongScore(songId:String, difficultyId:String = 'normal', ?variation:String):Null<SaveScoreData>
 {
 {
-song = [];
-data.scores.songs.set(songId, song);
 }
 {
-difficultyId = '${difficultyId}-${variation}';
 }
 }
 
@@ -369,11 +336,7 @@ public function getSongRank(songId:String, difficultyId:String = 'normal', ?vari
 public function setSongScore(songId:String, difficultyId:String, score:SaveScoreData):Void
 {
 {
-song = [];
-data.scores.songs.set(songId, song);
 }
-song.set(difficultyId, score);
-Save.system.flush();
 }
 
 /**
@@ -382,18 +345,12 @@ Save.system.flush();
 public function applySongRank(songId:String, difficultyId:String, newScoreData:SaveScoreData):Void
 {
 {
-song = [];
-data.scores.songs.set(songId, song);
 }
 {
-setSongScore(songId, difficultyId, newScoreData);
 }
 score: (previousScoreData.score > newScoreData.score) ? previousScoreData.score : newScoreData.score,
 tallies: (previousRank > newRank
 || Scoring.tallyCompletion(previousScoreData.tallies) > Scoring.tallyCompletion(newScoreData.tallies)) ? previousScoreData.tallies : newScoreData.tallies
-};
-song.set(difficultyId, newScore);
-Save.system.flush();
 }
 
 /**
@@ -406,8 +363,6 @@ Save.system.flush();
 public function isSongHighScore(songId:String, difficultyId:String = 'normal', score:SaveScoreData):Bool
 {
 {
-song = [];
-data.scores.songs.set(songId, song);
 }
 {
 }
@@ -425,8 +380,6 @@ public function isSongHighRank(songId:String, difficultyId:String = 'normal', sc
 {
 }
 {
-song = [];
-data.scores.songs.set(songId, song);
 }
 {
 }
@@ -449,7 +402,6 @@ data.scores.songs.set(songId, song);
 public function hasBeatenSong(songId:String, ?difficultyList:Array<String>, ?variation:String):Bool
 {
 {
-difficultyList = ['easy', 'normal', 'hard'];
 }
 for (difficulty in difficultyList)
 {
@@ -458,7 +410,6 @@ for (difficulty in difficultyList)
 }
 else
 {
-continue;
 }
 }
 }
@@ -467,24 +418,17 @@ continue;
 public function isSongFavorited(id:String):Bool
 {
 {
-data.favoriteSongs = [];
-Save.system.flush();
-};
 }
 
 public function favoriteSong(id:String):Void
 {
 {
-data.favoriteSongs.push(id);
-Save.system.flush();
 }
 }
 
 public function unfavoriteSong(id:String):Void
 {
 {
-data.favoriteSongs.remove(id);
-Save.system.flush();
 }
 }
 
@@ -506,9 +450,7 @@ public function setControls(playerId:Int, inputType:Device, controls:SaveControl
 switch (inputType)
 {
 case Keys:
-getPlayer(playerId).keyboard = controls;
 case Gamepad(_):
-getPlayer(playerId).gamepad = controls;
 }
 }
 
@@ -533,7 +475,6 @@ public function getModOptions(modId:String):Dynamic
 {
 {
 data.mods.modOptions.set(modId, {
-});
 }
 
 }
@@ -547,8 +488,6 @@ data.mods.modOptions.set(modId, {
 */
 public function setModOptions(modId:String, options:Dynamic):Void
 {
-data.mods.modOptions.set(modId, options);
-Save.system.flush();
 }
 
 /**
@@ -577,8 +516,6 @@ case BOUND(_, _):
 */
 static function handleSaveDataError(slot:Int):Save
 {
-msg += '\nPlease report this issue to the developers.';
-funkin.util.WindowUtil.showError("Save Data Failure", msg);
 }
 
 public static function debug_queryBadSaveData():Void
@@ -589,7 +526,6 @@ public static function debug_queryBadSaveData():Void
 
 static function fetchFromSlotRaw(slot:Int):Null<Dynamic>
 {
-targetSaveData.bind(Constants.SAVE_NAME + slot, Constants.SAVE_PATH);
 }
 
 /**
@@ -599,7 +535,6 @@ targetSaveData.bind(Constants.SAVE_NAME + slot, Constants.SAVE_PATH);
 */
 static function querySlot(slot:Int):Bool
 {
-targetSaveData.bind(Constants.SAVE_NAME + slot, Constants.SAVE_PATH);
 switch (targetSaveData.status)
 {
 case EMPTY:
@@ -635,12 +570,10 @@ public function serializeJson(pretty:Bool = true):String
 
 public function updateVersionToLatest():Void
 {
-this.data.version = Save.SAVE_DATA_VERSION;
 }
 
 public function debug_dumpSaveJsonSave():Void
 {
-FileUtil.saveFile(haxe.io.Bytes.ofString(this.serializeJson()), [FileUtil.FILE_FILTER_JSON], null, null, './save.json', 'Write save data as JSON...');
 }
 
 public function debug_dumpSaveJsonPrint():Void
@@ -663,14 +596,9 @@ funkin.api.newgrounds.NGSaveSlot.instance.load((data:Dynamic) ->
 
 
 _instance = gameSave;
-onFinish();
 }, (error:io.newgrounds.Call.CallError) ->
 {
 
-msg += '\n${errorMsg}';
-msg += '\nAre you sure you are connected to the internet?';
-funkin.util.WindowUtil.showError("Newgrounds Save Slot Failure", msg);
-});
 }
 }
 
@@ -712,7 +640,6 @@ typedef RawSaveData =
 /**
 * The user's preferences specific to the Stage Editor.
 */
-};
 
 typedef SaveApiData =
 {
@@ -747,7 +674,6 @@ typedef SaveHighScoresData =
 /**
 * Scores for individual songs.
 */
-};
 
 typedef SaveDataMods =
 {
@@ -756,17 +682,14 @@ typedef SaveDataMods =
 /**
 * Key is the level ID, value is the SaveScoreLevelData.
 */
-typedef SaveScoreLevelsData = Map<String, SaveScoreDifficultiesData>;
 
 /**
 * Key is the song ID, value is the data for each difficulty.
 */
-typedef SaveScoreSongsData = Map<String, SaveScoreDifficultiesData>;
 
 /**
 * Key is the difficulty ID, value is the score.
 */
-typedef SaveScoreDifficultiesData = Map<String, SaveScoreData>;
 
 /**
 * An individual score. Contains the score, accuracy, and count of each judgement hit.
@@ -886,10 +809,8 @@ typedef SaveDataOptions =
 * @param previewOnSave Only show the fancy preview after a screenshot is saved? Default: `true`
 */
 {
-};
 
 {
-};
 }
 
 typedef PlayerControlData =

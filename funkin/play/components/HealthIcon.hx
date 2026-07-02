@@ -1,4 +1,3 @@
-package funkin.play.components;
 
 
 /**
@@ -78,7 +77,6 @@ class HealthIcon extends FunkinSprite
 * The size of a non-pixel icon when using the legacy format.
 * Remember, modern icons can be any size.
 */
-public static final HEALTH_ICON_SIZE:Int = 150;
 
 /**
 * The size of a pixel icon when using the legacy format.
@@ -100,29 +98,20 @@ public static final HEALTH_ICON_SIZE:Int = 150;
 
 public function new(char:Null<String>, playerId:Int = 0)
 {
-super(0, 0);
-this.playerId = playerId;
-this.size = new FlxCallbackPoint(onSetSize);
-this.scrollFactor.set();
-size.set(1.0, 1.0);
-this.characterId = char;
 }
 
 function onSetSize(value:FlxPoint):Void
 {
-snapToTargetSize();
 }
 
 function set_characterId(value:Null<String>):String
 {
 
-characterId = value ?? Constants.DEFAULT_HEALTH_ICON;
 }
 
 function set_isPixel(value:Bool):Bool
 {
 
-isPixel = value;
 }
 
 /**
@@ -131,17 +120,11 @@ isPixel = value;
 public function toggleOldIcon():Void
 {
 {
-isPixel = playState.currentStage.getBoyfriend()?.isPixel ?? false;
-playState.currentStage.getBoyfriend()?.initHealthIcon(false);
 }
 else
 {
-characterId = 'bf-old';
-isPixel = false;
-loadCharacter(characterId);
 }
 
-snapToTargetSize();
 }
 
 /**
@@ -151,34 +134,20 @@ snapToTargetSize();
 public function configure(data:Null<HealthIconData>):Void
 {
 {
-this.characterId = Constants.DEFAULT_HEALTH_ICON;
-this.isPixel = false;
 
-loadCharacter(characterId);
 
-this.size.set(1.0, 1.0);
-this.iconOffset.set();
-this.flipX = false;
-this.updatePosition();
 }
 else
 {
-this.characterId = data.id;
-this.isPixel = data.isPixel ?? false;
 
-loadCharacter(characterId);
 
-this.size.set(data.scale ?? 1.0, data.scale ?? 1.0);
 {
-this.iconOffset.set(data.offsets[0], data.offsets[1]);
 }
 else
 {
-this.iconOffset.set(0, 0);
 }
 
 this.flipX = data.flipX ?? false; // Face the OTHER way by default, since that is more common.
-this.updatePosition();
 }
 }
 
@@ -187,14 +156,11 @@ this.updatePosition();
 */
 override function update(elapsed:Float):Void
 {
-super.update(elapsed);
 
 {
 
-this.angle = MathUtil.smoothLerpPrecision(this.angle, 0, dt, 0.512);
 }
 
-this.updatePosition();
 }
 
 /*
@@ -202,21 +168,15 @@ this.updatePosition();
 */
 public function snapToTargetSize():Void
 {
-bopTween?.cancel();
 {
-setGraphicSize(Std.int(HEALTH_ICON_SIZE * this.size.x), 0);
 }
 else
 {
-setGraphicSize(0, Std.int(HEALTH_ICON_SIZE * this.size.y));
 }
-updateHitbox();
 }
 
 override public function updateHitbox():Void
 {
-super.updateHitbox();
-offset += iconOffset;
 }
 
 /**
@@ -235,7 +195,6 @@ case 1: // Dad
 updateHealthIcon(MAXIMUM_HEALTH - PlayState.instance.health);
 this.x = PlayState.instance.healthBar.x
 + (PlayState.instance.healthBar.width * (FlxMath.remapToRange(PlayState.instance.healthBar.value, 0, 2, 100, 0) * 0.01))
-- (this.width - POSITION_OFFSET);
 }
 this.y = PlayState.instance.healthBar.y - (this.height / 2); // - (PlayState.instance.healthBar.height / 2)
 }
@@ -248,21 +207,12 @@ this.y = PlayState.instance.healthBar.y - (this.height / 2); // - (PlayState.ins
 public function onStepHit(curStep:Int):Void
 {
 {
-bopTween?.cancel();
-setGraphicSize(Std.int(this.width + (HEALTH_ICON_SIZE * this.size.x * BOP_SCALE)), 0);
 bopTween = FlxTween.num(this.width + (HEALTH_ICON_SIZE * this.size.x * BOP_SCALE), HEALTH_ICON_SIZE * this.size.x,
 Math.min(Conductor.instance.stepLengthMs * 0.002, .175), {
 onComplete: _ -> bopTween = null
 }, value ->
 {
-setGraphicSize(Std.int(value), 0);
-this.updateHitbox();
-this.updatePosition();
-});
-this.updateHitbox();
-this.updatePosition();
 
-this.angle += bopAngle * (playerId == 0 ? 1 : -1);
 }
 }
 
@@ -274,45 +224,34 @@ switch (getCurrentAnimation())
 {
 case Idle:
 {
-playAnimation(ToLosing, Losing);
 }
 else if (health > WINNING_THRESHOLD)
 {
-playAnimation(ToWinning, Winning);
 }
 else
 {
-playAnimation(Idle);
 }
 case Winning:
 {
-playAnimation(FromWinning, Idle);
 }
 else
 {
-playAnimation(Winning, Idle);
 }
 case Losing:
 else
 {
-playAnimation(Losing, Idle);
 }
 case ToLosing:
 {
-playAnimation(Losing, Idle);
 }
 case ToWinning:
 {
-playAnimation(Winning, Idle);
 }
 case FromLosing | FromWinning:
 {
-playAnimation(Idle);
 }
 case '':
-playAnimation(Idle);
 default:
-playAnimation(Idle);
 }
 }
 
@@ -323,13 +262,6 @@ playAnimation(Idle);
 */
 function loadAnimationNew():Void
 {
-this.animation.addByPrefix(Idle, Idle, 24, true);
-this.animation.addByPrefix(Winning, Winning, 24, true);
-this.animation.addByPrefix(Losing, Losing, 24, true);
-this.animation.addByPrefix(ToWinning, ToWinning, 24, false);
-this.animation.addByPrefix(ToLosing, ToLosing, 24, false);
-this.animation.addByPrefix(FromWinning, FromWinning, 24, false);
-this.animation.addByPrefix(FromLosing, FromLosing, 24, false);
 }
 
 /**
@@ -339,10 +271,7 @@ this.animation.addByPrefix(FromLosing, FromLosing, 24, false);
 */
 function loadAnimationOld():Void
 {
-this.animation.add(Idle, [0], 0, false, false);
-this.animation.add(Losing, [1], 0, false, false);
 {
-this.animation.add(Winning, [2], 0, false, false);
 }
 }
 
@@ -357,26 +286,18 @@ function isNewSpritesheet(charId:String):Bool
 function loadCharacter(charId:Null<String>):Void
 {
 {
-characterId = Constants.DEFAULT_HEALTH_ICON;
-charId = characterId;
 }
 
-isLegacyStyle = !isNewSpritesheet(charId);
 
 
 {
-loadSparrow('icons/icon-$charId');
 
-loadAnimationNew();
 }
 else
 {
-loadGraphic(Paths.image('icons/icon-$charId'), true, isPixel ? PIXEL_ICON_SIZE : HEALTH_ICON_SIZE, isPixel ? PIXEL_ICON_SIZE : HEALTH_ICON_SIZE);
 
-loadAnimationOld();
 }
 
-this.antialiasing = !isPixel;
 }
 
 /**
@@ -388,11 +309,9 @@ this.antialiasing = !isPixel;
 public function playAnimation(name:String, fallback:String = null, restart = false):Void
 {
 {
-this.animation.play(name, restart, false, 0);
 }
 
 {
-this.animation.play(fallback, restart, false, 0);
 }
 
 }

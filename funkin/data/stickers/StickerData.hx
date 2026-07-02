@@ -1,4 +1,3 @@
-package funkin.data.stickers;
 
 /**
 * A type definition for a sticker pack.

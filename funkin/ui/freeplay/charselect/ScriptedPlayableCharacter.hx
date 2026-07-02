@@ -1,4 +1,3 @@
-package funkin.ui.freeplay.charselect;
 
 /**
 * A script that can be tied to a PlayableCharacter.

@@ -1,4 +1,3 @@
-package funkin.ui.debug.charting.dialogs;
 
 
 /**
@@ -13,23 +12,12 @@ class ChartEditorWelcomeDialog extends ChartEditorBaseDialog
 */
 public function new(state2:ChartEditorState, params2:DialogParams)
 {
-super(state2, params2);
 
-this.splashBrowse.onClick = _ -> onClickButtonBrowse();
-this.splashCreateFromSongBasicOnly.onClick = _ -> onClickLinkCreateBasicOnly();
-this.splashCreateFromSongErectOnly.onClick = _ -> onClickLinkCreateErectOnly();
-this.splashCreateFromSongBasicErect.onClick = _ -> onClickLinkCreateBasicErect();
-this.splashImportChartLegacy.onClick = _ -> onClickLinkImport("legacy");
-this.splashImportChartOsuMania.onClick = _ -> onClickLinkImport("osumania");
-this.splashImportChartStepMania.onClick = _ -> onClickLinkImport('stepmania');
 
 for (chartPath in chartEditorState.previousWorkingFilePaths)
 {
-this.addRecentFilePath(chartEditorState, chartPath);
 }
-this.addHTML5RecentFileMessage();
 
-this.buildTemplateSongList(chartEditorState);
 }
 
 /**
@@ -40,15 +28,12 @@ public static function build(chartEditorState:ChartEditorState, ?closable:Bool, 
 {
 closable: closable ?? false,
 modal: modal ?? true
-});
 
-dialog.showDialog(modal ?? true);
 
 }
 
 public override function onClose(event:DialogEvent):Void
 {
-super.onClose(event);
 }
 
 /**
@@ -58,35 +43,26 @@ super.onClose(event);
 public function addRecentFilePath(state:ChartEditorState, chartPath:String):Void
 {
 
-linkRecentChart.text = fileName;
 
-linkRecentChart.tooltip = chartPath;
 
 {
-linkRecentChart.disabled = true;
 }
 else
 {
-linkRecentChart.tooltip += "\n" + lastModified;
 }
 
 linkRecentChart.onClick = function(_event)
 {
-linkRecentChart.hide();
 
-this.hideDialog(DialogButton.CANCEL);
 
 {
 chartEditorState.success('Loaded Chart',
-result.length == 0 ? 'Loaded chart (${chartPath.toString()})' : 'Loaded chart (${chartPath.toString()})\n${result.join("\n")}');
 }
 else
 {
-chartEditorState.error('Failed to Load Chart', 'Failed to load chart (${chartPath.toString()})');
 }
 }
 
-splashRecentContainer.addComponent(linkRecentChart);
 }
 
 /**
@@ -95,9 +71,7 @@ splashRecentContainer.addComponent(linkRecentChart);
 */
 public function addHTML5RecentFileMessage():Void
 {
-webLoadLabel.text = 'Click the button below to load a chart file (.fnfc) from your computer.';
 
-splashRecentContainer.addComponent(webLoadLabel);
 }
 
 /**
@@ -105,21 +79,16 @@ splashRecentContainer.addComponent(webLoadLabel);
 */
 public function buildTemplateSongList(state:ChartEditorState):Void
 {
-songList.sort(SortUtil.alphabetically);
 
 for (targetSongId in songList)
 {
 
 {
-continue;
 }
 
 this.addTemplateSong(songName, targetSongId, (_) ->
 {
-this.hideDialog(DialogButton.CANCEL);
 
-chartEditorState.loadSongAsTemplate(targetSongId);
-});
 }
 }
 
@@ -128,10 +97,7 @@ chartEditorState.loadSongAsTemplate(targetSongId);
 */
 public function addTemplateSong(songName:String, songId:String, onClickCb:(MouseEvent) -> Void):Void
 {
-linkTemplateSong.text = songName;
-linkTemplateSong.onClick = onClickCb;
 
-this.splashTemplateContainer.addComponent(linkTemplateSong);
 }
 
 /**
@@ -140,9 +106,7 @@ this.splashTemplateContainer.addComponent(linkTemplateSong);
 */
 public function onClickButtonBrowse():Void
 {
-this.hideDialog(DialogButton.CANCEL);
 
-chartEditorState.openBrowseFNFC(false);
 }
 
 /**
@@ -151,11 +115,9 @@ chartEditorState.openBrowseFNFC(false);
 */
 public function onClickLinkCreateBasicOnly():Void
 {
-this.hideDialog(DialogButton.CANCEL);
 
 //
 //
-chartEditorState.openCreateSongWizardBasicOnly(false);
 }
 
 /**
@@ -164,11 +126,9 @@ chartEditorState.openCreateSongWizardBasicOnly(false);
 */
 public function onClickLinkCreateErectOnly():Void
 {
-this.hideDialog(DialogButton.CANCEL);
 
 //
 //
-chartEditorState.openCreateSongWizardErectOnly(false);
 }
 
 /**
@@ -177,11 +137,9 @@ chartEditorState.openCreateSongWizardErectOnly(false);
 */
 public function onClickLinkCreateBasicErect():Void
 {
-this.hideDialog(DialogButton.CANCEL);
 
 //
 //
-chartEditorState.openCreateSongWizardBasicErect(false);
 }
 
 /**
@@ -190,8 +148,6 @@ chartEditorState.openCreateSongWizardBasicErect(false);
 */
 public function onClickLinkImport(format:String):Void
 {
-this.hideDialog(DialogButton.CANCEL);
 
-chartEditorState.openImportChartWizard(format, false);
 }
 }

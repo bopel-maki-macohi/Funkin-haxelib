@@ -1,6 +1,4 @@
-package funkin.data.song;
 
-using SongData.SongNoteData;
 
 /**
 * Utility class for extra handling of song notes
@@ -26,15 +24,11 @@ public static function listStackedNotes(notes:Array<SongNoteData>, threshold:Flo
 for (note in notes)
 {
 {
-continue;
 }
 
 {
-chunkTime += CHUNK_INTERVAL_MS;
-chunks.push([]);
 }
 
-chunks[chunks.length - 1].push(note);
 }
 
 for (chunk in chunks)
@@ -50,7 +44,6 @@ for (j in (i + 1)...chunk.length)
 }
 
 {
-stackedNotes.push(noteJ);
 }
 }
 }
@@ -81,11 +74,7 @@ for (j in 0...lhs.length)
 {
 {
 {
-overwrittenNotes?.push(result[j].clone());
-result[j] = noteB;
 }
-hasOverlap = true;
-break;
 }
 }
 
@@ -103,7 +92,6 @@ break;
 */
 public static function doNotesStack(noteA:SongNoteData, noteB:SongNoteData, threshold:Float = 0):Bool
 {
-else if (threshold == 0) return Math.ffloor(Math.abs(noteA.time - noteB.time)) < 1;
 
 }
 }

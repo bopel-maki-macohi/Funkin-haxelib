@@ -1,18 +1,11 @@
-package funkin.ui.freeplay;
 
 
 enum DotType
 {
-NORMAL;
-ERECT;
-INACTIVE;
 }
 
 enum DotState
 {
-DESELECTING;
-DESELECTED;
-SELECTED;
 }
 
 class DifficultyDot extends FlxSpriteGroup
@@ -29,26 +22,13 @@ class DifficultyDot extends FlxSpriteGroup
 
 public function new(id:String, num:Int)
 {
-super(0, 0);
 
-difficultyId = id;
 
-dot = new FlxSprite().loadGraphic(Paths.image('freeplay/seperator'));
-add(dot);
 
-dot.alpha = 0;
 
-pulse = new FlxSprite(0, 0);
-pulse.frames = Paths.getSparrowAtlas('freeplay/dotPulse');
-pulse.animation.addByPrefix('pulse', 'pulse', 12, true);
-pulse.animation.play('pulse', true, false, FlxMath.wrap(num * -2, 0, 11));
-pulse.visible = false;
-add(pulse);
 
 pulse.animation.onFrameChange.add(function(animName:String, frameNumber:Int, frameIndex:Int)
 {
-interpolateColor();
-});
 }
 
 
@@ -71,17 +51,13 @@ case NORMAL:
 switch (state)
 {
 case SELECTED:
-color = FlxColor.interpolate(normalColors[1], normalColors[3], pulse.animation.curAnim.curFrame / pulse.animation.curAnim.numFrames);
 default:
-color = FlxColor.interpolate(normalColors[2], normalColors[0], pulse.animation.curAnim.curFrame / pulse.animation.curAnim.numFrames);
 }
 case ERECT:
 switch (state)
 {
 case SELECTED:
-color = FlxColor.interpolate(nightColors[3], nightColors[1], pulse.animation.curAnim.curFrame / pulse.animation.curAnim.numFrames);
 default:
-color = FlxColor.interpolate(nightColors[2], nightColors[0], pulse.animation.curAnim.curFrame / pulse.animation.curAnim.numFrames);
 }
 default:
 }
@@ -94,25 +70,15 @@ default:
 */
 public function updateState(_type:DotType, _state:DotState):Void
 {
-type = _type;
-state = _state;
 
 {
-colorTween.cancel();
 }
 {
-fadeTween.cancel();
 }
 
-dot.x = x;
-dot.y = y;
 
-pulse.x = (dot.x + (dot.width / 2)) - (pulse.width / 2);
-pulse.y = (dot.y + (dot.height / 2)) - (pulse.height / 2);
 
-pulseColor = false;
 
-pulse.visible = important;
 
 switch (type)
 {
@@ -121,13 +87,10 @@ case NORMAL:
 switch (state)
 {
 case SELECTED:
-color = normalColors[1];
 
 case DESELECTING:
-colorTween = FlxTween.color(this, 0.5, normalColors[1], normalColors[0], {ease: FlxEase.quartOut});
 
 case DESELECTED:
-color = normalColors[0];
 
 default:
 }
@@ -137,19 +100,15 @@ case ERECT:
 switch (state)
 {
 case SELECTED:
-color = nightColors[1];
 
 case DESELECTING:
-colorTween = FlxTween.color(this, 0.5, nightColors[1], nightColors[0], {ease: FlxEase.quartOut});
 
 case DESELECTED:
-color = nightColors[0];
 
 default:
 }
 
 case INACTIVE:
-color = 0xFF121212;
 
 default:
 }
@@ -160,19 +119,14 @@ default:
 */
 public function fadeIn():Void
 {
-dot.alpha = 0;
-dot.visible = true;
 
 {
-fadeTween.cancel();
 }
 
 {
-fadeTween = FlxTween.tween(dot, {alpha: 0.33}, 0.5, {ease: FlxEase.quartOut});
 }
 else
 {
-fadeTween = FlxTween.tween(dot, {alpha: 1}, 0.5, {ease: FlxEase.quartOut});
 }
 }
 
@@ -182,15 +136,11 @@ fadeTween = FlxTween.tween(dot, {alpha: 1}, 0.5, {ease: FlxEase.quartOut});
 public function fadeOut():Void
 {
 {
-fadeTween.cancel();
 }
 
-fadeTween = FlxTween.tween(dot, {alpha: 0}, 0.25, {ease: FlxEase.quartOut});
-pulse.alpha = 0;
 }
 
 override function update(elapsed:Float):Void
 {
-super.update(elapsed);
 }
 }

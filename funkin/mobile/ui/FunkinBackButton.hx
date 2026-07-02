@@ -1,4 +1,3 @@
-package funkin.mobile.ui;
 
 
 class FunkinBackButton extends FunkinButton
@@ -26,112 +25,62 @@ function get_confirming():Bool
 public function new(?x:Float = 0, ?y:Float = 0, ?color:FlxColor = FlxColor.WHITE, ?confirmCallback:Void->Void, ?restingOpacity:Float = 0.3,
 instant:Bool = false):Void
 {
-super(x, y);
 
-frames = Paths.getSparrowAtlas("backButton");
-animation.addByIndices('idle', 'back', [0], "", 24, false);
-animation.addByIndices('hold', 'back', [5], "", 24, false);
-animation.addByIndices('confirm', 'back', [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22], "", 24, false);
-animation.play("idle");
 
-scale.set(0.7, 0.7);
-updateHitbox();
 
-this.color = color;
-this.restingOpacity = restingOpacity;
-this.instant = instant;
-this.alpha = restingOpacity;
-this.ignoreDownHandler = true;
 
-onUp.add(playConfirmAnim);
-onDown.add(playHoldAnim);
-onOut.add(playOutAnim);
 
-onConfirmEnd.add(confirmCallback);
 }
 
 function playHoldAnim():Void
 {
 
-held = true;
 
-FlxTween.cancelTweensOf(this);
-HapticUtil.vibrate(0, 0.01, 0.5);
-animation.play('hold');
 
-alpha = 1;
 }
 
 function playConfirmAnim():Void
 {
 
 {
-onConfirmEnd.dispatch();
 }
 else if (confirming)
 {
 }
 
-_confirming = true;
 
-FlxTween.cancelTweensOf(this);
-HapticUtil.vibrate(0, 0.05, 0.5);
-animation.play('confirm');
 
-FunkinSound.playOnce(Paths.sound('cancelMenu'));
 
-onConfirmStart.dispatch();
 
 animation.onFinish.addOnce(function(name:String)
 {
-_confirming = false;
-held = false;
-onConfirmEnd.dispatch();
-});
 }
 
 function playOutAnim():Void
 {
 
-FlxTween.cancelTweensOf(this);
-HapticUtil.vibrate(0, 0.01, 0.2);
-animation.play('idle');
 
 FlxTween.tween(this, {alpha: restingOpacity}, 0.5, {
 ease: FlxEase.expoOut,
 onComplete: function(tween:FlxTween):Void
 {
-held = false;
 }
-});
 }
 
 public function resetCallbacks():Void
 {
-onUp.removeAll();
-onDown.removeAll();
-onOut.removeAll();
 
-_confirming = false;
-held = false;
 
-onUp.add(playConfirmAnim);
-onDown.add(playHoldAnim);
-onOut.add(playOutAnim);
 }
 
 override public function update(elapsed:Float):Void
 {
 
-super.update(elapsed);
 }
 
 override function destroy():Void
 {
-super.destroy();
 
-onConfirmStart.removeAll();
-onConfirmEnd.removeAll();
 
 }
 }

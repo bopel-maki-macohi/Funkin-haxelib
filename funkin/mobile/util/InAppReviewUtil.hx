@@ -1,4 +1,3 @@
-package funkin.mobile.util;
 
 
 /**
@@ -10,7 +9,6 @@ class InAppReviewUtil
 /**
 * Chance for exiting the Results screen to display a prompt to review the game, as a percent.
 */
-public static final ODDS:UInt = 5;
 
 /**
 * Initializes callbacks tied to the In-App Review functionality.
@@ -20,13 +18,10 @@ public static function init():Void
 
 IAR.onLog.add(function(message:String):Void
 {
-});
 IAR.onReviewCompleted.add(function(success:Bool):Void
 {
-});
 IAR.onReviewError.add(function(message:String):Void
 {
-});
 }
 
 /**
@@ -37,10 +32,6 @@ IAR.onReviewError.add(function(message:String):Void
 */
 public static function requestReview():Void
 {
-IAR.init();
 
-IAR.requestAndLaunchFakeReviewFlow();
-IAR.requestAndLaunchReviewFlow();
-IAR.requestReview();
 }
 }

@@ -1,4 +1,3 @@
-package funkin.play.stage;
 
 
 class StageProp extends FunkinSprite implements IStateStageProp
@@ -9,7 +8,6 @@ class StageProp extends FunkinSprite implements IStateStageProp
 
 public function new()
 {
-super();
 }
 
 /**

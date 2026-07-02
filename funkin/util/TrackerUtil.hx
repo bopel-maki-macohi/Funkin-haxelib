@@ -1,4 +1,3 @@
-package funkin.util;
 
 
 /**
@@ -14,6 +13,5 @@ class TrackerUtil
 */
 public static function initTrackers():Void
 {
-Tracker.addProfile(new TrackerProfile(Highscore, ['tallies']));
 }
 }

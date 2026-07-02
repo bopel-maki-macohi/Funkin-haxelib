@@ -1,4 +1,3 @@
-package funkin.util.tools;
 
 /**
 * A static extension which provides utility functions for Maps.
@@ -41,7 +40,6 @@ public static function merge<K, T>(a:Map<K, T>, b:Map<K, T>):Map<K, T>
 
 for (pair in b.keyValueIterator())
 {
-result.set(pair.key, pair.value);
 }
 
 }
@@ -51,12 +49,10 @@ result.set(pair.key, pair.value);
 */
 public static function deepClone<K, T, U:ICloneable<T>>(map:Map<K, U>):Map<K, T>
 {
-throw "Not implemented";
 
 /*
 for (key in newMap.keys())
 {
-newMap.set(key, newMap.get(key).clone());
 }
 */
 }

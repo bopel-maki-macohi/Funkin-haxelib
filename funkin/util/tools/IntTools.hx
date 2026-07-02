@@ -1,4 +1,3 @@
-package funkin.util.tools;
 
 /**
 * Utilities for performing common math operations.

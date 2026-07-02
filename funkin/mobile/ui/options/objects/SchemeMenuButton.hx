@@ -1,4 +1,3 @@
-package funkin.mobile.ui.options.objects;
 
 
 /**
@@ -33,32 +32,20 @@ class SchemeMenuButton extends FlxSpriteGroup
 */
 public function new(?xPos:Float = 0, ?yPos:Float = 0, labelText:String, ?onClick:Void->Void):Void
 {
-super(xPos, yPos);
 
-body = new FlxShapeBox(0, 0, 200, 100, {thickness: 4, color: FlxColor.BLACK}, FlxColor.WHITE);
-add(body);
 
-text = new AtlasText(-150, -75, labelText, AtlasFont.DEFAULT);
-add(text);
 
-updateHitbox();
 
 }
 
 public override function update(elapsed:Float):Void
 {
-super.update(elapsed);
 
 {
-busy = true;
 
-FunkinSound.playOnce(Paths.sound('confirmMenu'));
 
 FlxFlicker.flicker(this, 1, 0.06, true, false, function(_)
 {
-busy = false;
-onSelect.dispatch();
-});
 }
 }
 }

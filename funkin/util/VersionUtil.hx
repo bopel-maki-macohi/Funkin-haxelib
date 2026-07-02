@@ -1,4 +1,3 @@
-package funkin.util;
 
 
 /**
@@ -31,12 +30,8 @@ public static function repairVersion(version:thx.semver.Version):thx.semver.Vers
 {
 
 {
-versionData.version = [versionData.version[0], versionData.version[1], versionData.version[2]];
 
-.map(function(d:Dynamic) return StringId(d.toString()));
-versionData.build = buildDataFixed;
 
-versionData.pre = preDataFixed;
 
 }
 else

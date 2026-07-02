@@ -1,4 +1,3 @@
-package funkin.data.character;
 
 
 class CharacterDataParser
@@ -10,12 +9,10 @@ class CharacterDataParser
 *
 * - Version 1.0.1 adds `death.cameraOffsets`
 */
-public static final CHARACTER_DATA_VERSION:String = '1.0.1';
 
 /**
 * The current version rule check for the stage data format.
 */
-public static final CHARACTER_DATA_VERSION_RULE:String = '1.0.x';
 
 
 
@@ -26,26 +23,19 @@ public static final CHARACTER_DATA_VERSION_RULE:String = '1.0.x';
 */
 public static function loadCharacterCache():Void
 {
-clearCharacterCache();
-log(' INFO '.info() + 'Parsing all entries...');
 
 //
 //
 {
-});
-log('Fetching data for ${unscriptedCharIds.length} characters...');
 for (charId in unscriptedCharIds)
 {
 try
 {
 {
-log('Loaded character "${charId}"');
-characterCache.set(charId, charData);
 }
 }
 catch (e)
 {
-continue;
 }
 }
 
@@ -54,86 +44,61 @@ continue;
 
 
 {
-log('Instantiating ${scriptedCharClassNames1.length} (Sparrow) scripted characters...');
 for (charCls in scriptedCharClassNames1)
 {
 try
 {
-log('Loaded character ${character.characterName} (scripted: $charCls)');
-characterScriptedClass.set(character.characterId, charCls);
 }
 catch (e)
 {
-log(' ERROR '.error() + 'Failed to initialize scripted Sparrow character: $charCls');
-log(' ERROR '.error() + '$e');
 }
 }
 }
 
 {
-log('Instantiating ${scriptedCharClassNames2.length} (Packer) scripted characters...');
 for (charCls in scriptedCharClassNames2)
 {
 try
 {
-log('Loaded character ${character.characterName} (scripted: $charCls)');
-characterScriptedClass.set(character.characterId, charCls);
 }
 catch (e)
 {
-log(' ERROR '.error() + 'Failed to initialize scripted Packer character: $charCls');
-log(' ERROR '.error() + '$e');
 }
 }
 }
 
 {
-log('Instantiating ${scriptedCharClassNames3.length} (Multi-Sparrow) scripted characters...');
 for (charCls in scriptedCharClassNames3)
 {
 try
 {
-log('Loaded character ${character.characterName} (scripted: $charCls)');
-characterScriptedClass.set(character.characterId, charCls);
 }
 catch (e)
 {
-log(' ERROR '.error() + 'Failed to initialize scripted Multi-Sparrow character: $charCls');
-log(' ERROR '.error() + '$e');
 }
 }
 }
 
 {
-log('Instantiating ${scriptedCharClassNames4.length} (Animate Atlas) scripted characters...');
 for (charCls in scriptedCharClassNames4)
 {
 try
 {
-log('Loaded character ${character.characterName} (scripted: $charCls)');
-characterScriptedClass.set(character.characterId, charCls);
 }
 catch (e)
 {
-log(' ERROR '.error() + 'Failed to initialize scripted Animate Atlas character: $charCls');
-log(' ERROR '.error() + '$e');
 }
 }
 }
 
 {
-log('Instantiating ${scriptedCharClassNames5.length} (Multi-Animate Atlas) scripted characters...');
 for (charCls in scriptedCharClassNames5)
 {
 try
 {
-log('Loaded character ${character.characterName} (scripted: $charCls)');
-characterScriptedClass.set(character.characterId, charCls);
 }
 catch (e)
 {
-log(' ERROR '.error() + 'Failed to initialize scripted Multi-Animate Atlas character: $charCls');
-log(' ERROR '.error() + '$e');
 }
 }
 }
@@ -143,26 +108,18 @@ scriptedCharClassNames = scriptedCharClassNames.filter(function(charCls:String):
 || scriptedCharClassNames2.contains(charCls)
 || scriptedCharClassNames3.contains(charCls)
 || scriptedCharClassNames4.contains(charCls)
-|| scriptedCharClassNames5.contains(charCls));
-});
 
 {
-log('Instantiating ${scriptedCharClassNames.length} (Base) scripted characters...');
 for (charCls in scriptedCharClassNames)
 {
 {
-log(' ERROR '.error() + 'Failed to initialize scripted character: $charCls');
-continue;
 }
 else
 {
-log('Loaded character ${character.characterName} (scripted: $charCls)');
-characterScriptedClass.set(character.characterId, charCls);
 }
 }
 }
 
-log(' INFO '.info() + 'Successfully loaded ${characterCache.size()} stages.');
 }
 
 /**
@@ -182,34 +139,22 @@ public static function fetchCharacter(charId:String, debug:Bool = false):Null<Ba
 {
 {
 case CharacterRenderType.AnimateAtlas:
-char = ScriptedAnimateAtlasCharacter.scriptInit(charScriptClass, charId);
 case CharacterRenderType.MultiSparrow:
-char = ScriptedMultiSparrowCharacter.scriptInit(charScriptClass, charId);
 case CharacterRenderType.Sparrow:
-char = ScriptedSparrowCharacter.scriptInit(charScriptClass, charId);
 case CharacterRenderType.Packer:
-char = ScriptedPackerCharacter.scriptInit(charScriptClass, charId);
 case CharacterRenderType.MultiAnimateAtlas:
-char = ScriptedMultiAnimateAtlasCharacter.scriptInit(charScriptClass, charId);
 default:
-char = ScriptedBaseCharacter.scriptInit(charScriptClass, charId, CharacterRenderType.Custom);
 }
 }
 else
 {
 {
 case CharacterRenderType.AnimateAtlas:
-char = new AnimateAtlasCharacter(charId);
 case CharacterRenderType.MultiSparrow:
-char = new MultiSparrowCharacter(charId);
 case CharacterRenderType.Sparrow:
-char = new SparrowCharacter(charId);
 case CharacterRenderType.Packer:
-char = new PackerCharacter(charId);
 case CharacterRenderType.MultiAnimateAtlas:
-char = new MultiAnimateAtlasCharacter(charId);
 default:
-char = new BaseCharacter(charId, CharacterRenderType.Custom);
 }
 }
 
@@ -217,9 +162,7 @@ char = new BaseCharacter(charId, CharacterRenderType.Custom);
 }
 
 
-char.debug = debug;
 
-ScriptEventDispatcher.callEvent(char, new ScriptEvent(CREATE));
 
 }
 
@@ -249,15 +192,12 @@ public static function getCharPixelIconAsset(char:String):Null<FlxFrame>
 
 for (i in 0...charIDParts.length)
 {
-iconName += charIDParts[i];
 
 {
-lastValidIconName = iconName;
 }
 
 }
 
-charPath += '${lastValidIconName}pixel';
 
 {
 }
@@ -266,17 +206,14 @@ charPath += '${lastValidIconName}pixel';
 {
 
 {
-});
 
 {
 }
 
 
-frame = imageFrame.frame;
 }
 else
 {
-frame = imageFrame.frame;
 }
 
 }
@@ -287,10 +224,8 @@ frame = imageFrame.frame;
 static function clearCharacterCache():Void
 {
 {
-characterCache.clear();
 }
 {
-characterScriptedClass.clear();
 }
 }
 
@@ -310,7 +245,6 @@ static function loadCharacterFile(charPath:String):String
 {
 
 {
-rawJson = rawJson.substr(0, rawJson.length - 1);
 }
 
 }
@@ -332,30 +266,13 @@ catch (e)
 * Values that are too high will cause the character to hold their singing pose for too long after they're done.
 * @default `8 steps`
 */
-public static final DEFAULT_SINGTIME:Float = 8.0;
 
-public static final DEFAULT_DANCEEVERY:Float = 1.0;
-public static final DEFAULT_FLIPX:Bool = false;
-public static final DEFAULT_FLIPY:Bool = false;
-public static final DEFAULT_FRAMERATE:Int = 24;
-public static final DEFAULT_ISPIXEL:Bool = false;
-public static final DEFAULT_LOOP:Bool = false;
-public static final DEFAULT_NAME:String = 'Untitled Character';
-public static final DEFAULT_OFFSETS:Array<Float> = [0, 0];
-public static final DEFAULT_HEALTHICON_OFFSETS:Array<Int> = [0, 25];
-public static final DEFAULT_RENDERTYPE:CharacterRenderType = CharacterRenderType.Sparrow;
-public static final DEFAULT_SCALE:Float = 1;
-public static final DEFAULT_SCROLL:Array<Float> = [0, 0];
-public static final DEFAULT_STARTINGANIM:String = 'idle';
-public static final DEFAULT_APPLYSTAGEMATRIX:Bool = false;
-public static final DEFAULT_ANIMTYPE:String = "framelabel";
 public static final DEFAULT_ATLASSETTINGS:funkin.data.stage.StageData.TextureAtlasData = {
 swfMode: true,
 cacheOnLoad: false,
 filterQuality: 1,
 applyStageMatrix: false,
 useRenderTexture: false
-};
 
 /**
 * Set unspecified parameters to their defaults.
@@ -370,29 +287,24 @@ static function validateCharacterData(id:String, input:Null<CharacterData>):Null
 }
 
 {
-input.version = CHARACTER_DATA_VERSION;
 }
 
 {
 }
 
 {
-input.name = DEFAULT_NAME;
-}
-
-{
-input.renderType = DEFAULT_RENDERTYPE;
 }
 
 {
 }
 
 {
-input.offsets = DEFAULT_OFFSETS;
 }
 
 {
-input.cameraOffsets = DEFAULT_OFFSETS;
+}
+
+{
 }
 
 {
@@ -402,63 +314,48 @@ scale: null,
 flipX: null,
 isPixel: null,
 offsets: null
-};
 }
 
 {
-input.healthIcon.id = id;
 }
 
 {
-input.healthIcon.scale = DEFAULT_SCALE;
 }
 
 {
-input.healthIcon.flipX = DEFAULT_FLIPX;
 }
 
 {
-input.healthIcon.offsets = DEFAULT_OFFSETS;
 }
 
 {
-input.startingAnimation = DEFAULT_STARTINGANIM;
 }
 
 {
-input.scale = DEFAULT_SCALE;
 }
 
 {
-input.isPixel = DEFAULT_ISPIXEL;
 }
 
 {
-input.healthIcon.isPixel = input.isPixel;
 }
 
 {
-input.danceEvery = DEFAULT_DANCEEVERY;
 }
 
 {
-input.singTime = DEFAULT_SINGTIME;
 }
 
 {
-input.animations = [];
 }
 
 {
-input.flipX = DEFAULT_FLIPX;
 }
 
 {
-input.applyStageMatrix = DEFAULT_APPLYSTAGEMATRIX;
 }
 
 {
-input.atlasSettings = DEFAULT_ATLASSETTINGS;
 }
 
 {
@@ -470,27 +367,21 @@ for (inputAnimation in input.animations)
 }
 
 {
-inputAnimation.frameRate = DEFAULT_FRAMERATE;
 }
 
 {
-inputAnimation.offsets = DEFAULT_OFFSETS;
 }
 
 {
-inputAnimation.looped = DEFAULT_LOOP;
 }
 
 {
-inputAnimation.flipX = DEFAULT_FLIPX;
 }
 
 {
-inputAnimation.flipY = DEFAULT_FLIPY;
 }
 
 {
-inputAnimation.animType = DEFAULT_ANIMTYPE;
 }
 }
 
@@ -631,7 +522,6 @@ typedef CharacterData =
 * Various settings for the prop.
 * Only available for texture atlases.
 */
-};
 
 /**
 * The JSON data schema used to define the health icon for a character.

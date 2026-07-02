@@ -1,4 +1,3 @@
-package funkin.data.song.migrator;
 
 
 class SongMetadata_v2_1_0
@@ -22,21 +21,6 @@ class SongMetadata_v2_1_0
 
 public function new(songName:String, artist:String, ?variation:String)
 {
-this.version = SongRegistry.SONG_METADATA_VERSION;
-this.songName = songName;
-this.artist = artist;
-this.timeFormat = 'ms';
-this.divisions = null;
-this.timeChanges = [new SongTimeChange(0, 100)];
-this.looped = false;
-this.playData = new SongPlayData_v2_1_0();
-this.playData.songVariations = [];
-this.playData.difficulties = [];
-this.playData.characters = new SongCharacterData('bf', 'gf', 'dad');
-this.playData.stage = 'mainStage';
-this.playData.noteSkin = 'funkin';
-this.generatedBy = SongRegistry.DEFAULT_GENERATEDBY;
-this.variation = (variation == null) ? Constants.DEFAULT_VARIATION : variation;
 }
 
 /**

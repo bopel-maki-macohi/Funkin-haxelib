@@ -1,7 +1,5 @@
-package funkin.util.macro;
 
 
-using funkin.util.AnsiUtil;
 
 /**
 * A complement to `ClassMacro`. See `ClassMacro` for more information.
@@ -15,7 +13,6 @@ class CompiledClassList
 */
 static function init():Void
 {
-initialized = true;
 
 
 {
@@ -25,15 +22,12 @@ for (list in metaData.classLists)
 
 for (i in 1...data.length)
 {
-classes.push(classType);
 }
 
-classLists.set(id, classes);
 }
 }
 else
 {
-throw "Class lists not properly generated. Try cleaning out your export folder, restarting your IDE, and rebuilding your project.";
 }
 }
 

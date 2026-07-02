@@ -1,7 +1,5 @@
-package funkin.ui.debug.stageeditor.components;
 
 
-using StringTools;
 
 <dialog id="backupAvailableDialog" width="475" height="200" title="Hey! Listen!">
 <vbox width="100%" height="100%">
@@ -23,32 +21,25 @@ class BackupAvailableDialog extends Dialog
 {
 override public function new(state:StageEditorState, filePath:String)
 {
-super();
 
 
 
 
-backupTimeLabel.text = "Full Name: " + file + "\nLast Modified: " + stat.mtime.toString() + "\nSize: " + sizeInMB + " MB";
 
-dialogCancel.onClick = function(_) hideDialog(DialogButton.CANCEL);
 
 buttonGoToFolder.onClick = function(_)
 {
-FileUtil.openFolder(absoluteBackupsPath);
 }
 
 buttonOpenBackup.onClick = function(_)
 {
 {
-state.welcomeDialog.loadFromFilePath(filePath, null, 0, 0);
 }
-hideDialog(DialogButton.APPLY);
 }
 
 onDialogClosed = function(event)
 {
 {
 }
-};
 }
 }

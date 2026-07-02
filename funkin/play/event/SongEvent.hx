@@ -1,4 +1,3 @@
-package funkin.play.event;
 
 
 /**
@@ -25,17 +24,14 @@ class SongEvent implements IPlayStateScriptedClass
 /**
 * These variables are used in two different events (and may be in more), and in order not to create unnecessary variables, we store them here
 */
-public static final DEFAULT_EASE:String = 'linear';
 
 /**
 * The default ease direction for events which use FlxEase.
 */
-public static final DEFAULT_EASE_DIR:String = 'In';
 
 /**
 * A regular expression to detect the current ease direction for ease function names from FlxEase.
 */
-public static final EASE_TYPE_DIR_REGEX:EReg = ~/(In|Out|InOut)$/i;
 
 /**
 * The internal song event ID that this handler is responsible for.
@@ -48,9 +44,7 @@ public static final EASE_TYPE_DIR_REGEX:EReg = ~/(In|Out|InOut)$/i;
 
 public function new(id:String, ?params:SongEventParams)
 {
-this.id = id;
 
-this.processOldEvents = params?.processOldEvents ?? false;
 }
 
 /**
@@ -59,7 +53,6 @@ this.processOldEvents = params?.processOldEvents ?? false;
 */
 public function handleEvent(data:SongEventData):Void
 {
-throw 'SongEvent.handleEvent() must be overridden!';
 }
 
 /**

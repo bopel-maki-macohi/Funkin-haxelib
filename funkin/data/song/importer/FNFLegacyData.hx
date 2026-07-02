@@ -1,4 +1,3 @@
-package funkin.data.song.importer;
 
 
 /**
@@ -22,16 +21,12 @@ public function new()
 public function toString():String
 {
 {
-case Left(sections): 'single difficulty w/ ${sections.length} sections';
 case Right(data):
-'${difficultyCount} difficulties';
-};
 }
 }
 
 typedef LegacyScrollSpeeds =
 {
-};
 
 typedef LegacyNoteData =
 {
@@ -46,7 +41,6 @@ typedef LegacyNoteData =
 /**
 * The hard difficulty.
 */
-};
 
 typedef LegacyNoteSection =
 {
@@ -77,11 +71,7 @@ class LegacyNote
 
 public function new(time:Float, data:Int, ?length:Float, ?alt:Bool)
 {
-this.time = time;
-this.data = data;
 
-this.length = length ?? 0.0;
-this.alt = alt ?? false;
 }
 
 public inline function getKind():String

@@ -1,4 +1,3 @@
-package funkin.ui;
 
 
 /**
@@ -12,30 +11,24 @@ class Page<T:PageName> extends FlxGroup
 
 
 
-inline function get_controls() return PlayerSettings.player1.controls;
 
 
 inline function switchPage(name:T)
 {
-onSwitch.dispatch(name);
 }
 
 function exit()
 {
-onExit.dispatch();
 }
 
 override function update(elapsed:Float)
 {
-super.update(elapsed);
 
 }
 
 function updateEnabled(elapsed:Float)
 {
 {
-exit();
-FunkinSound.playOnce(Paths.sound('cancelMenu'));
 }
 }
 
@@ -45,18 +38,14 @@ function set_enabled(value:Bool)
 
 function openPrompt(prompt:Prompt, onClose:Void->Void)
 {
-enabled = false;
 prompt.closeCallback = function()
 {
-enabled = true;
 }
 
 }
 
 override function destroy()
 {
-super.destroy();
-onSwitch.removeAll();
 }
 }
 

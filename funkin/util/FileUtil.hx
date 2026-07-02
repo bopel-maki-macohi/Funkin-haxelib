@@ -1,36 +1,25 @@
-package funkin.util;
 
 
-using StringTools;
 
 /**
 * Utilities for reading and writing files on various platforms.
 */
 class FileUtil
 {
-public static final FILE_FILTER_FNFC:FileFilter = new FileFilter("Friday Night Funkin' Chart (.fnfc)", "*.fnfc");
-public static final FILE_FILTER_JSON:FileFilter = new FileFilter("JSON Data File (.json)", "*.json");
-public static final FILE_FILTER_ZIP:FileFilter = new FileFilter("ZIP Archive (.zip)", "*.zip");
-public static final FILE_FILTER_PNG:FileFilter = new FileFilter("PNG Image (.png)", "*.png");
-public static final FILE_FILTER_FNFS:FileFilter = new FileFilter("Friday Night Funkin' Stage (.fnfs)", "*.fnfs");
 
 public static final FILE_EXTENSION_INFO_FNFC:FileDialogExtensionInfo = {
 extension: 'fnfc',
 label: 'Friday Night Funkin\' Chart',
-};
 public static final FILE_EXTENSION_INFO_ZIP:FileDialogExtensionInfo = {
 extension: 'zip',
 label: 'ZIP Archive',
-};
 public static final FILE_EXTENSION_INFO_PNG:FileDialogExtensionInfo = {
 extension: 'png',
 label: 'PNG Image',
-};
 
 public static final FILE_EXTENSION_INFO_FNFS:FileDialogExtensionInfo = {
 extension: 'fnfs',
 label: 'Friday Night Funkin\' Stage',
-};
 
 /**
 * Paths which should not be deleted or modified by scripts.
@@ -41,7 +30,6 @@ static function get_PROTECTED_PATHS():Array<String>
 
 for (i in 0...protected.length)
 {
-protected[i] = #if !linux sys.FileSystem.fullPath #end (Path.join([gameDirectory, protected[i]]));
 }
 
 }
@@ -49,7 +37,6 @@ protected[i] = #if !linux sys.FileSystem.fullPath #end (Path.join([gameDirectory
 /**
 * Regex for invalid filesystem characters.
 */
-public static final INVALID_CHARS:EReg = ~/[:*?"<>|\n\r\t]/g;
 
 
 public static function get_gameDirectory():String
@@ -73,13 +60,10 @@ public static function browseForBinaryFile(dialogTitle:String, ?typeFilter:Array
 {
 {
 {
-onSelect(selectedFiles[0]);
 }
 else if (onCancel != null)
 {
-onCancel();
 }
-};
 
 Dialogs.openFile(onComplete, {
 readContents: true,
@@ -87,7 +71,6 @@ readAsBinary: true, // Binary
 multiple: false,
 extensions: typeFilter ?? new Array<FileDialogExtensionInfo>(),
 title: dialogTitle,
-});
 }
 
 /**
@@ -104,13 +87,10 @@ public static function browseForTextFile(dialogTitle:String, ?typeFilter:Array<F
 {
 {
 {
-onSelect(selectedFiles[0]);
 }
 else if (onCancel != null)
 {
-onCancel();
 }
-};
 
 Dialogs.openFile(onComplete, {
 readContents: true,
@@ -118,7 +98,6 @@ readAsBinary: false, // Text
 multiple: false,
 extensions: typeFilter ?? new Array<FileDialogExtensionInfo>(),
 title: dialogTitle,
-});
 }
 
 /**
@@ -132,23 +111,19 @@ public static function browseForDirectory(?typeFilter:Array<FileFilter>, onSelec
 {
 
 {
-onCancel();
 }
 
 FileDialog.openDirectory(Lib.current.stage.window, function(filepaths:Array<String>):Void
 {
 {
 {
-onSelect(filepaths[0]);
 }
 }
 else
 {
 {
-onCancel();
 }
 }
-}, defaultPath, false);
 
 }
 
@@ -163,24 +138,20 @@ public static function browseForMultipleFiles(?typeFilter:Array<FileFilter>, onS
 {
 
 {
-onCancel();
 }
 
 FileDialog.openFile(Lib.current.stage.window, function(filepaths:Array<String>, filter):Void
 {
 {
 {
-onSelect(filepaths);
 }
 }
 else
 {
 {
-onCancel();
 }
 }
 }, @:privateAccess openfl.filesystem.File.__getFilterTypes(typeFilter ?? []),
-defaultPath, true);
 
 }
 
@@ -195,23 +166,19 @@ public static function browseForSaveFile(?typeFilter:Array<FileFilter>, onSelect
 {
 
 {
-onCancel();
 }
 
 FileDialog.saveFile(Lib.current.stage.window, function(filepath:String, filter):Void
 {
 {
 {
-onSelect(filepath);
 }
 }
 else
 {
 {
-onCancel();
 }
 }
-}, @:privateAccess openfl.filesystem.File.__getFilterTypes(typeFilter ?? []), defaultPath);
 }
 
 /**
@@ -225,28 +192,23 @@ public static function saveFile(data:Bytes, ?typeFilter:Array<FileFilter>, ?onSa
 {
 
 {
-onCancel();
 }
 
 FileDialog.saveFile(Lib.current.stage.window, function(filepath:String, filter):Void
 {
 {
 {
-Bytes.toFile(filepath, data);
 }
 
 {
-onSave(filepath);
 }
 }
 else
 {
 {
-onCancel();
 }
 }
 }, @:privateAccess openfl.filesystem.File.__getFilterTypes(typeFilter ?? []),
-defaultFileName);
 
 }
 
@@ -268,41 +230,31 @@ for (resource in resources)
 try
 {
 {
-continue;
 }
 else
 {
-writeBytesToPath(filePath, resource.data, force ? Force : Skip);
 }
 }
 catch (e:Dynamic)
 {
-throw 'Failed to write file (probably already exists): $filePath';
 }
 */
 {
-continue;
 }
 
 
-paths.push(filePath);
 }
 
 {
-onSaveAll(paths);
 }
 }
 
 
-defaultPath = null;
 
-browseForDirectory(null, onSelectDir, onCancel, defaultPath, 'Choose directory to save all files to...');
 
-saveFilesAsZIP(resources, onSaveAll, onCancel, defaultPath, force);
 
 
 {
-onCancel();
 }
 
 }
@@ -316,11 +268,8 @@ force:Bool = false):Bool
 {
 
 {
-onSave([path]);
 }
-};
 
-saveFile(zipBytes, [FILE_FILTER_ZIP], onSave, onCancel, defaultPath, 'Save files as ZIP...');
 }
 
 /**
@@ -332,10 +281,7 @@ force:Bool = false):Bool
 {
 
 {
-onSave([path]);
 }
-};
-saveFile(zipBytes, [FILE_FILTER_FNFC], onSave, onCancel, defaultPath, 'Save chart as FNFC...');
 }
 
 /**
@@ -346,7 +292,6 @@ saveFile(zipBytes, [FILE_FILTER_FNFC], onSave, onCancel, defaultPath, 'Save char
 */
 public static function saveFilesAsZIPToPath(resources:Array<Entry>, path:String, mode:FileWriteMode = Skip):Bool
 {
-writeBytesToPath(path, zipBytes, mode);
 }
 
 /**
@@ -358,7 +303,6 @@ writeBytesToPath(path, zipBytes, mode);
 */
 public static function readStringFromPath(path:String):String
 {
-throw 'Direct file reading by path is not supported on this platform.';
 }
 
 /**
@@ -370,7 +314,6 @@ throw 'Direct file reading by path is not supported on this platform.';
 */
 public static function readBytesFromPath(path:String):Bytes
 {
-throw 'Direct file reading by path is not supported on this platform.';
 }
 
 /**
@@ -387,13 +330,8 @@ file.addEventListener(Event.SELECT, function(e)
 selectedFileRef.addEventListener(Event.COMPLETE, function(e)
 {
 
-callback(loadedFileRef);
-});
 
-selectedFileRef.load();
-});
 
-file.browse();
 }
 
 /**
@@ -404,20 +342,13 @@ public static function writeFileReference(path:String, data:String, callback:Str
 
 file.addEventListener(Event.COMPLETE, function(e:Event)
 {
-callback("success");
-});
 
 file.addEventListener(Event.CANCEL, function(e:Event)
 {
-callback("info");
-});
 
 file.addEventListener(IOErrorEvent.IO_ERROR, function(e:IOErrorEvent)
 {
-callback("error");
-});
 
-file.save(data, path);
 }
 
 /**
@@ -429,7 +360,6 @@ file.save(data, path);
 */
 public static function readJSONFromPath(path:String):Dynamic
 {
-throw 'Direct file reading by path is not supported on this platform.';
 }
 
 /**
@@ -443,29 +373,22 @@ throw 'Direct file reading by path is not supported on this platform.';
 public static function writeStringToPath(path:String, data:String, mode:FileWriteMode = Skip):Void
 {
 {
-throw 'Target path is a directory, not a file: "$path"';
 }
 
-createDirIfNotExists(Path.directory(path));
 
 switch (mode)
 {
 case Force:
-sys.io.File.saveContent(path, data);
 case Skip:
 {
-sys.io.File.saveContent(path, data);
 }
 case Ask:
 {
-throw 'Entry at path already exists: $path';
 }
 else
 {
-sys.io.File.saveContent(path, data);
 }
 }
-throw 'Direct file writing by path is not supported on this platform.';
 }
 
 /**
@@ -479,32 +402,24 @@ throw 'Direct file writing by path is not supported on this platform.';
 public static function writeBytesToPath(path:String, data:Bytes, mode:FileWriteMode = Skip):Void
 {
 {
-throw 'Target path is a directory, not a file: "$path"';
 }
 
 switch (mode)
 {
 case Force:
-shouldWrite = true;
 case Skip:
 {
-shouldWrite = true;
 }
 case Ask:
 {
-throw 'Entry at path already exists: "$path"';
 }
 else
 {
-shouldWrite = true;
 }
 }
 
 {
-createDirIfNotExists(Path.directory(path));
-sys.io.File.saveBytes(path, data);
 }
-throw 'Direct file writing by path is not supported on this platform.';
 }
 
 /**
@@ -517,28 +432,20 @@ throw 'Direct file writing by path is not supported on this platform.';
 public static function appendStringToPath(path:String, data:String):Void
 {
 {
-writeStringToPath(path, data, Force);
 }
 else if (directoryExists(path))
 {
-throw 'Target path is a directory, not a file: "$path"';
 }
 
 try
 {
-output = sys.io.File.append(path, false);
-output.writeString(data);
-output.close();
 }
 catch (e:Dynamic)
 {
 {
-output.close();
 }
 
-throw 'Failed to append to file: "$path"';
 }
-throw 'Direct file writing by path is not supported on this platform.';
 }
 
 /**
@@ -551,11 +458,8 @@ throw 'Direct file writing by path is not supported on this platform.';
 public static function moveFile(path:String, destination:String):Void
 {
 {
-destination = Path.directory(destination);
 }
 
-sys.FileSystem.rename(path, Path.join([destination, Path.withoutDirectory(path)]));
-throw 'File moving is not supported on this platform.';
 }
 
 /**
@@ -566,8 +470,6 @@ throw 'File moving is not supported on this platform.';
 */
 public static function deleteFile(path:String):Void
 {
-sys.FileSystem.deleteFile(path);
-throw 'File deletion is not supported on this platform.';
 }
 
 /**
@@ -579,7 +481,6 @@ throw 'File deletion is not supported on this platform.';
 */
 public static function getFileSize(path:String):Int
 {
-throw 'File size calculation is not supported on this platform.';
 }
 
 /**
@@ -602,7 +503,6 @@ public static function pathExists(path:String):Bool
 */
 public static function fileExists(path:String):Bool
 {
-throw 'Filesystem check is not supported on this platform.';
 }
 
 /**
@@ -620,7 +520,6 @@ try
 catch (e:Dynamic)
 {
 }
-throw 'Filesystem check is not supported on this platform.';
 }
 
 /**
@@ -632,8 +531,6 @@ throw 'Filesystem check is not supported on this platform.';
 public static function createDirIfNotExists(dir:String):Void
 {
 {
-sys.FileSystem.createDirectory(dir);
-throw 'Directory creation is not supported on this platform.';
 }
 }
 
@@ -646,7 +543,6 @@ throw 'Directory creation is not supported on this platform.';
 */
 public static function readDir(path:String):Array<String>
 {
-throw 'Directory reading is not supported on this platform.';
 }
 
 /**
@@ -661,13 +557,10 @@ throw 'Directory reading is not supported on this platform.';
 public static function moveDir(path:String, destination:String, ?ignore:Array<String>, strict:Bool = true):Void
 {
 {
-throw 'Path is not a directory: "$path"';
 }
 
-createDirIfNotExists(destination);
 {
 {
-throw 'Destination directory "$destination" is not empty.';
 }
 }
 
@@ -676,19 +569,15 @@ throw 'Destination directory "$destination" is not empty.';
 for (entry in entries)
 {
 {
-stack.push(entryPath);
 }
 else
 {
-moveFile(entryPath, Path.join([destination, entry]));
 }
 }
 }
 
 {
-deleteDir(path);
 }
-throw 'Directory moving is not supported on this platform.';
 }
 
 /**
@@ -702,7 +591,6 @@ throw 'Directory moving is not supported on this platform.';
 public static function deleteDir(path:String, recursive:Bool = false, ?ignore:Array<String>):Void
 {
 {
-throw 'Path is not a valid directory: "$path"';
 }
 
 {
@@ -711,20 +599,16 @@ throw 'Path is not a valid directory: "$path"';
 for (entry in entries)
 {
 {
-stack.push(entryPath);
 }
 else
 {
-deleteFile(entryPath);
 }
 }
 }
 }
 else
 {
-sys.FileSystem.deleteDirectory(path);
 }
-throw 'Directory deletion is not supported on this platform.';
 }
 
 /**
@@ -737,7 +621,6 @@ throw 'Directory deletion is not supported on this platform.';
 public static function getDirSize(path:String):Int
 {
 {
-throw 'Path is not a valid directory path: $path';
 }
 
 {
@@ -745,16 +628,13 @@ throw 'Path is not a valid directory path: $path';
 for (entry in readDir(currentPath))
 {
 {
-stack.push(entryPath);
 }
 else
 {
-total += getFileSize(entryPath);
 }
 }
 }
 
-throw 'Directory size calculation not supported on this platform.';
 }
 
 
@@ -768,11 +648,7 @@ public static function getTempDir():Null<String>
 {
 for (envName in TEMP_ENV_VARS)
 {
-path = Sys.getEnv(envName);
 }
-tempDir = Path.join([path ?? '', 'funkin/']);
-tempDir = Path.addTrailingSlash(extension.androidtools.content.Context.getCacheDir());
-tempDir = '/tmp/funkin/';
 }
 
 /**
@@ -786,28 +662,20 @@ tempDir = '/tmp/funkin/';
 public static function rename(path:String, newName:String, keepExtension:Bool = true):Void
 {
 {
-throw 'Path does not exist: "$path"';
 }
 
-newName = Path.withoutDirectory(newName);
 {
-newName = Path.withoutExtension(newName);
 }
 else if (keepExtension)
 {
-newName = Path.withExtension(newName, Path.extension(path));
-}
-
-newName = Path.join([Path.directory(path), newName]);
-{
 }
 
 {
-throw 'Destination path already exists: "$newName"';
 }
 
-sys.FileSystem.rename(path, newName);
-throw 'File renaming by path is not supported on this platform.';
+{
+}
+
 }
 
 /**
@@ -818,7 +686,6 @@ throw 'File renaming by path is not supported on this platform.';
 */
 public static function createZIPFromEntries(entries:Array<Entry>):Bytes
 {
-zipWriter.write(entries.list());
 }
 
 public static function readZIPFromBytes(input:Bytes):Array<Entry>
@@ -826,10 +693,8 @@ public static function readZIPFromBytes(input:Bytes):Array<Entry>
 for (entry in zippedEntries)
 {
 {
-entry.data = haxe.zip.Reader.unzip(entry);
 }
 
-results.push(entry);
 }
 
 }
@@ -838,7 +703,6 @@ public static function mapZIPEntriesByName(input:Array<Entry>):Map<String, Entry
 {
 for (entry in input)
 {
-results.set(entry.fileName, entry);
 }
 
 }
@@ -871,7 +735,6 @@ compressed: false,
 fileTime: Date.now(),
 crc32: null,
 extraFields: null,
-};
 }
 
 /**
@@ -882,13 +745,10 @@ extraFields: null,
 */
 public static function openFolder(pathFolder:String, createIfNotExists:Bool = true):Void
 {
-pathFolder = pathFolder.trim();
 {
-createDirIfNotExists(pathFolder);
 }
 else if (!directoryExists(pathFolder))
 {
-throw 'Path is not a directory: "$pathFolder"';
 }
 
 //
@@ -896,11 +756,9 @@ throw 'Path is not a directory: "$pathFolder"';
 for (fm in fileManagers)
 {
 {
-exitCode = Sys.command(fm, [pathFolder]);
 }
 }
 
-throw 'External folder open is not supported on this platform.';
 }
 
 /**
@@ -910,14 +768,9 @@ throw 'External folder open is not supported on this platform.';
 */
 public static function openSelectFile(path:String):Void
 {
-path = path.trim();
 {
-throw 'Path does not exist: "$path"';
 }
 
-path = Path.directory(path);
-openFolder(path);
-throw 'External file selection is not supported on this platform.';
 }
 
 private static function convertTypeFilter(?typeFilter:Array<FileFilter>):Null<String>
@@ -925,10 +778,8 @@ private static function convertTypeFilter(?typeFilter:Array<FileFilter>):Null<St
 {
 for (type in typeFilter)
 {
-filters.push(type.extension.replace('*.', '').replace(';', ','));
 }
 
-filter = filters.join(';');
 }
 
 }
@@ -948,17 +799,13 @@ class FileUtilSandboxed
 */
 public static function sanitizePath(path:String):String
 {
-path = (path ?? '').trim();
 {
 }
 
 {
-path = path.substring(path.lastIndexOf(':') + 1);
 }
 
-path = path.replace('\\', '/');
 {
-path = path.replace('//', '/');
 }
 
 for (part in parts)
@@ -966,11 +813,8 @@ for (part in parts)
 switch (part)
 {
 case '.' | '':
-continue;
 case '..':
-sanitized.pop();
 default:
-sanitized.push(part.trim());
 }
 }
 
@@ -978,11 +822,9 @@ sanitized.push(part.trim());
 }
 
 {
-realPath = sys.FileSystem.fullPath(Path.join([FileUtil.gameDirectory].concat(sanitized)));
 }
 
 {
-realPath = Path.join(unresolvedSegments);
 }
 
 {
@@ -1004,25 +846,16 @@ public static function isProtected(path:String, sanitizeFirst:Bool = true):Bool
 
 }
 
-public static final FILE_FILTER_FNFC:FileFilter = FileUtil.FILE_FILTER_FNFC;
-public static final FILE_FILTER_JSON:FileFilter = FileUtil.FILE_FILTER_JSON;
-public static final FILE_FILTER_ZIP:FileFilter = FileUtil.FILE_FILTER_ZIP;
-public static final FILE_FILTER_PNG:FileFilter = FileUtil.FILE_FILTER_PNG;
 
-public static final FILE_EXTENSION_INFO_FNFC:FileDialogExtensionInfo = FileUtil.FILE_EXTENSION_INFO_FNFC;
-public static final FILE_EXTENSION_INFO_ZIP:FileDialogExtensionInfo = FileUtil.FILE_EXTENSION_INFO_ZIP;
-public static final FILE_EXTENSION_INFO_PNG:FileDialogExtensionInfo = FileUtil.FILE_EXTENSION_INFO_PNG;
 
 public static function browseForBinaryFile(dialogTitle:String, ?typeFilter:Array<FileDialogExtensionInfo>, onSelect:(SelectedFileInfo) -> Void,
 ?onCancel:() -> Void)
 {
-FileUtil.browseForBinaryFile(dialogTitle, typeFilter, onSelect, onCancel);
 }
 
 public static function browseForTextFile(dialogTitle:String, ?typeFilter:Array<FileDialogExtensionInfo>, onSelect:(SelectedFileInfo) -> Void,
 ?onCancel:() -> Void):Void
 {
-FileUtil.browseForTextFile(dialogTitle, typeFilter, onSelect, onCancel);
 }
 
 public static function browseForDirectory(?typeFilter:Array<FileFilter>, onSelect:(String) -> Void, ?onCancel:() -> Void, ?defaultPath:String,
@@ -1074,12 +907,10 @@ public static function readBytesFromPath(path:String):Bytes
 
 public static function browseFileReference(callback:(FileReference) -> Void):Void
 {
-FileUtil.browseFileReference(callback);
 }
 
 public static function writeFileReference(path:String, data:String, callback:String->Void):Void
 {
-FileUtil.writeFileReference(path, data, callback);
 }
 
 public static function readJSONFromPath(path:String):Dynamic
@@ -1088,27 +919,22 @@ public static function readJSONFromPath(path:String):Dynamic
 
 public static function writeStringToPath(path:String, data:String, mode:FileWriteMode = Skip):Void
 {
-FileUtil.writeStringToPath(path, data, mode);
 }
 
 public static function writeBytesToPath(path:String, data:Bytes, mode:FileWriteMode = Skip):Void
 {
-FileUtil.writeBytesToPath(path, data, mode);
 }
 
 public static function appendStringToPath(path:String, data:String):Void
 {
-FileUtil.appendStringToPath(path, data);
 }
 
 public static function moveFile(path:String, destination:String):Void
 {
-FileUtil.moveFile(path, destination);
 }
 
 public static function deleteFile(path:String):Void
 {
-FileUtil.deleteFile(path);
 }
 
 public static function getFileSize(path:String):Int
@@ -1129,7 +955,6 @@ public static function directoryExists(path:String):Bool
 
 public static function createDirIfNotExists(dir:String):Void
 {
-FileUtil.createDirIfNotExists(sanitizePath(dir));
 }
 
 public static function readDir(path:String):Array<String>
@@ -1138,12 +963,10 @@ public static function readDir(path:String):Array<String>
 
 public static function moveDir(path:String, destination:String, ?ignore:Array<String>, strict:Bool = true):Void
 {
-FileUtil.moveDir(path, destination, ignore, strict);
 }
 
 public static function deleteDir(path:String, recursive:Bool = false, ?ignore:Array<String>):Void
 {
-FileUtil.deleteDir(path, recursive, ignore);
 }
 
 public static function getDirSize(path:String):Int
@@ -1156,7 +979,6 @@ public static function getTempDir():Null<String>
 
 public static function rename(path:String, newName:String, keepExtension:Bool = true):Void
 {
-FileUtil.rename(path, sanitizePath(newName), keepExtension);
 }
 
 public static function createZIPFromEntries(entries:Array<Entry>):Bytes
@@ -1181,12 +1003,10 @@ public static function makeZIPEntryFromBytes(name:String, data:haxe.io.Bytes):En
 
 public static function openFolder(pathFolder:String, createIfNotExists:Bool = true):Void
 {
-FileUtil.openFolder(sanitizePath(pathFolder), createIfNotExists);
 }
 
 public static function openSelectFile(path:String):Void
 {
-FileUtil.openSelectFile(sanitizePath(path));
 }
 }
 
@@ -1195,15 +1015,12 @@ enum FileWriteMode
 /**
 * Forcibly overwrite the file if it already exists.
 */
-Force;
 
 /**
 * Ask the user if they want to overwrite the file if it already exists.
 */
-Ask;
 
 /**
 * Skip the file if it already exists.
 */
-Skip;
 }

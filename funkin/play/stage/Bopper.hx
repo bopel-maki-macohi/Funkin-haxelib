@@ -1,8 +1,5 @@
-package funkin.play.stage;
 
 
-typedef AnimationFrameCallback = String->Int->Int->Void;
-typedef AnimationFinishedCallback = String->Void;
 
 /**
 * A Bopper is a stage prop which plays a dance animation.
@@ -50,8 +47,6 @@ function set_isPixel(value:Bool):Bool
 
 function set_idleSuffix(value:String):String
 {
-this.idleSuffix = value;
-this.dance();
 }
 
 /**
@@ -77,12 +72,8 @@ function set_animOffsets(value:Array<Float>):Array<Float>
 
 public function new(danceEvery:Float = 0.0)
 {
-super();
-this.danceEvery = danceEvery;
 
 {
-this.animation.onFrameChange.add(this.onAnimationFrame);
-this.animation.onFinish.add(this.onAnimationFinished);
 }
 }
 
@@ -93,7 +84,6 @@ this.animation.onFinish.add(this.onAnimationFinished);
 function onAnimationFinished(name:String)
 {
 {
-canPlayOtherAnims = true;
 }
 }
 
@@ -116,13 +106,10 @@ function onAnimationFrame(name:String = "", frameNumber:Int = -1, frameIndex:Int
 */
 public function resetPosition()
 {
-this.x = originalPosition.x;
-this.y = originalPosition.y;
 }
 
 function update_shouldAlternate():Void
 {
-this.shouldAlternate = hasAnimation('danceLeft');
 }
 
 /**
@@ -131,7 +118,6 @@ this.shouldAlternate = hasAnimation('danceLeft');
 public function onStepHit(event:SongTimeScriptEvent)
 {
 {
-dance(shouldBop);
 }
 }
 
@@ -148,22 +134,17 @@ public function dance(forceRestart:Bool = false):Void
 }
 
 {
-update_shouldAlternate();
 }
 
 {
 {
-playAnimation('danceRight$idleSuffix', forceRestart);
 }
 else
 {
-playAnimation('danceLeft$idleSuffix', forceRestart);
 }
-hasDanced = !hasDanced;
 }
 else
 {
-playAnimation('idle$idleSuffix', forceRestart);
 }
 }
 
@@ -211,8 +192,6 @@ else if (ignoreExclusionPref != null && ignoreExclusionPref.length > 0)
 for (entry in ignoreExclusionPref)
 {
 {
-detected = true;
-break;
 }
 }
 }
@@ -220,13 +199,10 @@ else
 }
 
 
-this.animation.play(correctName, restart, reversed, 0);
 
 {
-canPlayOtherAnims = false;
 }
 
-applyAnimationOffsets(correctName);
 }
 
 
@@ -239,30 +215,21 @@ public function forceAnimationForDuration(name:String, duration:Float):Void
 
 
 
-this.animation.play(correctName, false, false);
-applyAnimationOffsets(correctName);
 
-canPlayOtherAnims = false;
 forceAnimationTimer.start(duration, (timer) ->
 {
-canPlayOtherAnims = true;
-}, 1);
 }
 
 function applyAnimationOffsets(name:String):Void
 {
-this.animOffsets = offsets;
 }
 
 public function setAnimationOffsets(name:String, xOffset:Float, yOffset:Float):Void
 {
-animationOffsets.set(name, [xOffset, yOffset]);
 }
 
 override function getScreenPosition(?result:FlxPoint, ?camera:FlxCamera):FlxPoint
 {
-output.x -= (animOffsets[0] - globalOffsets[0]) * this.scale.x;
-output.y -= (animOffsets[1] - globalOffsets[1]) * this.scale.y;
 }
 
 public function onPause(event:PauseScriptEvent)

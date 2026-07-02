@@ -1,4 +1,3 @@
-package funkin.api.newgrounds;
 
 
 /**
@@ -34,25 +33,16 @@ public static function award(medal:Medal):Void
 }
 else if (!medalData.unlocked)
 {
-medalData.sendUnlock();
 
 BitmapData.loadFromFile("https:" + medalData.icon).onComplete(function(bmp:BitmapData)
 {
-medalGraphic.persist = true;
-NewgroundsMedalPlugin.play(medalData.value, medalData.name, medalGraphic);
-});
 
 {
-})[0];
 
 
-str = str.replace("data:image/png;base64,", "").trim();
 {
-medalGraphic = FlxGraphic.fromBitmapData(bitmapData);
-medalGraphic.persist = true;
 }
 
-NewgroundsMedalPlugin.play(medalData.value, medalData.name, medalGraphic);
 }
 else
 {
@@ -70,17 +60,12 @@ public static function loadMedalJSON():Void
 {
 
 
-parser.ignoreUnknownVariables = false;
-parser.fromJson(jsonString, jsonPath);
 
 {
 for (error in parser.errors)
-funkin.data.DataError.printError(error);
-medalJSON = [];
 }
 else
 {
-medalJSON = parser.value;
 }
 }
 
@@ -113,7 +98,6 @@ public static function awardStoryLevel(id:String):Void
 {
 {
 }
-Medals.award(medal);
 }
 }
 
@@ -330,6 +314,5 @@ default:
 */
 public static function getAllMedals():Array<Medal>
 {
-[StartGame, StoryTutorial, StoryWeek1, StoryWeek2, StoryWeek3, StoryWeek4, StoryWeek5, StoryWeek6, StoryWeek7, StoryWeekend1, CharSelect, FreeplayPicoMix, FreeplayStressPico, LossRating, PerfectRatingHard, GoldPerfectRatingHard, ErectDifficulty, GoldPerfectRatingNightmare, FridayNight, Nice];
 }
 }

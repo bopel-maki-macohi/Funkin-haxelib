@@ -1,4 +1,3 @@
-package funkin.play.notes;
 
 
 /**
@@ -32,7 +31,6 @@ class NoteVibrationsHandler
 */
 public function new()
 {
-noteStatuses = [leftNoteStatus, downNoteStatus, upNoteStatus, rightNoteStatus];
 }
 
 /**
@@ -46,7 +44,6 @@ public function tryNoteVibration():Void
 for (currentNoteStatus in noteStatuses)
 {
 
-stackingAmplitude += Constants.MAX_VIBRATION_AMPLITUDE / 4;
 }
 
 
@@ -63,7 +60,6 @@ public function tryHoldNoteVibration(holdNoteEnded:Bool = false):Void
 for (currentNoteStatus in noteStatuses)
 {
 
-stackingAmplitude += Constants.MAX_VIBRATION_AMPLITUDE / amplitudeDivider;
 }
 
 

@@ -1,4 +1,3 @@
-package funkin.ui.debug.charting.components;
 
 
 /**

@@ -1,4 +1,3 @@
-package funkin.ui.freeplay;
 
 
 /**
@@ -8,11 +7,8 @@ class Album implements IRegistryEntry<AlbumData>
 {
 public function new(id:String, ?params:Dynamic)
 {
-this.id = id;
-this._data = _fetchData(id);
 
 {
-throw 'Could not parse album data for id: $id';
 }
 }
 

@@ -1,4 +1,3 @@
-package funkin.ui.debug.charting.components;
 
 
 /**
@@ -13,9 +12,6 @@ class ChartEditorNotePreview extends FlxSprite
 
 public function new(height:Int)
 {
-super(0, 0);
-this.previewHeight = height;
-buildBackground();
 }
 
 /**
@@ -23,7 +19,6 @@ buildBackground();
 */
 function buildBackground():Void
 {
-makeGraphic(WIDTH, previewHeight, BG_COLOR);
 }
 
 /**
@@ -31,7 +26,6 @@ makeGraphic(WIDTH, previewHeight, BG_COLOR);
 */
 public function erase():Void
 {
-drawRect(0, 0, WIDTH, previewHeight, BG_COLOR);
 }
 
 /**
@@ -41,7 +35,6 @@ drawRect(0, 0, WIDTH, previewHeight, BG_COLOR);
 */
 public function addNote(note:SongNoteData, songLengthInPixels:Int, previewType:NotePreviewType = None):Void
 {
-drawNote(noteDir, mustHit, Std.int(note.time), songLengthInPixels, previewType);
 }
 
 /**
@@ -52,7 +45,6 @@ drawNote(noteDir, mustHit, Std.int(note.time), songLengthInPixels, previewType);
 */
 public function addEvent(event:SongEventData, songLengthInPixels:Int, isSelection:Bool = false):Void
 {
-drawNote(-1, false, Std.int(event.time), songLengthInPixels, isSelection ? Selection : None);
 }
 
 /**
@@ -64,7 +56,6 @@ public function addNotes(notes:Array<SongNoteData>, songLengthInPixels:Int):Void
 {
 for (note in notes)
 {
-addNote(note, songLengthInPixels, None);
 }
 }
 
@@ -77,7 +68,6 @@ public function addSelectedNotes(notes:Array<SongNoteData>, songLengthInPixels:I
 {
 for (note in notes)
 {
-addNote(note, songLengthInPixels, Selection);
 }
 }
 
@@ -90,7 +80,6 @@ public function addOverlappingNotes(notes:Array<SongNoteData>, songLengthInPixel
 {
 for (note in notes)
 {
-addNote(note, songLengthInPixels, Overlapping);
 }
 }
 
@@ -103,7 +92,6 @@ public function addEvents(events:Array<SongEventData>, songLengthInPixels:Int):V
 {
 for (event in events)
 {
-addEvent(event, songLengthInPixels);
 }
 }
 
@@ -116,7 +104,6 @@ public function addSelectedEvents(events:Array<SongEventData>, songLengthInPixel
 {
 for (event in events)
 {
-addEvent(event, songLengthInPixels, true);
 }
 }
 
@@ -131,28 +118,17 @@ addEvent(event, songLengthInPixels, true);
 public function drawNote(dir:Int, mustHit:Bool, strumTimeInMs:Int, songLengthInPixels:Int, previewType:NotePreviewType = None):Void
 {
 {
-case 0: LEFT_COLOR;
-case 1: DOWN_COLOR;
-case 2: UP_COLOR;
-case 3: RIGHT_COLOR;
-default: EVENT_COLOR;
-};
 
 
 switch (previewType)
 {
 case Selection:
-color = SELECTED_COLOR;
-noteHeight += 1;
 case Overlapping:
-color = OVERLAPPING_COLOR;
-noteHeight += 2;
 default:
 }
 
 
 
-drawRect(noteX, noteY, NOTE_WIDTH, noteHeight, color);
 }
 
 function eraseNote(dir:Int, mustHit:Bool, strumTimeInMs:Int, songLengthInPixels:Int):Void
@@ -160,18 +136,13 @@ function eraseNote(dir:Int, mustHit:Bool, strumTimeInMs:Int, songLengthInPixels:
 
 
 
-drawRect(noteX, noteY, NOTE_WIDTH, NOTE_HEIGHT, BG_COLOR);
 }
 
 inline function drawRect(noteX:Float, noteY:Float, width:Int, height:Int, color:FlxColor):Void
 {
-FlxSpriteUtil.drawRect(this, noteX, noteY, width, height, color);
 }
 }
 
 enum NotePreviewType
 {
-None;
-Selection;
-Overlapping;
 }

@@ -1,4 +1,3 @@
-package funkin.modding.module;
 
 
 /**

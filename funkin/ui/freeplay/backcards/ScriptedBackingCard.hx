@@ -1,4 +1,3 @@
-package funkin.ui.freeplay.backcards;
 
 /**
 * A script that can be tied to a BackingCard.

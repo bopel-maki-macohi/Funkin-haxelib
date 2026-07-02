@@ -1,4 +1,3 @@
-package funkin.play;
 
 /**
 * Manages playback of multiple songs in a row.
@@ -36,11 +35,5 @@ class PlayStatePlaylist
 */
 public static function reset():Void
 {
-isStoryMode = false;
-playlistSongIds = [];
-campaignScore = 0;
-campaignTitle = 'UNKNOWN';
-campaignId = null;
-campaignDifficulty = Constants.DEFAULT_DIFFICULTY;
 }
 }

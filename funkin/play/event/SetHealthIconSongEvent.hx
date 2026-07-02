@@ -1,4 +1,3 @@
-package funkin.play.event;
 
 
 /**
@@ -28,7 +27,6 @@ public function new()
 {
 super('SetHealthIcon', {
 processOldEvents: true
-});
 }
 
 
@@ -43,7 +41,6 @@ scale: data.value.scale ?? DEFAULT_SCALE,
 flipX: data.value.flipX ?? DEFAULT_FLIPX,
 isPixel: data.value.isPixel ?? DEFAULT_ISPIXEL,
 offsets: offsets,
-};
 
 switch (data?.value?.char ?? DEFAULT_CHAR)
 {
@@ -107,6 +104,5 @@ title: 'Y Offset',
 defaultValue: DEFAULT_Y_OFFSET,
 type: SongEventFieldType.FLOAT,
 }]
-}]);
 }
 }

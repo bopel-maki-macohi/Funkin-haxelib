@@ -1,4 +1,3 @@
-package funkin.ui.debug.charting.components;
 
 
 /**
@@ -7,7 +6,6 @@ package funkin.ui.debug.charting.components;
 */
 class ChartEditorEventSprite extends FlxSprite
 {
-public static final DEFAULT_EVENT = 'Default';
 
 
 /**
@@ -28,22 +26,13 @@ public static final DEFAULT_EVENT = 'Default';
 function set_overrideStepTime(value:Null<Float>):Null<Float>
 {
 
-overrideStepTime = value;
-updateEventPosition();
 }
 
 public function new(parent:ChartEditorState, isGhost:Bool = false)
 {
-super();
 
-this.parentState = parent;
-this.isGhost = isGhost;
 
-this.tooltip = HaxeUIUtil.buildTooltip('N/A');
-this.frames = buildFrames();
 
-buildAnimations();
-refresh();
 }
 
 
@@ -54,22 +43,17 @@ refresh();
 static function buildFrames(force:Bool = false):FlxFramesCollection
 {
 
-initEmptyEventFrames();
 
-defaultFrames.parent.persist = true;
 for (frame in defaultFrames.frames)
 {
-eventFrames.pushFrame(frame);
 }
 
 for (eventName in SongEventRegistry.listEventIds())
 {
 
 
-frames.parent.persist = true;
 for (frame in frames.frames)
 {
-eventFrames.pushFrame(frame);
 }
 }
 
@@ -77,14 +61,12 @@ eventFrames.pushFrame(frame);
 
 static function initEmptyEventFrames():Void
 {
-eventFrames = new FlxAtlasFrames(null);
 }
 
 function buildAnimations():Void
 {
 for (eventName in eventNames)
 {
-this.animation.addByPrefix(eventName, '${eventName}0', 24, false);
 }
 }
 
@@ -95,52 +77,33 @@ public function correctAnimationName(name:String):String
 public function playAnimation(?name:String):Void
 {
 
-this.animation.play(correctedName);
-refresh();
 }
 
 function refresh():Void
 {
-setGraphicSize(ChartEditorState.GRID_SIZE);
-this.updateHitbox();
 }
 
 function set_eventData(value:Null<SongEventData>):Null<SongEventData>
 {
 {
-this.eventData = null;
-this.kill();
-this.visible = false;
-updateTooltipPosition();
 }
 else
 {
-this.visible = true;
-playAnimation(value.eventKind);
-this.eventData = value;
-updateEventPosition();
-updateTooltipText();
 }
 }
 
 public function updateEventPosition(?origin:FlxObject)
 {
 
-this.x = (ChartEditorState.STRUMLINE_SIZE * 2 + 1 - 1) * ChartEditorState.GRID_SIZE;
 
-this.y = stepTime * ChartEditorState.GRID_SIZE;
 
 {
-this.x += origin.x;
-this.y += origin.y;
 }
 
-this.updateTooltipPosition();
 }
 
 public function updateTooltipText():Void
 {
-this.tooltip.tipData = {text: this.eventData.buildTooltip()};
 }
 
 public function updateTooltipPosition():Void
@@ -151,10 +114,6 @@ ToolTipManager.instance.unregisterTooltipRegion(this.tooltip);
 }
 else
 {
-this.tooltip.left = this.x;
-this.tooltip.top = this.y;
-this.tooltip.width = this.width;
-this.tooltip.height = this.height;
 
 ToolTipManager.instance.registerTooltipRegion(this.tooltip);
 }
@@ -162,7 +121,6 @@ ToolTipManager.instance.registerTooltipRegion(this.tooltip);
 
 override public function kill()
 {
-super.kill();
 
 ToolTipManager.instance.unregisterTooltipRegion(this.tooltip);
 }

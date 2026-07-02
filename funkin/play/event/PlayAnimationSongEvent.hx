@@ -1,4 +1,3 @@
-package funkin.play.event;
 
 
 /**
@@ -8,7 +7,6 @@ class PlayAnimationSongEvent extends SongEvent
 {
 public function new()
 {
-super('PlayAnimation');
 }
 
 
@@ -34,11 +32,9 @@ else
 
 {
 {
-targetChar.playAnimation(anim, force, force);
 }
 else
 {
-target.animation.play(anim, force);
 }
 }
 else
@@ -75,6 +71,5 @@ name: 'force',
 title: 'Force',
 type: SongEventFieldType.BOOL,
 defaultValue: DEFAULT_FORCE
-}]);
 }
 }

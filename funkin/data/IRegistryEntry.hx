@@ -1,4 +1,3 @@
-package funkin.data;
 
 /**
 * An interface defining the necessary functions for a registry entry.
@@ -7,10 +6,6 @@ package funkin.data;
 */
 interface IRegistryEntry<T>
 {
-public final id:String;
 
-public function destroy():Void;
-public function toString():String;
 
-public final _data:T;
 }

@@ -1,4 +1,3 @@
-package funkin.graphics.framebuffer;
 
 
 /**
@@ -13,9 +12,6 @@ class FrameBuffer
 
 public function new()
 {
-camera = new FlxCamera();
-camera.antialiasing = false;
-camera.bgColor = FlxColor.TRANSPARENT;
 }
 
 /**
@@ -26,10 +22,6 @@ camera.bgColor = FlxColor.TRANSPARENT;
 */
 public function create(width:Int, height:Int, bgColor:FlxColor):Void
 {
-dispose();
-texture = Lib.current.stage.context3D.createTexture(width, height, BGRA, true);
-bitmap = FixedBitmapData.fromTexture(texture);
-camera.bgColor = bgColor;
 }
 
 /**
@@ -38,13 +30,6 @@ camera.bgColor = bgColor;
 */
 public function follow(target:FlxCamera):Void
 {
-camera.x = target.x;
-camera.y = target.y;
-camera.width = target.width;
-camera.height = target.height;
-camera.scroll.x = target.scroll.x;
-camera.scroll.y = target.scroll.y;
-camera.setScale(target.scaleX, target.scaleY);
 }
 
 /**
@@ -52,10 +37,6 @@ camera.setScale(target.scaleX, target.scaleY);
 */
 public function lock():Void
 {
-camera.clearDrawStack();
-camera.canvas.graphics.clear();
-camera.fill(camera.bgColor.rgb, camera.useBgAlphaBlending, camera.bgColor.alphaFloat);
-camera.debugLayer.graphics.clear();
 }
 
 /**
@@ -65,9 +46,7 @@ public function render():Void
 {
 for (spriteCopy in spriteCopies)
 {
-spriteCopy.render(camera);
 }
-camera.render();
 }
 
 /**
@@ -75,8 +54,6 @@ camera.render();
 */
 public function unlock():Void
 {
-bitmap.fillRect(new Rectangle(0, 0, bitmap.width, bitmap.height), 0);
-bitmap.draw(camera.flashSprite, new Matrix(1, 0, 0, 1, camera.flashSprite.x, camera.flashSprite.y));
 }
 
 /**
@@ -85,12 +62,7 @@ bitmap.draw(camera.flashSprite, new Matrix(1, 0, 0, 1, camera.flashSprite.x, cam
 public function dispose():Void
 {
 {
-texture.dispose();
-texture = null;
-bitmap.dispose();
-bitmap = null;
 }
-spriteCopies.resize(0);
 }
 
 /**
@@ -99,7 +71,6 @@ spriteCopies.resize(0);
 */
 public function addSpriteCopy(spriteCopy:SpriteCopy):Void
 {
-spriteCopies.push(spriteCopy);
 }
 
 /**
@@ -109,6 +80,5 @@ spriteCopies.push(spriteCopy);
 */
 public function moveSprite(sprite:FlxSprite):Void
 {
-sprite.cameras = [camera];
 }
 }

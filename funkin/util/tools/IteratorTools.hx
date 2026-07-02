@@ -1,4 +1,3 @@
-package funkin.util.tools;
 
 /**
 * A static extension which provides utility functions for Iterators.
@@ -18,7 +17,6 @@ public static function count<T>(iterator:Iterator<T>, ?predicate:(item:T) -> Boo
 
 {
 for (_ in iterator)
-n++;
 }
 else
 {

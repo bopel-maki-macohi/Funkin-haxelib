@@ -1,4 +1,3 @@
-package funkin.play;
 
 
 class Countdown
@@ -33,37 +32,28 @@ class Countdown
 */
 public static function performCountdown():Bool
 {
-countdownStep = BEFORE;
 {
 }
 
-stopCountdown();
 
 PlayState.instance.isInCountdown = true;
 Conductor.instance.update(PlayState.instance.startTimestamp + Conductor.instance.beatLengthMs * -5);
 
-countdownTimer = new FlxTimer();
 
 countdownTimer.start(Conductor.instance.beatLengthMs / 1000, function(tmr:FlxTimer)
 {
 {
-tmr.cancel();
 }
 
-countdownStep = decrement(countdownStep);
 
 
-showCountdownGraphic(countdownStep);
 
-playCountdownSound(countdownStep);
 
 
 {
-pauseCountdown();
 }
 
 {
-stopCountdown();
 }
 }, 5); // Before, 3, 2, 1, GO!, After
 
@@ -78,11 +68,8 @@ static function propagateCountdownEvent(index:CountdownStep):Bool
 switch (index)
 {
 case BEFORE:
-event = new CountdownScriptEvent(COUNTDOWN_START, index);
 case THREE | TWO | ONE | GO: // I didn't know you could use `|` in a switch/case block!
-event = new CountdownScriptEvent(COUNTDOWN_STEP, index);
 case AFTER:
-event = new CountdownScriptEvent(COUNTDOWN_END, index, false);
 default:
 }
 
@@ -98,7 +85,6 @@ PlayState.instance.dispatchEvent(event);
 public static function pauseCountdown():Void
 {
 {
-countdownTimer.active = false;
 }
 }
 
@@ -110,7 +96,6 @@ countdownTimer.active = false;
 public static function resumeCountdown():Void
 {
 {
-countdownTimer.active = true;
 }
 }
 
@@ -122,9 +107,6 @@ countdownTimer.active = true;
 public static function stopCountdown():Void
 {
 {
-countdownTimer.cancel();
-countdownTimer.destroy();
-countdownTimer = null;
 }
 }
 
@@ -133,7 +115,6 @@ countdownTimer = null;
 */
 public static function skipCountdown():Void
 {
-stopCountdown();
 Conductor.instance.update(0);
 }
 
@@ -143,7 +124,6 @@ Conductor.instance.update(0);
 public static function resetCountdown()
 {
 {
-countdownTimer.reset();
 }
 }
 
@@ -152,7 +132,6 @@ countdownTimer.reset();
 */
 public static function reset()
 {
-noteStyle = null;
 }
 
 /**
@@ -172,7 +151,6 @@ noteStyle = NoteStyleRegistry.instance.fetchEntry(noteStyleId);
 */
 public static function showCountdownGraphic(index:CountdownStep):Void
 {
-fetchNoteStyle();
 
 
 
@@ -180,16 +158,11 @@ FlxTween.tween(countdownSprite, {alpha: 0}, Conductor.instance.beatLengthMs / 10
 ease: fadeEase,
 onComplete: function(twn:FlxTween)
 {
-countdownSprite.destroy();
 }
-});
 
 countdownSprite.cameras = [PlayState.instance.camHUD];
 PlayState.instance.add(countdownSprite);
-countdownSprite.screenCenter();
 
-countdownSprite.x += offsets[0];
-countdownSprite.y += offsets[1];
 }
 
 /**
@@ -197,7 +170,6 @@ countdownSprite.y += offsets[1];
 */
 public static function playCountdownSound(step:CountdownStep):FunkinSound
 {
-fetchNoteStyle();
 
 }
 
@@ -222,10 +194,4 @@ default:
 */
 enum CountdownStep
 {
-BEFORE;
-THREE;
-TWO;
-ONE;
-GO;
-AFTER;
 }

@@ -1,4 +1,3 @@
-package funkin.data.freeplay.player;
 
 
 class PlayerData
@@ -52,7 +51,6 @@ class PlayerData
 
 public function new()
 {
-this.version = PlayerRegistry.PLAYER_DATA_VERSION;
 }
 
 /**
@@ -60,13 +58,11 @@ this.version = PlayerRegistry.PLAYER_DATA_VERSION;
 */
 public function serialize(pretty:Bool = true):String
 {
-updateVersionToLatest();
 
 }
 
 public function updateVersionToLatest():Void
 {
-this.version = PlayerRegistry.PLAYER_DATA_VERSION;
 }
 }
 
@@ -88,24 +84,17 @@ class PlayerFreeplayDJData
 
 public function new()
 {
-animationMap = new Map();
 }
 
 function mapAnimations():Void
 {
 
-animationMap.clear();
-prefixToOffsetsMap.clear();
 for (anim in animations)
 {
-animationMap.set(anim.name, anim);
-prefixToOffsetsMap.set(anim.prefix, anim.offsets);
 }
 }
 
-public inline function getAssetPath():String return assetPath; // return assetPath;
 
-public inline function getAnimationsList():Array<AnimationData> return animations;
 
 public function useApplyStageMatrix():Bool
 {
@@ -217,7 +206,6 @@ typedef PlayerCharSelectGFData =
 typedef PlayerResultsData =
 {
 
-};
 
 typedef PlayerResultsMusicData =
 {
@@ -246,7 +234,6 @@ typedef PlayerResultsAnimationData =
 
 
 
-};
 
 typedef PlayerFreeplayDJCharSelectData =
 {
@@ -261,4 +248,3 @@ typedef PlayerFreeplayDJFistPumpData =
 
 
 
-};

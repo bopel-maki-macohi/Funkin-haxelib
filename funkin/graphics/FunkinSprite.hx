@@ -1,7 +1,5 @@
-package funkin.graphics;
 
 
-using StringTools;
 
 typedef AtlasSpriteSettings =
 {
@@ -82,28 +80,22 @@ class FunkinSprite extends FlxAnimate
 */
 public function new(?x:Float = 0, ?y:Float = 0, ?path:String, ?atlasSettings:AtlasSpriteSettings)
 {
-super(x, y);
 
-filterRenderer = new FunkinFilterRenderer(this);
 
 {
 
 switch (ext)
 {
 case 'png':
-this.loadGraphic(path);
 
 case '':
 
 {
-path = path.replace('assets/images/', '');
 }
 else
 {
-path = path.replace('$lib:assets/$lib/images/', '');
 }
 
-this.loadTextureAtlas(path, lib, atlasSettings);
 
 default:
 }
@@ -112,11 +104,8 @@ default:
 
 override function initVars():Void
 {
-super.initVars();
 
 
-animation = newController;
-anim = newController;
 }
 
 /**
@@ -128,7 +117,6 @@ anim = newController;
 */
 public static function create(x:Float = 0.0, y:Float = 0.0, key:String):FunkinSprite
 {
-sprite.loadTexture(key);
 }
 
 /**
@@ -140,7 +128,6 @@ sprite.loadTexture(key);
 */
 public static function createSparrow(x:Float = 0.0, y:Float = 0.0, key:String):FunkinSprite
 {
-sprite.loadSparrow(key);
 }
 
 /**
@@ -152,7 +139,6 @@ sprite.loadSparrow(key);
 */
 public static function createPacker(x:Float = 0.0, y:Float = 0.0, key:String):FunkinSprite
 {
-sprite.loadPacker(key);
 }
 
 /**
@@ -164,7 +150,6 @@ sprite.loadPacker(key);
 */
 public static function createTextureAtlas(x:Float = 0.0, y:Float = 0.0, key:String, ?assetLibrary:Null<String>, ?settings:AtlasSpriteSettings):FunkinSprite
 {
-sprite.loadTextureAtlas(key, assetLibrary ?? "", settings);
 }
 
 /**
@@ -181,37 +166,28 @@ public function loadTexture(key:String):FunkinSprite
 {
 }
 
-loadGraphic(graphicKey);
 
 }
 
 public function loadTextureAsync(key:String, fade:Bool = false):Void
 {
 {
-fadeTween = FlxTween.tween(this, {alpha: 0}, 0.25);
 }
 
-graphic.persist = true;
 openfl.Assets.loadBitmapData(key)
 .onComplete(function(bitmapData:openfl.display.BitmapData)
 {
-loadBitmapData(bitmapData, cache);
 
 {
-fadeTween.cancel();
-FlxTween.tween(this, {alpha: 1.0}, 0.25);
 }
 })
 .onError(function(error:Dynamic)
 {
 {
-fadeTween.cancel();
-this.alpha = 1.0;
 }
 })
 .onProgress(function(progress:Int, total:Int)
 {
-});
 }
 
 /**
@@ -222,12 +198,9 @@ this.alpha = 1.0;
 public function loadBitmapData(input:BitmapData, cache:Bool = true):FunkinSprite
 {
 {
-loadGraphic(input);
 }
 else
 {
-this.graphic = graphic;
-this.frames = this.graphic.imageFrame;
 }
 
 }
@@ -253,17 +226,12 @@ public function loadTextureBase(input:TextureBase):Null<FunkinSprite>
 public function loadTextureAtlas(key:Null<String>, ?assetLibrary:Null<String>, ?settings:AtlasSpriteSettings):FunkinSprite
 {
 {
-throw 'Null path specified for loadTextureAtlas()!';
 }
 
 {
-settings = getDefaultAtlasSettings();
 }
 
-this.applyStageMatrix = settings.applyStageMatrix ?? false;
-this.useRenderTexture = settings.useRenderTexture ?? false;
 
-frames = Paths.getAnimateAtlas(key, assetLibrary, settings);
 
 }
 
@@ -275,7 +243,6 @@ frames = Paths.getAnimateAtlas(key, assetLibrary, settings);
 public function loadSparrow(key:String):FunkinSprite
 {
 
-this.frames = Paths.getSparrowAtlas(key);
 
 }
 
@@ -287,7 +254,6 @@ this.frames = Paths.getSparrowAtlas(key);
 public function loadPacker(key:String):FunkinSprite
 {
 
-this.frames = Paths.getPackerAtlas(key);
 
 }
 
@@ -297,7 +263,6 @@ this.frames = Paths.getPackerAtlas(key);
 */
 public function isAnimationDynamic(id:String):Bool
 {
-animData = this.animation.getByName(id);
 }
 
 /**
@@ -322,11 +287,9 @@ function addAnimationIfMissing(id:String):Bool
 {
 
 {
-anim.addByFrameLabel(id, id, this.library.frameRate, false);
 }
 else if (symbols.contains(id))
 {
-anim.addBySymbol(id, id, this.library.frameRate, false);
 }
 
 }
@@ -346,7 +309,6 @@ for (symbol in this.library.dictionary.keys())
 {
 
 {
-symbolItems.push(symbolItem);
 }
 }
 
@@ -356,9 +318,6 @@ symbolItem.timeline.forEachLayer((layer) ->
 {
 layer.forEachFrame((frame) ->
 {
-frames.push(frame);
-});
-});
 }
 
 }
@@ -388,9 +347,6 @@ public function isAnimationFinished():Bool
 */
 public function makeSolidColor(width:Int, height:Int, color:FlxColor = FlxColor.WHITE):FunkinSprite
 {
-frames = graphic.imageFrame;
-scale.set(width / 2.0, height / 2.0);
-updateHitbox();
 
 }
 
@@ -421,7 +377,6 @@ for (layer in mainTimeline.layers)
 for (frame in layer.frames)
 {
 {
-foundLabels.push(frame.name);
 }
 }
 }
@@ -474,8 +429,6 @@ public function replaceSymbolGraphic(symbol:String, ?graphic:Null<FlxGraphicAsse
 for (element in elements)
 {
 
-atlasInstance.replaceFrame(frame, adjustScale);
-element = atlasInstance;
 }
 }
 
@@ -502,7 +455,6 @@ public function getSymbolElements(symbol:String):Array<Element>
 
 
 {
-throw 'Symbol not found in atlas: ${symbol}';
 }
 
 
@@ -525,18 +477,11 @@ public function scaleElement(element:Element, scale:Float, positionOffset:Float 
 
 
 {
-elementMatrix.scale(scale, scale);
 }
 
 
-elementMatrix.a += scale;
-elementMatrix.d += scale;
 
-elementMatrix.tx -= transformPoint.x * scale;
-elementMatrix.ty -= transformPoint.y * scale;
 
-elementMatrix.tx -= positionOffset;
-elementMatrix.ty -= positionOffset;
 }
 
 /**
@@ -555,7 +500,6 @@ uniqueInCache: false,
 onSymbolCreate: null,
 applyStageMatrix: false,
 useRenderTexture: false
-};
 }
 
 /**
@@ -565,37 +509,20 @@ useRenderTexture: false
 */
 public override function clone():FunkinSprite
 {
-result.frames = this.frames;
-result.scale.set(this.scale.x, this.scale.y);
-result.updateHitbox();
 
 }
 
 override function getBoundingBox(camera:FlxCamera):FlxRect
 {
-getScreenPosition(_point, camera);
 
-_rect.set(_point.x, _point.y, width, height);
-_rect = camera.transformRect(_rect);
 
 {
-_rect.width = _rect.width / this.scale.x;
-_rect.height = _rect.height / this.scale.y;
-_rect.x = _rect.x / this.scale.x;
-_rect.y = _rect.y / this.scale.y;
-_rect.floor();
-_rect.x = _rect.x * this.scale.x;
-_rect.y = _rect.y * this.scale.y;
-_rect.width = _rect.width * this.scale.x;
-_rect.height = _rect.height * this.scale.y;
 }
 
 }
 
 override function preparePixelPerfectMatrix(matrix:FlxMatrix)
 {
-matrix.tx = Math.round(matrix.tx / this.scale.x) * this.scale.x;
-matrix.ty = Math.round(matrix.ty / this.scale.y) * this.scale.y;
 }
 
 
@@ -606,7 +533,6 @@ override function checkRenderTexture():Bool
 
 function set_filters(value:Null<Array<BitmapFilter>>):Null<Array<BitmapFilter>>
 {
-filters = value;
 }
 
 override public function draw():Void
@@ -615,90 +541,59 @@ for (filter in filters ?? [])
 {
 }
 
-super.draw();
 }
 
 override function drawFrameComplex(frame:FlxFrame, camera:FlxCamera):Void
 {
 
-frame.prepareMatrix(matrix, FlxFrameAngle.ANGLE_0, checkFlipX(), checkFlipY());
-prepareDrawMatrix(matrix, camera);
 
 {
 
 {
-_renderTexture.init(bounds[0], bounds[1]);
 _renderTexture.drawToCamera((camera, mat) ->
 {
-camera.drawPixels(frame, framePixels, mat, null, null, antialiasing, null);
-});
 
-_renderTexture.render();
 
-filterRenderer.applyFilters();
-_renderTextureDirty = false;
 }
 
 {
-matrix.translate(filterOffsets[0], filterOffsets[1]);
-camera.drawPixels(filterRenderer.graphic?.imageFrame.frame, null, matrix, colorTransform, blend, antialiasing, shader);
 }
 else
 {
-camera.drawPixels(_renderTexture.graphic.imageFrame.frame, framePixels, matrix, colorTransform, blend, antialiasing, shader);
 }
 }
 else
 {
-camera.drawPixels(frame, framePixels, matrix, colorTransform, blend, antialiasing, shader);
 }
 }
 
 override function drawAnimate(camera:FlxCamera):Void
 {
-matrix.identity();
 
 
-prepareAnimateMatrix(matrix, camera, bounds);
 
 
-timeline.currentFrame = animation.frameIndex;
 
 {
 
 {
-_renderTexture.init(Math.ceil(bounds.width), Math.ceil(bounds.height));
 _renderTexture.drawToCamera((camera, matrix) ->
 {
-matrix.translate(-bounds.x, -bounds.y);
-timeline.draw(camera, matrix, null, null, antialiasing, null);
-});
-_renderTexture.render();
 
-filterRenderer.applyFilters();
-_renderTextureDirty = false;
 }
 
 {
-matrix.translate(filterOffsets[0], filterOffsets[1]);
-camera.drawPixels(filterRenderer.graphic?.imageFrame.frame, null, matrix, colorTransform, blend, antialiasing, shader);
 }
 else
 {
-camera.drawPixels(_renderTexture.graphic.imageFrame.frame, framePixels, matrix, colorTransform, blend, antialiasing, shader);
 }
 }
 else
 {
-timeline.draw(camera, matrix, colorTransform, blend, antialiasing, shader);
 }
 }
 
 public override function destroy():Void
 {
-frames = null;
-filterRenderer.destroy();
-FlxTween.cancelTweensOf(this);
-super.destroy();
 }
 }

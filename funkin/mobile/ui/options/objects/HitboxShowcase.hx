@@ -1,4 +1,3 @@
-package funkin.mobile.ui.options.objects;
 
 
 /**
@@ -42,14 +41,9 @@ class HitboxShowcase extends FlxSpriteGroup
 */
 public function new(x:Int = 0, y:Int = 0, index:Int, selectionIndex:Int = 0, controlsScheme:String, ?onClick:Void->Void):Void
 {
-super(x, y);
 
-this.index = index;
-this.selectionIndex = selectionIndex;
 
-setupObjects(controlsScheme);
 
-alpha = HITBOX_SHOWCASE_ALPHA[selected ? 1 : 0];
 
 }
 
@@ -60,14 +54,9 @@ alpha = HITBOX_SHOWCASE_ALPHA[selected ? 1 : 0];
 */
 function setupObjects(controlsScheme:String):Void
 {
-bg.screenCenter();
-add(bg);
 
 hitbox.forEachAlive(function(hint:FunkinHint):Void
 {
-});
-hitbox.active = false;
-add(hitbox);
 }
 
 /**
@@ -76,23 +65,16 @@ add(hitbox);
 public function onPress():Void
 {
 {
-busy = true;
 
-FunkinSound.playOnce(Paths.sound('confirmMenu'));
 
 FlxFlicker.flicker(this, 1, 0.06, true, false, function(_)
 {
-busy = false;
-onSelect.dispatch();
-});
 }
 }
 
 public override function update(elapsed:Float):Void
 {
-super.update(elapsed);
 
-alpha = MathUtil.smoothLerpPrecision(alpha, HITBOX_SHOWCASE_ALPHA[selected ? 1 : 0], elapsed, 0.2);
 }
 
 function get_selected():Bool

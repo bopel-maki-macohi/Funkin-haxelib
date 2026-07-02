@@ -1,4 +1,3 @@
-package funkin.data;
 
 
 class DataError
@@ -8,27 +7,18 @@ public static function printError(error:Error):Void
 switch (error)
 {
 case IncorrectType(vari, expected, pos):
-printPos(pos);
 case IncorrectEnumValue(value, expected, pos):
-printPos(pos);
 case InvalidEnumConstructor(value, expected, pos):
-printPos(pos);
 case UninitializedVariable(vari, pos):
-printPos(pos);
 case UnknownVariable(vari, pos):
-printPos(pos);
 case ParserError(message, pos):
-printPos(pos);
 case CustomFunctionException(e, pos):
 {
 }
 else
 {
-printUnknownError(e);
 }
-printPos(pos);
 default:
-printUnknownError(error);
 }
 }
 

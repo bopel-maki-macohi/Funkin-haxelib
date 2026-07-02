@@ -1,4 +1,3 @@
-package funkin.ui.story;
 
 
 /**
@@ -12,11 +11,8 @@ class Level implements IRegistryEntry<LevelData>
 */
 public function new(id:String, ?params:Dynamic)
 {
-this.id = id;
-_data = _fetchData(id);
 
 {
-throw 'Could not parse level data for id: $id';
 }
 }
 
@@ -65,7 +61,6 @@ public function buildTitleGraphic():FlxSprite
 public function getSongDisplayNames(difficulty:String):Array<String>
 {
 {
-});
 }
 
 static function getSongDisplayName(songId:String, difficulty:String):String
@@ -103,7 +98,6 @@ public function buildBackground():FlxSprite
 {
 }
 
-result.color = getBackgroundColor();
 }
 
 /**
@@ -136,11 +130,9 @@ public function getDifficulties():Array<String>
 {
 for (difficulty in firstSong.listDifficulties([Constants.DEFAULT_VARIATION, 'erect'], false, false))
 {
-difficulties.push(difficulty);
 }
 }
 
-difficulties.sort(SortUtil.defaultsThenAlphabetically.bind(Constants.DEFAULT_DIFFICULTY_LIST));
 
 for (songIndex in 1...songList.length)
 {
@@ -149,7 +141,6 @@ for (songIndex in 1...songList.length)
 for (difficulty in difficulties.copy())
 {
 {
-difficulties.remove(difficulty);
 }
 }
 }
@@ -169,7 +160,6 @@ public function buildProps(?existingProps:Array<LevelProp>):Array<LevelProp>
 {
 for (i in _data.props.length...props.length)
 {
-props[i].visible = false;
 }
 }
 
@@ -177,21 +167,15 @@ for (propIndex in 0..._data.props.length)
 {
 
 {
-existingProp.propData = propData;
 {
-existingProp.visible = false;
 }
 else
 {
-existingProp.visible = true;
-existingProp.x = propData.offsets[0] + FlxG.width * 0.25 * propIndex;
 }
 }
 else
 {
 
-propSprite.x = propData.offsets[0] + FlxG.width * 0.25 * propIndex;
-props.push(propSprite);
 }
 }
 

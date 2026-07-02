@@ -1,4 +1,3 @@
-package funkin.data.animation;
 
 class AnimationDataUtil
 {
@@ -13,7 +12,6 @@ flipX: data.flipX,
 flipY: data.flipY,
 frameRate: data.frameRate,
 frameIndices: data.frameIndices
-};
 }
 
 /**
@@ -35,7 +33,6 @@ flipX: data.flipX,
 flipY: data.flipY,
 frameRate: data.frameRate,
 frameIndices: data.frameIndices
-};
 }
 
 public static function toUnnamedArray(data:Array<AnimationData>):Array<UnnamedAnimationData>
@@ -54,7 +51,6 @@ typedef AnimationData =
 
 /**
 * The name for the animation.
-* This should match the animation name queried by the game;
 * for example, characters need animations with names `idle`, `singDOWN`, `singUPmiss`, etc.
 */
 }

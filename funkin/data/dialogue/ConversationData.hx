@@ -1,4 +1,3 @@
-package funkin.data.dialogue;
 
 /**
 * A type definition for the data for a specific conversation.
@@ -54,7 +53,6 @@ typedef BackdropData_Solid =
 * Fade-in time for the backdrop.
 * @default No fade-in
 */
-};
 
 enum OutroData
 {
@@ -91,7 +89,6 @@ typedef MusicData =
 * The time to fade in the music.
 */
 
-};
 
 /**
 * Data on a single line of dialogue in a conversation.
@@ -129,4 +126,3 @@ typedef DialogueEntryData =
 * Setting `speed` to `1.5` would make it look like the character is speaking quickly,
 * and setting `speed` to `0.5` would make it look like the character is emphasizing each word.
 */
-};

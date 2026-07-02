@@ -1,4 +1,3 @@
-package funkin.play.notes.notestyle;
 
 /**
 * A script that can be tied to a NoteStyle.

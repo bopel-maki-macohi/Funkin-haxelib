@@ -1,4 +1,3 @@
-package funkin.graphics;
 
 
 /**
@@ -8,6 +7,5 @@ class FunkinCameraFrontEnd extends CameraFrontEnd
 {
 public override function reset(?newCamera:FlxCamera):Void
 {
-super.reset(newCamera ?? new FunkinCamera());
 }
 }

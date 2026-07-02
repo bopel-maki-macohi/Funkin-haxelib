@@ -1,4 +1,3 @@
-package funkin.effects;
 
 
 /**
@@ -19,29 +18,22 @@ class FunkTrail extends FlxTrail
 */
 public function new(target:FlxSprite, ?graphic:FlxGraphicAsset, length:Int = 10, delay:Float = 0.1, alpha:Float = 0.4, diff:Float = 0.05)
 {
-super(target, graphic, length, delay, alpha, diff);
 }
 
 /**
 * An offset applied to the target position whenever a new frame is saved.
 */
-public final frameOffset:FlxPoint = FlxPoint.get();
 
 override function destroy():Void
 {
-super.destroy();
 
-frameOffset.put();
 }
 
 override function addTrailFrame():Void
 {
-super.addTrailFrame();
 
 {
-frameOffset.set((targ.animOffsets[0] - targ.globalOffsets[0]) * targ.scale.x, (targ.animOffsets[1] - targ.globalOffsets[1]) * targ.scale.y);
 
-_recentPositions[0]?.subtract(frameOffset.x, frameOffset.y);
 }
 }
 }
