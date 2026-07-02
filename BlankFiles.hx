@@ -1,5 +1,7 @@
 package;
 
+import haxe.PosInfos;
+import haxe.Log;
 import haxe.Timer;
 import haxe.Constraints.Function;
 import sys.io.File;
@@ -42,195 +44,231 @@ class BlankFiles {
 		];
 	}
 
-	static var keep_keywords_contains:Array<String> = ['instance'];
-
-	static var keywords_contains:Array<String> = [];
-	static var keywords_endsWith:Array<String> = [';'];
-	static var keywords_startsWith:Array<String> = [
-		'import',
-		// 'if',
-		// 'lime',
-		// 'trace',
-		// 'FlxG',
-		// '@',
-		// 'static final',
-		// 'static var',
-		// 'public static var',
-		// 'public var',
-		// 'private static var',
-		// 'private var',
-		// 'var',
-		// 'final',
-		'// ',
-		// 'return',
-		// 'trace',
-		// '{',
-		// 'while',
-		// '#',
-	];
-
 	static var logs = [];
 
 	static var source:Array<String> = [];
 
 	static function main() {
-		source = readDirectoryRecursive('funkin');
-		trace('${source.length} files');
+		#if !debug
+		Log.trace = (v, ?infos) -> {}
+		#end
 
-		var i = 0;
+		source = readDirectoryRecursive('funkin').filter(p -> return Path.extension(p) == 'hx');
+		// source = ['funkin/api/discord/DiscordClient.hx'];
+		Sys.println('${source.length} files');
 
-		while (i < 10) {
-			i++;
-			Timer.measure(() -> cleanse(i));
-		}
+		cleanse();
 
-		trace('${removedKeywordLines.length} removed keyword lines after $i iterations');
+		Sys.println('done');
 		File.saveContent('lines', logs.join('\n'));
 
-		for (file in source) {
-			var parser = new hscript.Parser();
-			var program = parser.parseString(File.getContent(file), file);
+		// for (file in source) {
+		// 	var parser = new hscript.Parser();
+		// 	var program = parser.parseString(File.getContent(file), file);
 
-			var interp = new hscript.Interp();
+		// 	var interp = new hscript.Interp();
 
-			// export some useful classes
-			interp.variables.set("Array", Array);
-			interp.variables.set("DateTools", DateTools);
-			interp.variables.set("Math", Math);
-			interp.variables.set("StringTools", StringTools);
-			interp.variables.set("Sys", Sys);
-			interp.variables.set("Xml", Xml);
-			interp.variables.set("sys", {
-				"FileSystem": sys.FileSystem,
-				"io": {
-					"File": sys.io.File
-				},
-				"net": {
-					"Host": sys.net.Host
-				}
-			});
-			interp.variables.set("haxe", {
-				"Json": haxe.Json,
-				"Http": haxe.Http,
-				"Serializer": haxe.Serializer,
-				"Unserializer": haxe.Unserializer
-			});
+		// 	// export some useful classes
+		// 	interp.variables.set("Array", Array);
+		// 	interp.variables.set("DateTools", DateTools);
+		// 	interp.variables.set("Math", Math);
+		// 	interp.variables.set("StringTools", StringTools);
+		// 	interp.variables.set("Sys", Sys);
+		// 	interp.variables.set("Xml", Xml);
+		// 	interp.variables.set("sys", {
+		// 		"FileSystem": sys.FileSystem,
+		// 		"io": {
+		// 			"File": sys.io.File
+		// 		},
+		// 		"net": {
+		// 			"Host": sys.net.Host
+		// 		}
+		// 	});
+		// 	interp.variables.set("haxe", {
+		// 		"Json": haxe.Json,
+		// 		"Http": haxe.Http,
+		// 		"Serializer": haxe.Serializer,
+		// 		"Unserializer": haxe.Unserializer
+		// 	});
 
-			trace('$file : ' + interp.execute(program));
-		}
+		// 	trace('$file : ' + interp.execute(program));
+		// }
 	}
 
 	static var removedKeywordLines = [];
 
-	static function cleanse(j:Int) {
+	static function cleanse() {
 		logs = [];
 		for (file in source) {
+			if (file.contains('macro/'))
+				continue;
+			if (file.contains('Macro'))
+				continue;
+			if (file.contains('ui/debug/'))
+				continue;
+			if (file.contains('ui/haxeui/'))
+				continue;
+
 			var fileContent = File.getContent(file);
 			var lines = fileContent.split('\n');
 			var newLines = [];
 
-			var inFunction:Int = -1;
-
+			var methodID = -1;
+			var methods = [];
 			var funcStartIDS:Array<Int> = [];
 
-			var cleared = [];
+			var inClass = false;
+			var conditionalElse = false;
+			var declaredPackage = false;
 
-			var clsLine:Int = -1;
+			var tabsIn = '';
 
-			function clearLine(line) {
-				lines.remove(line);
-				removedKeywordLines.push(line);
-				cleared.push(line);
+			function addTab()
+				tabsIn += '\t';
+			function removeTab() {
+				var tabs = tabsIn.split('\t');
+				tabs.remove(tabs[tabs.length - 1]);
+				tabsIn = tabs.join('\t');
 			}
 
-			var i = 0;
-			for (line in lines) {
+			function addCurLineShit(i:Int) {
+				#if debug
+				newLines.push('$tabsIn// $file:${i + 1}');
+				#end
+			}
+
+			function log(v:Dynamic, i:Int, ?pos:PosInfos) {
+				// if (file.contains('FunkinSound'))
+				Sys.println('BlankFiles.hx:${pos.lineNumber}, $file:$i : $v');
+			}
+
+			for (i => line in lines) {
 				line = line.trim();
+				var splitLine = line.split(' ');
 
-				var lineSplit = line.split(' ');
+				var prevLine = (lines[i - 1] ?? '').trim();
+				var prevSplitLine = prevLine.split(' ');
 
-				var lineCleared = false;
-				var forceKeep = false;
+				if (line.startsWith('#')) {
+					if (line.startsWith('#else'))
+						conditionalElse = true;
+					if (line.startsWith('#end') && conditionalElse)
+						conditionalElse = false;
 
-				for (keyword in keep_keywords_contains) {
-					for (piece in lineSplit) {
-						if (!forceKeep && piece.contains(keyword)) {
-							forceKeep = true;
-							break;
-						}
-					}
+					continue;
 				}
 
-				if (!forceKeep) {
-					for (keywords in keywords_startsWith) {
-						if (!lineCleared && line.startsWith(keywords)) {
-							// trace(keywords);
-							clearLine(line);
-							lineCleared = true;
-						} else
-							continue;
-					}
+				if (conditionalElse)
+					continue;
 
-					for (keyword in keywords_contains) {
-						for (piece in lineSplit) {
-							if (!lineCleared && piece.contains(keyword)) {
-								// trace(keyword);
-								clearLine(line);
-								lineCleared = true;
-								break;
+				if (line.startsWith('*'))
+					continue;
+
+				var aSpiralKeyword = (line.contains('@:') || prevLine.contains('@:'));
+				var ifKeyword = (line.contains('if') || prevLine.contains('if'));
+				// var varFunctionKeyword = (line.contains('(function') || prevLine.contains('(function')) || (line.contains('function(') || prevLine.contains('(function('));
+				var functionKeyword = (line.contains('function') || prevLine.contains('function'));
+				var finalKeyword = (line.contains('final') || prevLine.contains('final'));
+				var varKeyword = (line.contains('var') || prevLine.contains('var'));
+
+				if (finalKeyword)
+					continue;
+				if (varKeyword)
+					continue;
+
+				var publicKeyword = (splitLine.contains('public') || prevSplitLine.contains('public')) ? 'public ' : '';
+				var privateKeyword = (splitLine.contains('private') || prevSplitLine.contains('private')) ? 'private ' : '';
+				var staticKeyword = (splitLine.contains('static') || prevSplitLine.contains('static')) ? 'static ' : '';
+				var inlineKeyword = (splitLine.contains('inline') || prevSplitLine.contains('inline')) ? 'inline ' : '';
+
+				var getKeyword = (line.contains('get_') || line.contains('(get'))
+					|| (prevLine.contains('get_') || prevLine.contains('(get'));
+				var setKeyword = (line.contains('set_') || line.contains('set)'))
+					|| (prevLine.contains('set_') || prevLine.contains('set)'));
+
+				var macroKeyword = line.contains('macro');
+
+				if (line.contains('package') && !declaredPackage) {
+					addCurLineShit(i);
+					newLines.push('$tabsIn$line');
+					declaredPackage = true;
+				}
+
+				if (!declaredPackage)
+					continue;
+
+				if (line.contains('class') && !inClass) {
+					inClass = true;
+
+					addCurLineShit(i);
+					newLines.push('${tabsIn}class ${line.split(' ')[1]}');
+					newLines.push('{');
+				}
+
+				if (!inClass)
+					continue;
+
+				if (line.contains('{')) {
+					if (ifKeyword || aSpiralKeyword) {
+						methodID++;
+						// log('$methodID', i);
+					} else if (functionKeyword) {
+						var funcName = null;
+
+						if (funcName == null)
+							for (piece in prevSplitLine) {
+								if (piece.contains('(') && piece.split('(',).length < 3) {
+									funcName = piece.split('(',)[0];
+
+									// log(piece, i);
+									// log(piece.split('('), i);
+								}
 							}
-						}
-					}
 
-					for (keyword in keywords_endsWith) {
-						if (!lineCleared && line.endsWith(keyword)) {
-							// trace(keyword);
-							clearLine(line);
-							lineCleared = true;
-						}
-					}
+						methodID++;
+						// log('$methodID', i);
 
-					if (!lineCleared) {
-						if (line.contains('function')) {
-							inFunction++;
-
-							funcStartIDS.push(i);
-
-							var splitFuncLine = line.split('():');
-
-							if (splitFuncLine.length > 1)
-								line = splitFuncLine[0] + '()';
-
-							if (!line.contains('{}'))
-								line = splitFuncLine[0] + ' {}';
-
-							lines.remove(lines[i + 1]);
+						if (funcName?.toLowerCase() == ' function' || getKeyword || setKeyword) {
+							// log('get: $getKeyword', i);
+							// log('set: $setKeyword', i);
+							funcName = null;
 						}
 
-						if (line == '}' && inFunction >= 0) {
-							funcStartIDS.remove(funcStartIDS[inFunction]);
-							inFunction--;
-
-							// if (inFunction < 0) {
-							// 	newLines.insert(newLines.length - 1, '${newLines[newLines.length - 1]} {}');
-							// }
+						if (funcName != null && !macroKeyword) {
+							addCurLineShit(i - 1);
+							methods.push('$funcName');
+							newLines.push('$tabsIn${publicKeyword}${privateKeyword}${inlineKeyword}${staticKeyword}function $funcName() {}');
 						}
-
-						lineCleared = inFunction < 0;
 					}
 				}
 
-				if (!lineCleared || forceKeep) {
-					logs.push('$file : $line');
-					newLines.push(line);
+				if (line.contains('}')) {
+					if (methodID >= 0) {
+						methodID--;
+						// log('$methodID', i);
+					} else if (inClass) {
+						addCurLineShit(i);
+						newLines.push('}');
+						inClass = false;
+					}
 				}
 
-				i++;
+				// if (macroKeyword)
+				// 	continue;
+			}
+
+			// var addedLines:Array<String> = [];
+			for (line in newLines) {
+				// if (line.length > 1 && addedLines.contains(line))
+				// 	continue;
+
+				logs.push(line);
+				// addedLines.push(line);
 			}
 
 			fileContent = newLines.join('\n');
 			// trace('$j : ' + file + ' : ${cleared.length}');
-			File.saveContent(file, fileContent);
+			// File.saveContent(file, fileContent);
 		}
 	}
 }
