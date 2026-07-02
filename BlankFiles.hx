@@ -161,7 +161,7 @@ class BlankFiles {
 				if (conditionalElse)
 					continue;
 
-				if (line.startsWith('*'))
+				if (line.startsWith('/*') ||line.startsWith('*') || line.startsWith('//'))
 					continue;
 
 				var aSpiralKeyword = (line.contains('@:') || prevLine.contains('@:'));
@@ -170,11 +170,6 @@ class BlankFiles {
 				var functionKeyword = (line.contains('function') || prevLine.contains('function'));
 				var finalKeyword = (line.contains('final') || prevLine.contains('final'));
 				var varKeyword = (line.contains('var') || prevLine.contains('var'));
-
-				if (finalKeyword)
-					continue;
-				if (varKeyword)
-					continue;
 
 				var publicKeyword = (splitLine.contains('public') || prevSplitLine.contains('public')) ? 'public ' : '';
 				var privateKeyword = (splitLine.contains('private') || prevSplitLine.contains('private')) ? 'private ' : '';
@@ -207,6 +202,24 @@ class BlankFiles {
 
 				if (!inClass)
 					continue;
+
+				if (methodID < 0 && (varKeyword || finalKeyword)) {
+					line = line.replace('(get,', '');
+					line = line.replace('(default,', '');
+					line = line.replace('(null,', '');
+					line = line.replace('(never,', '');
+
+					line = line.replace('set)', '');
+					line = line.replace('default)', '');
+					line = line.replace('null)', '');
+					line = line.replace('never)', '');
+
+					if (line.contains('URL_REGEX')) continue;
+
+					addCurLineShit(i - 1);
+					newLines.push('$tabsIn${line}');
+					continue;
+				}
 
 				if (line.contains('{')) {
 					if (ifKeyword || aSpiralKeyword) {
